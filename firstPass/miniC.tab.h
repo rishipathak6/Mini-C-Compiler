@@ -40,7 +40,7 @@
 extern int yydebug;
 #endif
 /* "%code requires" blocks.  */
-#line 50 "miniC.y" /* yacc.c:1909  */
+#line 54 "miniC.y" /* yacc.c:1909  */
 
     #include "funcTab.h"
     #include "codegenHelpers.h"
@@ -118,7 +118,7 @@ extern int yydebug;
 
 union YYSTYPE
 {
-#line 55 "miniC.y" /* yacc.c:1909  */
+#line 59 "miniC.y" /* yacc.c:1909  */
 
     int intValue;
     float floatValue;
@@ -126,12 +126,12 @@ union YYSTYPE
     int quad;
 
     struct expression expressionValue;
-    struct statement statementValue;
-    struct whileExpression whileExpressionValue;
-    struct shortCircuit shortCircuitValue;
     struct switchCaser switchCaseValue;
     struct switchTemp switchTempValue;
     struct condition2temp conditionTemp;
+    struct whileExpression whileExpressionValue;
+    struct statement statementValue;
+    struct shortCircuit shortCircuitValue;
 
 #line 137 "miniC.tab.h" /* yacc.c:1909  */
 };

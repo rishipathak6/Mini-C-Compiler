@@ -65,33 +65,37 @@
 #line 1 "miniC.y" /* yacc.c:339  */
 
 #pragma GCC diagnostic ignored "-Wwrite-strings"
+
 #include <iostream>
 #include <vector>
-#include <stack>
-#include <stdio.h>
-#include <algorithm>
 #include <utility>
 #include <fstream>
+#include <algorithm>
+#include <stack>
+#include <stdio.h>
+
 #include "funcTab.h"
 #include "codegenHelpers.h"
+
 using namespace std;
+
 #define YYERROR_VERBOSE 1
 
 extern int yylex();
 extern int yyparse();
 extern int yylineno;
-extern char* yytext;
 extern int yyleng;
+extern char* yytext;
 void yyerror(const char* s);
 
 int offsetValue;
 string text;
-eletype resultType;
-vector<typeRecord*> typeRecordList;
-stack<vector<typeRecord*> > parameterListStack;
 typeRecord* variableRecord;
 vector<int> decDimensionList;
 vector<typeRecord*> globalVariables;
+eletype resultType;
+stack<vector<typeRecord*> > parameterListStack;
+vector<typeRecord*> typeRecordList;
 
 int nextNum;
 vector<string> functionInstruction;
@@ -100,18 +104,18 @@ registerSet temporarySet;
 vector<functionEntry*> functionEntryRecord;
 functionEntry* activeFunctionPointer;
 functionEntry* callFunctionPointer;
+vector<string> switchVariable;
+vector<functionEntry*> callFunctionPointerList;
+vector<string> dimensionList;
 int scope;
 int found;
 bool errorFound;
 int numberOfParameters;
 string conditionVariable;
-vector<string> switchVariable;
-vector<functionEntry*> callFunctionPointerList;
-vector<string> dimensionList;
 
 vector<pair<string,int>> stringVariable;
 
-#line 115 "miniC.tab.c" /* yacc.c:339  */
+#line 119 "miniC.tab.c" /* yacc.c:339  */
 
 # ifndef YY_NULLPTR
 #  if defined __cplusplus && 201103L <= __cplusplus
@@ -141,12 +145,12 @@ vector<pair<string,int>> stringVariable;
 extern int yydebug;
 #endif
 /* "%code requires" blocks.  */
-#line 50 "miniC.y" /* yacc.c:355  */
+#line 54 "miniC.y" /* yacc.c:355  */
 
     #include "funcTab.h"
     #include "codegenHelpers.h"
 
-#line 150 "miniC.tab.c" /* yacc.c:355  */
+#line 154 "miniC.tab.c" /* yacc.c:355  */
 
 /* Token type.  */
 #ifndef YYTOKENTYPE
@@ -219,7 +223,7 @@ extern int yydebug;
 
 union YYSTYPE
 {
-#line 55 "miniC.y" /* yacc.c:355  */
+#line 59 "miniC.y" /* yacc.c:355  */
 
     int intValue;
     float floatValue;
@@ -227,14 +231,14 @@ union YYSTYPE
     int quad;
 
     struct expression expressionValue;
-    struct statement statementValue;
-    struct whileExpression whileExpressionValue;
-    struct shortCircuit shortCircuitValue;
     struct switchCaser switchCaseValue;
     struct switchTemp switchTempValue;
     struct condition2temp conditionTemp;
+    struct whileExpression whileExpressionValue;
+    struct statement statementValue;
+    struct shortCircuit shortCircuitValue;
 
-#line 238 "miniC.tab.c" /* yacc.c:355  */
+#line 242 "miniC.tab.c" /* yacc.c:355  */
 };
 
 typedef union YYSTYPE YYSTYPE;
@@ -251,7 +255,7 @@ int yyparse (void);
 
 /* Copy the second part of user declarations.  */
 
-#line 255 "miniC.tab.c" /* yacc.c:358  */
+#line 259 "miniC.tab.c" /* yacc.c:358  */
 
 #ifdef short
 # undef short
@@ -491,9 +495,9 @@ union yyalloc
 #endif /* !YYCOPY_NEEDED */
 
 /* YYFINAL -- State number of the termination state.  */
-#define YYFINAL  16
+#define YYFINAL  18
 /* YYLAST -- Last index in YYTABLE.  */
-#define YYLAST   298
+#define YYLAST   318
 
 /* YYNTOKENS -- Number of terminals.  */
 #define YYNTOKENS  61
@@ -554,20 +558,20 @@ static const yytype_uint8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint16 yyrline[] =
 {
-       0,    89,    89,    90,    93,    94,    95,    96,    99,   109,
-     135,   145,   168,   175,   187,   188,   191,   203,   217,   228,
-     237,   245,   257,   268,   274,   282,   288,   297,   303,   309,
-     309,   319,   327,   335,   388,   413,   437,   445,   455,   458,
-     471,   472,   475,   476,   479,   559,   662,   772,   776,   782,
-     836,   837,   840,   855,   855,   872,   890,   928,   980,  1032,
-    1084,  1136,  1190,  1200,  1227,  1237,  1245,  1245,  1265,  1265,
-    1284,  1291,  1291,  1307,  1314,  1323,  1333,  1341,  1347,  1359,
-    1359,  1384,  1393,  1400,  1405,  1412,  1420,  1433,  1433,  1451,
-    1465,  1474,  1490,  1505,  1513,  1520,  1519,  1563,  1585,  1584,
-    1618,  1629,  1638,  1647,  1665,  1683,  1701,  1719,  1738,  1756,
-    1771,  1815,  1859,  1874,  1917,  1960,  1981,  1996,  2010,  2042,
-    2050,  2057,  2064,  2071,  2084,  2091,  2115,  2139,  2163,  2189,
-    2232,  2297,  2307
+       0,    96,    96,   106,   129,   136,   148,   149,   152,   164,
+     178,   189,   198,   206,   218,   229,   232,   233,   236,   246,
+     247,   248,   249,   252,   278,   291,   292,   295,   296,   299,
+     379,   482,   592,   596,   602,   611,   620,   638,   656,   674,
+     692,   711,   729,   744,   788,   832,   848,   902,   903,   906,
+     912,   920,   926,   935,   941,   947,   947,   957,   965,   973,
+    1026,  1051,  1075,  1083,  1093,  1108,  1108,  1125,  1138,  1138,
+    1156,  1170,  1179,  1197,  1235,  1287,  1339,  1391,  1443,  1497,
+    1524,  1534,  1542,  1542,  1562,  1562,  1581,  1588,  1588,  1604,
+    1611,  1621,  1630,  1642,  1642,  1667,  1676,  1686,  1694,  1700,
+    1707,  1712,  1721,  1728,  1744,  1759,  1767,  1773,  1783,  1796,
+    1795,  1839,  1861,  1860,  1894,  1905,  1948,  1991,  2012,  2027,
+    2041,  2073,  2081,  2088,  2095,  2102,  2115,  2122,  2146,  2170,
+    2194,  2220,  2263
 };
 #endif
 
@@ -585,15 +589,16 @@ static const char *const yytname[] =
   "DIVASSIGNMENT", "INCREMENT", "DECREMENT", "XOR", "BITAND", "BITOR",
   "PLUS", "MINUS", "DIV", "MUL", "MOD", "NOT", "AND", "OR", "LESSTHAN",
   "GREATTHAN", "LESSEQUAL", "GREATEQUAL", "EQUAL", "NOTEQUAL", "$accept",
-  "MAIN_PROG", "PROG", "MAINFUNCTION", "MAIN_HEAD", "FUNCTION_DEFINATION",
-  "FUNC_HEAD", "RES_ID", "DECL_PLIST", "DECL_PL", "DECL_PARAM", "BODY",
-  "STATEMENT_LIST", "STATEMENT", "$@1", "VARIABLE_DECLARATION", "D", "T",
-  "L", "DEC_ID_ARR", "DEC_BR_DIMLIST", "FUNC_CALL", "PARAMLIST", "PLIST",
-  "$@2", "ASSIGNMENT", "LHS", "SWITCHCASE", "TEMP1", "TEMP2", "CASELIST",
-  "$@3", "$@4", "$@5", "M3", "N3", "P3", "Q3", "Q4", "FORLOOP", "FOREXP",
-  "$@6", "ASSIGNMENT1", "M1", "M2", "IFSTMT", "$@7", "IFEXP", "WHILESTMT",
-  "WHILEEXP", "TP1", "CONDITION1", "$@8", "CONDITION2", "$@9", "EXPR1",
-  "EXPR21", "EXPR2", "TERM", "FACTOR", "ID_ARR", "BR_DIMLIST", YY_NULLPTR
+  "FUNCTION_DEFINATION", "FUNC_HEAD", "RES_ID", "DECL_PLIST", "DECL_PL",
+  "DECL_PARAM", "BODY", "STATEMENT_LIST", "VARIABLE_DECLARATION",
+  "MAIN_PROG", "MAINFUNCTION", "PROG", "MAIN_HEAD", "D", "T", "L",
+  "DEC_ID_ARR", "DEC_BR_DIMLIST", "EXPR1", "EXPR21", "EXPR2", "FUNC_CALL",
+  "PARAMLIST", "STATEMENT", "$@1", "PLIST", "$@2", "IFSTMT", "$@3",
+  "IFEXP", "ASSIGNMENT", "SWITCHCASE", "TEMP1", "TEMP2", "CASELIST", "$@4",
+  "$@5", "$@6", "M3", "LHS", "N3", "FORLOOP", "FOREXP", "$@7", "P3", "Q3",
+  "Q4", "ASSIGNMENT1", "M2", "M1", "WHILESTMT", "WHILEEXP", "TP1",
+  "BR_DIMLIST", "CONDITION1", "$@8", "CONDITION2", "$@9", "TERM", "FACTOR",
+  "ID_ARR", YY_NULLPTR
 };
 #endif
 
@@ -612,12 +617,12 @@ static const yytype_uint16 yytoknum[] =
 };
 # endif
 
-#define YYPACT_NINF -229
+#define YYPACT_NINF -232
 
 #define yypact_value_is_default(Yystate) \
-  (!!((Yystate) == (-229)))
+  (!!((Yystate) == (-232)))
 
-#define YYTABLE_NINF -95
+#define YYTABLE_NINF -107
 
 #define yytable_value_is_error(Yytable_value) \
   0
@@ -626,31 +631,31 @@ static const yytype_uint16 yytoknum[] =
      STATE-NUM.  */
 static const yytype_int16 yypact[] =
 {
-      83,   -32,  -229,    43,     5,    83,  -229,    44,  -229,    48,
-      92,  -229,   124,   148,   139,  -229,  -229,  -229,  -229,  -229,
-     246,   246,   116,  -229,    21,   137,  -229,   140,   147,  -229,
-    -229,  -229,    20,   153,   153,  -229,    12,    13,   150,   151,
-      14,    15,    12,   154,   153,   153,    85,   109,   158,    42,
-    -229,  -229,   161,  -229,   157,   -11,  -229,  -229,  -229,  -229,
-     160,  -229,   164,   126,   128,  -229,  -229,   107,    46,  -229,
-      95,   166,   163,   162,  -229,   177,   179,    12,   170,   161,
-    -229,  -229,    12,   168,   172,   173,   171,   175,   246,   174,
-     178,    12,  -229,  -229,   180,   182,   183,    12,  -229,   176,
-      12,  -229,  -229,  -229,  -229,  -229,  -229,   101,  -229,  -229,
-      66,  -229,    12,    12,    12,    12,    12,    12,   184,   246,
-     246,  -229,  -229,   109,   109,   109,   109,   109,   109,   109,
-     109,   109,   109,   109,  -229,  -229,  -229,  -229,   116,  -229,
-     187,  -229,   186,  -229,   198,   197,   169,    12,    12,  -229,
-    -229,   204,  -229,  -229,   205,  -229,    12,  -229,   181,  -229,
-     206,  -229,  -229,  -229,  -229,  -229,  -229,   246,   207,   208,
-     185,   188,    46,    46,   100,   100,   100,   100,   100,   100,
-    -229,  -229,  -229,  -229,  -229,   210,  -229,  -229,    12,  -229,
-     219,  -229,  -229,   218,  -229,  -229,   224,   217,  -229,    12,
-      12,  -229,  -229,  -229,  -229,    12,   228,  -229,  -229,   128,
-    -229,  -229,   114,   223,  -229,    28,   232,   242,  -229,  -229,
-    -229,   252,  -229,  -229,   245,   243,  -229,  -229,  -229,   246,
-      12,   251,  -229,   246,   250,  -229,   203,   255,  -229,  -229,
-     248,   114,   203,  -229,  -229,   114,  -229
+      74,   -21,  -232,     8,  -232,    24,    26,  -232,    60,  -232,
+      74,    95,    54,    49,   115,  -232,   266,    48,  -232,  -232,
+    -232,  -232,   266,  -232,    57,   116,  -232,   120,   121,  -232,
+    -232,  -232,   118,   133,   133,  -232,    -2,    17,   122,   123,
+      29,    36,    -2,   126,   133,   133,    75,    16,   130,   173,
+    -232,   139,  -232,  -232,    67,  -232,  -232,  -232,   134,   127,
+    -232,   -12,  -232,  -232,  -232,   135,    97,    99,    43,  -232,
+      30,   136,   137,  -232,   147,   141,   151,    -2,   143,   139,
+    -232,  -232,    -2,   142,   144,   146,   145,   148,   266,   152,
+     153,    -2,  -232,  -232,   155,   149,   158,    -2,  -232,   150,
+      -2,  -232,  -232,  -232,  -232,  -232,  -232,    42,  -232,  -232,
+      -8,    16,    16,    16,    16,    16,    16,    16,    16,   266,
+    -232,    -2,    -2,    -2,    -2,    -2,    -2,   167,   266,  -232,
+    -232,    16,    16,    16,  -232,  -232,  -232,    48,  -232,  -232,
+     172,  -232,   157,  -232,   175,   165,   169,    -2,    -2,  -232,
+    -232,   178,  -232,  -232,   176,  -232,    -2,  -232,   177,  -232,
+     188,    43,    43,    69,    69,    69,    69,    69,    69,   193,
+    -232,  -232,  -232,  -232,  -232,  -232,   266,   194,   111,   114,
+    -232,  -232,  -232,  -232,  -232,   195,  -232,  -232,    -2,  -232,
+     199,  -232,  -232,   192,  -232,  -232,   197,   202,  -232,    -2,
+      -2,  -232,  -232,  -232,  -232,    -2,   204,  -232,  -232,    99,
+    -232,  -232,    35,   198,  -232,     1,   216,   219,  -232,  -232,
+    -232,   225,  -232,  -232,   221,   220,  -232,  -232,  -232,   266,
+      -2,   228,  -232,   266,   227,  -232,   223,   232,  -232,  -232,
+     217,    35,   223,  -232,  -232,    35,  -232
 };
 
   /* YYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
@@ -658,55 +663,55 @@ static const yytype_int16 yypact[] =
      means the default is an error.  */
 static const yytype_uint8 yydefact[] =
 {
-       0,    40,    41,     0,     0,     0,     3,     0,     6,     0,
-       0,     7,     0,     0,     0,    13,     1,     2,     4,     5,
-       0,     0,    15,    38,    44,    39,    42,     0,    37,    40,
-     122,   120,   129,     0,     0,    29,     0,     0,     0,     0,
-       0,     0,    83,     0,     0,     0,     0,     0,     0,     0,
-      22,    23,     0,   123,     0,     0,    28,    25,    77,    26,
-       0,    27,     0,    55,    97,   100,   102,   109,   112,   116,
-     117,     0,     0,    14,    17,     0,     0,     0,    46,     0,
-       9,    36,     0,    53,   130,   129,     0,     0,     0,     0,
-       0,     0,    31,    32,     0,     0,     0,    83,    82,     0,
-       0,   127,   128,   121,   119,   118,   101,   117,     8,    21,
-      44,    24,     0,     0,     0,     0,     0,     0,     0,     0,
-       0,    95,    98,     0,     0,     0,     0,     0,     0,     0,
-       0,     0,     0,     0,   125,   126,    10,    11,     0,    18,
-       0,    45,     0,    43,     0,     0,    50,     0,     0,    34,
-      35,     0,   124,    90,     0,    93,     0,    81,     0,    33,
-       0,    56,    57,    58,    59,    61,    60,     0,     0,     0,
-       0,     0,   110,   111,   105,   106,   107,   108,   103,   104,
-     114,   113,   115,    16,    47,     0,   131,    49,     0,    54,
-       0,    30,    89,     0,    73,    64,     0,    86,    91,     0,
-       0,    48,    52,   132,    92,    83,     0,    78,    85,    96,
-      99,    76,    70,     0,    79,     0,     0,     0,    84,    75,
-      65,     0,    65,    63,     0,     0,    68,    65,    71,     0,
-      83,     0,    66,     0,     0,    74,     0,     0,    72,    88,
-       0,    70,     0,    80,    69,    70,    67
+       0,    25,    26,     0,    21,     0,     0,    22,     0,    17,
+       0,     0,     0,     0,     0,     5,     0,     7,     1,    19,
+      20,    16,     0,    15,    29,    24,    27,     0,    63,    25,
+     124,   122,   131,     0,     0,    55,     0,     0,     0,     0,
+       0,     0,   100,     0,     0,     0,     0,     0,     0,     0,
+      49,     0,   114,    35,    42,   125,    14,    52,     0,     0,
+      54,     0,    51,    98,    53,     0,    72,   111,    45,   118,
+     119,     0,     6,     9,     0,     0,     0,     0,    31,     0,
+      23,    62,     0,    65,   132,   131,     0,     0,     0,     0,
+       0,     0,    57,    58,     0,     0,     0,   100,    99,     0,
+       0,   129,   130,   123,   121,   120,    34,   119,     2,    13,
+      29,     0,     0,     0,     0,     0,     0,     0,     0,     0,
+      50,     0,     0,     0,     0,     0,     0,     0,     0,   109,
+     112,     0,     0,     0,   127,   128,     3,     0,    10,    18,
+       0,    30,     0,    28,     0,     0,    47,     0,     0,    60,
+      61,     0,   126,    71,     0,   105,     0,    95,     0,    59,
+       0,    43,    44,    38,    39,    40,    41,    36,    37,     0,
+      73,    74,    75,    76,    78,    77,     0,     0,     0,     0,
+     116,   115,   117,     8,    32,     0,   107,    46,     0,    66,
+       0,    56,    70,     0,    89,    80,    67,     0,   103,     0,
+       0,    33,    64,   108,   104,   100,     0,   101,    92,   110,
+     113,    97,    86,     0,    93,     0,     0,     0,   102,    96,
+      81,     0,    81,    79,     0,     0,    84,    81,    87,     0,
+     100,     0,    82,     0,     0,    91,     0,     0,    88,    69,
+       0,    86,     0,    94,    85,    86,    83
 };
 
   /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int16 yypgoto[] =
 {
-    -229,  -229,  -229,   264,  -229,   266,  -229,  -229,  -229,  -229,
-     134,   -21,  -229,   225,  -229,     4,  -229,     3,  -229,   201,
-    -229,  -229,  -229,  -229,  -229,   -35,  -229,  -229,  -229,  -186,
-    -228,  -229,  -229,  -229,  -229,  -229,  -229,  -229,  -229,  -229,
-    -229,  -229,   -91,    63,  -229,  -229,  -229,  -229,  -229,  -229,
-     220,  -229,  -229,    86,  -229,    82,   237,    -3,    26,    -2,
-     -23,  -229
+    -232,   235,  -232,  -232,  -232,  -232,   109,   -22,  -232,    44,
+    -232,   238,  -232,  -232,  -232,     2,  -232,   179,  -232,    59,
+     210,    15,  -232,  -232,   211,  -232,  -232,  -232,  -232,  -232,
+    -232,   -35,  -232,  -232,  -184,  -231,  -232,  -232,  -232,  -232,
+    -232,  -232,  -232,  -232,  -232,  -232,  -232,  -232,   -94,  -232,
+      45,  -232,  -232,   196,  -232,  -232,  -232,    62,  -232,   -16,
+     -24,   -13
 };
 
   /* YYDEFGOTO[NTERM-NUM].  */
 static const yytype_int16 yydefgoto[] =
 {
-      -1,     4,     5,     6,     7,     8,     9,    10,    72,    73,
-      74,    48,    49,    50,    88,    51,    12,    52,    25,    26,
-      78,    53,   145,   146,   147,    54,    55,    56,   206,   226,
-     217,   237,   231,   233,   205,   240,   225,   214,   118,    57,
-      58,   219,    99,    95,   213,    59,   208,    60,    61,    62,
-     122,    63,   170,    64,   171,    65,    66,    67,    68,    69,
-      70,    84
+      -1,     4,     5,     6,    71,    72,    73,    48,    49,    50,
+       8,     9,    10,    11,    12,    51,    25,    26,    78,    52,
+      53,    54,    55,   145,    56,    88,   146,   147,    57,   207,
+      58,    59,    60,   206,   226,   217,   237,   231,   233,   205,
+      61,   240,    62,    63,   219,   225,   214,   127,    99,   213,
+      95,    64,    65,   130,    84,    66,   178,    67,   179,    68,
+      69,    70
 };
 
   /* YYTABLE[YYPACT[STATE-NUM]] -- What to do in state STATE-NUM.  If
@@ -714,69 +719,73 @@ static const yytype_int16 yydefgoto[] =
      number is the opposite.  If YYTABLE_NINF, syntax error.  */
 static const yytype_int16 yytable[] =
 {
-      71,    89,    14,    13,    11,    16,   158,    98,    13,    19,
-      86,    87,   112,   244,    90,    94,    96,   246,    30,    31,
-      32,   101,   102,   105,   107,    75,   113,   114,   115,   116,
-     117,    36,    91,   -84,    97,   220,   228,    82,    76,    83,
-     -12,   232,   141,    28,    77,    29,     2,   144,    30,    31,
-      32,    15,    33,    34,    44,    45,   154,    35,   -19,    20,
-      46,    36,    98,    21,    47,   160,    37,   151,   -19,    38,
-     -19,    39,    40,    41,    42,    43,   221,   161,   162,   163,
-     164,   165,   166,    76,    44,    45,     1,     2,     3,    77,
-      46,   103,   104,    85,    47,   131,   132,   133,   168,   169,
-     107,   107,   107,   107,   107,   107,   107,   107,   107,   107,
-     107,    22,   189,   190,   211,    30,    31,    32,   -62,    29,
-       2,   193,   174,   175,   176,   177,   178,   179,    36,   180,
-     181,   182,   -62,   -62,   -62,   -62,   -62,   134,   135,   235,
-     215,    75,   216,   134,   135,    23,   196,   123,   124,   172,
-     173,    44,    45,   202,   123,   124,    24,    46,    27,    79,
-      80,    85,   125,   126,   127,   128,   129,   130,    81,   110,
-      98,    92,    93,   100,   108,   119,   107,   107,   111,   120,
-     -94,   -94,   136,   137,   138,   139,   140,   142,   -51,   148,
-      82,   188,   149,   185,   152,    98,   150,   159,   153,   167,
-     155,   156,   194,   157,    28,   184,    29,     2,   234,    30,
-      31,    32,   238,    33,    34,   241,   186,   187,    35,   -20,
-     191,   245,    36,   197,   198,   192,   195,    37,   201,   -20,
-      38,   -20,    39,    40,    41,    42,    43,   203,   204,   199,
-     207,   200,   -87,   212,   222,    44,    45,    28,   218,    29,
-       2,    46,    30,    31,    32,    47,    33,    34,   223,   227,
-     229,    35,   -20,   236,   230,    36,   239,   242,   243,    17,
-      37,    18,   183,    38,   109,    39,    40,    41,    42,    43,
-     143,   224,   210,   121,   106,   209,     0,     0,    44,    45,
+      75,    89,    13,   158,    30,    31,    32,    98,   220,    76,
+     244,   121,    13,    14,   246,    77,    15,    36,    90,    74,
+      86,    87,    30,    31,    32,   122,   123,   124,   125,   126,
+      94,   101,   102,   105,   107,    36,    91,    96,   228,    16,
+      44,    45,   141,   232,     7,    17,    46,   144,  -102,   221,
+      47,    29,     2,   -90,    20,    97,   154,    24,    44,    45,
+      18,   215,    98,   216,    46,   160,   151,   -90,   -90,   -90,
+     -90,   -90,   134,   135,    76,    23,    -4,     1,     2,     3,
+      77,   103,   104,    85,   134,   135,   170,   171,   172,   173,
+     174,   175,   131,   132,   133,   161,   162,   169,   107,   107,
+     107,   107,   107,   107,   107,   107,   177,   180,   181,   182,
+      22,   211,   189,   190,   111,   112,   111,   112,   107,   107,
+     107,   193,   113,   114,   115,   116,   117,   118,   163,   164,
+     165,   166,   167,   168,    27,    82,   235,    83,    79,    74,
+      80,    85,    81,    92,    93,   100,   108,   110,   120,   119,
+     128,  -106,  -106,   202,   197,   138,   136,   139,   140,   137,
+     142,   148,   -48,    82,   185,   199,   149,   200,   156,   150,
+      98,   159,   152,   153,    28,   155,    29,     2,   157,    30,
+      31,    32,   176,    33,    34,   187,   107,   107,    35,   -11,
+     184,   188,    36,   186,   191,    98,   192,    37,   194,   -11,
+      38,   -11,    39,    40,    41,    42,    43,   234,   195,   196,
+     198,   238,   204,   201,   241,    44,    45,   203,   208,   212,
+     245,    46,   -68,   218,    28,    47,    29,     2,   222,    30,
+      31,    32,   227,    33,    34,   223,   229,   243,    35,   -12,
+     236,   230,    36,   239,   242,    19,   183,    37,    21,   -12,
+      38,   -12,    39,    40,    41,    42,    43,   106,   143,   210,
+     109,   209,   129,   224,     0,    44,    45,    28,     0,    29,
+       2,    46,    30,    31,    32,    47,    33,    34,     0,     0,
+       0,    35,   -12,     0,     0,    36,     0,     0,     0,     0,
+      37,     0,     0,    38,     0,    39,    40,    41,    42,    43,
+       0,     0,     0,     0,     0,     0,     0,     0,    44,    45,
        0,     0,     0,     0,    46,     0,     0,     0,    47
 };
 
 static const yytype_int16 yycheck[] =
 {
-      21,    36,    34,     0,     0,     0,    97,    42,     5,     5,
-      33,    34,    23,   241,     1,     1,     1,   245,     6,     7,
-       8,    44,    45,    46,    47,    22,    37,    38,    39,    40,
-      41,    19,    19,    19,    19,     7,   222,    17,    17,    19,
-      19,   227,    77,     1,    23,     3,     4,    82,     6,     7,
-       8,     8,    10,    11,    42,    43,    91,    15,    16,    15,
-      48,    19,    97,    15,    52,   100,    24,    88,    26,    27,
-      28,    29,    30,    31,    32,    33,    48,   112,   113,   114,
-     115,   116,   117,    17,    42,    43,     3,     4,     5,    23,
-      48,     6,     7,     8,    52,    49,    50,    51,   119,   120,
-     123,   124,   125,   126,   127,   128,   129,   130,   131,   132,
-     133,    19,   147,   148,   205,     6,     7,     8,    23,     3,
-       4,   156,   125,   126,   127,   128,   129,   130,    19,   131,
-     132,   133,    37,    38,    39,    40,    41,    42,    43,   230,
-      26,   138,    28,    42,    43,    21,   167,    47,    48,   123,
-     124,    42,    43,   188,    47,    48,     8,    48,    19,    22,
-      20,     8,    55,    56,    57,    58,    59,    60,    21,     8,
-     205,    21,    21,    19,    16,    15,   199,   200,    21,    15,
-      54,    53,    16,    20,    22,     8,     7,    17,    20,    17,
-      17,    22,    21,     7,    20,   230,    21,    21,    20,    15,
-      20,    19,    21,    20,     1,    18,     3,     4,   229,     6,
-       7,     8,   233,    10,    11,   236,    18,    20,    15,    16,
-      16,   242,    19,    16,    16,    20,    20,    24,    18,    26,
-      27,    28,    29,    30,    31,    32,    33,    18,    20,    54,
-      16,    53,    25,    15,    12,    42,    43,     1,    25,     3,
-       4,    48,     6,     7,     8,    52,    10,    11,    16,     7,
-      15,    15,    16,    12,    21,    19,    16,    12,    20,     5,
-      24,     5,   138,    27,    49,    29,    30,    31,    32,    33,
-      79,   218,   200,    63,    47,   199,    -1,    -1,    42,    43,
+      22,    36,     0,    97,     6,     7,     8,    42,     7,    17,
+     241,    23,    10,    34,   245,    23,     8,    19,     1,    17,
+      33,    34,     6,     7,     8,    37,    38,    39,    40,    41,
+       1,    44,    45,    46,    47,    19,    19,     1,   222,    15,
+      42,    43,    77,   227,     0,    19,    48,    82,    19,    48,
+      52,     3,     4,    23,    10,    19,    91,     8,    42,    43,
+       0,    26,    97,    28,    48,   100,    88,    37,    38,    39,
+      40,    41,    42,    43,    17,    21,    19,     3,     4,     5,
+      23,     6,     7,     8,    42,    43,   121,   122,   123,   124,
+     125,   126,    49,    50,    51,   111,   112,   119,   111,   112,
+     113,   114,   115,   116,   117,   118,   128,   131,   132,   133,
+      15,   205,   147,   148,    47,    48,    47,    48,   131,   132,
+     133,   156,    55,    56,    57,    58,    59,    60,   113,   114,
+     115,   116,   117,   118,    19,    17,   230,    19,    22,   137,
+      20,     8,    21,    21,    21,    19,    16,     8,    21,    15,
+      15,    54,    53,   188,   176,     8,    20,    16,     7,    22,
+      17,    17,    20,    17,     7,    54,    21,    53,    19,    21,
+     205,    21,    20,    20,     1,    20,     3,     4,    20,     6,
+       7,     8,    15,    10,    11,    20,   199,   200,    15,    16,
+      18,    22,    19,    18,    16,   230,    20,    24,    21,    26,
+      27,    28,    29,    30,    31,    32,    33,   229,    20,    16,
+      16,   233,    20,    18,   236,    42,    43,    18,    16,    15,
+     242,    48,    25,    25,     1,    52,     3,     4,    12,     6,
+       7,     8,     7,    10,    11,    16,    15,    20,    15,    16,
+      12,    21,    19,    16,    12,    10,   137,    24,    10,    26,
+      27,    28,    29,    30,    31,    32,    33,    47,    79,   200,
+      49,   199,    66,   218,    -1,    42,    43,     1,    -1,     3,
+       4,    48,     6,     7,     8,    52,    10,    11,    -1,    -1,
+      -1,    15,    16,    -1,    -1,    19,    -1,    -1,    -1,    -1,
+      24,    -1,    -1,    27,    -1,    29,    30,    31,    32,    33,
+      -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    42,    43,
       -1,    -1,    -1,    -1,    48,    -1,    -1,    -1,    52
 };
 
@@ -784,69 +793,69 @@ static const yytype_int16 yycheck[] =
      symbol of state STATE-NUM.  */
 static const yytype_uint8 yystos[] =
 {
-       0,     3,     4,     5,    62,    63,    64,    65,    66,    67,
-      68,    76,    77,    78,    34,     8,     0,    64,    66,    76,
-      15,    15,    19,    21,     8,    79,    80,    19,     1,     3,
+       0,     3,     4,     5,    62,    63,    64,    70,    71,    72,
+      73,    74,    75,    76,    34,     8,    15,    19,     0,    62,
+      70,    72,    15,    21,     8,    77,    78,    19,     1,     3,
        6,     7,     8,    10,    11,    15,    19,    24,    27,    29,
-      30,    31,    32,    33,    42,    43,    48,    52,    72,    73,
-      74,    76,    78,    82,    86,    87,    88,   100,   101,   106,
-     108,   109,   110,   112,   114,   116,   117,   118,   119,   120,
-     121,    72,    69,    70,    71,    78,    17,    23,    81,    22,
-      20,    21,    17,    19,   122,     8,   121,   121,    75,    86,
-       1,    19,    21,    21,     1,   104,     1,    19,    86,   103,
-      19,   121,   121,     6,     7,   121,   117,   121,    16,    74,
-       8,    21,    23,    37,    38,    39,    40,    41,    99,    15,
-      15,   111,   111,    47,    48,    55,    56,    57,    58,    59,
-      60,    49,    50,    51,    42,    43,    16,    20,    22,     8,
-       7,    86,    17,    80,    86,    83,    84,    85,    17,    21,
-      21,    72,    20,    20,    86,    20,    19,    20,   103,    21,
-      86,    86,    86,    86,    86,    86,    86,    15,    72,    72,
-     113,   115,   119,   119,   118,   118,   118,   118,   118,   118,
-     120,   120,   120,    71,    18,     7,    18,    20,    22,    86,
-      86,    16,    20,    86,    21,    20,    72,    16,    16,    54,
-      53,    18,    86,    18,    20,    95,    89,    16,   107,   114,
-     116,   103,    15,   105,    98,    26,    28,    91,    25,   102,
-       7,    48,    12,    16,   104,    97,    90,     7,    90,    15,
-      21,    93,    90,    94,    72,   103,    12,    92,    72,    16,
-      96,    72,    12,    20,    91,    72,    91
+      30,    31,    32,    33,    42,    43,    48,    52,    68,    69,
+      70,    76,    80,    81,    82,    83,    85,    89,    91,    92,
+      93,   101,   103,   104,   112,   113,   116,   118,   120,   121,
+     122,    65,    66,    67,    76,    68,    17,    23,    79,    22,
+      20,    21,    17,    19,   115,     8,   122,   122,    86,    92,
+       1,    19,    21,    21,     1,   111,     1,    19,    92,   109,
+      19,   122,   122,     6,     7,   122,    81,   122,    16,    85,
+       8,    47,    48,    55,    56,    57,    58,    59,    60,    15,
+      21,    23,    37,    38,    39,    40,    41,   108,    15,   114,
+     114,    49,    50,    51,    42,    43,    20,    22,     8,    16,
+       7,    92,    17,    78,    92,    84,    87,    88,    17,    21,
+      21,    68,    20,    20,    92,    20,    19,    20,   109,    21,
+      92,   120,   120,    82,    82,    82,    82,    82,    82,    68,
+      92,    92,    92,    92,    92,    92,    15,    68,   117,   119,
+     121,   121,   121,    67,    18,     7,    18,    20,    22,    92,
+      92,    16,    20,    92,    21,    20,    16,    68,    16,    54,
+      53,    18,    92,    18,    20,   100,    94,    90,    16,   118,
+      80,   109,    15,   110,   107,    26,    28,    96,    25,   105,
+       7,    48,    12,    16,   111,   106,    95,     7,    95,    15,
+      21,    98,    95,    99,    68,   109,    12,    97,    68,    16,
+     102,    68,    12,    20,    96,    68,    96
 };
 
   /* YYR1[YYN] -- Symbol number of symbol that rule YYN derives.  */
 static const yytype_uint8 yyr1[] =
 {
-       0,    61,    62,    62,    63,    63,    63,    63,    64,    65,
-      66,    67,    68,    68,    69,    69,    70,    70,    71,    72,
-      72,    73,    73,    74,    74,    74,    74,    74,    74,    75,
-      74,    74,    74,    74,    74,    74,    74,    74,    76,    77,
-      78,    78,    79,    79,    80,    80,    80,    81,    81,    82,
-      83,    83,    84,    85,    84,    86,    86,    86,    86,    86,
-      86,    86,    87,    88,    89,    90,    92,    91,    93,    91,
-      91,    94,    91,    95,    96,    97,    98,    99,   100,   102,
-     101,   101,   103,   103,   104,   105,   106,   107,   106,   108,
-     108,   109,   110,   110,   111,   113,   112,   112,   115,   114,
-     114,   116,   116,   117,   117,   117,   117,   117,   117,   117,
-     118,   118,   118,   119,   119,   119,   119,   120,   120,   120,
-     120,   120,   120,   120,   120,   120,   120,   120,   120,   121,
+       0,    61,    62,    63,    64,    64,    65,    65,    66,    66,
+      67,    68,    68,    69,    69,    70,    71,    71,    72,    73,
+      73,    73,    73,    74,    75,    76,    76,    77,    77,    78,
+      78,    78,    79,    79,    80,    80,    81,    81,    81,    81,
+      81,    81,    81,    82,    82,    82,    83,    84,    84,    85,
+      85,    85,    85,    85,    85,    86,    85,    85,    85,    85,
+      85,    85,    85,    85,    87,    88,    87,    89,    90,    89,
+      91,    91,    92,    92,    92,    92,    92,    92,    92,    93,
+      94,    95,    97,    96,    98,    96,    96,    99,    96,   100,
+     101,   102,   103,   105,   104,   104,   106,   107,   108,   109,
+     109,   110,   111,   112,   113,   113,   114,   115,   115,   117,
+     116,   116,   119,   118,   118,   120,   120,   120,   120,   121,
+     121,   121,   121,   121,   121,   121,   121,   121,   121,   121,
      121,   122,   122
 };
 
   /* YYR2[YYN] -- Number of symbols on the right hand side of rule YYN.  */
 static const yytype_uint8 yyr2[] =
 {
-       0,     2,     2,     1,     2,     2,     1,     1,     4,     4,
-       4,     4,     2,     2,     1,     0,     3,     1,     2,     1,
-       0,     2,     1,     1,     2,     1,     1,     1,     1,     0,
-       4,     2,     2,     3,     3,     3,     2,     1,     2,     2,
-       1,     1,     1,     3,     1,     3,     2,     3,     4,     4,
-       1,     0,     3,     0,     2,     1,     3,     3,     3,     3,
-       3,     3,     1,     8,     0,     0,     0,     8,     0,     7,
-       0,     0,     5,     0,     0,     0,     0,     0,     5,     0,
-      13,     3,     1,     0,     0,     0,     4,     0,    11,     4,
-       3,     4,     5,     3,     0,     0,     5,     1,     0,     5,
-       1,     2,     1,     3,     3,     3,     3,     3,     3,     1,
-       3,     3,     1,     3,     3,     3,     1,     1,     2,     2,
-       1,     2,     1,     1,     3,     2,     2,     2,     2,     1,
-       2,     3,     4
+       0,     2,     4,     4,     2,     2,     1,     0,     3,     1,
+       2,     1,     0,     2,     1,     2,     2,     1,     4,     2,
+       2,     1,     1,     4,     2,     1,     1,     1,     3,     1,
+       3,     2,     3,     4,     2,     1,     3,     3,     3,     3,
+       3,     3,     1,     3,     3,     1,     4,     1,     0,     1,
+       2,     1,     1,     1,     1,     0,     4,     2,     2,     3,
+       3,     3,     2,     1,     3,     0,     2,     4,     0,    11,
+       4,     3,     1,     3,     3,     3,     3,     3,     3,     8,
+       0,     0,     0,     8,     0,     7,     0,     0,     5,     0,
+       1,     0,     5,     0,    13,     3,     0,     0,     0,     1,
+       0,     0,     0,     4,     5,     3,     0,     3,     4,     0,
+       5,     1,     0,     5,     1,     3,     3,     3,     1,     1,
+       2,     2,     1,     2,     1,     1,     3,     2,     2,     2,
+       2,     1,     2
 };
 
 
@@ -1522,8 +1531,164 @@ yyreduce:
   YY_REDUCE_PRINT (yyn);
   switch (yyn)
     {
-        case 8:
-#line 100 "miniC.y" /* yacc.c:1646  */
+        case 2:
+#line 97 "miniC.y" /* yacc.c:1646  */
+    {
+        deleteVariableList(activeFunctionPointer, scope);
+        activeFunctionPointer = NULL;
+        scope = 0;
+        string s = "function end";
+        gen(functionInstruction, s, nextNum);
+    }
+#line 1544 "miniC.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 3:
+#line 107 "miniC.y" /* yacc.c:1646  */
+    {
+        int found = 0;
+        searchFunc(activeFunctionPointer, functionEntryRecord, found);
+        if(found){
+            cout << BOLD(FRED("ERROR : ")) << "Line no. " << yylineno << ": Function " << activeFunctionPointer->name <<  " already declared." << endl;
+            errorFound = true;
+            delete activeFunctionPointer;
+            // cout<<"Function head me activeFunctionPointer deleted"<<endl;
+        }   
+        else{
+            activeFunctionPointer->numOfParam = typeRecordList.size();
+            activeFunctionPointer->parameterList = typeRecordList;
+            activeFunctionPointer->functionOffset = 0;
+            typeRecordList.clear();
+            addFunction(activeFunctionPointer, functionEntryRecord);
+            scope = 2;
+            string s = "function begin _" + activeFunctionPointer->name;
+            gen(functionInstruction, s, nextNum);
+        }
+    }
+#line 1569 "miniC.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 4:
+#line 130 "miniC.y" /* yacc.c:1646  */
+    {
+        scope=1;
+        activeFunctionPointer = new functionEntry;
+        activeFunctionPointer->name = string((yyvsp[0].idName));
+        activeFunctionPointer->returnType = resultType;
+    }
+#line 1580 "miniC.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 5:
+#line 137 "miniC.y" /* yacc.c:1646  */
+    {
+        scope=1;
+        activeFunctionPointer = new functionEntry;
+        activeFunctionPointer->name = string((yyvsp[0].idName));
+        activeFunctionPointer->returnType = NULLVOID;
+    }
+#line 1591 "miniC.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 8:
+#line 153 "miniC.y" /* yacc.c:1646  */
+    {
+        int found = 0;
+        typeRecord* pn = NULL;
+        searchParameter(variableRecord->name, typeRecordList, found, pn);
+        if(found){
+            cout << BOLD(FRED("ERROR : ")) << "Line no. " << yylineno << ": Redeclaration of parameter " << variableRecord->name <<endl;
+        } else {
+            // cout << "Variable: "<< variableRecord->name << " declared." << endl;
+            typeRecordList.push_back(variableRecord);
+        }
+    }
+#line 1607 "miniC.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 9:
+#line 165 "miniC.y" /* yacc.c:1646  */
+    {
+        int found = 0;
+        typeRecord* pn = NULL;
+        searchParameter(variableRecord->name, typeRecordList, found , pn );
+        if (found){
+            cout << BOLD(FRED("ERROR : ")) << "Line no. " << yylineno << ": Redeclaration of parameter " << variableRecord->name <<endl;
+        } else {
+            // cout << "Variable: "<< variableRecord->name << " declared." << endl;
+            typeRecordList.push_back(variableRecord);
+        }
+    }
+#line 1623 "miniC.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 10:
+#line 179 "miniC.y" /* yacc.c:1646  */
+    {
+        variableRecord = new typeRecord;
+        variableRecord->name = string((yyvsp[0].idName));
+        variableRecord->type = SIMPLE;
+        variableRecord->tag = VARIABLE;
+        variableRecord->scope = scope;
+        variableRecord->elementType = resultType;
+    }
+#line 1636 "miniC.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 11:
+#line 190 "miniC.y" /* yacc.c:1646  */
+    {
+        (yyval.statementValue).nextList = new vector<int>;
+        merge((yyval.statementValue).nextList, (yyvsp[0].statementValue).nextList);
+        (yyval.statementValue).breakList = new vector<int>;
+        merge((yyval.statementValue).breakList, (yyvsp[0].statementValue).breakList);
+        (yyval.statementValue).continueList = new vector<int>;
+        merge((yyval.statementValue).continueList, (yyvsp[0].statementValue).continueList);
+    }
+#line 1649 "miniC.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 12:
+#line 199 "miniC.y" /* yacc.c:1646  */
+    {
+        (yyval.statementValue).nextList = new vector<int>;
+        (yyval.statementValue).breakList = new vector<int>;
+        (yyval.statementValue).continueList = new vector<int>;
+    }
+#line 1659 "miniC.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 13:
+#line 207 "miniC.y" /* yacc.c:1646  */
+    {
+        (yyval.statementValue).nextList = new vector<int>;
+        merge((yyval.statementValue).nextList, (yyvsp[-1].statementValue).nextList);
+        merge((yyval.statementValue).nextList, (yyvsp[0].statementValue).nextList);
+        (yyval.statementValue).breakList = new vector<int>;
+        merge((yyval.statementValue).breakList, (yyvsp[-1].statementValue).breakList);
+        merge((yyval.statementValue).breakList, (yyvsp[0].statementValue).breakList);
+        (yyval.statementValue).continueList = new vector<int>;
+        merge((yyval.statementValue).continueList, (yyvsp[-1].statementValue).continueList);
+        merge((yyval.statementValue).continueList, (yyvsp[0].statementValue).continueList);
+    }
+#line 1675 "miniC.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 14:
+#line 219 "miniC.y" /* yacc.c:1646  */
+    {
+        (yyval.statementValue).nextList = new vector<int>;
+        merge((yyval.statementValue).nextList, (yyvsp[0].statementValue).nextList);
+        (yyval.statementValue).breakList = new vector<int>;
+        merge((yyval.statementValue).breakList, (yyvsp[0].statementValue).breakList);
+        (yyval.statementValue).continueList = new vector<int>;
+        merge((yyval.statementValue).continueList, (yyvsp[0].statementValue).continueList);
+    }
+#line 1688 "miniC.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 18:
+#line 237 "miniC.y" /* yacc.c:1646  */
     {
         deleteVariableList(activeFunctionPointer, scope);
         activeFunctionPointer=NULL;
@@ -1531,11 +1696,11 @@ yyreduce:
         string s = "function end";
         gen(functionInstruction, s, nextNum);
     }
-#line 1535 "miniC.tab.c" /* yacc.c:1646  */
+#line 1700 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
-  case 9:
-#line 110 "miniC.y" /* yacc.c:1646  */
+  case 23:
+#line 253 "miniC.y" /* yacc.c:1646  */
     {   
         scope=1;
         activeFunctionPointer = new functionEntry;
@@ -1559,414 +1724,11 @@ yyreduce:
             gen(functionInstruction, s, nextNum);
         }
     }
-#line 1563 "miniC.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 10:
-#line 136 "miniC.y" /* yacc.c:1646  */
-    {
-        deleteVariableList(activeFunctionPointer, scope);
-        activeFunctionPointer = NULL;
-        scope = 0;
-        string s = "function end";
-        gen(functionInstruction, s, nextNum);
-    }
-#line 1575 "miniC.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 11:
-#line 146 "miniC.y" /* yacc.c:1646  */
-    {
-        int found = 0;
-        searchFunc(activeFunctionPointer, functionEntryRecord, found);
-        if(found){
-            cout << BOLD(FRED("ERROR : ")) << "Line no. " << yylineno << ": Function " << activeFunctionPointer->name <<  " already declared." << endl;
-            errorFound = true;
-            delete activeFunctionPointer;
-            // cout<<"Function head me activeFunctionPointer deleted"<<endl;
-        }   
-        else{
-            activeFunctionPointer->numOfParam = typeRecordList.size();
-            activeFunctionPointer->parameterList = typeRecordList;
-            activeFunctionPointer->functionOffset = 0;
-            typeRecordList.clear();
-            addFunction(activeFunctionPointer, functionEntryRecord);
-            scope = 2;
-            string s = "function begin _" + activeFunctionPointer->name;
-            gen(functionInstruction, s, nextNum);
-        }
-    }
-#line 1600 "miniC.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 12:
-#line 169 "miniC.y" /* yacc.c:1646  */
-    {
-        scope=1;
-        activeFunctionPointer = new functionEntry;
-        activeFunctionPointer->name = string((yyvsp[0].idName));
-        activeFunctionPointer->returnType = resultType;
-    }
-#line 1611 "miniC.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 13:
-#line 176 "miniC.y" /* yacc.c:1646  */
-    {
-        scope=1;
-        activeFunctionPointer = new functionEntry;
-        activeFunctionPointer->name = string((yyvsp[0].idName));
-        activeFunctionPointer->returnType = NULLVOID;
-    }
-#line 1622 "miniC.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 16:
-#line 192 "miniC.y" /* yacc.c:1646  */
-    {
-        int found = 0;
-        typeRecord* pn = NULL;
-        searchParameter(variableRecord->name, typeRecordList, found, pn);
-        if(found){
-            cout << BOLD(FRED("ERROR : ")) << "Line no. " << yylineno << ": Redeclaration of parameter " << variableRecord->name <<endl;
-        } else {
-            // cout << "Variable: "<< variableRecord->name << " declared." << endl;
-            typeRecordList.push_back(variableRecord);
-        }
-    }
-#line 1638 "miniC.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 17:
-#line 204 "miniC.y" /* yacc.c:1646  */
-    {
-        int found = 0;
-        typeRecord* pn = NULL;
-        searchParameter(variableRecord->name, typeRecordList, found , pn );
-        if (found){
-            cout << BOLD(FRED("ERROR : ")) << "Line no. " << yylineno << ": Redeclaration of parameter " << variableRecord->name <<endl;
-        } else {
-            // cout << "Variable: "<< variableRecord->name << " declared." << endl;
-            typeRecordList.push_back(variableRecord);
-        }
-    }
-#line 1654 "miniC.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 18:
-#line 218 "miniC.y" /* yacc.c:1646  */
-    {
-        variableRecord = new typeRecord;
-        variableRecord->name = string((yyvsp[0].idName));
-        variableRecord->type = SIMPLE;
-        variableRecord->tag = VARIABLE;
-        variableRecord->scope = scope;
-        variableRecord->elementType = resultType;
-    }
-#line 1667 "miniC.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 19:
-#line 229 "miniC.y" /* yacc.c:1646  */
-    {
-        (yyval.statementValue).nextList = new vector<int>;
-        merge((yyval.statementValue).nextList, (yyvsp[0].statementValue).nextList);
-        (yyval.statementValue).breakList = new vector<int>;
-        merge((yyval.statementValue).breakList, (yyvsp[0].statementValue).breakList);
-        (yyval.statementValue).continueList = new vector<int>;
-        merge((yyval.statementValue).continueList, (yyvsp[0].statementValue).continueList);
-    }
-#line 1680 "miniC.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 20:
-#line 238 "miniC.y" /* yacc.c:1646  */
-    {
-        (yyval.statementValue).nextList = new vector<int>;
-        (yyval.statementValue).breakList = new vector<int>;
-        (yyval.statementValue).continueList = new vector<int>;
-    }
-#line 1690 "miniC.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 21:
-#line 246 "miniC.y" /* yacc.c:1646  */
-    {
-        (yyval.statementValue).nextList = new vector<int>;
-        merge((yyval.statementValue).nextList, (yyvsp[-1].statementValue).nextList);
-        merge((yyval.statementValue).nextList, (yyvsp[0].statementValue).nextList);
-        (yyval.statementValue).breakList = new vector<int>;
-        merge((yyval.statementValue).breakList, (yyvsp[-1].statementValue).breakList);
-        merge((yyval.statementValue).breakList, (yyvsp[0].statementValue).breakList);
-        (yyval.statementValue).continueList = new vector<int>;
-        merge((yyval.statementValue).continueList, (yyvsp[-1].statementValue).continueList);
-        merge((yyval.statementValue).continueList, (yyvsp[0].statementValue).continueList);
-    }
-#line 1706 "miniC.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 22:
-#line 258 "miniC.y" /* yacc.c:1646  */
-    {
-        (yyval.statementValue).nextList = new vector<int>;
-        merge((yyval.statementValue).nextList, (yyvsp[0].statementValue).nextList);
-        (yyval.statementValue).breakList = new vector<int>;
-        merge((yyval.statementValue).breakList, (yyvsp[0].statementValue).breakList);
-        (yyval.statementValue).continueList = new vector<int>;
-        merge((yyval.statementValue).continueList, (yyvsp[0].statementValue).continueList);
-    }
-#line 1719 "miniC.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 23:
-#line 269 "miniC.y" /* yacc.c:1646  */
-    {
-        (yyval.statementValue).nextList = new vector<int>;
-        (yyval.statementValue).breakList = new vector<int>;
-        (yyval.statementValue).continueList = new vector <int>;
-    }
-#line 1729 "miniC.tab.c" /* yacc.c:1646  */
+#line 1728 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
   case 24:
-#line 275 "miniC.y" /* yacc.c:1646  */
-    {
-        (yyval.statementValue).nextList = new vector<int>;
-        (yyval.statementValue).breakList = new vector<int>;
-        (yyval.statementValue).continueList = new vector <int>;
-        if ((yyvsp[-1].expressionValue).type != NULLVOID && (yyvsp[-1].expressionValue).type != ERRORTYPE)
-            temporarySet.freeRegister(*((yyvsp[-1].expressionValue).registerName));
-    }
-#line 1741 "miniC.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 25:
-#line 283 "miniC.y" /* yacc.c:1646  */
-    {
-        (yyval.statementValue).nextList = new vector<int>;
-        (yyval.statementValue).breakList = new vector<int>;
-        (yyval.statementValue).continueList = new vector <int>;
-    }
-#line 1751 "miniC.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 26:
-#line 289 "miniC.y" /* yacc.c:1646  */
-    {
-        (yyval.statementValue).nextList = new vector<int>;
-        (yyval.statementValue).breakList = new vector<int>;
-        (yyval.statementValue).continueList = new vector <int>;
-        merge((yyval.statementValue).continueList, (yyvsp[0].statementValue).continueList);
-        merge((yyval.statementValue).breakList, (yyvsp[0].statementValue).breakList);
-
-    }
-#line 1764 "miniC.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 27:
-#line 298 "miniC.y" /* yacc.c:1646  */
-    {
-        (yyval.statementValue).nextList = new vector<int>;
-        (yyval.statementValue).breakList = new vector<int>;
-        (yyval.statementValue).continueList = new vector <int>;
-    }
-#line 1774 "miniC.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 28:
-#line 304 "miniC.y" /* yacc.c:1646  */
-    {
-        (yyval.statementValue).nextList = new vector<int>;
-        (yyval.statementValue).breakList = new vector<int>;
-        (yyval.statementValue).continueList = new vector <int>;
-    }
-#line 1784 "miniC.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 29:
-#line 309 "miniC.y" /* yacc.c:1646  */
-    {scope++;}
-#line 1790 "miniC.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 30:
-#line 310 "miniC.y" /* yacc.c:1646  */
-    {
-        (yyval.statementValue).nextList = new vector<int>;
-        (yyval.statementValue).breakList = new vector<int>;
-        (yyval.statementValue).continueList = new vector <int>;
-        deleteVariableList(activeFunctionPointer, scope);
-        scope--;
-        merge((yyval.statementValue).continueList, (yyvsp[-1].statementValue).continueList);
-        merge((yyval.statementValue).breakList, (yyvsp[-1].statementValue).breakList);
-    }
-#line 1804 "miniC.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 31:
-#line 320 "miniC.y" /* yacc.c:1646  */
-    {
-        (yyval.statementValue).nextList = new vector<int>;
-        (yyval.statementValue).breakList = new vector<int>;
-        (yyval.statementValue).continueList = new vector <int>;
-        (yyval.statementValue).breakList->push_back(nextNum);
-        gen(functionInstruction, "goto L", nextNum);
-    }
-#line 1816 "miniC.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 32:
-#line 328 "miniC.y" /* yacc.c:1646  */
-    {
-        (yyval.statementValue).nextList = new vector<int>;
-        (yyval.statementValue).breakList = new vector<int>;
-        (yyval.statementValue).continueList = new vector <int>;
-        (yyval.statementValue).continueList->push_back(nextNum);
-        gen(functionInstruction, "goto L", nextNum);
-    }
-#line 1828 "miniC.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 33:
-#line 336 "miniC.y" /* yacc.c:1646  */
-    {
-        (yyval.statementValue).nextList = new vector<int>;
-        (yyval.statementValue).breakList = new vector<int>;
-        (yyval.statementValue).continueList = new vector <int>;
-        if ((yyvsp[-1].expressionValue).type != ERRORTYPE && activeFunctionPointer != NULL) {
-            if (activeFunctionPointer->returnType == NULLVOID && (yyvsp[-1].expressionValue).type != NULLVOID) {
-                cout << BOLD(FRED("ERROR : ")) << "Line no. " << yylineno << ": function " << activeFunctionPointer->name << " has void return type not " << (yyvsp[-1].expressionValue).type << endl;
-            }
-            else if (activeFunctionPointer->returnType != NULLVOID && (yyvsp[-1].expressionValue).type == NULLVOID) {
-                cout << BOLD(FRED("ERROR : ")) << "Line no. " << yylineno << ": function " << activeFunctionPointer->name << " has non-void return type" << endl;
-            }
-            else {
-                string s;
-                if (activeFunctionPointer->returnType != NULLVOID && (yyvsp[-1].expressionValue).type != NULLVOID) {
-                    if ((yyvsp[-1].expressionValue).type == INTEGER && activeFunctionPointer->returnType == FLOATING)  {
-                        string floatReg = temporarySet.getFloatRegister();
-                        s = floatReg + " = " + "convertToFloat(" + *((yyvsp[-1].expressionValue).registerName) + ")";
-                        cout << BOLD(FBLU("Warning : ")) << FCYN("Line No. "+to_string(yylineno)+":Implicit Type Conversion") << endl;
-                        gen(functionInstruction, s, nextNum);
-                        s = "return " + floatReg;
-                        gen(functionInstruction, s, nextNum);
-                        temporarySet.freeRegister(*((yyvsp[-1].expressionValue).registerName));
-                        temporarySet.freeRegister(floatReg);
-                    }
-                    else if ((yyvsp[-1].expressionValue).type == FLOATING && activeFunctionPointer->returnType == INTEGER) {
-                        string intRegister = temporarySet.getRegister();
-                        s = intRegister + " = " + "convertToInt(" + *((yyvsp[-1].expressionValue).registerName) + ")";
-                        cout << BOLD(FBLU("Warning : ")) << FCYN("Line No. "+to_string(yylineno)+":Implicit Type Conversion") << endl;
-                        gen(functionInstruction, s, nextNum);
-                        s = "return " + intRegister;
-                        gen(functionInstruction, s, nextNum);
-                        temporarySet.freeRegister(*((yyvsp[-1].expressionValue).registerName));
-                        temporarySet.freeRegister(intRegister);
-                    }
-                    else {
-                        s = "return " + *((yyvsp[-1].expressionValue).registerName);
-                        gen(functionInstruction, s, nextNum);
-                        temporarySet.freeRegister(*((yyvsp[-1].expressionValue).registerName));
-                    }
-                }
-                else if (activeFunctionPointer->returnType == NULLVOID && (yyvsp[-1].expressionValue).type == NULLVOID) {
-                    s = "return";
-                    gen(functionInstruction, s, nextNum);
-                }
-                else {
-                    errorFound = 1;
-                    cout << BOLD(FRED("ERROR : ")) << "Line no. " << yylineno << ": Exactly one of function " << activeFunctionPointer->name << "and this return statement has void return type" << endl;
-                    if ((yyvsp[-1].expressionValue).type != NULLVOID) temporarySet.freeRegister(*((yyvsp[-1].expressionValue).registerName));
-                }
-            }
-        }
-    }
-#line 1885 "miniC.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 34:
-#line 389 "miniC.y" /* yacc.c:1646  */
-    {
-        (yyval.statementValue).nextList = new vector<int>;
-        (yyval.statementValue).breakList = new vector<int>;
-        (yyval.statementValue).continueList = new vector <int>;
-        if((yyvsp[-1].expressionValue).type == ERRORTYPE){
-            errorFound = true;
-        }
-        else{
-            string registerName;
-            if ((yyvsp[-1].expressionValue).type == INTEGER){
-                registerName = temporarySet.getRegister();
-            }
-            else {
-                registerName = temporarySet.getFloatRegister();
-            }
-            string s;
-            s = "read " + registerName;
-            gen(functionInstruction, s, nextNum);
-            s = (*((yyvsp[-1].expressionValue).registerName)) + " = " +  registerName;
-            gen(functionInstruction, s, nextNum);
-            temporarySet.freeRegister(registerName);
-            if ((yyvsp[-1].expressionValue).offsetRegName != NULL) temporarySet.freeRegister(*((yyvsp[-1].expressionValue).offsetRegName));
-        }
-    }
-#line 1914 "miniC.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 35:
-#line 414 "miniC.y" /* yacc.c:1646  */
-    {
-        (yyval.statementValue).nextList = new vector<int>;
-        (yyval.statementValue).breakList = new vector<int>;
-        (yyval.statementValue).continueList = new vector <int>;
-        if((yyvsp[-1].expressionValue).type == ERRORTYPE){
-            errorFound = true;
-        }
-        else{
-            string registerName;
-            if ((yyvsp[-1].expressionValue).type == INTEGER){
-                registerName = temporarySet.getRegister();
-            }
-            else {
-                registerName = temporarySet.getFloatRegister();
-            }
-            string s = registerName + " = " + (*((yyvsp[-1].expressionValue).registerName)) ;
-            gen(functionInstruction, s, nextNum);
-            s = "print " + registerName;
-            gen(functionInstruction, s, nextNum);
-            temporarySet.freeRegister(registerName);
-            if ((yyvsp[-1].expressionValue).offsetRegName != NULL) temporarySet.freeRegister(*((yyvsp[-1].expressionValue).offsetRegName));
-        }
-    }
-#line 1942 "miniC.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 36:
-#line 438 "miniC.y" /* yacc.c:1646  */
-    {
-        errorFound = 1;
-        (yyval.statementValue).nextList = new vector<int>;
-        (yyval.statementValue).breakList = new vector<int>;
-        (yyval.statementValue).continueList = new vector <int>;
-        cout << BOLD(FRED("ERROR : ")) << FYEL("Line no. " + to_string(yylineno) + ": Syntax error") << endl;
-    }
-#line 1954 "miniC.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 37:
-#line 446 "miniC.y" /* yacc.c:1646  */
-    {
-        errorFound = 1;
-        (yyval.statementValue).nextList = new vector<int>;
-        (yyval.statementValue).breakList = new vector<int>;
-        (yyval.statementValue).continueList = new vector <int>;
-        cout << BOLD(FRED("ERROR : ")) << FYEL("Line no. " + to_string(yylineno) + ": Syntax error") << endl;
-    }
-#line 1966 "miniC.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 39:
-#line 459 "miniC.y" /* yacc.c:1646  */
+#line 279 "miniC.y" /* yacc.c:1646  */
     {
         patchDataType(resultType, typeRecordList, scope);
         if(scope > 1){
@@ -1977,23 +1739,23 @@ yyreduce:
         }
         typeRecordList.clear();
     }
-#line 1981 "miniC.tab.c" /* yacc.c:1646  */
+#line 1743 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
-  case 40:
-#line 471 "miniC.y" /* yacc.c:1646  */
+  case 25:
+#line 291 "miniC.y" /* yacc.c:1646  */
     { resultType = INTEGER; }
-#line 1987 "miniC.tab.c" /* yacc.c:1646  */
+#line 1749 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
-  case 41:
-#line 472 "miniC.y" /* yacc.c:1646  */
+  case 26:
+#line 292 "miniC.y" /* yacc.c:1646  */
     { resultType = FLOATING; }
-#line 1993 "miniC.tab.c" /* yacc.c:1646  */
+#line 1755 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
-  case 44:
-#line 480 "miniC.y" /* yacc.c:1646  */
+  case 29:
+#line 300 "miniC.y" /* yacc.c:1646  */
     {
         int found = 0;
         typeRecord* vn = NULL;
@@ -2073,11 +1835,11 @@ yyreduce:
             errorFound = true;
         }
     }
-#line 2077 "miniC.tab.c" /* yacc.c:1646  */
+#line 1839 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
-  case 45:
-#line 560 "miniC.y" /* yacc.c:1646  */
+  case 30:
+#line 380 "miniC.y" /* yacc.c:1646  */
     {
         int found = 0;
         typeRecord* vn = NULL;
@@ -2180,11 +1942,11 @@ yyreduce:
             errorFound = true;
         }
     }
-#line 2184 "miniC.tab.c" /* yacc.c:1646  */
+#line 1946 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
-  case 46:
-#line 663 "miniC.y" /* yacc.c:1646  */
+  case 31:
+#line 483 "miniC.y" /* yacc.c:1646  */
     {  
         if (activeFunctionPointer != NULL) {
             int found = 0;
@@ -2292,27 +2054,314 @@ yyreduce:
         }
         decDimensionList.clear();
     }
+#line 2058 "miniC.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 32:
+#line 593 "miniC.y" /* yacc.c:1646  */
+    {
+        decDimensionList.push_back(atoi((yyvsp[-1].idName)));
+    }
+#line 2066 "miniC.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 33:
+#line 597 "miniC.y" /* yacc.c:1646  */
+    {
+        decDimensionList.push_back(atoi((yyvsp[-1].idName)));
+    }
+#line 2074 "miniC.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 34:
+#line 603 "miniC.y" /* yacc.c:1646  */
+    {
+        (yyval.expressionValue).type = (yyvsp[0].expressionValue).type;
+        if ((yyvsp[0].expressionValue).type != ERRORTYPE && (yyvsp[0].expressionValue).type != NULLVOID) {
+            (yyval.expressionValue).registerName = (yyvsp[0].expressionValue).registerName;
+            string s = (*((yyval.expressionValue).registerName)) + " = ~" + (*((yyvsp[0].expressionValue).registerName));   
+            gen(functionInstruction, s, nextNum);
+        }
+    }
+#line 2087 "miniC.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 35:
+#line 612 "miniC.y" /* yacc.c:1646  */
+    {
+        (yyval.expressionValue).type = (yyvsp[0].expressionValue).type;
+        if ((yyvsp[0].expressionValue).type != ERRORTYPE && (yyvsp[0].expressionValue).type != NULLVOID) {
+            (yyval.expressionValue).registerName = (yyvsp[0].expressionValue).registerName;    
+        }
+    }
+#line 2098 "miniC.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 36:
+#line 621 "miniC.y" /* yacc.c:1646  */
+    {
+        if ((yyvsp[-2].expressionValue).type == ERRORTYPE || (yyvsp[0].expressionValue).type == ERRORTYPE) {
+            (yyval.expressionValue).type = ERRORTYPE;
+        }
+        else if((yyvsp[-2].expressionValue).type == NULLVOID || (yyvsp[0].expressionValue).type == NULLVOID){
+            (yyval.expressionValue).type = ERRORTYPE;
+            cout << BOLD(FRED("ERROR : ")) << "Line no. "<< yylineno << ":Both the expessions should not be  NULL" << endl;
+        }
+        else {
+            (yyval.expressionValue).type = BOOLEAN;
+            (yyval.expressionValue).registerName = new string(temporarySet.getRegister());     
+            string s = (*((yyval.expressionValue).registerName)) + " = " + (*((yyvsp[-2].expressionValue).registerName)) + " == " + (*((yyvsp[0].expressionValue).registerName))   ;
+            gen(functionInstruction, s, nextNum);
+            temporarySet.freeRegister(*((yyvsp[-2].expressionValue).registerName));
+            temporarySet.freeRegister(*((yyvsp[0].expressionValue).registerName));  
+        }   
+    }
+#line 2120 "miniC.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 37:
+#line 639 "miniC.y" /* yacc.c:1646  */
+    {
+        if((yyvsp[-2].expressionValue).type == ERRORTYPE || (yyvsp[0].expressionValue).type == ERRORTYPE){
+            (yyval.expressionValue).type = ERRORTYPE;
+        }
+        else if((yyvsp[-2].expressionValue).type == NULLVOID || (yyvsp[0].expressionValue).type == NULLVOID){
+            (yyval.expressionValue).type = ERRORTYPE;
+            cout << BOLD(FRED("ERROR : ")) << "Line no. "<< yylineno << ":Both the expessions should not be  NULL" << endl;
+        }
+        else{
+            (yyval.expressionValue).type = BOOLEAN;
+            (yyval.expressionValue).registerName = new string(temporarySet.getRegister());     
+            string s = (*((yyval.expressionValue).registerName)) + " = " + (*((yyvsp[-2].expressionValue).registerName)) + " != " + (*((yyvsp[0].expressionValue).registerName));   
+            gen(functionInstruction, s, nextNum);
+            temporarySet.freeRegister(*((yyvsp[-2].expressionValue).registerName));
+            temporarySet.freeRegister(*((yyvsp[0].expressionValue).registerName));  
+        }   
+    }
+#line 2142 "miniC.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 38:
+#line 657 "miniC.y" /* yacc.c:1646  */
+    {
+        if((yyvsp[-2].expressionValue).type == ERRORTYPE || (yyvsp[0].expressionValue).type == ERRORTYPE){
+            (yyval.expressionValue).type = ERRORTYPE;
+        }
+        else if((yyvsp[-2].expressionValue).type == NULLVOID || (yyvsp[0].expressionValue).type == NULLVOID){
+            (yyval.expressionValue).type = ERRORTYPE;
+            cout << BOLD(FRED("ERROR : ")) << "Line no. "<< yylineno << ":Both the expessions should not be  NULL" << endl;
+        }
+        else{
+            (yyval.expressionValue).type = BOOLEAN;
+            (yyval.expressionValue).registerName = new string(temporarySet.getRegister());     
+            string s = (*((yyval.expressionValue).registerName)) + " = " + (*((yyvsp[-2].expressionValue).registerName)) + " < " + (*((yyvsp[0].expressionValue).registerName));   
+            gen(functionInstruction, s, nextNum);
+            temporarySet.freeRegister(*((yyvsp[-2].expressionValue).registerName));
+            temporarySet.freeRegister(*((yyvsp[0].expressionValue).registerName));  
+        }   
+    }
+#line 2164 "miniC.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 39:
+#line 675 "miniC.y" /* yacc.c:1646  */
+    {
+        if((yyvsp[-2].expressionValue).type == ERRORTYPE || (yyvsp[0].expressionValue).type == ERRORTYPE){
+            (yyval.expressionValue).type = ERRORTYPE;
+        }
+        else if((yyvsp[-2].expressionValue).type == NULLVOID || (yyvsp[0].expressionValue).type == NULLVOID){
+            (yyval.expressionValue).type = ERRORTYPE;
+            cout << BOLD(FRED("ERROR : ")) << "Line no. "<< yylineno << ":Both the expessions should not be  NULL" << endl;
+        }
+        else{
+            (yyval.expressionValue).type = BOOLEAN;
+            (yyval.expressionValue).registerName = new string(temporarySet.getRegister());     
+            string s = (*((yyval.expressionValue).registerName)) + " = " + (*((yyvsp[-2].expressionValue).registerName)) + " > " + (*((yyvsp[0].expressionValue).registerName));   
+            gen(functionInstruction, s, nextNum);
+            temporarySet.freeRegister(*((yyvsp[-2].expressionValue).registerName));
+            temporarySet.freeRegister(*((yyvsp[0].expressionValue).registerName));  
+        }   
+    }
+#line 2186 "miniC.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 40:
+#line 693 "miniC.y" /* yacc.c:1646  */
+    {
+        if((yyvsp[-2].expressionValue).type == ERRORTYPE || (yyvsp[0].expressionValue).type == ERRORTYPE){
+            (yyval.expressionValue).type = ERRORTYPE;
+            errorFound = true;
+        }
+        else if((yyvsp[-2].expressionValue).type == NULLVOID || (yyvsp[0].expressionValue).type == NULLVOID){
+            (yyval.expressionValue).type = ERRORTYPE;
+            cout << BOLD(FRED("ERROR : ")) << "Line no. "<< yylineno << ":Both the expessions should not be  NULL" << endl;
+        }
+        else{
+            (yyval.expressionValue).type = BOOLEAN;
+            (yyval.expressionValue).registerName = new string(temporarySet.getRegister());     
+            string s = (*((yyval.expressionValue).registerName)) + " = " + (*((yyvsp[-2].expressionValue).registerName)) + " <= " + (*((yyvsp[0].expressionValue).registerName));   
+            gen(functionInstruction, s, nextNum);
+            temporarySet.freeRegister(*((yyvsp[-2].expressionValue).registerName));
+            temporarySet.freeRegister(*((yyvsp[0].expressionValue).registerName));  
+        }   
+    }
+#line 2209 "miniC.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 41:
+#line 712 "miniC.y" /* yacc.c:1646  */
+    {
+        if((yyvsp[-2].expressionValue).type == ERRORTYPE || (yyvsp[0].expressionValue).type == ERRORTYPE){
+            (yyval.expressionValue).type = ERRORTYPE;
+        }
+        else if((yyvsp[-2].expressionValue).type == NULLVOID || (yyvsp[0].expressionValue).type == NULLVOID){
+            (yyval.expressionValue).type = ERRORTYPE;
+            cout << BOLD(FRED("ERROR : ")) << "Line no. "<< yylineno << ":Both the expessions should not be  NULL" << endl;
+        }
+        else{
+            (yyval.expressionValue).type = BOOLEAN;
+            (yyval.expressionValue).registerName = new string(temporarySet.getRegister());     
+            string s = (*((yyval.expressionValue).registerName)) + " = " + (*((yyvsp[-2].expressionValue).registerName)) + " >= " + (*((yyvsp[0].expressionValue).registerName));  
+            gen(functionInstruction, s, nextNum);
+            temporarySet.freeRegister(*((yyvsp[-2].expressionValue).registerName));
+            temporarySet.freeRegister(*((yyvsp[0].expressionValue).registerName));  
+        }   
+    }
+#line 2231 "miniC.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 42:
+#line 730 "miniC.y" /* yacc.c:1646  */
+    {
+        (yyval.expressionValue).type = (yyvsp[0].expressionValue).type; 
+        if((yyval.expressionValue).type == ERRORTYPE){
+            errorFound = true;
+        }
+        else{
+            if((yyvsp[0].expressionValue).type != NULLVOID){
+                (yyval.expressionValue).registerName = new string(*((yyvsp[0].expressionValue).registerName)); 
+                delete (yyvsp[0].expressionValue).registerName; 
+            }
+        }    
+    }
+#line 2248 "miniC.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 43:
+#line 745 "miniC.y" /* yacc.c:1646  */
+    {
+        if ((yyvsp[-2].expressionValue).type == ERRORTYPE || (yyvsp[0].expressionValue).type == ERRORTYPE) {
+            (yyval.expressionValue).type = ERRORTYPE; 
+            errorFound = true; 
+        }
+        else {
+            if (arithmeticCompatible((yyvsp[-2].expressionValue).type, (yyvsp[0].expressionValue).type)) {
+                (yyval.expressionValue).type = compareTypes((yyvsp[-2].expressionValue).type,(yyvsp[0].expressionValue).type);
+
+                if ((yyvsp[-2].expressionValue).type == INTEGER && (yyvsp[0].expressionValue).type == FLOATING) {
+                    string newReg = temporarySet.getFloatRegister();
+                    string s = newReg + " = " + "convertToFloat(" + (*((yyvsp[-2].expressionValue).registerName)) + ")";
+                    cout << BOLD(FBLU("Warning : ")) << FCYN("Line No. "+to_string(yylineno)+":Implicit Type Conversion") << endl;
+                    temporarySet.freeRegister(*((yyvsp[-2].expressionValue).registerName));
+                    (yyvsp[-2].expressionValue).registerName = &newReg;
+                    gen(functionInstruction, s, nextNum);
+                }
+                else if ((yyvsp[-2].expressionValue).type == FLOATING && (yyvsp[0].expressionValue).type == INTEGER) {
+                    string newReg = temporarySet.getFloatRegister();
+                    string s = newReg + " = " + "convertToFloat(" + (*((yyvsp[0].expressionValue).registerName)) + ")";
+                    cout << BOLD(FBLU("Warning : ")) << FCYN("Line No. "+to_string(yylineno)+":Implicit Type Conversion") << endl;
+                    temporarySet.freeRegister(*((yyvsp[0].expressionValue).registerName));
+                    (yyvsp[0].expressionValue).registerName = &newReg;
+                    gen(functionInstruction, s, nextNum);
+                }
+
+                if ((yyval.expressionValue).type == INTEGER) 
+                    (yyval.expressionValue).registerName = new string(temporarySet.getRegister());
+                else
+                    (yyval.expressionValue).registerName = new string(temporarySet.getFloatRegister());
+                    
+                string s = (*((yyval.expressionValue).registerName)) + " = " + (*((yyvsp[-2].expressionValue).registerName)) + " + " + (*((yyvsp[0].expressionValue).registerName));;   
+                gen(functionInstruction, s, nextNum);
+                temporarySet.freeRegister(*((yyvsp[-2].expressionValue).registerName));
+                temporarySet.freeRegister(*((yyvsp[0].expressionValue).registerName));   
+            }
+            else {
+                cout << BOLD(FRED("ERROR : ")) << "Line no. " << yylineno << ":  ";
+                cout << "Type mismatch in expression" << endl;
+                (yyval.expressionValue).type = ERRORTYPE;
+            }
+        }
+    }
 #line 2296 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
-  case 47:
-#line 773 "miniC.y" /* yacc.c:1646  */
+  case 44:
+#line 789 "miniC.y" /* yacc.c:1646  */
     {
-        decDimensionList.push_back(atoi((yyvsp[-1].idName)));
+        if ((yyvsp[-2].expressionValue).type == ERRORTYPE || (yyvsp[0].expressionValue).type == ERRORTYPE) {
+            (yyval.expressionValue).type = ERRORTYPE;
+            errorFound = true;  
+        }
+        else {
+            if (arithmeticCompatible((yyvsp[-2].expressionValue).type, (yyvsp[0].expressionValue).type)) {
+                (yyval.expressionValue).type = compareTypes((yyvsp[-2].expressionValue).type,(yyvsp[0].expressionValue).type);
+
+                if ((yyvsp[-2].expressionValue).type == INTEGER && (yyvsp[0].expressionValue).type == FLOATING) {
+                    string newReg = temporarySet.getFloatRegister();
+                    string s = newReg + " = " + "convertToFloat(" + (*((yyvsp[-2].expressionValue).registerName)) + ")";
+                    cout << BOLD(FBLU("Warning : ")) << FCYN("Line No. "+to_string(yylineno)+":Implicit Type Conversion") << endl;
+                    temporarySet.freeRegister(*((yyvsp[-2].expressionValue).registerName));
+                    (yyvsp[-2].expressionValue).registerName = &newReg;
+                    gen(functionInstruction, s, nextNum);
+                }
+                else if ((yyvsp[-2].expressionValue).type == FLOATING && (yyvsp[0].expressionValue).type == INTEGER) {
+                    string newReg = temporarySet.getFloatRegister();
+                    string s = newReg + " = " + "convertToFloat(" + (*((yyvsp[0].expressionValue).registerName)) + ")";
+                    cout << BOLD(FBLU("Warning : ")) << FCYN("Line No. "+to_string(yylineno)+":Implicit Type Conversion") << endl;
+                    temporarySet.freeRegister(*((yyvsp[0].expressionValue).registerName));
+                    (yyvsp[0].expressionValue).registerName = &newReg;
+                    gen(functionInstruction, s, nextNum);
+                }
+
+                if ((yyval.expressionValue).type == INTEGER) 
+                    (yyval.expressionValue).registerName = new string(temporarySet.getRegister());
+                else
+                    (yyval.expressionValue).registerName = new string(temporarySet.getFloatRegister());
+                    
+                string s = (*((yyval.expressionValue).registerName)) + " = " + (*((yyvsp[-2].expressionValue).registerName)) + " - " + (*((yyvsp[0].expressionValue).registerName));;   
+                gen(functionInstruction, s, nextNum);
+                temporarySet.freeRegister(*((yyvsp[-2].expressionValue).registerName));
+                temporarySet.freeRegister(*((yyvsp[0].expressionValue).registerName));   
+            }
+            else {
+                cout << BOLD(FRED("ERROR : ")) << "Line no. " << yylineno << ":  ";
+                cout << "Type mismatch in expression" << endl;
+                (yyval.expressionValue).type = ERRORTYPE;
+            }
+        }
     }
-#line 2304 "miniC.tab.c" /* yacc.c:1646  */
+#line 2344 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
-  case 48:
-#line 777 "miniC.y" /* yacc.c:1646  */
-    {
-        decDimensionList.push_back(atoi((yyvsp[-1].idName)));
+  case 45:
+#line 833 "miniC.y" /* yacc.c:1646  */
+    { 
+        (yyval.expressionValue).type = (yyvsp[0].expressionValue).type; 
+        if ((yyvsp[0].expressionValue).type == ERRORTYPE) {
+            errorFound = true;
+        }
+        else {
+            if((yyvsp[0].expressionValue).type!= NULLVOID){
+                (yyval.expressionValue).registerName = new string(*((yyvsp[0].expressionValue).registerName)); 
+                delete (yyvsp[0].expressionValue).registerName;
+            }         
+        } 
     }
-#line 2312 "miniC.tab.c" /* yacc.c:1646  */
+#line 2361 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
-  case 49:
-#line 783 "miniC.y" /* yacc.c:1646  */
+  case 46:
+#line 849 "miniC.y" /* yacc.c:1646  */
     {
         callFunctionPointer = new functionEntry;
         callFunctionPointer->name = string((yyvsp[-3].idName));
@@ -2364,17 +2413,264 @@ yyreduce:
         typeRecordList.swap(parameterListStack.top());
         parameterListStack.pop();
     }
-#line 2368 "miniC.tab.c" /* yacc.c:1646  */
+#line 2417 "miniC.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 48:
+#line 903 "miniC.y" /* yacc.c:1646  */
+    {parameterListStack.push(typeRecordList); typeRecordList.clear();}
+#line 2423 "miniC.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 49:
+#line 907 "miniC.y" /* yacc.c:1646  */
+    {
+        (yyval.statementValue).nextList = new vector<int>;
+        (yyval.statementValue).breakList = new vector<int>;
+        (yyval.statementValue).continueList = new vector <int>;
+    }
+#line 2433 "miniC.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 50:
+#line 913 "miniC.y" /* yacc.c:1646  */
+    {
+        (yyval.statementValue).nextList = new vector<int>;
+        (yyval.statementValue).breakList = new vector<int>;
+        (yyval.statementValue).continueList = new vector <int>;
+        if ((yyvsp[-1].expressionValue).type != NULLVOID && (yyvsp[-1].expressionValue).type != ERRORTYPE)
+            temporarySet.freeRegister(*((yyvsp[-1].expressionValue).registerName));
+    }
+#line 2445 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
   case 51:
-#line 837 "miniC.y" /* yacc.c:1646  */
-    {parameterListStack.push(typeRecordList); typeRecordList.clear();}
-#line 2374 "miniC.tab.c" /* yacc.c:1646  */
+#line 921 "miniC.y" /* yacc.c:1646  */
+    {
+        (yyval.statementValue).nextList = new vector<int>;
+        (yyval.statementValue).breakList = new vector<int>;
+        (yyval.statementValue).continueList = new vector <int>;
+    }
+#line 2455 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
   case 52:
-#line 841 "miniC.y" /* yacc.c:1646  */
+#line 927 "miniC.y" /* yacc.c:1646  */
+    {
+        (yyval.statementValue).nextList = new vector<int>;
+        (yyval.statementValue).breakList = new vector<int>;
+        (yyval.statementValue).continueList = new vector <int>;
+        merge((yyval.statementValue).continueList, (yyvsp[0].statementValue).continueList);
+        merge((yyval.statementValue).breakList, (yyvsp[0].statementValue).breakList);
+
+    }
+#line 2468 "miniC.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 53:
+#line 936 "miniC.y" /* yacc.c:1646  */
+    {
+        (yyval.statementValue).nextList = new vector<int>;
+        (yyval.statementValue).breakList = new vector<int>;
+        (yyval.statementValue).continueList = new vector <int>;
+    }
+#line 2478 "miniC.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 54:
+#line 942 "miniC.y" /* yacc.c:1646  */
+    {
+        (yyval.statementValue).nextList = new vector<int>;
+        (yyval.statementValue).breakList = new vector<int>;
+        (yyval.statementValue).continueList = new vector <int>;
+    }
+#line 2488 "miniC.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 55:
+#line 947 "miniC.y" /* yacc.c:1646  */
+    {scope++;}
+#line 2494 "miniC.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 56:
+#line 948 "miniC.y" /* yacc.c:1646  */
+    {
+        (yyval.statementValue).nextList = new vector<int>;
+        (yyval.statementValue).breakList = new vector<int>;
+        (yyval.statementValue).continueList = new vector <int>;
+        deleteVariableList(activeFunctionPointer, scope);
+        scope--;
+        merge((yyval.statementValue).continueList, (yyvsp[-1].statementValue).continueList);
+        merge((yyval.statementValue).breakList, (yyvsp[-1].statementValue).breakList);
+    }
+#line 2508 "miniC.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 57:
+#line 958 "miniC.y" /* yacc.c:1646  */
+    {
+        (yyval.statementValue).nextList = new vector<int>;
+        (yyval.statementValue).breakList = new vector<int>;
+        (yyval.statementValue).continueList = new vector <int>;
+        (yyval.statementValue).breakList->push_back(nextNum);
+        gen(functionInstruction, "goto L", nextNum);
+    }
+#line 2520 "miniC.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 58:
+#line 966 "miniC.y" /* yacc.c:1646  */
+    {
+        (yyval.statementValue).nextList = new vector<int>;
+        (yyval.statementValue).breakList = new vector<int>;
+        (yyval.statementValue).continueList = new vector <int>;
+        (yyval.statementValue).continueList->push_back(nextNum);
+        gen(functionInstruction, "goto L", nextNum);
+    }
+#line 2532 "miniC.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 59:
+#line 974 "miniC.y" /* yacc.c:1646  */
+    {
+        (yyval.statementValue).nextList = new vector<int>;
+        (yyval.statementValue).breakList = new vector<int>;
+        (yyval.statementValue).continueList = new vector <int>;
+        if ((yyvsp[-1].expressionValue).type != ERRORTYPE && activeFunctionPointer != NULL) {
+            if (activeFunctionPointer->returnType == NULLVOID && (yyvsp[-1].expressionValue).type != NULLVOID) {
+                cout << BOLD(FRED("ERROR : ")) << "Line no. " << yylineno << ": function " << activeFunctionPointer->name << " has void return type not " << (yyvsp[-1].expressionValue).type << endl;
+            }
+            else if (activeFunctionPointer->returnType != NULLVOID && (yyvsp[-1].expressionValue).type == NULLVOID) {
+                cout << BOLD(FRED("ERROR : ")) << "Line no. " << yylineno << ": function " << activeFunctionPointer->name << " has non-void return type" << endl;
+            }
+            else {
+                string s;
+                if (activeFunctionPointer->returnType != NULLVOID && (yyvsp[-1].expressionValue).type != NULLVOID) {
+                    if ((yyvsp[-1].expressionValue).type == INTEGER && activeFunctionPointer->returnType == FLOATING)  {
+                        string floatReg = temporarySet.getFloatRegister();
+                        s = floatReg + " = " + "convertToFloat(" + *((yyvsp[-1].expressionValue).registerName) + ")";
+                        cout << BOLD(FBLU("Warning : ")) << FCYN("Line No. "+to_string(yylineno)+":Implicit Type Conversion") << endl;
+                        gen(functionInstruction, s, nextNum);
+                        s = "return " + floatReg;
+                        gen(functionInstruction, s, nextNum);
+                        temporarySet.freeRegister(*((yyvsp[-1].expressionValue).registerName));
+                        temporarySet.freeRegister(floatReg);
+                    }
+                    else if ((yyvsp[-1].expressionValue).type == FLOATING && activeFunctionPointer->returnType == INTEGER) {
+                        string intRegister = temporarySet.getRegister();
+                        s = intRegister + " = " + "convertToInt(" + *((yyvsp[-1].expressionValue).registerName) + ")";
+                        cout << BOLD(FBLU("Warning : ")) << FCYN("Line No. "+to_string(yylineno)+":Implicit Type Conversion") << endl;
+                        gen(functionInstruction, s, nextNum);
+                        s = "return " + intRegister;
+                        gen(functionInstruction, s, nextNum);
+                        temporarySet.freeRegister(*((yyvsp[-1].expressionValue).registerName));
+                        temporarySet.freeRegister(intRegister);
+                    }
+                    else {
+                        s = "return " + *((yyvsp[-1].expressionValue).registerName);
+                        gen(functionInstruction, s, nextNum);
+                        temporarySet.freeRegister(*((yyvsp[-1].expressionValue).registerName));
+                    }
+                }
+                else if (activeFunctionPointer->returnType == NULLVOID && (yyvsp[-1].expressionValue).type == NULLVOID) {
+                    s = "return";
+                    gen(functionInstruction, s, nextNum);
+                }
+                else {
+                    errorFound = 1;
+                    cout << BOLD(FRED("ERROR : ")) << "Line no. " << yylineno << ": Exactly one of function " << activeFunctionPointer->name << "and this return statement has void return type" << endl;
+                    if ((yyvsp[-1].expressionValue).type != NULLVOID) temporarySet.freeRegister(*((yyvsp[-1].expressionValue).registerName));
+                }
+            }
+        }
+    }
+#line 2589 "miniC.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 60:
+#line 1027 "miniC.y" /* yacc.c:1646  */
+    {
+        (yyval.statementValue).nextList = new vector<int>;
+        (yyval.statementValue).breakList = new vector<int>;
+        (yyval.statementValue).continueList = new vector <int>;
+        if((yyvsp[-1].expressionValue).type == ERRORTYPE){
+            errorFound = true;
+        }
+        else{
+            string registerName;
+            if ((yyvsp[-1].expressionValue).type == INTEGER){
+                registerName = temporarySet.getRegister();
+            }
+            else {
+                registerName = temporarySet.getFloatRegister();
+            }
+            string s;
+            s = "read " + registerName;
+            gen(functionInstruction, s, nextNum);
+            s = (*((yyvsp[-1].expressionValue).registerName)) + " = " +  registerName;
+            gen(functionInstruction, s, nextNum);
+            temporarySet.freeRegister(registerName);
+            if ((yyvsp[-1].expressionValue).offsetRegName != NULL) temporarySet.freeRegister(*((yyvsp[-1].expressionValue).offsetRegName));
+        }
+    }
+#line 2618 "miniC.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 61:
+#line 1052 "miniC.y" /* yacc.c:1646  */
+    {
+        (yyval.statementValue).nextList = new vector<int>;
+        (yyval.statementValue).breakList = new vector<int>;
+        (yyval.statementValue).continueList = new vector <int>;
+        if((yyvsp[-1].expressionValue).type == ERRORTYPE){
+            errorFound = true;
+        }
+        else{
+            string registerName;
+            if ((yyvsp[-1].expressionValue).type == INTEGER){
+                registerName = temporarySet.getRegister();
+            }
+            else {
+                registerName = temporarySet.getFloatRegister();
+            }
+            string s = registerName + " = " + (*((yyvsp[-1].expressionValue).registerName)) ;
+            gen(functionInstruction, s, nextNum);
+            s = "print " + registerName;
+            gen(functionInstruction, s, nextNum);
+            temporarySet.freeRegister(registerName);
+            if ((yyvsp[-1].expressionValue).offsetRegName != NULL) temporarySet.freeRegister(*((yyvsp[-1].expressionValue).offsetRegName));
+        }
+    }
+#line 2646 "miniC.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 62:
+#line 1076 "miniC.y" /* yacc.c:1646  */
+    {
+        errorFound = 1;
+        (yyval.statementValue).nextList = new vector<int>;
+        (yyval.statementValue).breakList = new vector<int>;
+        (yyval.statementValue).continueList = new vector <int>;
+        cout << BOLD(FRED("ERROR : ")) << FYEL("Line no. " + to_string(yylineno) + ": Syntax error") << endl;
+    }
+#line 2658 "miniC.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 63:
+#line 1084 "miniC.y" /* yacc.c:1646  */
+    {
+        errorFound = 1;
+        (yyval.statementValue).nextList = new vector<int>;
+        (yyval.statementValue).breakList = new vector<int>;
+        (yyval.statementValue).continueList = new vector <int>;
+        cout << BOLD(FRED("ERROR : ")) << FYEL("Line no. " + to_string(yylineno) + ": Syntax error") << endl;
+    }
+#line 2670 "miniC.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 64:
+#line 1094 "miniC.y" /* yacc.c:1646  */
     {
         variableRecord = new typeRecord;
         variableRecord->elementType = (yyvsp[0].expressionValue).type;
@@ -2389,17 +2685,17 @@ yyreduce:
         }
         typeRecordList.push_back(variableRecord);
     }
-#line 2393 "miniC.tab.c" /* yacc.c:1646  */
+#line 2689 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
-  case 53:
-#line 855 "miniC.y" /* yacc.c:1646  */
+  case 65:
+#line 1108 "miniC.y" /* yacc.c:1646  */
     {parameterListStack.push(typeRecordList); typeRecordList.clear();}
-#line 2399 "miniC.tab.c" /* yacc.c:1646  */
+#line 2695 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
-  case 54:
-#line 856 "miniC.y" /* yacc.c:1646  */
+  case 66:
+#line 1109 "miniC.y" /* yacc.c:1646  */
     {
         variableRecord = new typeRecord;
         variableRecord->elementType = (yyvsp[0].expressionValue).type;
@@ -2414,11 +2710,83 @@ yyreduce:
         }
         typeRecordList.push_back(variableRecord);
     }
-#line 2418 "miniC.tab.c" /* yacc.c:1646  */
+#line 2714 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
-  case 55:
-#line 873 "miniC.y" /* yacc.c:1646  */
+  case 67:
+#line 1126 "miniC.y" /* yacc.c:1646  */
+    {
+        deleteVariableList(activeFunctionPointer,scope);
+        scope--;
+        (yyval.statementValue).nextList= new vector<int>;
+        (yyval.statementValue).breakList = new vector<int>;
+        (yyval.statementValue).continueList= new vector<int>;
+        merge((yyval.statementValue).nextList, (yyvsp[-3].whileExpressionValue).falseList);
+        merge((yyval.statementValue).breakList, (yyvsp[-1].statementValue).breakList);
+        merge((yyval.statementValue).continueList, (yyvsp[-1].statementValue).continueList);
+        backPatch((yyval.statementValue).nextList,nextNum,functionInstruction);
+        gen(functionInstruction, "L" + to_string(nextNum) + ":", nextNum);
+    }
+#line 2731 "miniC.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 68:
+#line 1138 "miniC.y" /* yacc.c:1646  */
+    {deleteVariableList(activeFunctionPointer,scope);}
+#line 2737 "miniC.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 69:
+#line 1139 "miniC.y" /* yacc.c:1646  */
+    {
+        deleteVariableList(activeFunctionPointer,scope);
+        scope--;
+        (yyval.statementValue).nextList= new vector<int>;
+        (yyval.statementValue).breakList = new vector<int>;
+        (yyval.statementValue).continueList= new vector<int>;
+        backPatch((yyvsp[-10].whileExpressionValue).falseList,(yyvsp[-3].quad),functionInstruction);
+        merge((yyval.statementValue).nextList,(yyvsp[-5].statementValue).nextList );
+        backPatch((yyval.statementValue).nextList,nextNum,functionInstruction);
+        gen(functionInstruction, "L" + to_string(nextNum) + ":", nextNum);
+        merge((yyval.statementValue).breakList, (yyvsp[-8].statementValue).breakList);
+        merge((yyval.statementValue).continueList, (yyvsp[-8].statementValue).continueList);
+        merge((yyval.statementValue).breakList, (yyvsp[-1].statementValue).breakList);
+        merge((yyval.statementValue).continueList, (yyvsp[-1].statementValue).continueList);
+    }
+#line 2757 "miniC.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 70:
+#line 1157 "miniC.y" /* yacc.c:1646  */
+    {
+        if((yyvsp[-1].expressionValue).type != ERRORTYPE && (yyvsp[-1].expressionValue).type!=NULLVOID){
+            (yyval.whileExpressionValue).falseList = new vector <int>;
+            (yyval.whileExpressionValue).falseList->push_back(nextNum);
+            if((yyvsp[-1].expressionValue).type == NULLVOID){
+                cout << BOLD(FRED("ERROR : ")) << "Line no. " << yylineno << "condition in if statement can't be empty" << endl;
+                errorFound=true;
+            }
+            gen(functionInstruction, "if "+ (*((yyvsp[-1].expressionValue).registerName)) + " == 0 goto L", nextNum);
+            scope++;
+            temporarySet.freeRegister(*((yyvsp[-1].expressionValue).registerName));
+        } 
+    }
+#line 2775 "miniC.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 71:
+#line 1171 "miniC.y" /* yacc.c:1646  */
+    {
+        errorFound = 1;
+        (yyval.whileExpressionValue).falseList = new vector <int>;
+        cout << BOLD(FRED("ERROR : ")) << FYEL("Line no. " + to_string(yylineno) + ": Syntax error in if, discarding tokens till RPARE") << endl;
+        scope++;
+    }
+#line 2786 "miniC.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 72:
+#line 1180 "miniC.y" /* yacc.c:1646  */
     {
         (yyval.expressionValue).type = (yyvsp[0].shortCircuitValue).type;
         if((yyval.expressionValue).type != ERRORTYPE && (yyval.expressionValue).type != NULLVOID) {
@@ -2436,11 +2804,11 @@ yyreduce:
             }
         }
     }
-#line 2440 "miniC.tab.c" /* yacc.c:1646  */
+#line 2808 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
-  case 56:
-#line 891 "miniC.y" /* yacc.c:1646  */
+  case 73:
+#line 1198 "miniC.y" /* yacc.c:1646  */
     {
         if ((yyvsp[-2].expressionValue).type == ERRORTYPE || (yyvsp[0].expressionValue).type == ERRORTYPE) {
             (yyval.expressionValue).type = ERRORTYPE;
@@ -2478,11 +2846,11 @@ yyreduce:
             if ((yyvsp[-2].expressionValue).offsetRegName != NULL) temporarySet.freeRegister(*((yyvsp[-2].expressionValue).offsetRegName));
         }
     }
-#line 2482 "miniC.tab.c" /* yacc.c:1646  */
+#line 2850 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
-  case 57:
-#line 929 "miniC.y" /* yacc.c:1646  */
+  case 74:
+#line 1236 "miniC.y" /* yacc.c:1646  */
     {
         if ((yyvsp[-2].expressionValue).type == ERRORTYPE || (yyvsp[0].expressionValue).type == ERRORTYPE) {
             (yyval.expressionValue).type = ERRORTYPE;
@@ -2534,11 +2902,11 @@ yyreduce:
             if ((yyvsp[-2].expressionValue).offsetRegName != NULL) temporarySet.freeRegister(*((yyvsp[-2].expressionValue).offsetRegName));
         }
     }
-#line 2538 "miniC.tab.c" /* yacc.c:1646  */
+#line 2906 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
-  case 58:
-#line 981 "miniC.y" /* yacc.c:1646  */
+  case 75:
+#line 1288 "miniC.y" /* yacc.c:1646  */
     {
         if ((yyvsp[-2].expressionValue).type == ERRORTYPE || (yyvsp[0].expressionValue).type == ERRORTYPE) {
             (yyval.expressionValue).type = ERRORTYPE;
@@ -2590,11 +2958,11 @@ yyreduce:
             if ((yyvsp[-2].expressionValue).offsetRegName != NULL) temporarySet.freeRegister(*((yyvsp[-2].expressionValue).offsetRegName));
         }
     }
-#line 2594 "miniC.tab.c" /* yacc.c:1646  */
+#line 2962 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
-  case 59:
-#line 1033 "miniC.y" /* yacc.c:1646  */
+  case 76:
+#line 1340 "miniC.y" /* yacc.c:1646  */
     {
         if ((yyvsp[-2].expressionValue).type == ERRORTYPE || (yyvsp[0].expressionValue).type == ERRORTYPE) {
             (yyval.expressionValue).type = ERRORTYPE;
@@ -2646,11 +3014,11 @@ yyreduce:
             if ((yyvsp[-2].expressionValue).offsetRegName != NULL) temporarySet.freeRegister(*((yyvsp[-2].expressionValue).offsetRegName));
         }
     }
-#line 2650 "miniC.tab.c" /* yacc.c:1646  */
+#line 3018 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
-  case 60:
-#line 1085 "miniC.y" /* yacc.c:1646  */
+  case 77:
+#line 1392 "miniC.y" /* yacc.c:1646  */
     {
         if ((yyvsp[-2].expressionValue).type == ERRORTYPE || (yyvsp[0].expressionValue).type == ERRORTYPE) {
             (yyval.expressionValue).type = ERRORTYPE;
@@ -2702,11 +3070,11 @@ yyreduce:
             if ((yyvsp[-2].expressionValue).offsetRegName != NULL) temporarySet.freeRegister(*((yyvsp[-2].expressionValue).offsetRegName));
         }
     }
-#line 2706 "miniC.tab.c" /* yacc.c:1646  */
+#line 3074 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
-  case 61:
-#line 1137 "miniC.y" /* yacc.c:1646  */
+  case 78:
+#line 1444 "miniC.y" /* yacc.c:1646  */
     {
         if ((yyvsp[-2].expressionValue).type == ERRORTYPE || (yyvsp[0].expressionValue).type == ERRORTYPE) {
             (yyval.expressionValue).type = ERRORTYPE;
@@ -2758,23 +3126,11 @@ yyreduce:
             if ((yyvsp[-2].expressionValue).offsetRegName != NULL) temporarySet.freeRegister(*((yyvsp[-2].expressionValue).offsetRegName));
         }
     }
-#line 2762 "miniC.tab.c" /* yacc.c:1646  */
+#line 3130 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
-  case 62:
-#line 1191 "miniC.y" /* yacc.c:1646  */
-    {
-        (yyval.expressionValue).type = (yyvsp[0].expressionValue).type;
-        if ((yyval.expressionValue).type != ERRORTYPE) {
-            (yyval.expressionValue).registerName = (yyvsp[0].expressionValue).registerName;
-            (yyval.expressionValue).offsetRegName = (yyvsp[0].expressionValue).offsetRegName;
-        } 
-    }
-#line 2774 "miniC.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 63:
-#line 1201 "miniC.y" /* yacc.c:1646  */
+  case 79:
+#line 1498 "miniC.y" /* yacc.c:1646  */
     {
         deleteVariableList(activeFunctionPointer,scope);
         scope--;
@@ -2799,11 +3155,11 @@ yyreduce:
         backPatch((yyvsp[-1].switchCaseValue).breakList, nextNum, functionInstruction);
         gen(functionInstruction, "L" + to_string(nextNum) + ":", nextNum);
     }
-#line 2803 "miniC.tab.c" /* yacc.c:1646  */
+#line 3159 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
-  case 64:
-#line 1228 "miniC.y" /* yacc.c:1646  */
+  case 80:
+#line 1525 "miniC.y" /* yacc.c:1646  */
     {
         (yyval.whileExpressionValue).begin=nextNum;
         (yyval.whileExpressionValue).falseList = new vector<int>;
@@ -2811,29 +3167,29 @@ yyreduce:
         gen(functionInstruction, "goto L", nextNum);
         scope++;
     }
-#line 2815 "miniC.tab.c" /* yacc.c:1646  */
+#line 3171 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
-  case 65:
-#line 1238 "miniC.y" /* yacc.c:1646  */
+  case 81:
+#line 1535 "miniC.y" /* yacc.c:1646  */
     {
         (yyval.switchTempValue).casePair = new vector<pair<string,int>>;
 
     }
-#line 2824 "miniC.tab.c" /* yacc.c:1646  */
+#line 3180 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
-  case 66:
-#line 1245 "miniC.y" /* yacc.c:1646  */
+  case 82:
+#line 1542 "miniC.y" /* yacc.c:1646  */
     {
         (yyvsp[0].switchTempValue).casePair->push_back(make_pair("-"+string((yyvsp[-1].idName)), nextNum));
         gen(functionInstruction, "L" + to_string(nextNum) + ":", nextNum);
         }
-#line 2833 "miniC.tab.c" /* yacc.c:1646  */
+#line 3189 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
-  case 67:
-#line 1250 "miniC.y" /* yacc.c:1646  */
+  case 83:
+#line 1547 "miniC.y" /* yacc.c:1646  */
     {
         (yyval.switchCaseValue).nextList = new vector<int>;
         (yyval.switchCaseValue).breakList = new vector<int>;
@@ -2848,20 +3204,20 @@ yyreduce:
         mergeSwitch((yyval.switchCaseValue).casePair, (yyvsp[0].switchCaseValue).casePair);
         mergeSwitch((yyval.switchCaseValue).casePair, (yyvsp[-4].switchTempValue).casePair);
     }
-#line 2852 "miniC.tab.c" /* yacc.c:1646  */
+#line 3208 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
-  case 68:
-#line 1265 "miniC.y" /* yacc.c:1646  */
+  case 84:
+#line 1562 "miniC.y" /* yacc.c:1646  */
     {
         (yyvsp[0].switchTempValue).casePair->push_back(make_pair(string((yyvsp[-1].idName)), nextNum));
         gen(functionInstruction, "L" + to_string(nextNum) + ":", nextNum);
         }
-#line 2861 "miniC.tab.c" /* yacc.c:1646  */
+#line 3217 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
-  case 69:
-#line 1270 "miniC.y" /* yacc.c:1646  */
+  case 85:
+#line 1567 "miniC.y" /* yacc.c:1646  */
     {
         (yyval.switchCaseValue).nextList = new vector<int>;
         (yyval.switchCaseValue).breakList = new vector<int>;
@@ -2876,31 +3232,31 @@ yyreduce:
         mergeSwitch((yyval.switchCaseValue).casePair, (yyvsp[0].switchCaseValue).casePair);
         mergeSwitch((yyval.switchCaseValue).casePair, (yyvsp[-4].switchTempValue).casePair);
     }
-#line 2880 "miniC.tab.c" /* yacc.c:1646  */
+#line 3236 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
-  case 70:
-#line 1285 "miniC.y" /* yacc.c:1646  */
+  case 86:
+#line 1582 "miniC.y" /* yacc.c:1646  */
     {
         (yyval.switchCaseValue).nextList = new vector<int>;
         (yyval.switchCaseValue).breakList = new vector<int>;
         (yyval.switchCaseValue).continueList = new vector <int>;
         (yyval.switchCaseValue).casePair = new vector<pair<string,int>>;
     }
-#line 2891 "miniC.tab.c" /* yacc.c:1646  */
+#line 3247 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
-  case 71:
-#line 1291 "miniC.y" /* yacc.c:1646  */
+  case 87:
+#line 1588 "miniC.y" /* yacc.c:1646  */
     {
         (yyvsp[0].switchTempValue).casePair->push_back(make_pair("default", nextNum));
         gen(functionInstruction, "L" + to_string(nextNum) + ":", nextNum);
     }
-#line 2900 "miniC.tab.c" /* yacc.c:1646  */
+#line 3256 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
-  case 72:
-#line 1295 "miniC.y" /* yacc.c:1646  */
+  case 88:
+#line 1592 "miniC.y" /* yacc.c:1646  */
     {
         (yyval.switchCaseValue).nextList = new vector<int>;
         (yyval.switchCaseValue).breakList = new vector<int>;
@@ -2911,61 +3267,43 @@ yyreduce:
         merge((yyval.switchCaseValue).nextList, (yyvsp[0].statementValue).nextList);
         mergeSwitch((yyval.switchCaseValue).casePair, (yyvsp[-2].switchTempValue).casePair);
     }
-#line 2915 "miniC.tab.c" /* yacc.c:1646  */
+#line 3271 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
-  case 73:
-#line 1308 "miniC.y" /* yacc.c:1646  */
+  case 89:
+#line 1605 "miniC.y" /* yacc.c:1646  */
     { 
         (yyval.quad) = nextNum;
         gen(functionInstruction, "L" + to_string(nextNum) + ":", nextNum); 
     }
-#line 2924 "miniC.tab.c" /* yacc.c:1646  */
+#line 3280 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
-  case 74:
-#line 1315 "miniC.y" /* yacc.c:1646  */
+  case 90:
+#line 1612 "miniC.y" /* yacc.c:1646  */
+    {
+        (yyval.expressionValue).type = (yyvsp[0].expressionValue).type;
+        if ((yyval.expressionValue).type != ERRORTYPE) {
+            (yyval.expressionValue).registerName = (yyvsp[0].expressionValue).registerName;
+            (yyval.expressionValue).offsetRegName = (yyvsp[0].expressionValue).offsetRegName;
+        } 
+    }
+#line 3292 "miniC.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 91:
+#line 1622 "miniC.y" /* yacc.c:1646  */
     { 
         (yyval.whileExpressionValue).begin = nextNum; 
         (yyval.whileExpressionValue).falseList = new vector<int>;
         (yyval.whileExpressionValue).falseList->push_back(nextNum);
         gen(functionInstruction, "goto L", nextNum);
     }
-#line 2935 "miniC.tab.c" /* yacc.c:1646  */
+#line 3303 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
-  case 75:
-#line 1324 "miniC.y" /* yacc.c:1646  */
-    { 
-        (yyval.whileExpressionValue).falseList = new vector<int>;
-        (yyval.whileExpressionValue).falseList->push_back(nextNum);
-        gen(functionInstruction, "goto L", nextNum);
-        (yyval.whileExpressionValue).begin = nextNum; 
-        gen(functionInstruction, "L"+to_string(nextNum)+":", nextNum);
-    }
-#line 2947 "miniC.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 76:
-#line 1334 "miniC.y" /* yacc.c:1646  */
-    {
-        (yyval.whileExpressionValue).begin = nextNum;
-        (yyval.whileExpressionValue).falseList = new vector<int>;
-        (yyval.whileExpressionValue).falseList->push_back(nextNum);
-    }
-#line 2957 "miniC.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 77:
-#line 1342 "miniC.y" /* yacc.c:1646  */
-    {
-        (yyval.quad) = nextNum;
-    }
-#line 2965 "miniC.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 78:
-#line 1348 "miniC.y" /* yacc.c:1646  */
+  case 92:
+#line 1631 "miniC.y" /* yacc.c:1646  */
     {
         deleteVariableList(activeFunctionPointer, scope);
         scope--;
@@ -2975,21 +3313,21 @@ yyreduce:
         backPatch((yyvsp[-4].whileExpressionValue).falseList, nextNum, functionInstruction);
         gen(functionInstruction, "L" + to_string(nextNum) + ":", nextNum); 
     }
-#line 2979 "miniC.tab.c" /* yacc.c:1646  */
+#line 3317 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
-  case 79:
-#line 1359 "miniC.y" /* yacc.c:1646  */
+  case 93:
+#line 1642 "miniC.y" /* yacc.c:1646  */
     {
         if((yyvsp[-1].expressionValue).type!=NULLVOID){
             gen(functionInstruction, "if "+ (*((yyvsp[-1].expressionValue).registerName)) + " == 0 goto L", nextNum);
         }
     }
-#line 2989 "miniC.tab.c" /* yacc.c:1646  */
+#line 3327 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
-  case 80:
-#line 1364 "miniC.y" /* yacc.c:1646  */
+  case 94:
+#line 1647 "miniC.y" /* yacc.c:1646  */
     {
         backPatch((yyvsp[-1].whileExpressionValue).falseList,(yyvsp[-8].quad),functionInstruction);
         backPatch((yyvsp[-4].whileExpressionValue).falseList,nextNum,functionInstruction);
@@ -3010,132 +3348,90 @@ yyreduce:
             temporarySet.freeRegister(*((yyvsp[-2].expressionValue).registerName));
         }
     }
-#line 3014 "miniC.tab.c" /* yacc.c:1646  */
+#line 3352 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
-  case 81:
-#line 1385 "miniC.y" /* yacc.c:1646  */
+  case 95:
+#line 1668 "miniC.y" /* yacc.c:1646  */
     {
         errorFound = 1;
         (yyval.whileExpressionValue).falseList = new vector<int>;
         cout << BOLD(FRED("ERROR : ")) << FYEL("Line no. " + to_string(yylineno) + ": Syntax error in for loop, discarded token till RPARE") << endl;
         scope++;
     }
-#line 3025 "miniC.tab.c" /* yacc.c:1646  */
+#line 3363 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
-  case 82:
-#line 1394 "miniC.y" /* yacc.c:1646  */
+  case 96:
+#line 1677 "miniC.y" /* yacc.c:1646  */
+    { 
+        (yyval.whileExpressionValue).falseList = new vector<int>;
+        (yyval.whileExpressionValue).falseList->push_back(nextNum);
+        gen(functionInstruction, "goto L", nextNum);
+        (yyval.whileExpressionValue).begin = nextNum; 
+        gen(functionInstruction, "L"+to_string(nextNum)+":", nextNum);
+    }
+#line 3375 "miniC.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 97:
+#line 1687 "miniC.y" /* yacc.c:1646  */
+    {
+        (yyval.whileExpressionValue).begin = nextNum;
+        (yyval.whileExpressionValue).falseList = new vector<int>;
+        (yyval.whileExpressionValue).falseList->push_back(nextNum);
+    }
+#line 3385 "miniC.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 98:
+#line 1695 "miniC.y" /* yacc.c:1646  */
+    {
+        (yyval.quad) = nextNum;
+    }
+#line 3393 "miniC.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 99:
+#line 1701 "miniC.y" /* yacc.c:1646  */
     {
         (yyval.expressionValue).type= (yyvsp[0].expressionValue).type;
         if ((yyvsp[0].expressionValue).type != ERRORTYPE && (yyvsp[0].expressionValue).type != NULLVOID) {
             (yyval.expressionValue).registerName = (yyvsp[0].expressionValue).registerName;
         }
     }
-#line 3036 "miniC.tab.c" /* yacc.c:1646  */
+#line 3404 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
-  case 83:
-#line 1400 "miniC.y" /* yacc.c:1646  */
+  case 100:
+#line 1707 "miniC.y" /* yacc.c:1646  */
     {
         (yyval.expressionValue).type = NULLVOID;
     }
-#line 3044 "miniC.tab.c" /* yacc.c:1646  */
+#line 3412 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
-  case 84:
-#line 1406 "miniC.y" /* yacc.c:1646  */
-    {
-        (yyval.quad)=nextNum;
-        gen(functionInstruction, "L" + to_string(nextNum) + ":", nextNum);
-    }
-#line 3053 "miniC.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 85:
-#line 1413 "miniC.y" /* yacc.c:1646  */
+  case 101:
+#line 1713 "miniC.y" /* yacc.c:1646  */
     {
         (yyval.statementValue).nextList = new vector<int>;
         ((yyval.statementValue).nextList)->push_back(nextNum);
         gen(functionInstruction, "goto L", nextNum);
     }
-#line 3063 "miniC.tab.c" /* yacc.c:1646  */
+#line 3422 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
-  case 86:
-#line 1421 "miniC.y" /* yacc.c:1646  */
+  case 102:
+#line 1722 "miniC.y" /* yacc.c:1646  */
     {
-        deleteVariableList(activeFunctionPointer,scope);
-        scope--;
-        (yyval.statementValue).nextList= new vector<int>;
-        (yyval.statementValue).breakList = new vector<int>;
-        (yyval.statementValue).continueList= new vector<int>;
-        merge((yyval.statementValue).nextList, (yyvsp[-3].whileExpressionValue).falseList);
-        merge((yyval.statementValue).breakList, (yyvsp[-1].statementValue).breakList);
-        merge((yyval.statementValue).continueList, (yyvsp[-1].statementValue).continueList);
-        backPatch((yyval.statementValue).nextList,nextNum,functionInstruction);
+        (yyval.quad)=nextNum;
         gen(functionInstruction, "L" + to_string(nextNum) + ":", nextNum);
     }
-#line 3080 "miniC.tab.c" /* yacc.c:1646  */
+#line 3431 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
-  case 87:
-#line 1433 "miniC.y" /* yacc.c:1646  */
-    {deleteVariableList(activeFunctionPointer,scope);}
-#line 3086 "miniC.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 88:
-#line 1434 "miniC.y" /* yacc.c:1646  */
-    {
-        deleteVariableList(activeFunctionPointer,scope);
-        scope--;
-        (yyval.statementValue).nextList= new vector<int>;
-        (yyval.statementValue).breakList = new vector<int>;
-        (yyval.statementValue).continueList= new vector<int>;
-        backPatch((yyvsp[-10].whileExpressionValue).falseList,(yyvsp[-3].quad),functionInstruction);
-        merge((yyval.statementValue).nextList,(yyvsp[-5].statementValue).nextList );
-        backPatch((yyval.statementValue).nextList,nextNum,functionInstruction);
-        gen(functionInstruction, "L" + to_string(nextNum) + ":", nextNum);
-        merge((yyval.statementValue).breakList, (yyvsp[-8].statementValue).breakList);
-        merge((yyval.statementValue).continueList, (yyvsp[-8].statementValue).continueList);
-        merge((yyval.statementValue).breakList, (yyvsp[-1].statementValue).breakList);
-        merge((yyval.statementValue).continueList, (yyvsp[-1].statementValue).continueList);
-    }
-#line 3106 "miniC.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 89:
-#line 1452 "miniC.y" /* yacc.c:1646  */
-    {
-        if((yyvsp[-1].expressionValue).type != ERRORTYPE && (yyvsp[-1].expressionValue).type!=NULLVOID){
-            (yyval.whileExpressionValue).falseList = new vector <int>;
-            (yyval.whileExpressionValue).falseList->push_back(nextNum);
-            if((yyvsp[-1].expressionValue).type == NULLVOID){
-                cout << BOLD(FRED("ERROR : ")) << "Line no. " << yylineno << "condition in if statement can't be empty" << endl;
-                errorFound=true;
-            }
-            gen(functionInstruction, "if "+ (*((yyvsp[-1].expressionValue).registerName)) + " == 0 goto L", nextNum);
-            scope++;
-            temporarySet.freeRegister(*((yyvsp[-1].expressionValue).registerName));
-        } 
-    }
-#line 3124 "miniC.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 90:
-#line 1466 "miniC.y" /* yacc.c:1646  */
-    {
-        errorFound = 1;
-        (yyval.whileExpressionValue).falseList = new vector <int>;
-        cout << BOLD(FRED("ERROR : ")) << FYEL("Line no. " + to_string(yylineno) + ": Syntax error in if, discarding tokens till RPARE") << endl;
-        scope++;
-    }
-#line 3135 "miniC.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 91:
-#line 1475 "miniC.y" /* yacc.c:1646  */
+  case 103:
+#line 1729 "miniC.y" /* yacc.c:1646  */
     {
         deleteVariableList(activeFunctionPointer,scope);
         scope--;
@@ -3149,11 +3445,11 @@ yyreduce:
         backPatch((yyval.statementValue).nextList,nextNum,functionInstruction);
         gen(functionInstruction, "L" + to_string(nextNum) + ":", nextNum);
     }
-#line 3153 "miniC.tab.c" /* yacc.c:1646  */
+#line 3449 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
-  case 92:
-#line 1491 "miniC.y" /* yacc.c:1646  */
+  case 104:
+#line 1745 "miniC.y" /* yacc.c:1646  */
     {
         scope++;
         if((yyvsp[-1].expressionValue).type == NULLVOID || (yyvsp[-1].expressionValue).type == ERRORTYPE){
@@ -3168,29 +3464,57 @@ yyreduce:
             (yyval.whileExpressionValue).begin = (yyvsp[-3].quad); 
         }
     }
-#line 3172 "miniC.tab.c" /* yacc.c:1646  */
+#line 3468 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
-  case 93:
-#line 1506 "miniC.y" /* yacc.c:1646  */
+  case 105:
+#line 1760 "miniC.y" /* yacc.c:1646  */
     {   
         (yyval.whileExpressionValue).falseList = new vector<int>;
         cout << BOLD(FRED("ERROR : ")) << FYEL("Line no. " + to_string(yylineno) + ": Syntax error in while loop, discarding tokens till RPARE") << endl;
         scope++;
     }
-#line 3182 "miniC.tab.c" /* yacc.c:1646  */
+#line 3478 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
-  case 94:
-#line 1514 "miniC.y" /* yacc.c:1646  */
+  case 106:
+#line 1768 "miniC.y" /* yacc.c:1646  */
     {
     (yyval.conditionTemp).temp = new vector<int>;
 }
-#line 3190 "miniC.tab.c" /* yacc.c:1646  */
+#line 3486 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
-  case 95:
-#line 1520 "miniC.y" /* yacc.c:1646  */
+  case 107:
+#line 1774 "miniC.y" /* yacc.c:1646  */
+    {
+        if ((yyvsp[-1].expressionValue).type == INTEGER) {
+            dimensionList.push_back(*((yyvsp[-1].expressionValue).registerName));
+        }
+        else {
+            cout << BOLD(FRED("ERROR : ")) << "Line no. " << yylineno << ": ";
+            cout << "One of the dimension of an array cannot be evaluated to integer" << endl;
+        }
+    }
+#line 3500 "miniC.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 108:
+#line 1784 "miniC.y" /* yacc.c:1646  */
+    {
+        if ((yyvsp[-1].expressionValue).type == INTEGER) {
+            dimensionList.push_back(*((yyvsp[-1].expressionValue).registerName));
+        }
+        else {
+            cout << BOLD(FRED("ERROR : ")) << "Line no. " << yylineno << ": ";
+            cout << "One of the dimension of an array cannot be evaluated to integer" << endl;
+        }  
+    }
+#line 3514 "miniC.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 109:
+#line 1796 "miniC.y" /* yacc.c:1646  */
     {
         if((yyvsp[-1].shortCircuitValue).type!=ERRORTYPE){
             (yyvsp[0].conditionTemp).temp->push_back(nextNum);
@@ -3198,11 +3522,11 @@ yyreduce:
 
         }
     }
-#line 3202 "miniC.tab.c" /* yacc.c:1646  */
+#line 3526 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
-  case 96:
-#line 1528 "miniC.y" /* yacc.c:1646  */
+  case 110:
+#line 1804 "miniC.y" /* yacc.c:1646  */
     {
         if((yyvsp[-4].shortCircuitValue).type==ERRORTYPE || (yyvsp[0].shortCircuitValue).type==ERRORTYPE){
             (yyval.shortCircuitValue).type = ERRORTYPE;
@@ -3238,11 +3562,11 @@ yyreduce:
             temporarySet.freeRegister(*((yyvsp[0].shortCircuitValue).registerName)); 
         }
     }
-#line 3242 "miniC.tab.c" /* yacc.c:1646  */
+#line 3566 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
-  case 97:
-#line 1564 "miniC.y" /* yacc.c:1646  */
+  case 111:
+#line 1840 "miniC.y" /* yacc.c:1646  */
     {
         (yyval.shortCircuitValue).type = (yyvsp[0].shortCircuitValue).type;
         if ((yyval.shortCircuitValue).type != ERRORTYPE && (yyval.shortCircuitValue).type != NULLVOID) {
@@ -3260,11 +3584,11 @@ yyreduce:
             }
         }
     }
-#line 3264 "miniC.tab.c" /* yacc.c:1646  */
+#line 3588 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
-  case 98:
-#line 1585 "miniC.y" /* yacc.c:1646  */
+  case 112:
+#line 1861 "miniC.y" /* yacc.c:1646  */
     {
       if ((yyvsp[-1].shortCircuitValue).type!=ERRORTYPE ){
 
@@ -3272,11 +3596,11 @@ yyreduce:
          gen(functionInstruction, "if " + *((yyvsp[-1].shortCircuitValue).registerName) + " == 0 " +" goto L", nextNum);
       } 
     }
-#line 3276 "miniC.tab.c" /* yacc.c:1646  */
+#line 3600 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
-  case 99:
-#line 1593 "miniC.y" /* yacc.c:1646  */
+  case 113:
+#line 1869 "miniC.y" /* yacc.c:1646  */
     {
         if ((yyvsp[-4].shortCircuitValue).type==ERRORTYPE || (yyvsp[0].expressionValue).type==ERRORTYPE) {
             (yyval.shortCircuitValue).type = ERRORTYPE;
@@ -3302,11 +3626,11 @@ yyreduce:
             temporarySet.freeRegister(*((yyvsp[0].expressionValue).registerName));   
         }
     }
-#line 3306 "miniC.tab.c" /* yacc.c:1646  */
+#line 3630 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
-  case 100:
-#line 1619 "miniC.y" /* yacc.c:1646  */
+  case 114:
+#line 1895 "miniC.y" /* yacc.c:1646  */
     {
         (yyval.shortCircuitValue).type = (yyvsp[0].expressionValue).type;
         if ((yyvsp[0].expressionValue).type != ERRORTYPE && (yyvsp[0].expressionValue).type != NULLVOID) {
@@ -3315,298 +3639,11 @@ yyreduce:
             (yyval.shortCircuitValue).jumpList=NULL;   
         }
     }
-#line 3319 "miniC.tab.c" /* yacc.c:1646  */
+#line 3643 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
-  case 101:
-#line 1630 "miniC.y" /* yacc.c:1646  */
-    {
-        (yyval.expressionValue).type = (yyvsp[0].expressionValue).type;
-        if ((yyvsp[0].expressionValue).type != ERRORTYPE && (yyvsp[0].expressionValue).type != NULLVOID) {
-            (yyval.expressionValue).registerName = (yyvsp[0].expressionValue).registerName;
-            string s = (*((yyval.expressionValue).registerName)) + " = ~" + (*((yyvsp[0].expressionValue).registerName));   
-            gen(functionInstruction, s, nextNum);
-        }
-    }
-#line 3332 "miniC.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 102:
-#line 1639 "miniC.y" /* yacc.c:1646  */
-    {
-        (yyval.expressionValue).type = (yyvsp[0].expressionValue).type;
-        if ((yyvsp[0].expressionValue).type != ERRORTYPE && (yyvsp[0].expressionValue).type != NULLVOID) {
-            (yyval.expressionValue).registerName = (yyvsp[0].expressionValue).registerName;    
-        }
-    }
-#line 3343 "miniC.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 103:
-#line 1648 "miniC.y" /* yacc.c:1646  */
-    {
-        if ((yyvsp[-2].expressionValue).type == ERRORTYPE || (yyvsp[0].expressionValue).type == ERRORTYPE) {
-            (yyval.expressionValue).type = ERRORTYPE;
-        }
-        else if((yyvsp[-2].expressionValue).type == NULLVOID || (yyvsp[0].expressionValue).type == NULLVOID){
-            (yyval.expressionValue).type = ERRORTYPE;
-            cout << BOLD(FRED("ERROR : ")) << "Line no. "<< yylineno << ":Both the expessions should not be  NULL" << endl;
-        }
-        else {
-            (yyval.expressionValue).type = BOOLEAN;
-            (yyval.expressionValue).registerName = new string(temporarySet.getRegister());     
-            string s = (*((yyval.expressionValue).registerName)) + " = " + (*((yyvsp[-2].expressionValue).registerName)) + " == " + (*((yyvsp[0].expressionValue).registerName))   ;
-            gen(functionInstruction, s, nextNum);
-            temporarySet.freeRegister(*((yyvsp[-2].expressionValue).registerName));
-            temporarySet.freeRegister(*((yyvsp[0].expressionValue).registerName));  
-        }   
-    }
-#line 3365 "miniC.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 104:
-#line 1666 "miniC.y" /* yacc.c:1646  */
-    {
-        if((yyvsp[-2].expressionValue).type == ERRORTYPE || (yyvsp[0].expressionValue).type == ERRORTYPE){
-            (yyval.expressionValue).type = ERRORTYPE;
-        }
-        else if((yyvsp[-2].expressionValue).type == NULLVOID || (yyvsp[0].expressionValue).type == NULLVOID){
-            (yyval.expressionValue).type = ERRORTYPE;
-            cout << BOLD(FRED("ERROR : ")) << "Line no. "<< yylineno << ":Both the expessions should not be  NULL" << endl;
-        }
-        else{
-            (yyval.expressionValue).type = BOOLEAN;
-            (yyval.expressionValue).registerName = new string(temporarySet.getRegister());     
-            string s = (*((yyval.expressionValue).registerName)) + " = " + (*((yyvsp[-2].expressionValue).registerName)) + " != " + (*((yyvsp[0].expressionValue).registerName));   
-            gen(functionInstruction, s, nextNum);
-            temporarySet.freeRegister(*((yyvsp[-2].expressionValue).registerName));
-            temporarySet.freeRegister(*((yyvsp[0].expressionValue).registerName));  
-        }   
-    }
-#line 3387 "miniC.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 105:
-#line 1684 "miniC.y" /* yacc.c:1646  */
-    {
-        if((yyvsp[-2].expressionValue).type == ERRORTYPE || (yyvsp[0].expressionValue).type == ERRORTYPE){
-            (yyval.expressionValue).type = ERRORTYPE;
-        }
-        else if((yyvsp[-2].expressionValue).type == NULLVOID || (yyvsp[0].expressionValue).type == NULLVOID){
-            (yyval.expressionValue).type = ERRORTYPE;
-            cout << BOLD(FRED("ERROR : ")) << "Line no. "<< yylineno << ":Both the expessions should not be  NULL" << endl;
-        }
-        else{
-            (yyval.expressionValue).type = BOOLEAN;
-            (yyval.expressionValue).registerName = new string(temporarySet.getRegister());     
-            string s = (*((yyval.expressionValue).registerName)) + " = " + (*((yyvsp[-2].expressionValue).registerName)) + " < " + (*((yyvsp[0].expressionValue).registerName));   
-            gen(functionInstruction, s, nextNum);
-            temporarySet.freeRegister(*((yyvsp[-2].expressionValue).registerName));
-            temporarySet.freeRegister(*((yyvsp[0].expressionValue).registerName));  
-        }   
-    }
-#line 3409 "miniC.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 106:
-#line 1702 "miniC.y" /* yacc.c:1646  */
-    {
-        if((yyvsp[-2].expressionValue).type == ERRORTYPE || (yyvsp[0].expressionValue).type == ERRORTYPE){
-            (yyval.expressionValue).type = ERRORTYPE;
-        }
-        else if((yyvsp[-2].expressionValue).type == NULLVOID || (yyvsp[0].expressionValue).type == NULLVOID){
-            (yyval.expressionValue).type = ERRORTYPE;
-            cout << BOLD(FRED("ERROR : ")) << "Line no. "<< yylineno << ":Both the expessions should not be  NULL" << endl;
-        }
-        else{
-            (yyval.expressionValue).type = BOOLEAN;
-            (yyval.expressionValue).registerName = new string(temporarySet.getRegister());     
-            string s = (*((yyval.expressionValue).registerName)) + " = " + (*((yyvsp[-2].expressionValue).registerName)) + " > " + (*((yyvsp[0].expressionValue).registerName));   
-            gen(functionInstruction, s, nextNum);
-            temporarySet.freeRegister(*((yyvsp[-2].expressionValue).registerName));
-            temporarySet.freeRegister(*((yyvsp[0].expressionValue).registerName));  
-        }   
-    }
-#line 3431 "miniC.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 107:
-#line 1720 "miniC.y" /* yacc.c:1646  */
-    {
-        if((yyvsp[-2].expressionValue).type == ERRORTYPE || (yyvsp[0].expressionValue).type == ERRORTYPE){
-            (yyval.expressionValue).type = ERRORTYPE;
-            errorFound = true;
-        }
-        else if((yyvsp[-2].expressionValue).type == NULLVOID || (yyvsp[0].expressionValue).type == NULLVOID){
-            (yyval.expressionValue).type = ERRORTYPE;
-            cout << BOLD(FRED("ERROR : ")) << "Line no. "<< yylineno << ":Both the expessions should not be  NULL" << endl;
-        }
-        else{
-            (yyval.expressionValue).type = BOOLEAN;
-            (yyval.expressionValue).registerName = new string(temporarySet.getRegister());     
-            string s = (*((yyval.expressionValue).registerName)) + " = " + (*((yyvsp[-2].expressionValue).registerName)) + " <= " + (*((yyvsp[0].expressionValue).registerName));   
-            gen(functionInstruction, s, nextNum);
-            temporarySet.freeRegister(*((yyvsp[-2].expressionValue).registerName));
-            temporarySet.freeRegister(*((yyvsp[0].expressionValue).registerName));  
-        }   
-    }
-#line 3454 "miniC.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 108:
-#line 1739 "miniC.y" /* yacc.c:1646  */
-    {
-        if((yyvsp[-2].expressionValue).type == ERRORTYPE || (yyvsp[0].expressionValue).type == ERRORTYPE){
-            (yyval.expressionValue).type = ERRORTYPE;
-        }
-        else if((yyvsp[-2].expressionValue).type == NULLVOID || (yyvsp[0].expressionValue).type == NULLVOID){
-            (yyval.expressionValue).type = ERRORTYPE;
-            cout << BOLD(FRED("ERROR : ")) << "Line no. "<< yylineno << ":Both the expessions should not be  NULL" << endl;
-        }
-        else{
-            (yyval.expressionValue).type = BOOLEAN;
-            (yyval.expressionValue).registerName = new string(temporarySet.getRegister());     
-            string s = (*((yyval.expressionValue).registerName)) + " = " + (*((yyvsp[-2].expressionValue).registerName)) + " >= " + (*((yyvsp[0].expressionValue).registerName));  
-            gen(functionInstruction, s, nextNum);
-            temporarySet.freeRegister(*((yyvsp[-2].expressionValue).registerName));
-            temporarySet.freeRegister(*((yyvsp[0].expressionValue).registerName));  
-        }   
-    }
-#line 3476 "miniC.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 109:
-#line 1757 "miniC.y" /* yacc.c:1646  */
-    {
-        (yyval.expressionValue).type = (yyvsp[0].expressionValue).type; 
-        if((yyval.expressionValue).type == ERRORTYPE){
-            errorFound = true;
-        }
-        else{
-            if((yyvsp[0].expressionValue).type != NULLVOID){
-                (yyval.expressionValue).registerName = new string(*((yyvsp[0].expressionValue).registerName)); 
-                delete (yyvsp[0].expressionValue).registerName; 
-            }
-        }    
-    }
-#line 3493 "miniC.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 110:
-#line 1772 "miniC.y" /* yacc.c:1646  */
-    {
-        if ((yyvsp[-2].expressionValue).type == ERRORTYPE || (yyvsp[0].expressionValue).type == ERRORTYPE) {
-            (yyval.expressionValue).type = ERRORTYPE; 
-            errorFound = true; 
-        }
-        else {
-            if (arithmeticCompatible((yyvsp[-2].expressionValue).type, (yyvsp[0].expressionValue).type)) {
-                (yyval.expressionValue).type = compareTypes((yyvsp[-2].expressionValue).type,(yyvsp[0].expressionValue).type);
-
-                if ((yyvsp[-2].expressionValue).type == INTEGER && (yyvsp[0].expressionValue).type == FLOATING) {
-                    string newReg = temporarySet.getFloatRegister();
-                    string s = newReg + " = " + "convertToFloat(" + (*((yyvsp[-2].expressionValue).registerName)) + ")";
-                    cout << BOLD(FBLU("Warning : ")) << FCYN("Line No. "+to_string(yylineno)+":Implicit Type Conversion") << endl;
-                    temporarySet.freeRegister(*((yyvsp[-2].expressionValue).registerName));
-                    (yyvsp[-2].expressionValue).registerName = &newReg;
-                    gen(functionInstruction, s, nextNum);
-                }
-                else if ((yyvsp[-2].expressionValue).type == FLOATING && (yyvsp[0].expressionValue).type == INTEGER) {
-                    string newReg = temporarySet.getFloatRegister();
-                    string s = newReg + " = " + "convertToFloat(" + (*((yyvsp[0].expressionValue).registerName)) + ")";
-                    cout << BOLD(FBLU("Warning : ")) << FCYN("Line No. "+to_string(yylineno)+":Implicit Type Conversion") << endl;
-                    temporarySet.freeRegister(*((yyvsp[0].expressionValue).registerName));
-                    (yyvsp[0].expressionValue).registerName = &newReg;
-                    gen(functionInstruction, s, nextNum);
-                }
-
-                if ((yyval.expressionValue).type == INTEGER) 
-                    (yyval.expressionValue).registerName = new string(temporarySet.getRegister());
-                else
-                    (yyval.expressionValue).registerName = new string(temporarySet.getFloatRegister());
-                    
-                string s = (*((yyval.expressionValue).registerName)) + " = " + (*((yyvsp[-2].expressionValue).registerName)) + " + " + (*((yyvsp[0].expressionValue).registerName));;   
-                gen(functionInstruction, s, nextNum);
-                temporarySet.freeRegister(*((yyvsp[-2].expressionValue).registerName));
-                temporarySet.freeRegister(*((yyvsp[0].expressionValue).registerName));   
-            }
-            else {
-                cout << BOLD(FRED("ERROR : ")) << "Line no. " << yylineno << ":  ";
-                cout << "Type mismatch in expression" << endl;
-                (yyval.expressionValue).type = ERRORTYPE;
-            }
-        }
-    }
-#line 3541 "miniC.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 111:
-#line 1816 "miniC.y" /* yacc.c:1646  */
-    {
-        if ((yyvsp[-2].expressionValue).type == ERRORTYPE || (yyvsp[0].expressionValue).type == ERRORTYPE) {
-            (yyval.expressionValue).type = ERRORTYPE;
-            errorFound = true;  
-        }
-        else {
-            if (arithmeticCompatible((yyvsp[-2].expressionValue).type, (yyvsp[0].expressionValue).type)) {
-                (yyval.expressionValue).type = compareTypes((yyvsp[-2].expressionValue).type,(yyvsp[0].expressionValue).type);
-
-                if ((yyvsp[-2].expressionValue).type == INTEGER && (yyvsp[0].expressionValue).type == FLOATING) {
-                    string newReg = temporarySet.getFloatRegister();
-                    string s = newReg + " = " + "convertToFloat(" + (*((yyvsp[-2].expressionValue).registerName)) + ")";
-                    cout << BOLD(FBLU("Warning : ")) << FCYN("Line No. "+to_string(yylineno)+":Implicit Type Conversion") << endl;
-                    temporarySet.freeRegister(*((yyvsp[-2].expressionValue).registerName));
-                    (yyvsp[-2].expressionValue).registerName = &newReg;
-                    gen(functionInstruction, s, nextNum);
-                }
-                else if ((yyvsp[-2].expressionValue).type == FLOATING && (yyvsp[0].expressionValue).type == INTEGER) {
-                    string newReg = temporarySet.getFloatRegister();
-                    string s = newReg + " = " + "convertToFloat(" + (*((yyvsp[0].expressionValue).registerName)) + ")";
-                    cout << BOLD(FBLU("Warning : ")) << FCYN("Line No. "+to_string(yylineno)+":Implicit Type Conversion") << endl;
-                    temporarySet.freeRegister(*((yyvsp[0].expressionValue).registerName));
-                    (yyvsp[0].expressionValue).registerName = &newReg;
-                    gen(functionInstruction, s, nextNum);
-                }
-
-                if ((yyval.expressionValue).type == INTEGER) 
-                    (yyval.expressionValue).registerName = new string(temporarySet.getRegister());
-                else
-                    (yyval.expressionValue).registerName = new string(temporarySet.getFloatRegister());
-                    
-                string s = (*((yyval.expressionValue).registerName)) + " = " + (*((yyvsp[-2].expressionValue).registerName)) + " - " + (*((yyvsp[0].expressionValue).registerName));;   
-                gen(functionInstruction, s, nextNum);
-                temporarySet.freeRegister(*((yyvsp[-2].expressionValue).registerName));
-                temporarySet.freeRegister(*((yyvsp[0].expressionValue).registerName));   
-            }
-            else {
-                cout << BOLD(FRED("ERROR : ")) << "Line no. " << yylineno << ":  ";
-                cout << "Type mismatch in expression" << endl;
-                (yyval.expressionValue).type = ERRORTYPE;
-            }
-        }
-    }
-#line 3589 "miniC.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 112:
-#line 1860 "miniC.y" /* yacc.c:1646  */
-    { 
-        (yyval.expressionValue).type = (yyvsp[0].expressionValue).type; 
-        if ((yyvsp[0].expressionValue).type == ERRORTYPE) {
-            errorFound = true;
-        }
-        else {
-            if((yyvsp[0].expressionValue).type!= NULLVOID){
-                (yyval.expressionValue).registerName = new string(*((yyvsp[0].expressionValue).registerName)); 
-                delete (yyvsp[0].expressionValue).registerName;
-            }         
-        } 
-    }
-#line 3606 "miniC.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 113:
-#line 1875 "miniC.y" /* yacc.c:1646  */
+  case 115:
+#line 1906 "miniC.y" /* yacc.c:1646  */
     {
         if ((yyvsp[-2].expressionValue).type == ERRORTYPE || (yyvsp[0].expressionValue).type == ERRORTYPE) {
             (yyval.expressionValue).type = ERRORTYPE;  
@@ -3649,11 +3686,11 @@ yyreduce:
             }
         }
     }
-#line 3653 "miniC.tab.c" /* yacc.c:1646  */
+#line 3690 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
-  case 114:
-#line 1918 "miniC.y" /* yacc.c:1646  */
+  case 116:
+#line 1949 "miniC.y" /* yacc.c:1646  */
     {
         if ((yyvsp[-2].expressionValue).type == ERRORTYPE || (yyvsp[0].expressionValue).type == ERRORTYPE) {
         (yyval.expressionValue).type = ERRORTYPE;  
@@ -3696,11 +3733,11 @@ yyreduce:
             }
         }   
     }
-#line 3700 "miniC.tab.c" /* yacc.c:1646  */
+#line 3737 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
-  case 115:
-#line 1961 "miniC.y" /* yacc.c:1646  */
+  case 117:
+#line 1992 "miniC.y" /* yacc.c:1646  */
     {
         if ((yyvsp[-2].expressionValue).type == ERRORTYPE || (yyvsp[0].expressionValue).type == ERRORTYPE) {
             (yyval.expressionValue).type = ERRORTYPE;  
@@ -3721,11 +3758,11 @@ yyreduce:
             }
         }   
     }
-#line 3725 "miniC.tab.c" /* yacc.c:1646  */
+#line 3762 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
-  case 116:
-#line 1982 "miniC.y" /* yacc.c:1646  */
+  case 118:
+#line 2013 "miniC.y" /* yacc.c:1646  */
     { 
         (yyval.expressionValue).type = (yyvsp[0].expressionValue).type; 
         if ((yyvsp[0].expressionValue).type == ERRORTYPE) {
@@ -3738,11 +3775,11 @@ yyreduce:
             }  
         } 
     }
-#line 3742 "miniC.tab.c" /* yacc.c:1646  */
+#line 3779 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
-  case 117:
-#line 1997 "miniC.y" /* yacc.c:1646  */
+  case 119:
+#line 2028 "miniC.y" /* yacc.c:1646  */
     { 
         (yyval.expressionValue).type = (yyvsp[0].expressionValue).type;
         if ((yyval.expressionValue).type != ERRORTYPE) {
@@ -3756,11 +3793,11 @@ yyreduce:
             }
         }
     }
-#line 3760 "miniC.tab.c" /* yacc.c:1646  */
+#line 3797 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
-  case 118:
-#line 2011 "miniC.y" /* yacc.c:1646  */
+  case 120:
+#line 2042 "miniC.y" /* yacc.c:1646  */
     {
         (yyval.expressionValue).type = (yyvsp[0].expressionValue).type;
         if((yyvsp[0].expressionValue).type != ERRORTYPE){
@@ -3792,11 +3829,11 @@ yyreduce:
             }
         }       
     }
-#line 3796 "miniC.tab.c" /* yacc.c:1646  */
+#line 3833 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
-  case 119:
-#line 2043 "miniC.y" /* yacc.c:1646  */
+  case 121:
+#line 2074 "miniC.y" /* yacc.c:1646  */
     {
         (yyval.expressionValue).type = INTEGER; 
         (yyval.expressionValue).registerName = new string(temporarySet.getRegister());
@@ -3804,44 +3841,44 @@ yyreduce:
         gen(functionInstruction, s, nextNum);  
         
     }
-#line 3808 "miniC.tab.c" /* yacc.c:1646  */
+#line 3845 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
-  case 120:
-#line 2051 "miniC.y" /* yacc.c:1646  */
+  case 122:
+#line 2082 "miniC.y" /* yacc.c:1646  */
     { 
         (yyval.expressionValue).type = INTEGER; 
         (yyval.expressionValue).registerName = new string(temporarySet.getRegister());
         string s = (*((yyval.expressionValue).registerName)) + " = " + string((yyvsp[0].idName)) ;
         gen(functionInstruction, s, nextNum);  
     }
-#line 3819 "miniC.tab.c" /* yacc.c:1646  */
+#line 3856 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
-  case 121:
-#line 2058 "miniC.y" /* yacc.c:1646  */
+  case 123:
+#line 2089 "miniC.y" /* yacc.c:1646  */
     {
         (yyval.expressionValue).type = FLOATING;
         (yyval.expressionValue).registerName = new string(temporarySet.getFloatRegister());
         string s = (*((yyval.expressionValue).registerName)) + " = " + string((yyvsp[0].idName)) ;
         gen(functionInstruction, s, nextNum);  
     }
-#line 3830 "miniC.tab.c" /* yacc.c:1646  */
+#line 3867 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
-  case 122:
-#line 2065 "miniC.y" /* yacc.c:1646  */
+  case 124:
+#line 2096 "miniC.y" /* yacc.c:1646  */
     { 
         (yyval.expressionValue).type = FLOATING;
         (yyval.expressionValue).registerName = new string(temporarySet.getFloatRegister());
         string s = (*((yyval.expressionValue).registerName)) + " = " + string((yyvsp[0].idName)) ;
         gen(functionInstruction, s, nextNum);  
     }
-#line 3841 "miniC.tab.c" /* yacc.c:1646  */
+#line 3878 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
-  case 123:
-#line 2072 "miniC.y" /* yacc.c:1646  */
+  case 125:
+#line 2103 "miniC.y" /* yacc.c:1646  */
     { 
         (yyval.expressionValue).type = (yyvsp[0].expressionValue).type; 
         if ((yyvsp[0].expressionValue).type == ERRORTYPE) {
@@ -3854,22 +3891,22 @@ yyreduce:
             }
         }; 
     }
-#line 3858 "miniC.tab.c" /* yacc.c:1646  */
+#line 3895 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
-  case 124:
-#line 2085 "miniC.y" /* yacc.c:1646  */
+  case 126:
+#line 2116 "miniC.y" /* yacc.c:1646  */
     { 
         (yyval.expressionValue).type = (yyvsp[-1].expressionValue).type; 
         if ((yyvsp[-1].expressionValue).type != ERRORTYPE) {
             (yyval.expressionValue).registerName = (yyvsp[-1].expressionValue).registerName;
         }
     }
-#line 3869 "miniC.tab.c" /* yacc.c:1646  */
+#line 3906 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
-  case 125:
-#line 2092 "miniC.y" /* yacc.c:1646  */
+  case 127:
+#line 2123 "miniC.y" /* yacc.c:1646  */
     {
         if ((yyvsp[-1].expressionValue).type == INTEGER) {
             (yyval.expressionValue).type = INTEGER;   
@@ -3893,11 +3930,11 @@ yyreduce:
             cout << "Cannot increment non-integer type variable "<< *((yyvsp[-1].expressionValue).registerName) << endl; 
         }
     }
-#line 3897 "miniC.tab.c" /* yacc.c:1646  */
+#line 3934 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
-  case 126:
-#line 2116 "miniC.y" /* yacc.c:1646  */
+  case 128:
+#line 2147 "miniC.y" /* yacc.c:1646  */
     {
         if ((yyvsp[-1].expressionValue).type == INTEGER) {
             (yyval.expressionValue).type = INTEGER;   
@@ -3921,11 +3958,11 @@ yyreduce:
             cout << "Cannot increment non-integer type variable " << *((yyvsp[-1].expressionValue).registerName) << endl; 
         }
     }
-#line 3925 "miniC.tab.c" /* yacc.c:1646  */
+#line 3962 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
-  case 127:
-#line 2140 "miniC.y" /* yacc.c:1646  */
+  case 129:
+#line 2171 "miniC.y" /* yacc.c:1646  */
     {
         if ((yyvsp[0].expressionValue).type == INTEGER) {
             (yyval.expressionValue).type = INTEGER;
@@ -3949,11 +3986,11 @@ yyreduce:
             cout << "Cannot increment non-integer type variable "<<*((yyvsp[0].expressionValue).registerName) << endl; 
         }
     }
-#line 3953 "miniC.tab.c" /* yacc.c:1646  */
+#line 3990 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
-  case 128:
-#line 2164 "miniC.y" /* yacc.c:1646  */
+  case 130:
+#line 2195 "miniC.y" /* yacc.c:1646  */
     {
         if ((yyvsp[0].expressionValue).type == INTEGER) {
             (yyval.expressionValue).type = INTEGER;   
@@ -3977,11 +4014,11 @@ yyreduce:
             cout << "Cannot increment non-integer type variable " << *((yyvsp[0].expressionValue).registerName) << endl; 
         }
     }
-#line 3981 "miniC.tab.c" /* yacc.c:1646  */
+#line 4018 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
-  case 129:
-#line 2190 "miniC.y" /* yacc.c:1646  */
+  case 131:
+#line 2221 "miniC.y" /* yacc.c:1646  */
     {   
         // retrieve the highest level id with same name in param list or var list or global list
         int found = 0;
@@ -4024,11 +4061,11 @@ yyreduce:
             }
         }
     }
-#line 4028 "miniC.tab.c" /* yacc.c:1646  */
+#line 4065 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
-  case 130:
-#line 2233 "miniC.y" /* yacc.c:1646  */
+  case 132:
+#line 2264 "miniC.y" /* yacc.c:1646  */
     {
         // retrieve the highest level id with same name in param list or var list
         int found = 0;
@@ -4091,39 +4128,11 @@ yyreduce:
             dimensionList.clear();
         }
     }
-#line 4095 "miniC.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 131:
-#line 2298 "miniC.y" /* yacc.c:1646  */
-    {
-        if ((yyvsp[-1].expressionValue).type == INTEGER) {
-            dimensionList.push_back(*((yyvsp[-1].expressionValue).registerName));
-        }
-        else {
-            cout << BOLD(FRED("ERROR : ")) << "Line no. " << yylineno << ": ";
-            cout << "One of the dimension of an array cannot be evaluated to integer" << endl;
-        }
-    }
-#line 4109 "miniC.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 132:
-#line 2308 "miniC.y" /* yacc.c:1646  */
-    {
-        if ((yyvsp[-1].expressionValue).type == INTEGER) {
-            dimensionList.push_back(*((yyvsp[-1].expressionValue).registerName));
-        }
-        else {
-            cout << BOLD(FRED("ERROR : ")) << "Line no. " << yylineno << ": ";
-            cout << "One of the dimension of an array cannot be evaluated to integer" << endl;
-        }  
-    }
-#line 4123 "miniC.tab.c" /* yacc.c:1646  */
+#line 4132 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
 
-#line 4127 "miniC.tab.c" /* yacc.c:1646  */
+#line 4136 "miniC.tab.c" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -4351,7 +4360,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 2319 "miniC.y" /* yacc.c:1906  */
+#line 2328 "miniC.y" /* yacc.c:1906  */
 
 
 void yyerror(const char *s)

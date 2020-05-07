@@ -1,32 +1,36 @@
 %{
 #pragma GCC diagnostic ignored "-Wwrite-strings"
+
 #include <iostream>
 #include <vector>
-#include <stack>
-#include <stdio.h>
-#include <algorithm>
 #include <utility>
 #include <fstream>
+#include <algorithm>
+#include <stack>
+#include <stdio.h>
+
 #include "funcTab.h"
 #include "codegenHelpers.h"
+
 using namespace std;
+
 #define YYERROR_VERBOSE 1
 
 extern int yylex();
 extern int yyparse();
 extern int yylineno;
-extern char* yytext;
 extern int yyleng;
+extern char* yytext;
 void yyerror(const char* s);
 
 int offsetValue;
 string text;
-eletype resultType;
-vector<typeRecord*> typeRecordList;
-stack<vector<typeRecord*> > parameterListStack;
 typeRecord* variableRecord;
 vector<int> decDimensionList;
 vector<typeRecord*> globalVariables;
+eletype resultType;
+stack<vector<typeRecord*> > parameterListStack;
+vector<typeRecord*> typeRecordList;
 
 int nextNum;
 vector<string> functionInstruction;
@@ -35,14 +39,14 @@ registerSet temporarySet;
 vector<functionEntry*> functionEntryRecord;
 functionEntry* activeFunctionPointer;
 functionEntry* callFunctionPointer;
+vector<string> switchVariable;
+vector<functionEntry*> callFunctionPointerList;
+vector<string> dimensionList;
 int scope;
 int found;
 bool errorFound;
 int numberOfParameters;
 string conditionVariable;
-vector<string> switchVariable;
-vector<functionEntry*> callFunctionPointerList;
-vector<string> dimensionList;
 
 vector<pair<string,int>> stringVariable;
 %}
@@ -59,12 +63,12 @@ vector<pair<string,int>> stringVariable;
     int quad;
 
     struct expression expressionValue;
-    struct statement statementValue;
-    struct whileExpression whileExpressionValue;
-    struct shortCircuit shortCircuitValue;
     struct switchCaser switchCaseValue;
     struct switchTemp switchTempValue;
     struct condition2temp conditionTemp;
+    struct whileExpression whileExpressionValue;
+    struct statement statementValue;
+    struct shortCircuit shortCircuitValue;
 }
 
 %token INT FLOAT VOID DATAFLOAT DATAINT ID NEWLINE READ PRINT
@@ -76,61 +80,18 @@ vector<pair<string,int>> stringVariable;
 %type <idName> DATAFLOAT
 %type <idName> DATAINT
 %type <idName> ID
-%type <expressionValue> EXPR2 TERM FACTOR ID_ARR ASSIGNMENT ASSIGNMENT1 EXPR1 EXPR21 LHS FUNC_CALL BR_DIMLIST
-%type <whileExpressionValue> WHILEEXP IFEXP N3 P3 Q3 FOREXP TEMP1
-%type <statementValue> BODY WHILESTMT IFSTMT M2 FORLOOP STATEMENT STATEMENT_LIST
-%type <quad> M1 M3 Q4
 %type <shortCircuitValue> CONDITION1 CONDITION2
-%type <switchCaseValue> CASELIST
-%type <switchTempValue> TEMP2
+%type <expressionValue> TERM ID_ARR ASSIGNMENT ASSIGNMENT1 EXPR2 EXPR1 EXPR21 LHS FACTOR FUNC_CALL BR_DIMLIST
+%type <whileExpressionValue> WHILEEXP IFEXP N3 P3 Q3 FOREXP TEMP1
+%type <statementValue> BODY M2 FORLOOP STATEMENT WHILESTMT STATEMENT_LIST IFSTMT 
+%type <quad> M1 M3 Q4
 %type <conditionTemp> TP1
+%type <switchTempValue> TEMP2
+%type <switchCaseValue> CASELIST
+
+%start MAIN_PROG
+
 %%
-
-MAIN_PROG: PROG MAINFUNCTION
-    | MAINFUNCTION
-;
-
-PROG: PROG FUNCTION_DEFINATION
-    | PROG VARIABLE_DECLARATION
-    | FUNCTION_DEFINATION
-    | VARIABLE_DECLARATION
-;
-
-MAINFUNCTION: MAIN_HEAD LCURLYB BODY RCURLYB
-    {
-        deleteVariableList(activeFunctionPointer, scope);
-        activeFunctionPointer=NULL;
-        scope=0;
-        string s = "function end";
-        gen(functionInstruction, s, nextNum);
-    }
-;
-
-MAIN_HEAD: INT MAIN LPARE RPARE
-    {   
-        scope=1;
-        activeFunctionPointer = new functionEntry;
-        activeFunctionPointer->name = string("main");
-        activeFunctionPointer->returnType = INTEGER;
-        activeFunctionPointer->numOfParam = 0;
-        activeFunctionPointer->parameterList.clear();
-        activeFunctionPointer->variableList.clear();
-        activeFunctionPointer->functionOffset = 0;      ;
-        typeRecordList.clear();
-        searchFunc(activeFunctionPointer, functionEntryRecord, found);
-        if (found) {
-            cout << BOLD(FRED("ERROR : ")) << "Line no. " << yylineno << ": Function " << activeFunctionPointer->name <<  " already declared." << endl;
-            delete activeFunctionPointer;
-            activeFunctionPointer = NULL;
-        }
-        else {
-            addFunction(activeFunctionPointer, functionEntryRecord);
-            scope = 2; 
-            string s = "function begin main";
-            gen(functionInstruction, s, nextNum);
-        }
-    }
-;
 
 FUNCTION_DEFINATION: FUNC_HEAD LCURLYB BODY RCURLYB
     {
@@ -265,194 +226,53 @@ STATEMENT_LIST: STATEMENT_LIST STATEMENT
     }
 ;
 
-STATEMENT: VARIABLE_DECLARATION
-    {
-        $$.nextList = new vector<int>;
-        $$.breakList = new vector<int>;
-        $$.continueList = new vector <int>;
-    }
-    | ASSIGNMENT SEMI
-    {
-        $$.nextList = new vector<int>;
-        $$.breakList = new vector<int>;
-        $$.continueList = new vector <int>;
-        if ($1.type != NULLVOID && $1.type != ERRORTYPE)
-            temporarySet.freeRegister(*($1.registerName));
-    } 
-    | FORLOOP
-    {
-        $$.nextList = new vector<int>;
-        $$.breakList = new vector<int>;
-        $$.continueList = new vector <int>;
-    }
-    | IFSTMT
-    {
-        $$.nextList = new vector<int>;
-        $$.breakList = new vector<int>;
-        $$.continueList = new vector <int>;
-        merge($$.continueList, $1.continueList);
-        merge($$.breakList, $1.breakList);
+VARIABLE_DECLARATION: D SEMI
+;
 
-    }
-    | WHILESTMT
+MAIN_PROG: PROG MAINFUNCTION
+    | MAINFUNCTION
+;
+
+MAINFUNCTION: MAIN_HEAD LCURLYB BODY RCURLYB
     {
-        $$.nextList = new vector<int>;
-        $$.breakList = new vector<int>;
-        $$.continueList = new vector <int>;
-    }
-    | SWITCHCASE
-    {
-        $$.nextList = new vector<int>;
-        $$.breakList = new vector<int>;
-        $$.continueList = new vector <int>;
-    }
-    | LCURLYB {scope++;} BODY RCURLYB
-    {
-        $$.nextList = new vector<int>;
-        $$.breakList = new vector<int>;
-        $$.continueList = new vector <int>;
         deleteVariableList(activeFunctionPointer, scope);
-        scope--;
-        merge($$.continueList, $3.continueList);
-        merge($$.breakList, $3.breakList);
-    }
-    | BREAK SEMI
-    {
-        $$.nextList = new vector<int>;
-        $$.breakList = new vector<int>;
-        $$.continueList = new vector <int>;
-        $$.breakList->push_back(nextNum);
-        gen(functionInstruction, "goto L", nextNum);
-    }
-    | CONTINUE SEMI
-    {
-        $$.nextList = new vector<int>;
-        $$.breakList = new vector<int>;
-        $$.continueList = new vector <int>;
-        $$.continueList->push_back(nextNum);
-        gen(functionInstruction, "goto L", nextNum);
-    }
-    | RETURN ASSIGNMENT1 SEMI 
-    {
-        $$.nextList = new vector<int>;
-        $$.breakList = new vector<int>;
-        $$.continueList = new vector <int>;
-        if ($2.type != ERRORTYPE && activeFunctionPointer != NULL) {
-            if (activeFunctionPointer->returnType == NULLVOID && $2.type != NULLVOID) {
-                cout << BOLD(FRED("ERROR : ")) << "Line no. " << yylineno << ": function " << activeFunctionPointer->name << " has void return type not " << $2.type << endl;
-            }
-            else if (activeFunctionPointer->returnType != NULLVOID && $2.type == NULLVOID) {
-                cout << BOLD(FRED("ERROR : ")) << "Line no. " << yylineno << ": function " << activeFunctionPointer->name << " has non-void return type" << endl;
-            }
-            else {
-                string s;
-                if (activeFunctionPointer->returnType != NULLVOID && $2.type != NULLVOID) {
-                    if ($2.type == INTEGER && activeFunctionPointer->returnType == FLOATING)  {
-                        string floatReg = temporarySet.getFloatRegister();
-                        s = floatReg + " = " + "convertToFloat(" + *($2.registerName) + ")";
-                        cout << BOLD(FBLU("Warning : ")) << FCYN("Line No. "+to_string(yylineno)+":Implicit Type Conversion") << endl;
-                        gen(functionInstruction, s, nextNum);
-                        s = "return " + floatReg;
-                        gen(functionInstruction, s, nextNum);
-                        temporarySet.freeRegister(*($2.registerName));
-                        temporarySet.freeRegister(floatReg);
-                    }
-                    else if ($2.type == FLOATING && activeFunctionPointer->returnType == INTEGER) {
-                        string intRegister = temporarySet.getRegister();
-                        s = intRegister + " = " + "convertToInt(" + *($2.registerName) + ")";
-                        cout << BOLD(FBLU("Warning : ")) << FCYN("Line No. "+to_string(yylineno)+":Implicit Type Conversion") << endl;
-                        gen(functionInstruction, s, nextNum);
-                        s = "return " + intRegister;
-                        gen(functionInstruction, s, nextNum);
-                        temporarySet.freeRegister(*($2.registerName));
-                        temporarySet.freeRegister(intRegister);
-                    }
-                    else {
-                        s = "return " + *($2.registerName);
-                        gen(functionInstruction, s, nextNum);
-                        temporarySet.freeRegister(*($2.registerName));
-                    }
-                }
-                else if (activeFunctionPointer->returnType == NULLVOID && $2.type == NULLVOID) {
-                    s = "return";
-                    gen(functionInstruction, s, nextNum);
-                }
-                else {
-                    errorFound = 1;
-                    cout << BOLD(FRED("ERROR : ")) << "Line no. " << yylineno << ": Exactly one of function " << activeFunctionPointer->name << "and this return statement has void return type" << endl;
-                    if ($2.type != NULLVOID) temporarySet.freeRegister(*($2.registerName));
-                }
-            }
-        }
-    }
-    | READ ID_ARR SEMI
-    {
-        $$.nextList = new vector<int>;
-        $$.breakList = new vector<int>;
-        $$.continueList = new vector <int>;
-        if($2.type == ERRORTYPE){
-            errorFound = true;
-        }
-        else{
-            string registerName;
-            if ($2.type == INTEGER){
-                registerName = temporarySet.getRegister();
-            }
-            else {
-                registerName = temporarySet.getFloatRegister();
-            }
-            string s;
-            s = "read " + registerName;
-            gen(functionInstruction, s, nextNum);
-            s = (*($2.registerName)) + " = " +  registerName;
-            gen(functionInstruction, s, nextNum);
-            temporarySet.freeRegister(registerName);
-            if ($2.offsetRegName != NULL) temporarySet.freeRegister(*($2.offsetRegName));
-        }
-    }
-    | PRINT ID_ARR SEMI
-    {
-        $$.nextList = new vector<int>;
-        $$.breakList = new vector<int>;
-        $$.continueList = new vector <int>;
-        if($2.type == ERRORTYPE){
-            errorFound = true;
-        }
-        else{
-            string registerName;
-            if ($2.type == INTEGER){
-                registerName = temporarySet.getRegister();
-            }
-            else {
-                registerName = temporarySet.getFloatRegister();
-            }
-            string s = registerName + " = " + (*($2.registerName)) ;
-            gen(functionInstruction, s, nextNum);
-            s = "print " + registerName;
-            gen(functionInstruction, s, nextNum);
-            temporarySet.freeRegister(registerName);
-            if ($2.offsetRegName != NULL) temporarySet.freeRegister(*($2.offsetRegName));
-        }
-    }
-    | error SEMI
-    {
-        errorFound = 1;
-        $$.nextList = new vector<int>;
-        $$.breakList = new vector<int>;
-        $$.continueList = new vector <int>;
-        cout << BOLD(FRED("ERROR : ")) << FYEL("Line no. " + to_string(yylineno) + ": Syntax error") << endl;
-    }
-    | error
-    {
-        errorFound = 1;
-        $$.nextList = new vector<int>;
-        $$.breakList = new vector<int>;
-        $$.continueList = new vector <int>;
-        cout << BOLD(FRED("ERROR : ")) << FYEL("Line no. " + to_string(yylineno) + ": Syntax error") << endl;
+        activeFunctionPointer=NULL;
+        scope=0;
+        string s = "function end";
+        gen(functionInstruction, s, nextNum);
     }
 ;
 
-VARIABLE_DECLARATION: D SEMI
+PROG: PROG FUNCTION_DEFINATION
+    | PROG VARIABLE_DECLARATION
+    | FUNCTION_DEFINATION
+    | VARIABLE_DECLARATION
+;
+
+MAIN_HEAD: INT MAIN LPARE RPARE
+    {   
+        scope=1;
+        activeFunctionPointer = new functionEntry;
+        activeFunctionPointer->name = string("main");
+        activeFunctionPointer->returnType = INTEGER;
+        activeFunctionPointer->numOfParam = 0;
+        activeFunctionPointer->parameterList.clear();
+        activeFunctionPointer->variableList.clear();
+        activeFunctionPointer->functionOffset = 0;      ;
+        typeRecordList.clear();
+        searchFunc(activeFunctionPointer, functionEntryRecord, found);
+        if (found) {
+            cout << BOLD(FRED("ERROR : ")) << "Line no. " << yylineno << ": Function " << activeFunctionPointer->name <<  " already declared." << endl;
+            delete activeFunctionPointer;
+            activeFunctionPointer = NULL;
+        }
+        else {
+            addFunction(activeFunctionPointer, functionEntryRecord);
+            scope = 2; 
+            string s = "function begin main";
+            gen(functionInstruction, s, nextNum);
+        }
+    }
 ;
 
 D: T L
@@ -779,6 +599,252 @@ DEC_BR_DIMLIST: LSQUAREB DATAINT RSQUAREB
     }
 ;
 
+EXPR1: NOT EXPR21
+    {
+        $$.type = $2.type;
+        if ($2.type != ERRORTYPE && $2.type != NULLVOID) {
+            $$.registerName = $2.registerName;
+            string s = (*($$.registerName)) + " = ~" + (*($2.registerName));   
+            gen(functionInstruction, s, nextNum);
+        }
+    }
+    | EXPR21
+    {
+        $$.type = $1.type;
+        if ($1.type != ERRORTYPE && $1.type != NULLVOID) {
+            $$.registerName = $1.registerName;    
+        }
+    }
+;
+
+EXPR21: EXPR2 EQUAL EXPR2
+    {
+        if ($1.type == ERRORTYPE || $3.type == ERRORTYPE) {
+            $$.type = ERRORTYPE;
+        }
+        else if($1.type == NULLVOID || $3.type == NULLVOID){
+            $$.type = ERRORTYPE;
+            cout << BOLD(FRED("ERROR : ")) << "Line no. "<< yylineno << ":Both the expessions should not be  NULL" << endl;
+        }
+        else {
+            $$.type = BOOLEAN;
+            $$.registerName = new string(temporarySet.getRegister());     
+            string s = (*($$.registerName)) + " = " + (*($1.registerName)) + " == " + (*($3.registerName))   ;
+            gen(functionInstruction, s, nextNum);
+            temporarySet.freeRegister(*($1.registerName));
+            temporarySet.freeRegister(*($3.registerName));  
+        }   
+    }
+    | EXPR2 NOTEQUAL EXPR2
+    {
+        if($1.type == ERRORTYPE || $3.type == ERRORTYPE){
+            $$.type = ERRORTYPE;
+        }
+        else if($1.type == NULLVOID || $3.type == NULLVOID){
+            $$.type = ERRORTYPE;
+            cout << BOLD(FRED("ERROR : ")) << "Line no. "<< yylineno << ":Both the expessions should not be  NULL" << endl;
+        }
+        else{
+            $$.type = BOOLEAN;
+            $$.registerName = new string(temporarySet.getRegister());     
+            string s = (*($$.registerName)) + " = " + (*($1.registerName)) + " != " + (*($3.registerName));   
+            gen(functionInstruction, s, nextNum);
+            temporarySet.freeRegister(*($1.registerName));
+            temporarySet.freeRegister(*($3.registerName));  
+        }   
+    }
+    | EXPR2 LESSTHAN EXPR2 
+    {
+        if($1.type == ERRORTYPE || $3.type == ERRORTYPE){
+            $$.type = ERRORTYPE;
+        }
+        else if($1.type == NULLVOID || $3.type == NULLVOID){
+            $$.type = ERRORTYPE;
+            cout << BOLD(FRED("ERROR : ")) << "Line no. "<< yylineno << ":Both the expessions should not be  NULL" << endl;
+        }
+        else{
+            $$.type = BOOLEAN;
+            $$.registerName = new string(temporarySet.getRegister());     
+            string s = (*($$.registerName)) + " = " + (*($1.registerName)) + " < " + (*($3.registerName));   
+            gen(functionInstruction, s, nextNum);
+            temporarySet.freeRegister(*($1.registerName));
+            temporarySet.freeRegister(*($3.registerName));  
+        }   
+    }
+    | EXPR2 GREATTHAN EXPR2
+    {
+        if($1.type == ERRORTYPE || $3.type == ERRORTYPE){
+            $$.type = ERRORTYPE;
+        }
+        else if($1.type == NULLVOID || $3.type == NULLVOID){
+            $$.type = ERRORTYPE;
+            cout << BOLD(FRED("ERROR : ")) << "Line no. "<< yylineno << ":Both the expessions should not be  NULL" << endl;
+        }
+        else{
+            $$.type = BOOLEAN;
+            $$.registerName = new string(temporarySet.getRegister());     
+            string s = (*($$.registerName)) + " = " + (*($1.registerName)) + " > " + (*($3.registerName));   
+            gen(functionInstruction, s, nextNum);
+            temporarySet.freeRegister(*($1.registerName));
+            temporarySet.freeRegister(*($3.registerName));  
+        }   
+    }
+    | EXPR2 LESSEQUAL EXPR2
+    {
+        if($1.type == ERRORTYPE || $3.type == ERRORTYPE){
+            $$.type = ERRORTYPE;
+            errorFound = true;
+        }
+        else if($1.type == NULLVOID || $3.type == NULLVOID){
+            $$.type = ERRORTYPE;
+            cout << BOLD(FRED("ERROR : ")) << "Line no. "<< yylineno << ":Both the expessions should not be  NULL" << endl;
+        }
+        else{
+            $$.type = BOOLEAN;
+            $$.registerName = new string(temporarySet.getRegister());     
+            string s = (*($$.registerName)) + " = " + (*($1.registerName)) + " <= " + (*($3.registerName));   
+            gen(functionInstruction, s, nextNum);
+            temporarySet.freeRegister(*($1.registerName));
+            temporarySet.freeRegister(*($3.registerName));  
+        }   
+    }
+    | EXPR2 GREATEQUAL EXPR2
+    {
+        if($1.type == ERRORTYPE || $3.type == ERRORTYPE){
+            $$.type = ERRORTYPE;
+        }
+        else if($1.type == NULLVOID || $3.type == NULLVOID){
+            $$.type = ERRORTYPE;
+            cout << BOLD(FRED("ERROR : ")) << "Line no. "<< yylineno << ":Both the expessions should not be  NULL" << endl;
+        }
+        else{
+            $$.type = BOOLEAN;
+            $$.registerName = new string(temporarySet.getRegister());     
+            string s = (*($$.registerName)) + " = " + (*($1.registerName)) + " >= " + (*($3.registerName));  
+            gen(functionInstruction, s, nextNum);
+            temporarySet.freeRegister(*($1.registerName));
+            temporarySet.freeRegister(*($3.registerName));  
+        }   
+    } 
+    | EXPR2 
+    {
+        $$.type = $1.type; 
+        if($$.type == ERRORTYPE){
+            errorFound = true;
+        }
+        else{
+            if($1.type != NULLVOID){
+                $$.registerName = new string(*($1.registerName)); 
+                delete $1.registerName; 
+            }
+        }    
+    }
+;
+
+EXPR2:  EXPR2 PLUS TERM
+    {
+        if ($1.type == ERRORTYPE || $3.type == ERRORTYPE) {
+            $$.type = ERRORTYPE; 
+            errorFound = true; 
+        }
+        else {
+            if (arithmeticCompatible($1.type, $3.type)) {
+                $$.type = compareTypes($1.type,$3.type);
+
+                if ($1.type == INTEGER && $3.type == FLOATING) {
+                    string newReg = temporarySet.getFloatRegister();
+                    string s = newReg + " = " + "convertToFloat(" + (*($1.registerName)) + ")";
+                    cout << BOLD(FBLU("Warning : ")) << FCYN("Line No. "+to_string(yylineno)+":Implicit Type Conversion") << endl;
+                    temporarySet.freeRegister(*($1.registerName));
+                    $1.registerName = &newReg;
+                    gen(functionInstruction, s, nextNum);
+                }
+                else if ($1.type == FLOATING && $3.type == INTEGER) {
+                    string newReg = temporarySet.getFloatRegister();
+                    string s = newReg + " = " + "convertToFloat(" + (*($3.registerName)) + ")";
+                    cout << BOLD(FBLU("Warning : ")) << FCYN("Line No. "+to_string(yylineno)+":Implicit Type Conversion") << endl;
+                    temporarySet.freeRegister(*($3.registerName));
+                    $3.registerName = &newReg;
+                    gen(functionInstruction, s, nextNum);
+                }
+
+                if ($$.type == INTEGER) 
+                    $$.registerName = new string(temporarySet.getRegister());
+                else
+                    $$.registerName = new string(temporarySet.getFloatRegister());
+                    
+                string s = (*($$.registerName)) + " = " + (*($1.registerName)) + " + " + (*($3.registerName));;   
+                gen(functionInstruction, s, nextNum);
+                temporarySet.freeRegister(*($1.registerName));
+                temporarySet.freeRegister(*($3.registerName));   
+            }
+            else {
+                cout << BOLD(FRED("ERROR : ")) << "Line no. " << yylineno << ":  ";
+                cout << "Type mismatch in expression" << endl;
+                $$.type = ERRORTYPE;
+            }
+        }
+    }
+    | EXPR2 MINUS TERM
+    {
+        if ($1.type == ERRORTYPE || $3.type == ERRORTYPE) {
+            $$.type = ERRORTYPE;
+            errorFound = true;  
+        }
+        else {
+            if (arithmeticCompatible($1.type, $3.type)) {
+                $$.type = compareTypes($1.type,$3.type);
+
+                if ($1.type == INTEGER && $3.type == FLOATING) {
+                    string newReg = temporarySet.getFloatRegister();
+                    string s = newReg + " = " + "convertToFloat(" + (*($1.registerName)) + ")";
+                    cout << BOLD(FBLU("Warning : ")) << FCYN("Line No. "+to_string(yylineno)+":Implicit Type Conversion") << endl;
+                    temporarySet.freeRegister(*($1.registerName));
+                    $1.registerName = &newReg;
+                    gen(functionInstruction, s, nextNum);
+                }
+                else if ($1.type == FLOATING && $3.type == INTEGER) {
+                    string newReg = temporarySet.getFloatRegister();
+                    string s = newReg + " = " + "convertToFloat(" + (*($3.registerName)) + ")";
+                    cout << BOLD(FBLU("Warning : ")) << FCYN("Line No. "+to_string(yylineno)+":Implicit Type Conversion") << endl;
+                    temporarySet.freeRegister(*($3.registerName));
+                    $3.registerName = &newReg;
+                    gen(functionInstruction, s, nextNum);
+                }
+
+                if ($$.type == INTEGER) 
+                    $$.registerName = new string(temporarySet.getRegister());
+                else
+                    $$.registerName = new string(temporarySet.getFloatRegister());
+                    
+                string s = (*($$.registerName)) + " = " + (*($1.registerName)) + " - " + (*($3.registerName));;   
+                gen(functionInstruction, s, nextNum);
+                temporarySet.freeRegister(*($1.registerName));
+                temporarySet.freeRegister(*($3.registerName));   
+            }
+            else {
+                cout << BOLD(FRED("ERROR : ")) << "Line no. " << yylineno << ":  ";
+                cout << "Type mismatch in expression" << endl;
+                $$.type = ERRORTYPE;
+            }
+        }
+    }
+    | TERM 
+    { 
+        $$.type = $1.type; 
+        if ($1.type == ERRORTYPE) {
+            errorFound = true;
+        }
+        else {
+            if($1.type!= NULLVOID){
+                $$.registerName = new string(*($1.registerName)); 
+                delete $1.registerName;
+            }         
+        } 
+    }
+;
+
+
 FUNC_CALL: ID LPARE PARAMLIST RPARE
     {
         callFunctionPointer = new functionEntry;
@@ -837,6 +903,193 @@ PARAMLIST: PLIST
     | {parameterListStack.push(typeRecordList); typeRecordList.clear();} %empty 
 ;
 
+STATEMENT: VARIABLE_DECLARATION
+    {
+        $$.nextList = new vector<int>;
+        $$.breakList = new vector<int>;
+        $$.continueList = new vector <int>;
+    }
+    | ASSIGNMENT SEMI
+    {
+        $$.nextList = new vector<int>;
+        $$.breakList = new vector<int>;
+        $$.continueList = new vector <int>;
+        if ($1.type != NULLVOID && $1.type != ERRORTYPE)
+            temporarySet.freeRegister(*($1.registerName));
+    } 
+    | FORLOOP
+    {
+        $$.nextList = new vector<int>;
+        $$.breakList = new vector<int>;
+        $$.continueList = new vector <int>;
+    }
+    | IFSTMT
+    {
+        $$.nextList = new vector<int>;
+        $$.breakList = new vector<int>;
+        $$.continueList = new vector <int>;
+        merge($$.continueList, $1.continueList);
+        merge($$.breakList, $1.breakList);
+
+    }
+    | WHILESTMT
+    {
+        $$.nextList = new vector<int>;
+        $$.breakList = new vector<int>;
+        $$.continueList = new vector <int>;
+    }
+    | SWITCHCASE
+    {
+        $$.nextList = new vector<int>;
+        $$.breakList = new vector<int>;
+        $$.continueList = new vector <int>;
+    }
+    | LCURLYB {scope++;} BODY RCURLYB
+    {
+        $$.nextList = new vector<int>;
+        $$.breakList = new vector<int>;
+        $$.continueList = new vector <int>;
+        deleteVariableList(activeFunctionPointer, scope);
+        scope--;
+        merge($$.continueList, $3.continueList);
+        merge($$.breakList, $3.breakList);
+    }
+    | BREAK SEMI
+    {
+        $$.nextList = new vector<int>;
+        $$.breakList = new vector<int>;
+        $$.continueList = new vector <int>;
+        $$.breakList->push_back(nextNum);
+        gen(functionInstruction, "goto L", nextNum);
+    }
+    | CONTINUE SEMI
+    {
+        $$.nextList = new vector<int>;
+        $$.breakList = new vector<int>;
+        $$.continueList = new vector <int>;
+        $$.continueList->push_back(nextNum);
+        gen(functionInstruction, "goto L", nextNum);
+    }
+    | RETURN ASSIGNMENT1 SEMI 
+    {
+        $$.nextList = new vector<int>;
+        $$.breakList = new vector<int>;
+        $$.continueList = new vector <int>;
+        if ($2.type != ERRORTYPE && activeFunctionPointer != NULL) {
+            if (activeFunctionPointer->returnType == NULLVOID && $2.type != NULLVOID) {
+                cout << BOLD(FRED("ERROR : ")) << "Line no. " << yylineno << ": function " << activeFunctionPointer->name << " has void return type not " << $2.type << endl;
+            }
+            else if (activeFunctionPointer->returnType != NULLVOID && $2.type == NULLVOID) {
+                cout << BOLD(FRED("ERROR : ")) << "Line no. " << yylineno << ": function " << activeFunctionPointer->name << " has non-void return type" << endl;
+            }
+            else {
+                string s;
+                if (activeFunctionPointer->returnType != NULLVOID && $2.type != NULLVOID) {
+                    if ($2.type == INTEGER && activeFunctionPointer->returnType == FLOATING)  {
+                        string floatReg = temporarySet.getFloatRegister();
+                        s = floatReg + " = " + "convertToFloat(" + *($2.registerName) + ")";
+                        cout << BOLD(FBLU("Warning : ")) << FCYN("Line No. "+to_string(yylineno)+":Implicit Type Conversion") << endl;
+                        gen(functionInstruction, s, nextNum);
+                        s = "return " + floatReg;
+                        gen(functionInstruction, s, nextNum);
+                        temporarySet.freeRegister(*($2.registerName));
+                        temporarySet.freeRegister(floatReg);
+                    }
+                    else if ($2.type == FLOATING && activeFunctionPointer->returnType == INTEGER) {
+                        string intRegister = temporarySet.getRegister();
+                        s = intRegister + " = " + "convertToInt(" + *($2.registerName) + ")";
+                        cout << BOLD(FBLU("Warning : ")) << FCYN("Line No. "+to_string(yylineno)+":Implicit Type Conversion") << endl;
+                        gen(functionInstruction, s, nextNum);
+                        s = "return " + intRegister;
+                        gen(functionInstruction, s, nextNum);
+                        temporarySet.freeRegister(*($2.registerName));
+                        temporarySet.freeRegister(intRegister);
+                    }
+                    else {
+                        s = "return " + *($2.registerName);
+                        gen(functionInstruction, s, nextNum);
+                        temporarySet.freeRegister(*($2.registerName));
+                    }
+                }
+                else if (activeFunctionPointer->returnType == NULLVOID && $2.type == NULLVOID) {
+                    s = "return";
+                    gen(functionInstruction, s, nextNum);
+                }
+                else {
+                    errorFound = 1;
+                    cout << BOLD(FRED("ERROR : ")) << "Line no. " << yylineno << ": Exactly one of function " << activeFunctionPointer->name << "and this return statement has void return type" << endl;
+                    if ($2.type != NULLVOID) temporarySet.freeRegister(*($2.registerName));
+                }
+            }
+        }
+    }
+    | READ ID_ARR SEMI
+    {
+        $$.nextList = new vector<int>;
+        $$.breakList = new vector<int>;
+        $$.continueList = new vector <int>;
+        if($2.type == ERRORTYPE){
+            errorFound = true;
+        }
+        else{
+            string registerName;
+            if ($2.type == INTEGER){
+                registerName = temporarySet.getRegister();
+            }
+            else {
+                registerName = temporarySet.getFloatRegister();
+            }
+            string s;
+            s = "read " + registerName;
+            gen(functionInstruction, s, nextNum);
+            s = (*($2.registerName)) + " = " +  registerName;
+            gen(functionInstruction, s, nextNum);
+            temporarySet.freeRegister(registerName);
+            if ($2.offsetRegName != NULL) temporarySet.freeRegister(*($2.offsetRegName));
+        }
+    }
+    | PRINT ID_ARR SEMI
+    {
+        $$.nextList = new vector<int>;
+        $$.breakList = new vector<int>;
+        $$.continueList = new vector <int>;
+        if($2.type == ERRORTYPE){
+            errorFound = true;
+        }
+        else{
+            string registerName;
+            if ($2.type == INTEGER){
+                registerName = temporarySet.getRegister();
+            }
+            else {
+                registerName = temporarySet.getFloatRegister();
+            }
+            string s = registerName + " = " + (*($2.registerName)) ;
+            gen(functionInstruction, s, nextNum);
+            s = "print " + registerName;
+            gen(functionInstruction, s, nextNum);
+            temporarySet.freeRegister(registerName);
+            if ($2.offsetRegName != NULL) temporarySet.freeRegister(*($2.offsetRegName));
+        }
+    }
+    | error SEMI
+    {
+        errorFound = 1;
+        $$.nextList = new vector<int>;
+        $$.breakList = new vector<int>;
+        $$.continueList = new vector <int>;
+        cout << BOLD(FRED("ERROR : ")) << FYEL("Line no. " + to_string(yylineno) + ": Syntax error") << endl;
+    }
+    | error
+    {
+        errorFound = 1;
+        $$.nextList = new vector<int>;
+        $$.breakList = new vector<int>;
+        $$.continueList = new vector <int>;
+        cout << BOLD(FRED("ERROR : ")) << FYEL("Line no. " + to_string(yylineno) + ": Syntax error") << endl;
+    }
+;
+
 PLIST: PLIST COMMA ASSIGNMENT
     {
         variableRecord = new typeRecord;
@@ -866,6 +1119,60 @@ PLIST: PLIST COMMA ASSIGNMENT
             temporarySet.freeRegister(*($2.registerName));
         }
         typeRecordList.push_back(variableRecord);
+    }
+;
+
+IFSTMT: IFEXP LCURLYB BODY RCURLYB 
+    {
+        deleteVariableList(activeFunctionPointer,scope);
+        scope--;
+        $$.nextList= new vector<int>;
+        $$.breakList = new vector<int>;
+        $$.continueList= new vector<int>;
+        merge($$.nextList, $1.falseList);
+        merge($$.breakList, $3.breakList);
+        merge($$.continueList, $3.continueList);
+        backPatch($$.nextList,nextNum,functionInstruction);
+        gen(functionInstruction, "L" + to_string(nextNum) + ":", nextNum);
+    }
+    | IFEXP LCURLYB BODY RCURLYB {deleteVariableList(activeFunctionPointer,scope);} M2 ELSE M1 LCURLYB BODY RCURLYB
+    {
+        deleteVariableList(activeFunctionPointer,scope);
+        scope--;
+        $$.nextList= new vector<int>;
+        $$.breakList = new vector<int>;
+        $$.continueList= new vector<int>;
+        backPatch($1.falseList,$8,functionInstruction);
+        merge($$.nextList,$6.nextList );
+        backPatch($$.nextList,nextNum,functionInstruction);
+        gen(functionInstruction, "L" + to_string(nextNum) + ":", nextNum);
+        merge($$.breakList, $3.breakList);
+        merge($$.continueList, $3.continueList);
+        merge($$.breakList, $10.breakList);
+        merge($$.continueList, $10.continueList);
+    }
+;
+
+IFEXP: IF LPARE ASSIGNMENT RPARE 
+    {
+        if($3.type != ERRORTYPE && $3.type!=NULLVOID){
+            $$.falseList = new vector <int>;
+            $$.falseList->push_back(nextNum);
+            if($3.type == NULLVOID){
+                cout << BOLD(FRED("ERROR : ")) << "Line no. " << yylineno << "condition in if statement can't be empty" << endl;
+                errorFound=true;
+            }
+            gen(functionInstruction, "if "+ (*($3.registerName)) + " == 0 goto L", nextNum);
+            scope++;
+            temporarySet.freeRegister(*($3.registerName));
+        } 
+    }
+    | IF error RPARE
+    {
+        errorFound = 1;
+        $$.falseList = new vector <int>;
+        cout << BOLD(FRED("ERROR : ")) << FYEL("Line no. " + to_string(yylineno) + ": Syntax error in if, discarding tokens till RPARE") << endl;
+        scope++;
     }
 ;
 
@@ -1187,16 +1494,6 @@ ASSIGNMENT: CONDITION1
     }
 ;
 
-LHS: ID_ARR  
-    {
-        $$.type = $1.type;
-        if ($$.type != ERRORTYPE) {
-            $$.registerName = $1.registerName;
-            $$.offsetRegName = $1.offsetRegName;
-        } 
-    } 
-;
-
 SWITCHCASE: SWITCH LPARE ASSIGNMENT RPARE TEMP1 LCURLYB  CASELIST RCURLYB 
     {
         deleteVariableList(activeFunctionPointer,scope);
@@ -1311,36 +1608,22 @@ M3: %empty
     }
 ;
 
+LHS: ID_ARR  
+    {
+        $$.type = $1.type;
+        if ($$.type != ERRORTYPE) {
+            $$.registerName = $1.registerName;
+            $$.offsetRegName = $1.offsetRegName;
+        } 
+    } 
+;
+
 N3: %empty
     { 
         $$.begin = nextNum; 
         $$.falseList = new vector<int>;
         $$.falseList->push_back(nextNum);
         gen(functionInstruction, "goto L", nextNum);
-    }
-;
-
-P3: %empty 
-    { 
-        $$.falseList = new vector<int>;
-        $$.falseList->push_back(nextNum);
-        gen(functionInstruction, "goto L", nextNum);
-        $$.begin = nextNum; 
-        gen(functionInstruction, "L"+to_string(nextNum)+":", nextNum);
-    }
-;
-
-Q3: %empty
-    {
-        $$.begin = nextNum;
-        $$.falseList = new vector<int>;
-        $$.falseList->push_back(nextNum);
-    }
-;
-
-Q4: %empty
-    {
-        $$ = nextNum;
     }
 ;
 
@@ -1390,6 +1673,30 @@ FOREXP: FOR LPARE ASSIGNMENT1 SEMI M3 ASSIGNMENT1 Q3 {
     }
 ;
 
+P3: %empty 
+    { 
+        $$.falseList = new vector<int>;
+        $$.falseList->push_back(nextNum);
+        gen(functionInstruction, "goto L", nextNum);
+        $$.begin = nextNum; 
+        gen(functionInstruction, "L"+to_string(nextNum)+":", nextNum);
+    }
+;
+
+Q3: %empty
+    {
+        $$.begin = nextNum;
+        $$.falseList = new vector<int>;
+        $$.falseList->push_back(nextNum);
+    }
+;
+
+Q4: %empty
+    {
+        $$ = nextNum;
+    }
+;
+
 ASSIGNMENT1: ASSIGNMENT
     {
         $$.type= $1.type;
@@ -1402,13 +1709,6 @@ ASSIGNMENT1: ASSIGNMENT
     }
 ;
 
-M1: %empty
-    {
-        $$=nextNum;
-        gen(functionInstruction, "L" + to_string(nextNum) + ":", nextNum);
-    }
-;
-
 M2: %empty
     {
         $$.nextList = new vector<int>;
@@ -1417,57 +1717,11 @@ M2: %empty
     }
 ;
 
-IFSTMT: IFEXP LCURLYB BODY RCURLYB 
-    {
-        deleteVariableList(activeFunctionPointer,scope);
-        scope--;
-        $$.nextList= new vector<int>;
-        $$.breakList = new vector<int>;
-        $$.continueList= new vector<int>;
-        merge($$.nextList, $1.falseList);
-        merge($$.breakList, $3.breakList);
-        merge($$.continueList, $3.continueList);
-        backPatch($$.nextList,nextNum,functionInstruction);
-        gen(functionInstruction, "L" + to_string(nextNum) + ":", nextNum);
-    }
-    | IFEXP LCURLYB BODY RCURLYB {deleteVariableList(activeFunctionPointer,scope);} M2 ELSE M1 LCURLYB BODY RCURLYB
-    {
-        deleteVariableList(activeFunctionPointer,scope);
-        scope--;
-        $$.nextList= new vector<int>;
-        $$.breakList = new vector<int>;
-        $$.continueList= new vector<int>;
-        backPatch($1.falseList,$8,functionInstruction);
-        merge($$.nextList,$6.nextList );
-        backPatch($$.nextList,nextNum,functionInstruction);
-        gen(functionInstruction, "L" + to_string(nextNum) + ":", nextNum);
-        merge($$.breakList, $3.breakList);
-        merge($$.continueList, $3.continueList);
-        merge($$.breakList, $10.breakList);
-        merge($$.continueList, $10.continueList);
-    }
-;
 
-IFEXP: IF LPARE ASSIGNMENT RPARE 
+M1: %empty
     {
-        if($3.type != ERRORTYPE && $3.type!=NULLVOID){
-            $$.falseList = new vector <int>;
-            $$.falseList->push_back(nextNum);
-            if($3.type == NULLVOID){
-                cout << BOLD(FRED("ERROR : ")) << "Line no. " << yylineno << "condition in if statement can't be empty" << endl;
-                errorFound=true;
-            }
-            gen(functionInstruction, "if "+ (*($3.registerName)) + " == 0 goto L", nextNum);
-            scope++;
-            temporarySet.freeRegister(*($3.registerName));
-        } 
-    }
-    | IF error RPARE
-    {
-        errorFound = 1;
-        $$.falseList = new vector <int>;
-        cout << BOLD(FRED("ERROR : ")) << FYEL("Line no. " + to_string(yylineno) + ": Syntax error in if, discarding tokens till RPARE") << endl;
-        scope++;
+        $$=nextNum;
+        gen(functionInstruction, "L" + to_string(nextNum) + ":", nextNum);
     }
 ;
 
@@ -1514,6 +1768,28 @@ TP1: %empty
 {
     $$.temp = new vector<int>;
 }
+;
+
+BR_DIMLIST: LSQUAREB ASSIGNMENT RSQUAREB
+    {
+        if ($2.type == INTEGER) {
+            dimensionList.push_back(*($2.registerName));
+        }
+        else {
+            cout << BOLD(FRED("ERROR : ")) << "Line no. " << yylineno << ": ";
+            cout << "One of the dimension of an array cannot be evaluated to integer" << endl;
+        }
+    }    
+    | BR_DIMLIST LSQUAREB ASSIGNMENT RSQUAREB 
+    {
+        if ($3.type == INTEGER) {
+            dimensionList.push_back(*($3.registerName));
+        }
+        else {
+            cout << BOLD(FRED("ERROR : ")) << "Line no. " << yylineno << ": ";
+            cout << "One of the dimension of an array cannot be evaluated to integer" << endl;
+        }  
+    }
 ;
 
 CONDITION1: CONDITION1 TP1
@@ -1623,251 +1899,6 @@ CONDITION2: CONDITION2 TP1
             $$.jumpList = new vector<int>;
             $$.jumpList=NULL;   
         }
-    }
-;
-
-EXPR1: NOT EXPR21
-    {
-        $$.type = $2.type;
-        if ($2.type != ERRORTYPE && $2.type != NULLVOID) {
-            $$.registerName = $2.registerName;
-            string s = (*($$.registerName)) + " = ~" + (*($2.registerName));   
-            gen(functionInstruction, s, nextNum);
-        }
-    }
-    | EXPR21
-    {
-        $$.type = $1.type;
-        if ($1.type != ERRORTYPE && $1.type != NULLVOID) {
-            $$.registerName = $1.registerName;    
-        }
-    }
-;
-
-EXPR21: EXPR2 EQUAL EXPR2
-    {
-        if ($1.type == ERRORTYPE || $3.type == ERRORTYPE) {
-            $$.type = ERRORTYPE;
-        }
-        else if($1.type == NULLVOID || $3.type == NULLVOID){
-            $$.type = ERRORTYPE;
-            cout << BOLD(FRED("ERROR : ")) << "Line no. "<< yylineno << ":Both the expessions should not be  NULL" << endl;
-        }
-        else {
-            $$.type = BOOLEAN;
-            $$.registerName = new string(temporarySet.getRegister());     
-            string s = (*($$.registerName)) + " = " + (*($1.registerName)) + " == " + (*($3.registerName))   ;
-            gen(functionInstruction, s, nextNum);
-            temporarySet.freeRegister(*($1.registerName));
-            temporarySet.freeRegister(*($3.registerName));  
-        }   
-    }
-    | EXPR2 NOTEQUAL EXPR2
-    {
-        if($1.type == ERRORTYPE || $3.type == ERRORTYPE){
-            $$.type = ERRORTYPE;
-        }
-        else if($1.type == NULLVOID || $3.type == NULLVOID){
-            $$.type = ERRORTYPE;
-            cout << BOLD(FRED("ERROR : ")) << "Line no. "<< yylineno << ":Both the expessions should not be  NULL" << endl;
-        }
-        else{
-            $$.type = BOOLEAN;
-            $$.registerName = new string(temporarySet.getRegister());     
-            string s = (*($$.registerName)) + " = " + (*($1.registerName)) + " != " + (*($3.registerName));   
-            gen(functionInstruction, s, nextNum);
-            temporarySet.freeRegister(*($1.registerName));
-            temporarySet.freeRegister(*($3.registerName));  
-        }   
-    }
-    | EXPR2 LESSTHAN EXPR2 
-    {
-        if($1.type == ERRORTYPE || $3.type == ERRORTYPE){
-            $$.type = ERRORTYPE;
-        }
-        else if($1.type == NULLVOID || $3.type == NULLVOID){
-            $$.type = ERRORTYPE;
-            cout << BOLD(FRED("ERROR : ")) << "Line no. "<< yylineno << ":Both the expessions should not be  NULL" << endl;
-        }
-        else{
-            $$.type = BOOLEAN;
-            $$.registerName = new string(temporarySet.getRegister());     
-            string s = (*($$.registerName)) + " = " + (*($1.registerName)) + " < " + (*($3.registerName));   
-            gen(functionInstruction, s, nextNum);
-            temporarySet.freeRegister(*($1.registerName));
-            temporarySet.freeRegister(*($3.registerName));  
-        }   
-    }
-    | EXPR2 GREATTHAN EXPR2
-    {
-        if($1.type == ERRORTYPE || $3.type == ERRORTYPE){
-            $$.type = ERRORTYPE;
-        }
-        else if($1.type == NULLVOID || $3.type == NULLVOID){
-            $$.type = ERRORTYPE;
-            cout << BOLD(FRED("ERROR : ")) << "Line no. "<< yylineno << ":Both the expessions should not be  NULL" << endl;
-        }
-        else{
-            $$.type = BOOLEAN;
-            $$.registerName = new string(temporarySet.getRegister());     
-            string s = (*($$.registerName)) + " = " + (*($1.registerName)) + " > " + (*($3.registerName));   
-            gen(functionInstruction, s, nextNum);
-            temporarySet.freeRegister(*($1.registerName));
-            temporarySet.freeRegister(*($3.registerName));  
-        }   
-    }
-    | EXPR2 LESSEQUAL EXPR2
-    {
-        if($1.type == ERRORTYPE || $3.type == ERRORTYPE){
-            $$.type = ERRORTYPE;
-            errorFound = true;
-        }
-        else if($1.type == NULLVOID || $3.type == NULLVOID){
-            $$.type = ERRORTYPE;
-            cout << BOLD(FRED("ERROR : ")) << "Line no. "<< yylineno << ":Both the expessions should not be  NULL" << endl;
-        }
-        else{
-            $$.type = BOOLEAN;
-            $$.registerName = new string(temporarySet.getRegister());     
-            string s = (*($$.registerName)) + " = " + (*($1.registerName)) + " <= " + (*($3.registerName));   
-            gen(functionInstruction, s, nextNum);
-            temporarySet.freeRegister(*($1.registerName));
-            temporarySet.freeRegister(*($3.registerName));  
-        }   
-    }
-    | EXPR2 GREATEQUAL EXPR2
-    {
-        if($1.type == ERRORTYPE || $3.type == ERRORTYPE){
-            $$.type = ERRORTYPE;
-        }
-        else if($1.type == NULLVOID || $3.type == NULLVOID){
-            $$.type = ERRORTYPE;
-            cout << BOLD(FRED("ERROR : ")) << "Line no. "<< yylineno << ":Both the expessions should not be  NULL" << endl;
-        }
-        else{
-            $$.type = BOOLEAN;
-            $$.registerName = new string(temporarySet.getRegister());     
-            string s = (*($$.registerName)) + " = " + (*($1.registerName)) + " >= " + (*($3.registerName));  
-            gen(functionInstruction, s, nextNum);
-            temporarySet.freeRegister(*($1.registerName));
-            temporarySet.freeRegister(*($3.registerName));  
-        }   
-    } 
-    | EXPR2 
-    {
-        $$.type = $1.type; 
-        if($$.type == ERRORTYPE){
-            errorFound = true;
-        }
-        else{
-            if($1.type != NULLVOID){
-                $$.registerName = new string(*($1.registerName)); 
-                delete $1.registerName; 
-            }
-        }    
-    }
-;
-
-EXPR2:  EXPR2 PLUS TERM
-    {
-        if ($1.type == ERRORTYPE || $3.type == ERRORTYPE) {
-            $$.type = ERRORTYPE; 
-            errorFound = true; 
-        }
-        else {
-            if (arithmeticCompatible($1.type, $3.type)) {
-                $$.type = compareTypes($1.type,$3.type);
-
-                if ($1.type == INTEGER && $3.type == FLOATING) {
-                    string newReg = temporarySet.getFloatRegister();
-                    string s = newReg + " = " + "convertToFloat(" + (*($1.registerName)) + ")";
-                    cout << BOLD(FBLU("Warning : ")) << FCYN("Line No. "+to_string(yylineno)+":Implicit Type Conversion") << endl;
-                    temporarySet.freeRegister(*($1.registerName));
-                    $1.registerName = &newReg;
-                    gen(functionInstruction, s, nextNum);
-                }
-                else if ($1.type == FLOATING && $3.type == INTEGER) {
-                    string newReg = temporarySet.getFloatRegister();
-                    string s = newReg + " = " + "convertToFloat(" + (*($3.registerName)) + ")";
-                    cout << BOLD(FBLU("Warning : ")) << FCYN("Line No. "+to_string(yylineno)+":Implicit Type Conversion") << endl;
-                    temporarySet.freeRegister(*($3.registerName));
-                    $3.registerName = &newReg;
-                    gen(functionInstruction, s, nextNum);
-                }
-
-                if ($$.type == INTEGER) 
-                    $$.registerName = new string(temporarySet.getRegister());
-                else
-                    $$.registerName = new string(temporarySet.getFloatRegister());
-                    
-                string s = (*($$.registerName)) + " = " + (*($1.registerName)) + " + " + (*($3.registerName));;   
-                gen(functionInstruction, s, nextNum);
-                temporarySet.freeRegister(*($1.registerName));
-                temporarySet.freeRegister(*($3.registerName));   
-            }
-            else {
-                cout << BOLD(FRED("ERROR : ")) << "Line no. " << yylineno << ":  ";
-                cout << "Type mismatch in expression" << endl;
-                $$.type = ERRORTYPE;
-            }
-        }
-    }
-    | EXPR2 MINUS TERM
-    {
-        if ($1.type == ERRORTYPE || $3.type == ERRORTYPE) {
-            $$.type = ERRORTYPE;
-            errorFound = true;  
-        }
-        else {
-            if (arithmeticCompatible($1.type, $3.type)) {
-                $$.type = compareTypes($1.type,$3.type);
-
-                if ($1.type == INTEGER && $3.type == FLOATING) {
-                    string newReg = temporarySet.getFloatRegister();
-                    string s = newReg + " = " + "convertToFloat(" + (*($1.registerName)) + ")";
-                    cout << BOLD(FBLU("Warning : ")) << FCYN("Line No. "+to_string(yylineno)+":Implicit Type Conversion") << endl;
-                    temporarySet.freeRegister(*($1.registerName));
-                    $1.registerName = &newReg;
-                    gen(functionInstruction, s, nextNum);
-                }
-                else if ($1.type == FLOATING && $3.type == INTEGER) {
-                    string newReg = temporarySet.getFloatRegister();
-                    string s = newReg + " = " + "convertToFloat(" + (*($3.registerName)) + ")";
-                    cout << BOLD(FBLU("Warning : ")) << FCYN("Line No. "+to_string(yylineno)+":Implicit Type Conversion") << endl;
-                    temporarySet.freeRegister(*($3.registerName));
-                    $3.registerName = &newReg;
-                    gen(functionInstruction, s, nextNum);
-                }
-
-                if ($$.type == INTEGER) 
-                    $$.registerName = new string(temporarySet.getRegister());
-                else
-                    $$.registerName = new string(temporarySet.getFloatRegister());
-                    
-                string s = (*($$.registerName)) + " = " + (*($1.registerName)) + " - " + (*($3.registerName));;   
-                gen(functionInstruction, s, nextNum);
-                temporarySet.freeRegister(*($1.registerName));
-                temporarySet.freeRegister(*($3.registerName));   
-            }
-            else {
-                cout << BOLD(FRED("ERROR : ")) << "Line no. " << yylineno << ":  ";
-                cout << "Type mismatch in expression" << endl;
-                $$.type = ERRORTYPE;
-            }
-        }
-    }
-    | TERM 
-    { 
-        $$.type = $1.type; 
-        if ($1.type == ERRORTYPE) {
-            errorFound = true;
-        }
-        else {
-            if($1.type!= NULLVOID){
-                $$.registerName = new string(*($1.registerName)); 
-                delete $1.registerName;
-            }         
-        } 
     }
 ;
 
@@ -2291,28 +2322,6 @@ ID_ARR: ID
             }
             dimensionList.clear();
         }
-    }
-;
-
-BR_DIMLIST: LSQUAREB ASSIGNMENT RSQUAREB
-    {
-        if ($2.type == INTEGER) {
-            dimensionList.push_back(*($2.registerName));
-        }
-        else {
-            cout << BOLD(FRED("ERROR : ")) << "Line no. " << yylineno << ": ";
-            cout << "One of the dimension of an array cannot be evaluated to integer" << endl;
-        }
-    }    
-    | BR_DIMLIST LSQUAREB ASSIGNMENT RSQUAREB 
-    {
-        if ($3.type == INTEGER) {
-            dimensionList.push_back(*($3.registerName));
-        }
-        else {
-            cout << BOLD(FRED("ERROR : ")) << "Line no. " << yylineno << ": ";
-            cout << "One of the dimension of an array cannot be evaluated to integer" << endl;
-        }  
     }
 ;
 
