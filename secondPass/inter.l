@@ -5,7 +5,7 @@
 %%
 
 "function"                      { return FUNCTION; }
-"begin"                         { return BEGIN; }
+"begin"                         { return BEG; }
 "if"                            { return IF; }
 "goto"                          { return GOTO; }
 "param"                         { return PARAMETER; }
