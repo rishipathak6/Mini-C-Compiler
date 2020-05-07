@@ -149,24 +149,25 @@ DECL_PLIST: DECL_PL
     | %empty
 ;
 
-DECL_PL: DECL_PL COMMA DECL_PARAM
+DECL_PL: 
+    DECL_PARAM
     {
         int found = 0;
         typeRecord* pn = NULL;
-        searchParameter(variableRecord->name, typeRecordList, found, pn);
-        if(found){
+        searchParameter(variableRecord->name, typeRecordList, found , pn );
+        if (found){
             cout << BOLD(FRED("ERROR : ")) << "Line no. " << yylineno << ": Redeclaration of parameter " << variableRecord->name <<endl;
         } else {
             // cout << "Variable: "<< variableRecord->name << " declared." << endl;
             typeRecordList.push_back(variableRecord);
         }
     }
-    | DECL_PARAM
+    | DECL_PL COMMA DECL_PARAM
     {
         int found = 0;
         typeRecord* pn = NULL;
-        searchParameter(variableRecord->name, typeRecordList, found , pn );
-        if (found){
+        searchParameter(variableRecord->name, typeRecordList, found, pn);
+        if(found){
             cout << BOLD(FRED("ERROR : ")) << "Line no. " << yylineno << ": Redeclaration of parameter " << variableRecord->name <<endl;
         } else {
             // cout << "Variable: "<< variableRecord->name << " declared." << endl;
@@ -203,7 +204,17 @@ BODY: STATEMENT_LIST
     }
 ;
 
-STATEMENT_LIST: STATEMENT_LIST STATEMENT
+STATEMENT_LIST: 
+    STATEMENT
+    {
+        $$.nextList = new vector<int>;
+        merge($$.nextList, $1.nextList);
+        $$.breakList = new vector<int>;
+        merge($$.breakList, $1.breakList);
+        $$.continueList = new vector<int>;
+        merge($$.continueList, $1.continueList);
+    }
+    | STATEMENT_LIST STATEMENT
     {
         $$.nextList = new vector<int>;
         merge($$.nextList, $1.nextList);
@@ -214,15 +225,6 @@ STATEMENT_LIST: STATEMENT_LIST STATEMENT
         $$.continueList = new vector<int>;
         merge($$.continueList, $1.continueList);
         merge($$.continueList, $2.continueList);
-    }
-    | STATEMENT
-    {
-        $$.nextList = new vector<int>;
-        merge($$.nextList, $1.nextList);
-        $$.breakList = new vector<int>;
-        merge($$.breakList, $1.breakList);
-        $$.continueList = new vector<int>;
-        merge($$.continueList, $1.continueList);
     }
 ;
 
@@ -245,8 +247,8 @@ MAINFUNCTION: MAIN_HEAD LCURLYB BODY RCURLYB
 
 PROG: PROG FUNCTION_DEFINATION
     | PROG VARIABLE_DECLARATION
-    | FUNCTION_DEFINATION
     | VARIABLE_DECLARATION
+    | FUNCTION_DEFINATION
 ;
 
 MAIN_HEAD: INT MAIN LPARE RPARE
@@ -589,13 +591,14 @@ DEC_ID_ARR: ID
     }
 ;
 
-DEC_BR_DIMLIST: LSQUAREB DATAINT RSQUAREB
-    {
-        decDimensionList.push_back(atoi($2));
-    }
-    | DEC_BR_DIMLIST LSQUAREB DATAINT RSQUAREB 
+DEC_BR_DIMLIST:
+    DEC_BR_DIMLIST LSQUAREB DATAINT RSQUAREB 
     {
         decDimensionList.push_back(atoi($3));
+    } 
+    | LSQUAREB DATAINT RSQUAREB
+    {
+        decDimensionList.push_back(atoi($2));
     }
 ;
 
@@ -630,24 +633,6 @@ EXPR21: EXPR2 EQUAL EXPR2
             $$.type = BOOLEAN;
             $$.registerName = new string(temporarySet.getRegister());     
             string s = (*($$.registerName)) + " = " + (*($1.registerName)) + " == " + (*($3.registerName))   ;
-            gen(functionInstruction, s, nextNum);
-            temporarySet.freeRegister(*($1.registerName));
-            temporarySet.freeRegister(*($3.registerName));  
-        }   
-    }
-    | EXPR2 NOTEQUAL EXPR2
-    {
-        if($1.type == ERRORTYPE || $3.type == ERRORTYPE){
-            $$.type = ERRORTYPE;
-        }
-        else if($1.type == NULLVOID || $3.type == NULLVOID){
-            $$.type = ERRORTYPE;
-            cout << BOLD(FRED("ERROR : ")) << "Line no. "<< yylineno << ":Both the expessions should not be  NULL" << endl;
-        }
-        else{
-            $$.type = BOOLEAN;
-            $$.registerName = new string(temporarySet.getRegister());     
-            string s = (*($$.registerName)) + " = " + (*($1.registerName)) + " != " + (*($3.registerName));   
             gen(functionInstruction, s, nextNum);
             temporarySet.freeRegister(*($1.registerName));
             temporarySet.freeRegister(*($3.registerName));  
@@ -689,6 +674,37 @@ EXPR21: EXPR2 EQUAL EXPR2
             temporarySet.freeRegister(*($3.registerName));  
         }   
     }
+    | EXPR2 NOTEQUAL EXPR2
+    {
+        if($1.type == ERRORTYPE || $3.type == ERRORTYPE){
+            $$.type = ERRORTYPE;
+        }
+        else if($1.type == NULLVOID || $3.type == NULLVOID){
+            $$.type = ERRORTYPE;
+            cout << BOLD(FRED("ERROR : ")) << "Line no. "<< yylineno << ":Both the expessions should not be  NULL" << endl;
+        }
+        else{
+            $$.type = BOOLEAN;
+            $$.registerName = new string(temporarySet.getRegister());     
+            string s = (*($$.registerName)) + " = " + (*($1.registerName)) + " != " + (*($3.registerName));   
+            gen(functionInstruction, s, nextNum);
+            temporarySet.freeRegister(*($1.registerName));
+            temporarySet.freeRegister(*($3.registerName));  
+        }   
+    }
+    | EXPR2 
+    {
+        $$.type = $1.type; 
+        if($$.type == ERRORTYPE){
+            errorFound = true;
+        }
+        else{
+            if($1.type != NULLVOID){
+                $$.registerName = new string(*($1.registerName)); 
+                delete $1.registerName; 
+            }
+        }    
+    }
     | EXPR2 LESSEQUAL EXPR2
     {
         if($1.type == ERRORTYPE || $3.type == ERRORTYPE){
@@ -726,19 +742,6 @@ EXPR21: EXPR2 EQUAL EXPR2
             temporarySet.freeRegister(*($3.registerName));  
         }   
     } 
-    | EXPR2 
-    {
-        $$.type = $1.type; 
-        if($$.type == ERRORTYPE){
-            errorFound = true;
-        }
-        else{
-            if($1.type != NULLVOID){
-                $$.registerName = new string(*($1.registerName)); 
-                delete $1.registerName; 
-            }
-        }    
-    }
 ;
 
 EXPR2:  EXPR2 PLUS TERM
@@ -903,21 +906,14 @@ PARAMLIST: PLIST
     | {parameterListStack.push(typeRecordList); typeRecordList.clear();} %empty 
 ;
 
-STATEMENT: VARIABLE_DECLARATION
+STATEMENT:
+    FORLOOP
     {
         $$.nextList = new vector<int>;
         $$.breakList = new vector<int>;
         $$.continueList = new vector <int>;
-    }
-    | ASSIGNMENT SEMI
-    {
-        $$.nextList = new vector<int>;
-        $$.breakList = new vector<int>;
-        $$.continueList = new vector <int>;
-        if ($1.type != NULLVOID && $1.type != ERRORTYPE)
-            temporarySet.freeRegister(*($1.registerName));
     } 
-    | FORLOOP
+    | VARIABLE_DECLARATION
     {
         $$.nextList = new vector<int>;
         $$.breakList = new vector<int>;
@@ -938,12 +934,14 @@ STATEMENT: VARIABLE_DECLARATION
         $$.breakList = new vector<int>;
         $$.continueList = new vector <int>;
     }
-    | SWITCHCASE
+    | ASSIGNMENT SEMI
     {
         $$.nextList = new vector<int>;
         $$.breakList = new vector<int>;
         $$.continueList = new vector <int>;
-    }
+        if ($1.type != NULLVOID && $1.type != ERRORTYPE)
+            temporarySet.freeRegister(*($1.registerName));
+    } 
     | LCURLYB {scope++;} BODY RCURLYB
     {
         $$.nextList = new vector<int>;
@@ -962,13 +960,11 @@ STATEMENT: VARIABLE_DECLARATION
         $$.breakList->push_back(nextNum);
         gen(functionInstruction, "goto L", nextNum);
     }
-    | CONTINUE SEMI
+    | SWITCHCASE
     {
         $$.nextList = new vector<int>;
         $$.breakList = new vector<int>;
         $$.continueList = new vector <int>;
-        $$.continueList->push_back(nextNum);
-        gen(functionInstruction, "goto L", nextNum);
     }
     | RETURN ASSIGNMENT1 SEMI 
     {
@@ -1023,30 +1019,13 @@ STATEMENT: VARIABLE_DECLARATION
             }
         }
     }
-    | READ ID_ARR SEMI
+    | CONTINUE SEMI
     {
         $$.nextList = new vector<int>;
         $$.breakList = new vector<int>;
         $$.continueList = new vector <int>;
-        if($2.type == ERRORTYPE){
-            errorFound = true;
-        }
-        else{
-            string registerName;
-            if ($2.type == INTEGER){
-                registerName = temporarySet.getRegister();
-            }
-            else {
-                registerName = temporarySet.getFloatRegister();
-            }
-            string s;
-            s = "read " + registerName;
-            gen(functionInstruction, s, nextNum);
-            s = (*($2.registerName)) + " = " +  registerName;
-            gen(functionInstruction, s, nextNum);
-            temporarySet.freeRegister(registerName);
-            if ($2.offsetRegName != NULL) temporarySet.freeRegister(*($2.offsetRegName));
-        }
+        $$.continueList->push_back(nextNum);
+        gen(functionInstruction, "goto L", nextNum);
     }
     | PRINT ID_ARR SEMI
     {
@@ -1087,6 +1066,31 @@ STATEMENT: VARIABLE_DECLARATION
         $$.breakList = new vector<int>;
         $$.continueList = new vector <int>;
         cout << BOLD(FRED("ERROR : ")) << FYEL("Line no. " + to_string(yylineno) + ": Syntax error") << endl;
+    }
+    | READ ID_ARR SEMI
+    {
+        $$.nextList = new vector<int>;
+        $$.breakList = new vector<int>;
+        $$.continueList = new vector <int>;
+        if($2.type == ERRORTYPE){
+            errorFound = true;
+        }
+        else{
+            string registerName;
+            if ($2.type == INTEGER){
+                registerName = temporarySet.getRegister();
+            }
+            else {
+                registerName = temporarySet.getFloatRegister();
+            }
+            string s;
+            s = "read " + registerName;
+            gen(functionInstruction, s, nextNum);
+            s = (*($2.registerName)) + " = " +  registerName;
+            gen(functionInstruction, s, nextNum);
+            temporarySet.freeRegister(registerName);
+            if ($2.offsetRegName != NULL) temporarySet.freeRegister(*($2.offsetRegName));
+        }
     }
 ;
 
@@ -1153,7 +1157,15 @@ IFSTMT: IFEXP LCURLYB BODY RCURLYB
     }
 ;
 
-IFEXP: IF LPARE ASSIGNMENT RPARE 
+IFEXP: 
+    IF error RPARE
+    {
+        errorFound = 1;
+        $$.falseList = new vector <int>;
+        cout << BOLD(FRED("ERROR : ")) << FYEL("Line no. " + to_string(yylineno) + ": Syntax error in if, discarding tokens till RPARE") << endl;
+        scope++;
+    }
+    | IF LPARE ASSIGNMENT RPARE 
     {
         if($3.type != ERRORTYPE && $3.type!=NULLVOID){
             $$.falseList = new vector <int>;
@@ -1166,13 +1178,6 @@ IFEXP: IF LPARE ASSIGNMENT RPARE
             scope++;
             temporarySet.freeRegister(*($3.registerName));
         } 
-    }
-    | IF error RPARE
-    {
-        errorFound = 1;
-        $$.falseList = new vector <int>;
-        cout << BOLD(FRED("ERROR : ")) << FYEL("Line no. " + to_string(yylineno) + ": Syntax error in if, discarding tokens till RPARE") << endl;
-        scope++;
     }
 ;
 
@@ -1194,7 +1199,7 @@ ASSIGNMENT: CONDITION1
             }
         }
     }
-    | LHS ASSIGN ASSIGNMENT
+    | LHS MODASSIGNMENT ASSIGNMENT
     {
         if ($1.type == ERRORTYPE || $3.type == ERRORTYPE) {
             $$.type = ERRORTYPE;
@@ -1226,7 +1231,21 @@ ASSIGNMENT: CONDITION1
             else {
                 registerName = *($3.registerName);
             }
-            string s = (*($1.registerName)) + " = " + registerName ;
+            string s, temporaryRegister;
+            if($1.type == INTEGER){
+                temporaryRegister = temporarySet.getRegister();
+                s = temporaryRegister + " = " + (*($1.registerName));
+                gen(functionInstruction, s, nextNum);
+            }
+            else{
+                temporaryRegister = temporarySet.getFloatRegister();
+                s = temporaryRegister + " = " + (*($1.registerName));   
+                gen(functionInstruction, s, nextNum);
+            }
+            s = registerName + " = " + registerName + " % " + temporaryRegister;
+            gen(functionInstruction, s, nextNum);
+            temporarySet.freeRegister(temporaryRegister);
+            s = (*($1.registerName)) + " = " + registerName ;
             gen(functionInstruction, s, nextNum);
             $$.registerName = new string(registerName);
             if ($1.offsetRegName != NULL) temporarySet.freeRegister(*($1.offsetRegName));
@@ -1440,7 +1459,7 @@ ASSIGNMENT: CONDITION1
             if ($1.offsetRegName != NULL) temporarySet.freeRegister(*($1.offsetRegName));
         }
     }
-    | LHS MODASSIGNMENT ASSIGNMENT
+    | LHS ASSIGN ASSIGNMENT
     {
         if ($1.type == ERRORTYPE || $3.type == ERRORTYPE) {
             $$.type = ERRORTYPE;
@@ -1472,21 +1491,7 @@ ASSIGNMENT: CONDITION1
             else {
                 registerName = *($3.registerName);
             }
-            string s, temporaryRegister;
-            if($1.type == INTEGER){
-                temporaryRegister = temporarySet.getRegister();
-                s = temporaryRegister + " = " + (*($1.registerName));
-                gen(functionInstruction, s, nextNum);
-            }
-            else{
-                temporaryRegister = temporarySet.getFloatRegister();
-                s = temporaryRegister + " = " + (*($1.registerName));   
-                gen(functionInstruction, s, nextNum);
-            }
-            s = registerName + " = " + registerName + " % " + temporaryRegister;
-            gen(functionInstruction, s, nextNum);
-            temporarySet.freeRegister(temporaryRegister);
-            s = (*($1.registerName)) + " = " + registerName ;
+            string s = (*($1.registerName)) + " = " + registerName ;
             gen(functionInstruction, s, nextNum);
             $$.registerName = new string(registerName);
             if ($1.offsetRegName != NULL) temporarySet.freeRegister(*($1.offsetRegName));
@@ -1792,7 +1797,26 @@ BR_DIMLIST: LSQUAREB ASSIGNMENT RSQUAREB
     }
 ;
 
-CONDITION1: CONDITION1 TP1
+CONDITION1: 
+    CONDITION2
+    {
+        $$.type = $1.type;
+        if ($$.type != ERRORTYPE && $$.type != NULLVOID) {
+            $$.registerName = $1.registerName; 
+            if($1.jumpList!=NULL){
+                vector<int>* queryList = new vector<int>;
+                queryList->push_back(nextNum);
+                gen(functionInstruction,"goto L",nextNum);
+                backPatch($1.jumpList, nextNum, functionInstruction);
+                gen(functionInstruction, "L" + to_string(nextNum) + ":", nextNum);
+                gen(functionInstruction,(*($$.registerName)) + " = 0",nextNum) ;
+                backPatch(queryList,nextNum,functionInstruction);
+                gen(functionInstruction, "L" + to_string(nextNum) + ":", nextNum);
+                queryList->clear();   
+            }
+        }
+    }
+    | CONDITION1 TP1
     {
         if($1.type!=ERRORTYPE){
             $2.temp->push_back(nextNum);
@@ -1834,24 +1858,6 @@ CONDITION1: CONDITION1 TP1
             gen(functionInstruction,s,nextNum);
             temporarySet.freeRegister(*($1.registerName));
             temporarySet.freeRegister(*($5.registerName)); 
-        }
-    }
-    | CONDITION2
-    {
-        $$.type = $1.type;
-        if ($$.type != ERRORTYPE && $$.type != NULLVOID) {
-            $$.registerName = $1.registerName; 
-            if($1.jumpList!=NULL){
-                vector<int>* queryList = new vector<int>;
-                queryList->push_back(nextNum);
-                gen(functionInstruction,"goto L",nextNum);
-                backPatch($1.jumpList, nextNum, functionInstruction);
-                gen(functionInstruction, "L" + to_string(nextNum) + ":", nextNum);
-                gen(functionInstruction,(*($$.registerName)) + " = 0",nextNum) ;
-                backPatch(queryList,nextNum,functionInstruction);
-                gen(functionInstruction, "L" + to_string(nextNum) + ":", nextNum);
-                queryList->clear();   
-            }
         }
     }
 ;  
@@ -1988,6 +1994,19 @@ TERM: TERM MUL FACTOR
             }
         }   
     }  
+    | FACTOR 
+    { 
+        $$.type = $1.type; 
+        if ($1.type == ERRORTYPE) {
+            errorFound = true;
+        }
+        else {
+            if($1.type != NULLVOID){
+                $$.registerName = new string(*($1.registerName)); 
+                delete $1.registerName;
+            }  
+        } 
+    }
     | TERM MOD FACTOR
     {
         if ($1.type == ERRORTYPE || $3.type == ERRORTYPE) {
@@ -2009,22 +2028,58 @@ TERM: TERM MUL FACTOR
             }
         }   
     }
-    | FACTOR 
-    { 
-        $$.type = $1.type; 
-        if ($1.type == ERRORTYPE) {
-            errorFound = true;
-        }
-        else {
-            if($1.type != NULLVOID){
-                $$.registerName = new string(*($1.registerName)); 
-                delete $1.registerName;
-            }  
-        } 
-    }
 ;
 
-FACTOR: ID_ARR  
+FACTOR: 
+    INCREMENT ID_ARR
+    {
+        if ($2.type == INTEGER) {
+            $$.type = INTEGER;
+            string newReg = temporarySet.getRegister();
+            string s = newReg + " = " + (*($2.registerName)); // T2 = i
+            gen(functionInstruction, s, nextNum);
+            string newReg2 = temporarySet.getRegister();
+            $$.registerName = new string(newReg2);
+            s = newReg2 + " = " + newReg + " + 1"; // T3 = T2+1
+            gen(functionInstruction, s, nextNum);
+            s = (*($2.registerName)) + " = " + newReg2; // i = T3
+            gen(functionInstruction, s, nextNum);
+            temporarySet.freeRegister(newReg); 
+            if($2.offsetRegName != NULL){
+                temporarySet.freeRegister((*($2.offsetRegName)));
+            }     
+        }
+        else {
+            $$.type = ERRORTYPE;
+            cout << BOLD(FRED("ERROR : ")) << "Line no. " << yylineno << ": ";
+            cout << "Cannot increment non-integer type variable "<<*($2.registerName) << endl; 
+        }
+    } 
+    | DECREMENT ID_ARR
+    {
+        if ($2.type == INTEGER) {
+            $$.type = INTEGER;   
+            string newReg = temporarySet.getRegister();
+            string s = newReg + " = " + (*($2.registerName)); // T2 = i
+            gen(functionInstruction, s, nextNum);
+            string newReg2 = temporarySet.getRegister();
+            $$.registerName = new string(newReg2);
+            s = newReg2 + " = " + newReg + " - 1"; // T3 = T2+1
+            gen(functionInstruction, s, nextNum);
+            s = (*($2.registerName)) + " = " + newReg2; // i = T3
+            gen(functionInstruction, s, nextNum);
+            temporarySet.freeRegister(newReg);
+            if($2.offsetRegName != NULL){
+                temporarySet.freeRegister((*($2.offsetRegName)));
+            }         
+        }
+        else {
+            $$.type = ERRORTYPE;
+            cout << BOLD(FRED("ERROR : ")) << "Line no. " << yylineno << ": ";
+            cout << "Cannot increment non-integer type variable " << *($2.registerName) << endl; 
+        }
+    }
+    | ID_ARR  
     { 
         $$.type = $1.type;
         if ($$.type != ERRORTYPE) {
@@ -2036,6 +2091,13 @@ FACTOR: ID_ARR
             if($1.offsetRegName != NULL){
                 temporarySet.freeRegister((*($1.offsetRegName)));
             }
+        }
+    }
+    | LPARE ASSIGNMENT RPARE 
+    { 
+        $$.type = $2.type; 
+        if ($2.type != ERRORTYPE) {
+            $$.registerName = $2.registerName;
         }
     }
     | MINUS ID_ARR
@@ -2070,14 +2132,6 @@ FACTOR: ID_ARR
             }
         }       
     }
-    | MINUS DATAINT
-    {
-        $$.type = INTEGER; 
-        $$.registerName = new string(temporarySet.getRegister());
-        string s = (*($$.registerName)) + " = -" + string($2) ;
-        gen(functionInstruction, s, nextNum);  
-        
-    }
     | DATAINT    
     { 
         $$.type = INTEGER; 
@@ -2099,6 +2153,14 @@ FACTOR: ID_ARR
         string s = (*($$.registerName)) + " = " + string($1) ;
         gen(functionInstruction, s, nextNum);  
     }
+    | MINUS DATAINT
+    {
+        $$.type = INTEGER; 
+        $$.registerName = new string(temporarySet.getRegister());
+        string s = (*($$.registerName)) + " = -" + string($2) ;
+        gen(functionInstruction, s, nextNum);  
+        
+    }
     | FUNC_CALL 
     { 
         $$.type = $1.type; 
@@ -2111,13 +2173,6 @@ FACTOR: ID_ARR
                 delete callFunctionPointer;
             }
         }; 
-    }
-    | LPARE ASSIGNMENT RPARE 
-    { 
-        $$.type = $2.type; 
-        if ($2.type != ERRORTYPE) {
-            $$.registerName = $2.registerName;
-        }
     }
     | ID_ARR INCREMENT
     {
@@ -2167,54 +2222,6 @@ FACTOR: ID_ARR
             cout << "Cannot increment non-integer type variable " << *($1.registerName) << endl; 
         }
     } 
-    | INCREMENT ID_ARR
-    {
-        if ($2.type == INTEGER) {
-            $$.type = INTEGER;
-            string newReg = temporarySet.getRegister();
-            string s = newReg + " = " + (*($2.registerName)); // T2 = i
-            gen(functionInstruction, s, nextNum);
-            string newReg2 = temporarySet.getRegister();
-            $$.registerName = new string(newReg2);
-            s = newReg2 + " = " + newReg + " + 1"; // T3 = T2+1
-            gen(functionInstruction, s, nextNum);
-            s = (*($2.registerName)) + " = " + newReg2; // i = T3
-            gen(functionInstruction, s, nextNum);
-            temporarySet.freeRegister(newReg); 
-            if($2.offsetRegName != NULL){
-                temporarySet.freeRegister((*($2.offsetRegName)));
-            }     
-        }
-        else {
-            $$.type = ERRORTYPE;
-            cout << BOLD(FRED("ERROR : ")) << "Line no. " << yylineno << ": ";
-            cout << "Cannot increment non-integer type variable "<<*($2.registerName) << endl; 
-        }
-    } 
-    | DECREMENT ID_ARR
-    {
-        if ($2.type == INTEGER) {
-            $$.type = INTEGER;   
-            string newReg = temporarySet.getRegister();
-            string s = newReg + " = " + (*($2.registerName)); // T2 = i
-            gen(functionInstruction, s, nextNum);
-            string newReg2 = temporarySet.getRegister();
-            $$.registerName = new string(newReg2);
-            s = newReg2 + " = " + newReg + " - 1"; // T3 = T2+1
-            gen(functionInstruction, s, nextNum);
-            s = (*($2.registerName)) + " = " + newReg2; // i = T3
-            gen(functionInstruction, s, nextNum);
-            temporarySet.freeRegister(newReg);
-            if($2.offsetRegName != NULL){
-                temporarySet.freeRegister((*($2.offsetRegName)));
-            }         
-        }
-        else {
-            $$.type = ERRORTYPE;
-            cout << BOLD(FRED("ERROR : ")) << "Line no. " << yylineno << ": ";
-            cout << "Cannot increment non-integer type variable " << *($2.registerName) << endl; 
-        }
-    }
 ;
 
 ID_ARR: ID
@@ -2337,11 +2344,12 @@ void yyerror(const char *s)
 
 int main(int argc, char **argv)
 {
+    offsetValue = 0;
+    errorFound=false;
     nextNum = 0;
     scope = 0;
     found = 0;
-    offsetValue = 0;
-    errorFound=false;
+
     switchVariable.clear();
     dimensionList.clear();
     

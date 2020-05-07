@@ -558,20 +558,20 @@ static const yytype_uint8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint16 yyrline[] =
 {
-       0,    96,    96,   106,   129,   136,   148,   149,   152,   164,
-     178,   189,   198,   206,   218,   229,   232,   233,   236,   246,
-     247,   248,   249,   252,   278,   291,   292,   295,   296,   299,
-     379,   482,   592,   596,   602,   611,   620,   638,   656,   674,
-     692,   711,   729,   744,   788,   832,   848,   902,   903,   906,
-     912,   920,   926,   935,   941,   947,   947,   957,   965,   973,
-    1026,  1051,  1075,  1083,  1093,  1108,  1108,  1125,  1138,  1138,
-    1156,  1170,  1179,  1197,  1235,  1287,  1339,  1391,  1443,  1497,
-    1524,  1534,  1542,  1542,  1562,  1562,  1581,  1588,  1588,  1604,
-    1611,  1621,  1630,  1642,  1642,  1667,  1676,  1686,  1694,  1700,
-    1707,  1712,  1721,  1728,  1744,  1759,  1767,  1773,  1783,  1796,
-    1795,  1839,  1861,  1860,  1894,  1905,  1948,  1991,  2012,  2027,
-    2041,  2073,  2081,  2088,  2095,  2102,  2115,  2122,  2146,  2170,
-    2194,  2220,  2263
+       0,    96,    96,   106,   129,   136,   148,   149,   153,   165,
+     179,   190,   199,   208,   217,   231,   234,   235,   238,   248,
+     249,   250,   251,   254,   280,   293,   294,   297,   298,   301,
+     381,   484,   595,   599,   605,   614,   623,   641,   659,   677,
+     695,   708,   727,   747,   791,   835,   851,   905,   906,   910,
+     916,   922,   931,   937,   945,   945,   955,   963,   969,  1022,
+    1030,  1054,  1062,  1070,  1097,  1112,  1112,  1129,  1142,  1142,
+    1161,  1168,  1184,  1202,  1254,  1306,  1358,  1410,  1462,  1502,
+    1529,  1539,  1547,  1547,  1567,  1567,  1586,  1593,  1593,  1609,
+    1616,  1626,  1635,  1647,  1647,  1672,  1681,  1691,  1699,  1705,
+    1712,  1717,  1726,  1733,  1749,  1764,  1772,  1778,  1788,  1801,
+    1820,  1819,  1867,  1866,  1900,  1911,  1954,  1997,  2010,  2034,
+    2058,  2082,  2096,  2103,  2135,  2142,  2149,  2156,  2164,  2177,
+    2201,  2227,  2270
 };
 #endif
 
@@ -663,27 +663,27 @@ static const yytype_int16 yypact[] =
      means the default is an error.  */
 static const yytype_uint8 yydefact[] =
 {
-       0,    25,    26,     0,    21,     0,     0,    22,     0,    17,
+       0,    25,    26,     0,    22,     0,     0,    21,     0,    17,
        0,     0,     0,     0,     0,     5,     0,     7,     1,    19,
-      20,    16,     0,    15,    29,    24,    27,     0,    63,    25,
-     124,   122,   131,     0,     0,    55,     0,     0,     0,     0,
+      20,    16,     0,    15,    29,    24,    27,     0,    62,    25,
+     126,   124,   131,     0,     0,    54,     0,     0,     0,     0,
        0,     0,   100,     0,     0,     0,     0,     0,     0,     0,
-      49,     0,   114,    35,    42,   125,    14,    52,     0,     0,
-      54,     0,    51,    98,    53,     0,    72,   111,    45,   118,
-     119,     0,     6,     9,     0,     0,     0,     0,    31,     0,
-      23,    62,     0,    65,   132,   131,     0,     0,     0,     0,
-       0,     0,    57,    58,     0,     0,     0,   100,    99,     0,
-       0,   129,   130,   123,   121,   120,    34,   119,     2,    13,
+      50,     0,   114,    35,    40,   128,    13,    51,     0,     0,
+      57,     0,    49,    98,    52,     0,    72,   109,    45,   117,
+     121,     0,     6,     8,     0,     0,     0,     0,    31,     0,
+      23,    61,     0,    65,   132,   131,     0,     0,     0,     0,
+       0,     0,    56,    59,     0,     0,     0,   100,    99,     0,
+       0,   119,   120,   125,   127,   123,    34,   121,     2,    14,
       29,     0,     0,     0,     0,     0,     0,     0,     0,     0,
-      50,     0,     0,     0,     0,     0,     0,     0,     0,   109,
-     112,     0,     0,     0,   127,   128,     3,     0,    10,    18,
-       0,    30,     0,    28,     0,     0,    47,     0,     0,    60,
-      61,     0,   126,    71,     0,   105,     0,    95,     0,    59,
-       0,    43,    44,    38,    39,    40,    41,    36,    37,     0,
-      73,    74,    75,    76,    78,    77,     0,     0,     0,     0,
-     116,   115,   117,     8,    32,     0,   107,    46,     0,    66,
-       0,    56,    70,     0,    89,    80,    67,     0,   103,     0,
-       0,    33,    64,   108,   104,   100,     0,   101,    92,   110,
+      53,     0,     0,     0,     0,     0,     0,     0,     0,   110,
+     112,     0,     0,     0,   129,   130,     3,     0,    10,    18,
+       0,    30,     0,    28,     0,     0,    47,     0,     0,    63,
+      60,     0,   122,    70,     0,   105,     0,    95,     0,    58,
+       0,    43,    44,    37,    38,    41,    42,    36,    39,     0,
+      78,    74,    75,    76,    73,    77,     0,     0,     0,     0,
+     116,   115,   118,     9,    33,     0,   107,    46,     0,    66,
+       0,    55,    71,     0,    89,    80,    67,     0,   103,     0,
+       0,    32,    64,   108,   104,   100,     0,   101,    92,   111,
      113,    97,    86,     0,    93,     0,     0,     0,   102,    96,
       81,     0,    81,    79,     0,     0,    84,    81,    87,     0,
      100,     0,    82,     0,     0,    91,     0,     0,    88,    69,
@@ -828,13 +828,13 @@ static const yytype_uint8 yyr1[] =
       73,    73,    73,    74,    75,    76,    76,    77,    77,    78,
       78,    78,    79,    79,    80,    80,    81,    81,    81,    81,
       81,    81,    81,    82,    82,    82,    83,    84,    84,    85,
-      85,    85,    85,    85,    85,    86,    85,    85,    85,    85,
+      85,    85,    85,    85,    86,    85,    85,    85,    85,    85,
       85,    85,    85,    85,    87,    88,    87,    89,    90,    89,
       91,    91,    92,    92,    92,    92,    92,    92,    92,    93,
       94,    95,    97,    96,    98,    96,    96,    99,    96,   100,
      101,   102,   103,   105,   104,   104,   106,   107,   108,   109,
-     109,   110,   111,   112,   113,   113,   114,   115,   115,   117,
-     116,   116,   119,   118,   118,   120,   120,   120,   120,   121,
+     109,   110,   111,   112,   113,   113,   114,   115,   115,   116,
+     117,   116,   119,   118,   118,   120,   120,   120,   120,   121,
      121,   121,   121,   121,   121,   121,   121,   121,   121,   121,
      121,   122,   122
 };
@@ -842,19 +842,19 @@ static const yytype_uint8 yyr1[] =
   /* YYR2[YYN] -- Number of symbols on the right hand side of rule YYN.  */
 static const yytype_uint8 yyr2[] =
 {
-       0,     2,     4,     4,     2,     2,     1,     0,     3,     1,
-       2,     1,     0,     2,     1,     2,     2,     1,     4,     2,
+       0,     2,     4,     4,     2,     2,     1,     0,     1,     3,
+       2,     1,     0,     1,     2,     2,     2,     1,     4,     2,
        2,     1,     1,     4,     2,     1,     1,     1,     3,     1,
-       3,     2,     3,     4,     2,     1,     3,     3,     3,     3,
-       3,     3,     1,     3,     3,     1,     4,     1,     0,     1,
-       2,     1,     1,     1,     1,     0,     4,     2,     2,     3,
-       3,     3,     2,     1,     3,     0,     2,     4,     0,    11,
-       4,     3,     1,     3,     3,     3,     3,     3,     3,     8,
+       3,     2,     4,     3,     2,     1,     3,     3,     3,     3,
+       1,     3,     3,     3,     3,     1,     4,     1,     0,     1,
+       1,     1,     1,     2,     0,     4,     2,     1,     3,     2,
+       3,     2,     1,     3,     3,     0,     2,     4,     0,    11,
+       3,     4,     1,     3,     3,     3,     3,     3,     3,     8,
        0,     0,     0,     8,     0,     7,     0,     0,     5,     0,
        1,     0,     5,     0,    13,     3,     0,     0,     0,     1,
-       0,     0,     0,     4,     5,     3,     0,     3,     4,     0,
-       5,     1,     0,     5,     1,     3,     3,     3,     1,     1,
-       2,     2,     1,     2,     1,     1,     3,     2,     2,     2,
+       0,     0,     0,     4,     5,     3,     0,     3,     4,     1,
+       0,     5,     0,     5,     1,     3,     3,     1,     3,     2,
+       2,     1,     3,     2,     1,     2,     1,     2,     1,     2,
        2,     1,     2
 };
 
@@ -1591,23 +1591,7 @@ yyreduce:
     break;
 
   case 8:
-#line 153 "miniC.y" /* yacc.c:1646  */
-    {
-        int found = 0;
-        typeRecord* pn = NULL;
-        searchParameter(variableRecord->name, typeRecordList, found, pn);
-        if(found){
-            cout << BOLD(FRED("ERROR : ")) << "Line no. " << yylineno << ": Redeclaration of parameter " << variableRecord->name <<endl;
-        } else {
-            // cout << "Variable: "<< variableRecord->name << " declared." << endl;
-            typeRecordList.push_back(variableRecord);
-        }
-    }
-#line 1607 "miniC.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 9:
-#line 165 "miniC.y" /* yacc.c:1646  */
+#line 154 "miniC.y" /* yacc.c:1646  */
     {
         int found = 0;
         typeRecord* pn = NULL;
@@ -1619,11 +1603,27 @@ yyreduce:
             typeRecordList.push_back(variableRecord);
         }
     }
+#line 1607 "miniC.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 9:
+#line 166 "miniC.y" /* yacc.c:1646  */
+    {
+        int found = 0;
+        typeRecord* pn = NULL;
+        searchParameter(variableRecord->name, typeRecordList, found, pn);
+        if(found){
+            cout << BOLD(FRED("ERROR : ")) << "Line no. " << yylineno << ": Redeclaration of parameter " << variableRecord->name <<endl;
+        } else {
+            // cout << "Variable: "<< variableRecord->name << " declared." << endl;
+            typeRecordList.push_back(variableRecord);
+        }
+    }
 #line 1623 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
   case 10:
-#line 179 "miniC.y" /* yacc.c:1646  */
+#line 180 "miniC.y" /* yacc.c:1646  */
     {
         variableRecord = new typeRecord;
         variableRecord->name = string((yyvsp[0].idName));
@@ -1636,7 +1636,7 @@ yyreduce:
     break;
 
   case 11:
-#line 190 "miniC.y" /* yacc.c:1646  */
+#line 191 "miniC.y" /* yacc.c:1646  */
     {
         (yyval.statementValue).nextList = new vector<int>;
         merge((yyval.statementValue).nextList, (yyvsp[0].statementValue).nextList);
@@ -1649,7 +1649,7 @@ yyreduce:
     break;
 
   case 12:
-#line 199 "miniC.y" /* yacc.c:1646  */
+#line 200 "miniC.y" /* yacc.c:1646  */
     {
         (yyval.statementValue).nextList = new vector<int>;
         (yyval.statementValue).breakList = new vector<int>;
@@ -1659,7 +1659,20 @@ yyreduce:
     break;
 
   case 13:
-#line 207 "miniC.y" /* yacc.c:1646  */
+#line 209 "miniC.y" /* yacc.c:1646  */
+    {
+        (yyval.statementValue).nextList = new vector<int>;
+        merge((yyval.statementValue).nextList, (yyvsp[0].statementValue).nextList);
+        (yyval.statementValue).breakList = new vector<int>;
+        merge((yyval.statementValue).breakList, (yyvsp[0].statementValue).breakList);
+        (yyval.statementValue).continueList = new vector<int>;
+        merge((yyval.statementValue).continueList, (yyvsp[0].statementValue).continueList);
+    }
+#line 1672 "miniC.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 14:
+#line 218 "miniC.y" /* yacc.c:1646  */
     {
         (yyval.statementValue).nextList = new vector<int>;
         merge((yyval.statementValue).nextList, (yyvsp[-1].statementValue).nextList);
@@ -1671,24 +1684,11 @@ yyreduce:
         merge((yyval.statementValue).continueList, (yyvsp[-1].statementValue).continueList);
         merge((yyval.statementValue).continueList, (yyvsp[0].statementValue).continueList);
     }
-#line 1675 "miniC.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 14:
-#line 219 "miniC.y" /* yacc.c:1646  */
-    {
-        (yyval.statementValue).nextList = new vector<int>;
-        merge((yyval.statementValue).nextList, (yyvsp[0].statementValue).nextList);
-        (yyval.statementValue).breakList = new vector<int>;
-        merge((yyval.statementValue).breakList, (yyvsp[0].statementValue).breakList);
-        (yyval.statementValue).continueList = new vector<int>;
-        merge((yyval.statementValue).continueList, (yyvsp[0].statementValue).continueList);
-    }
 #line 1688 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
   case 18:
-#line 237 "miniC.y" /* yacc.c:1646  */
+#line 239 "miniC.y" /* yacc.c:1646  */
     {
         deleteVariableList(activeFunctionPointer, scope);
         activeFunctionPointer=NULL;
@@ -1700,7 +1700,7 @@ yyreduce:
     break;
 
   case 23:
-#line 253 "miniC.y" /* yacc.c:1646  */
+#line 255 "miniC.y" /* yacc.c:1646  */
     {   
         scope=1;
         activeFunctionPointer = new functionEntry;
@@ -1728,7 +1728,7 @@ yyreduce:
     break;
 
   case 24:
-#line 279 "miniC.y" /* yacc.c:1646  */
+#line 281 "miniC.y" /* yacc.c:1646  */
     {
         patchDataType(resultType, typeRecordList, scope);
         if(scope > 1){
@@ -1743,19 +1743,19 @@ yyreduce:
     break;
 
   case 25:
-#line 291 "miniC.y" /* yacc.c:1646  */
+#line 293 "miniC.y" /* yacc.c:1646  */
     { resultType = INTEGER; }
 #line 1749 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
   case 26:
-#line 292 "miniC.y" /* yacc.c:1646  */
+#line 294 "miniC.y" /* yacc.c:1646  */
     { resultType = FLOATING; }
 #line 1755 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
   case 29:
-#line 300 "miniC.y" /* yacc.c:1646  */
+#line 302 "miniC.y" /* yacc.c:1646  */
     {
         int found = 0;
         typeRecord* vn = NULL;
@@ -1839,7 +1839,7 @@ yyreduce:
     break;
 
   case 30:
-#line 380 "miniC.y" /* yacc.c:1646  */
+#line 382 "miniC.y" /* yacc.c:1646  */
     {
         int found = 0;
         typeRecord* vn = NULL;
@@ -1946,7 +1946,7 @@ yyreduce:
     break;
 
   case 31:
-#line 483 "miniC.y" /* yacc.c:1646  */
+#line 485 "miniC.y" /* yacc.c:1646  */
     {  
         if (activeFunctionPointer != NULL) {
             int found = 0;
@@ -2058,7 +2058,7 @@ yyreduce:
     break;
 
   case 32:
-#line 593 "miniC.y" /* yacc.c:1646  */
+#line 596 "miniC.y" /* yacc.c:1646  */
     {
         decDimensionList.push_back(atoi((yyvsp[-1].idName)));
     }
@@ -2066,7 +2066,7 @@ yyreduce:
     break;
 
   case 33:
-#line 597 "miniC.y" /* yacc.c:1646  */
+#line 600 "miniC.y" /* yacc.c:1646  */
     {
         decDimensionList.push_back(atoi((yyvsp[-1].idName)));
     }
@@ -2074,7 +2074,7 @@ yyreduce:
     break;
 
   case 34:
-#line 603 "miniC.y" /* yacc.c:1646  */
+#line 606 "miniC.y" /* yacc.c:1646  */
     {
         (yyval.expressionValue).type = (yyvsp[0].expressionValue).type;
         if ((yyvsp[0].expressionValue).type != ERRORTYPE && (yyvsp[0].expressionValue).type != NULLVOID) {
@@ -2087,7 +2087,7 @@ yyreduce:
     break;
 
   case 35:
-#line 612 "miniC.y" /* yacc.c:1646  */
+#line 615 "miniC.y" /* yacc.c:1646  */
     {
         (yyval.expressionValue).type = (yyvsp[0].expressionValue).type;
         if ((yyvsp[0].expressionValue).type != ERRORTYPE && (yyvsp[0].expressionValue).type != NULLVOID) {
@@ -2098,7 +2098,7 @@ yyreduce:
     break;
 
   case 36:
-#line 621 "miniC.y" /* yacc.c:1646  */
+#line 624 "miniC.y" /* yacc.c:1646  */
     {
         if ((yyvsp[-2].expressionValue).type == ERRORTYPE || (yyvsp[0].expressionValue).type == ERRORTYPE) {
             (yyval.expressionValue).type = ERRORTYPE;
@@ -2120,29 +2120,7 @@ yyreduce:
     break;
 
   case 37:
-#line 639 "miniC.y" /* yacc.c:1646  */
-    {
-        if((yyvsp[-2].expressionValue).type == ERRORTYPE || (yyvsp[0].expressionValue).type == ERRORTYPE){
-            (yyval.expressionValue).type = ERRORTYPE;
-        }
-        else if((yyvsp[-2].expressionValue).type == NULLVOID || (yyvsp[0].expressionValue).type == NULLVOID){
-            (yyval.expressionValue).type = ERRORTYPE;
-            cout << BOLD(FRED("ERROR : ")) << "Line no. "<< yylineno << ":Both the expessions should not be  NULL" << endl;
-        }
-        else{
-            (yyval.expressionValue).type = BOOLEAN;
-            (yyval.expressionValue).registerName = new string(temporarySet.getRegister());     
-            string s = (*((yyval.expressionValue).registerName)) + " = " + (*((yyvsp[-2].expressionValue).registerName)) + " != " + (*((yyvsp[0].expressionValue).registerName));   
-            gen(functionInstruction, s, nextNum);
-            temporarySet.freeRegister(*((yyvsp[-2].expressionValue).registerName));
-            temporarySet.freeRegister(*((yyvsp[0].expressionValue).registerName));  
-        }   
-    }
-#line 2142 "miniC.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 38:
-#line 657 "miniC.y" /* yacc.c:1646  */
+#line 642 "miniC.y" /* yacc.c:1646  */
     {
         if((yyvsp[-2].expressionValue).type == ERRORTYPE || (yyvsp[0].expressionValue).type == ERRORTYPE){
             (yyval.expressionValue).type = ERRORTYPE;
@@ -2160,11 +2138,11 @@ yyreduce:
             temporarySet.freeRegister(*((yyvsp[0].expressionValue).registerName));  
         }   
     }
-#line 2164 "miniC.tab.c" /* yacc.c:1646  */
+#line 2142 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
-  case 39:
-#line 675 "miniC.y" /* yacc.c:1646  */
+  case 38:
+#line 660 "miniC.y" /* yacc.c:1646  */
     {
         if((yyvsp[-2].expressionValue).type == ERRORTYPE || (yyvsp[0].expressionValue).type == ERRORTYPE){
             (yyval.expressionValue).type = ERRORTYPE;
@@ -2182,11 +2160,50 @@ yyreduce:
             temporarySet.freeRegister(*((yyvsp[0].expressionValue).registerName));  
         }   
     }
+#line 2164 "miniC.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 39:
+#line 678 "miniC.y" /* yacc.c:1646  */
+    {
+        if((yyvsp[-2].expressionValue).type == ERRORTYPE || (yyvsp[0].expressionValue).type == ERRORTYPE){
+            (yyval.expressionValue).type = ERRORTYPE;
+        }
+        else if((yyvsp[-2].expressionValue).type == NULLVOID || (yyvsp[0].expressionValue).type == NULLVOID){
+            (yyval.expressionValue).type = ERRORTYPE;
+            cout << BOLD(FRED("ERROR : ")) << "Line no. "<< yylineno << ":Both the expessions should not be  NULL" << endl;
+        }
+        else{
+            (yyval.expressionValue).type = BOOLEAN;
+            (yyval.expressionValue).registerName = new string(temporarySet.getRegister());     
+            string s = (*((yyval.expressionValue).registerName)) + " = " + (*((yyvsp[-2].expressionValue).registerName)) + " != " + (*((yyvsp[0].expressionValue).registerName));   
+            gen(functionInstruction, s, nextNum);
+            temporarySet.freeRegister(*((yyvsp[-2].expressionValue).registerName));
+            temporarySet.freeRegister(*((yyvsp[0].expressionValue).registerName));  
+        }   
+    }
 #line 2186 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
   case 40:
-#line 693 "miniC.y" /* yacc.c:1646  */
+#line 696 "miniC.y" /* yacc.c:1646  */
+    {
+        (yyval.expressionValue).type = (yyvsp[0].expressionValue).type; 
+        if((yyval.expressionValue).type == ERRORTYPE){
+            errorFound = true;
+        }
+        else{
+            if((yyvsp[0].expressionValue).type != NULLVOID){
+                (yyval.expressionValue).registerName = new string(*((yyvsp[0].expressionValue).registerName)); 
+                delete (yyvsp[0].expressionValue).registerName; 
+            }
+        }    
+    }
+#line 2203 "miniC.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 41:
+#line 709 "miniC.y" /* yacc.c:1646  */
     {
         if((yyvsp[-2].expressionValue).type == ERRORTYPE || (yyvsp[0].expressionValue).type == ERRORTYPE){
             (yyval.expressionValue).type = ERRORTYPE;
@@ -2205,11 +2222,11 @@ yyreduce:
             temporarySet.freeRegister(*((yyvsp[0].expressionValue).registerName));  
         }   
     }
-#line 2209 "miniC.tab.c" /* yacc.c:1646  */
+#line 2226 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
-  case 41:
-#line 712 "miniC.y" /* yacc.c:1646  */
+  case 42:
+#line 728 "miniC.y" /* yacc.c:1646  */
     {
         if((yyvsp[-2].expressionValue).type == ERRORTYPE || (yyvsp[0].expressionValue).type == ERRORTYPE){
             (yyval.expressionValue).type = ERRORTYPE;
@@ -2227,28 +2244,11 @@ yyreduce:
             temporarySet.freeRegister(*((yyvsp[0].expressionValue).registerName));  
         }   
     }
-#line 2231 "miniC.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 42:
-#line 730 "miniC.y" /* yacc.c:1646  */
-    {
-        (yyval.expressionValue).type = (yyvsp[0].expressionValue).type; 
-        if((yyval.expressionValue).type == ERRORTYPE){
-            errorFound = true;
-        }
-        else{
-            if((yyvsp[0].expressionValue).type != NULLVOID){
-                (yyval.expressionValue).registerName = new string(*((yyvsp[0].expressionValue).registerName)); 
-                delete (yyvsp[0].expressionValue).registerName; 
-            }
-        }    
-    }
 #line 2248 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
   case 43:
-#line 745 "miniC.y" /* yacc.c:1646  */
+#line 748 "miniC.y" /* yacc.c:1646  */
     {
         if ((yyvsp[-2].expressionValue).type == ERRORTYPE || (yyvsp[0].expressionValue).type == ERRORTYPE) {
             (yyval.expressionValue).type = ERRORTYPE; 
@@ -2296,7 +2296,7 @@ yyreduce:
     break;
 
   case 44:
-#line 789 "miniC.y" /* yacc.c:1646  */
+#line 792 "miniC.y" /* yacc.c:1646  */
     {
         if ((yyvsp[-2].expressionValue).type == ERRORTYPE || (yyvsp[0].expressionValue).type == ERRORTYPE) {
             (yyval.expressionValue).type = ERRORTYPE;
@@ -2344,7 +2344,7 @@ yyreduce:
     break;
 
   case 45:
-#line 833 "miniC.y" /* yacc.c:1646  */
+#line 836 "miniC.y" /* yacc.c:1646  */
     { 
         (yyval.expressionValue).type = (yyvsp[0].expressionValue).type; 
         if ((yyvsp[0].expressionValue).type == ERRORTYPE) {
@@ -2361,7 +2361,7 @@ yyreduce:
     break;
 
   case 46:
-#line 849 "miniC.y" /* yacc.c:1646  */
+#line 852 "miniC.y" /* yacc.c:1646  */
     {
         callFunctionPointer = new functionEntry;
         callFunctionPointer->name = string((yyvsp[-3].idName));
@@ -2417,13 +2417,13 @@ yyreduce:
     break;
 
   case 48:
-#line 903 "miniC.y" /* yacc.c:1646  */
+#line 906 "miniC.y" /* yacc.c:1646  */
     {parameterListStack.push(typeRecordList); typeRecordList.clear();}
 #line 2423 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
   case 49:
-#line 907 "miniC.y" /* yacc.c:1646  */
+#line 911 "miniC.y" /* yacc.c:1646  */
     {
         (yyval.statementValue).nextList = new vector<int>;
         (yyval.statementValue).breakList = new vector<int>;
@@ -2433,29 +2433,17 @@ yyreduce:
     break;
 
   case 50:
-#line 913 "miniC.y" /* yacc.c:1646  */
+#line 917 "miniC.y" /* yacc.c:1646  */
     {
         (yyval.statementValue).nextList = new vector<int>;
         (yyval.statementValue).breakList = new vector<int>;
         (yyval.statementValue).continueList = new vector <int>;
-        if ((yyvsp[-1].expressionValue).type != NULLVOID && (yyvsp[-1].expressionValue).type != ERRORTYPE)
-            temporarySet.freeRegister(*((yyvsp[-1].expressionValue).registerName));
     }
-#line 2445 "miniC.tab.c" /* yacc.c:1646  */
+#line 2443 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
   case 51:
-#line 921 "miniC.y" /* yacc.c:1646  */
-    {
-        (yyval.statementValue).nextList = new vector<int>;
-        (yyval.statementValue).breakList = new vector<int>;
-        (yyval.statementValue).continueList = new vector <int>;
-    }
-#line 2455 "miniC.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 52:
-#line 927 "miniC.y" /* yacc.c:1646  */
+#line 923 "miniC.y" /* yacc.c:1646  */
     {
         (yyval.statementValue).nextList = new vector<int>;
         (yyval.statementValue).breakList = new vector<int>;
@@ -2464,37 +2452,39 @@ yyreduce:
         merge((yyval.statementValue).breakList, (yyvsp[0].statementValue).breakList);
 
     }
-#line 2468 "miniC.tab.c" /* yacc.c:1646  */
+#line 2456 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
-  case 53:
-#line 936 "miniC.y" /* yacc.c:1646  */
+  case 52:
+#line 932 "miniC.y" /* yacc.c:1646  */
     {
         (yyval.statementValue).nextList = new vector<int>;
         (yyval.statementValue).breakList = new vector<int>;
         (yyval.statementValue).continueList = new vector <int>;
+    }
+#line 2466 "miniC.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 53:
+#line 938 "miniC.y" /* yacc.c:1646  */
+    {
+        (yyval.statementValue).nextList = new vector<int>;
+        (yyval.statementValue).breakList = new vector<int>;
+        (yyval.statementValue).continueList = new vector <int>;
+        if ((yyvsp[-1].expressionValue).type != NULLVOID && (yyvsp[-1].expressionValue).type != ERRORTYPE)
+            temporarySet.freeRegister(*((yyvsp[-1].expressionValue).registerName));
     }
 #line 2478 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
   case 54:
-#line 942 "miniC.y" /* yacc.c:1646  */
-    {
-        (yyval.statementValue).nextList = new vector<int>;
-        (yyval.statementValue).breakList = new vector<int>;
-        (yyval.statementValue).continueList = new vector <int>;
-    }
-#line 2488 "miniC.tab.c" /* yacc.c:1646  */
+#line 945 "miniC.y" /* yacc.c:1646  */
+    {scope++;}
+#line 2484 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
   case 55:
-#line 947 "miniC.y" /* yacc.c:1646  */
-    {scope++;}
-#line 2494 "miniC.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 56:
-#line 948 "miniC.y" /* yacc.c:1646  */
+#line 946 "miniC.y" /* yacc.c:1646  */
     {
         (yyval.statementValue).nextList = new vector<int>;
         (yyval.statementValue).breakList = new vector<int>;
@@ -2504,11 +2494,11 @@ yyreduce:
         merge((yyval.statementValue).continueList, (yyvsp[-1].statementValue).continueList);
         merge((yyval.statementValue).breakList, (yyvsp[-1].statementValue).breakList);
     }
-#line 2508 "miniC.tab.c" /* yacc.c:1646  */
+#line 2498 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
-  case 57:
-#line 958 "miniC.y" /* yacc.c:1646  */
+  case 56:
+#line 956 "miniC.y" /* yacc.c:1646  */
     {
         (yyval.statementValue).nextList = new vector<int>;
         (yyval.statementValue).breakList = new vector<int>;
@@ -2516,23 +2506,21 @@ yyreduce:
         (yyval.statementValue).breakList->push_back(nextNum);
         gen(functionInstruction, "goto L", nextNum);
     }
-#line 2520 "miniC.tab.c" /* yacc.c:1646  */
+#line 2510 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
-  case 58:
-#line 966 "miniC.y" /* yacc.c:1646  */
+  case 57:
+#line 964 "miniC.y" /* yacc.c:1646  */
     {
         (yyval.statementValue).nextList = new vector<int>;
         (yyval.statementValue).breakList = new vector<int>;
         (yyval.statementValue).continueList = new vector <int>;
-        (yyval.statementValue).continueList->push_back(nextNum);
-        gen(functionInstruction, "goto L", nextNum);
     }
-#line 2532 "miniC.tab.c" /* yacc.c:1646  */
+#line 2520 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
-  case 59:
-#line 974 "miniC.y" /* yacc.c:1646  */
+  case 58:
+#line 970 "miniC.y" /* yacc.c:1646  */
     {
         (yyval.statementValue).nextList = new vector<int>;
         (yyval.statementValue).breakList = new vector<int>;
@@ -2585,11 +2573,75 @@ yyreduce:
             }
         }
     }
+#line 2577 "miniC.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 59:
+#line 1023 "miniC.y" /* yacc.c:1646  */
+    {
+        (yyval.statementValue).nextList = new vector<int>;
+        (yyval.statementValue).breakList = new vector<int>;
+        (yyval.statementValue).continueList = new vector <int>;
+        (yyval.statementValue).continueList->push_back(nextNum);
+        gen(functionInstruction, "goto L", nextNum);
+    }
 #line 2589 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
   case 60:
-#line 1027 "miniC.y" /* yacc.c:1646  */
+#line 1031 "miniC.y" /* yacc.c:1646  */
+    {
+        (yyval.statementValue).nextList = new vector<int>;
+        (yyval.statementValue).breakList = new vector<int>;
+        (yyval.statementValue).continueList = new vector <int>;
+        if((yyvsp[-1].expressionValue).type == ERRORTYPE){
+            errorFound = true;
+        }
+        else{
+            string registerName;
+            if ((yyvsp[-1].expressionValue).type == INTEGER){
+                registerName = temporarySet.getRegister();
+            }
+            else {
+                registerName = temporarySet.getFloatRegister();
+            }
+            string s = registerName + " = " + (*((yyvsp[-1].expressionValue).registerName)) ;
+            gen(functionInstruction, s, nextNum);
+            s = "print " + registerName;
+            gen(functionInstruction, s, nextNum);
+            temporarySet.freeRegister(registerName);
+            if ((yyvsp[-1].expressionValue).offsetRegName != NULL) temporarySet.freeRegister(*((yyvsp[-1].expressionValue).offsetRegName));
+        }
+    }
+#line 2617 "miniC.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 61:
+#line 1055 "miniC.y" /* yacc.c:1646  */
+    {
+        errorFound = 1;
+        (yyval.statementValue).nextList = new vector<int>;
+        (yyval.statementValue).breakList = new vector<int>;
+        (yyval.statementValue).continueList = new vector <int>;
+        cout << BOLD(FRED("ERROR : ")) << FYEL("Line no. " + to_string(yylineno) + ": Syntax error") << endl;
+    }
+#line 2629 "miniC.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 62:
+#line 1063 "miniC.y" /* yacc.c:1646  */
+    {
+        errorFound = 1;
+        (yyval.statementValue).nextList = new vector<int>;
+        (yyval.statementValue).breakList = new vector<int>;
+        (yyval.statementValue).continueList = new vector <int>;
+        cout << BOLD(FRED("ERROR : ")) << FYEL("Line no. " + to_string(yylineno) + ": Syntax error") << endl;
+    }
+#line 2641 "miniC.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 63:
+#line 1071 "miniC.y" /* yacc.c:1646  */
     {
         (yyval.statementValue).nextList = new vector<int>;
         (yyval.statementValue).breakList = new vector<int>;
@@ -2614,63 +2666,11 @@ yyreduce:
             if ((yyvsp[-1].expressionValue).offsetRegName != NULL) temporarySet.freeRegister(*((yyvsp[-1].expressionValue).offsetRegName));
         }
     }
-#line 2618 "miniC.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 61:
-#line 1052 "miniC.y" /* yacc.c:1646  */
-    {
-        (yyval.statementValue).nextList = new vector<int>;
-        (yyval.statementValue).breakList = new vector<int>;
-        (yyval.statementValue).continueList = new vector <int>;
-        if((yyvsp[-1].expressionValue).type == ERRORTYPE){
-            errorFound = true;
-        }
-        else{
-            string registerName;
-            if ((yyvsp[-1].expressionValue).type == INTEGER){
-                registerName = temporarySet.getRegister();
-            }
-            else {
-                registerName = temporarySet.getFloatRegister();
-            }
-            string s = registerName + " = " + (*((yyvsp[-1].expressionValue).registerName)) ;
-            gen(functionInstruction, s, nextNum);
-            s = "print " + registerName;
-            gen(functionInstruction, s, nextNum);
-            temporarySet.freeRegister(registerName);
-            if ((yyvsp[-1].expressionValue).offsetRegName != NULL) temporarySet.freeRegister(*((yyvsp[-1].expressionValue).offsetRegName));
-        }
-    }
-#line 2646 "miniC.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 62:
-#line 1076 "miniC.y" /* yacc.c:1646  */
-    {
-        errorFound = 1;
-        (yyval.statementValue).nextList = new vector<int>;
-        (yyval.statementValue).breakList = new vector<int>;
-        (yyval.statementValue).continueList = new vector <int>;
-        cout << BOLD(FRED("ERROR : ")) << FYEL("Line no. " + to_string(yylineno) + ": Syntax error") << endl;
-    }
-#line 2658 "miniC.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 63:
-#line 1084 "miniC.y" /* yacc.c:1646  */
-    {
-        errorFound = 1;
-        (yyval.statementValue).nextList = new vector<int>;
-        (yyval.statementValue).breakList = new vector<int>;
-        (yyval.statementValue).continueList = new vector <int>;
-        cout << BOLD(FRED("ERROR : ")) << FYEL("Line no. " + to_string(yylineno) + ": Syntax error") << endl;
-    }
 #line 2670 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
   case 64:
-#line 1094 "miniC.y" /* yacc.c:1646  */
+#line 1098 "miniC.y" /* yacc.c:1646  */
     {
         variableRecord = new typeRecord;
         variableRecord->elementType = (yyvsp[0].expressionValue).type;
@@ -2689,13 +2689,13 @@ yyreduce:
     break;
 
   case 65:
-#line 1108 "miniC.y" /* yacc.c:1646  */
+#line 1112 "miniC.y" /* yacc.c:1646  */
     {parameterListStack.push(typeRecordList); typeRecordList.clear();}
 #line 2695 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
   case 66:
-#line 1109 "miniC.y" /* yacc.c:1646  */
+#line 1113 "miniC.y" /* yacc.c:1646  */
     {
         variableRecord = new typeRecord;
         variableRecord->elementType = (yyvsp[0].expressionValue).type;
@@ -2714,7 +2714,7 @@ yyreduce:
     break;
 
   case 67:
-#line 1126 "miniC.y" /* yacc.c:1646  */
+#line 1130 "miniC.y" /* yacc.c:1646  */
     {
         deleteVariableList(activeFunctionPointer,scope);
         scope--;
@@ -2731,13 +2731,13 @@ yyreduce:
     break;
 
   case 68:
-#line 1138 "miniC.y" /* yacc.c:1646  */
+#line 1142 "miniC.y" /* yacc.c:1646  */
     {deleteVariableList(activeFunctionPointer,scope);}
 #line 2737 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
   case 69:
-#line 1139 "miniC.y" /* yacc.c:1646  */
+#line 1143 "miniC.y" /* yacc.c:1646  */
     {
         deleteVariableList(activeFunctionPointer,scope);
         scope--;
@@ -2757,7 +2757,18 @@ yyreduce:
     break;
 
   case 70:
-#line 1157 "miniC.y" /* yacc.c:1646  */
+#line 1162 "miniC.y" /* yacc.c:1646  */
+    {
+        errorFound = 1;
+        (yyval.whileExpressionValue).falseList = new vector <int>;
+        cout << BOLD(FRED("ERROR : ")) << FYEL("Line no. " + to_string(yylineno) + ": Syntax error in if, discarding tokens till RPARE") << endl;
+        scope++;
+    }
+#line 2768 "miniC.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 71:
+#line 1169 "miniC.y" /* yacc.c:1646  */
     {
         if((yyvsp[-1].expressionValue).type != ERRORTYPE && (yyvsp[-1].expressionValue).type!=NULLVOID){
             (yyval.whileExpressionValue).falseList = new vector <int>;
@@ -2771,22 +2782,11 @@ yyreduce:
             temporarySet.freeRegister(*((yyvsp[-1].expressionValue).registerName));
         } 
     }
-#line 2775 "miniC.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 71:
-#line 1171 "miniC.y" /* yacc.c:1646  */
-    {
-        errorFound = 1;
-        (yyval.whileExpressionValue).falseList = new vector <int>;
-        cout << BOLD(FRED("ERROR : ")) << FYEL("Line no. " + to_string(yylineno) + ": Syntax error in if, discarding tokens till RPARE") << endl;
-        scope++;
-    }
 #line 2786 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
   case 72:
-#line 1180 "miniC.y" /* yacc.c:1646  */
+#line 1185 "miniC.y" /* yacc.c:1646  */
     {
         (yyval.expressionValue).type = (yyvsp[0].shortCircuitValue).type;
         if((yyval.expressionValue).type != ERRORTYPE && (yyval.expressionValue).type != NULLVOID) {
@@ -2808,273 +2808,7 @@ yyreduce:
     break;
 
   case 73:
-#line 1198 "miniC.y" /* yacc.c:1646  */
-    {
-        if ((yyvsp[-2].expressionValue).type == ERRORTYPE || (yyvsp[0].expressionValue).type == ERRORTYPE) {
-            (yyval.expressionValue).type = ERRORTYPE;
-            errorFound = true;
-        }
-        else if ((yyvsp[0].expressionValue).type == NULLVOID) {
-            cout << BOLD(FRED("ERROR : ")) << "Line no. " << yylineno << ":  ";
-            cout << "Cannot assign void to non-void type " << *((yyvsp[-2].expressionValue).registerName) << endl;
-            (yyval.expressionValue).type = ERRORTYPE;
-            errorFound = true;
-        }
-        else {
-            (yyval.expressionValue).type = (yyvsp[-2].expressionValue).type;
-            string registerName;
-            if ((yyvsp[-2].expressionValue).type == INTEGER && (yyvsp[0].expressionValue).type == FLOATING) {
-                registerName = temporarySet.getRegister();
-                string s = registerName + " = convertToInt(" + (*((yyvsp[0].expressionValue).registerName)) + ")";   
-                cout << BOLD(FBLU("Warning : ")) << FCYN("Line No. "+to_string(yylineno)+":Implicit Type Conversion") << endl;
-                gen(functionInstruction, s, nextNum);
-                temporarySet.freeRegister(*((yyvsp[0].expressionValue).registerName));
-            }
-            else if((yyvsp[-2].expressionValue).type == FLOATING && ((yyvsp[0].expressionValue).type == INTEGER || (yyvsp[0].expressionValue).type == BOOLEAN)) {
-                registerName = temporarySet.getFloatRegister();
-                string s = registerName + " = convertToFloat(" + (*((yyvsp[0].expressionValue).registerName)) + ")";   
-                cout << BOLD(FBLU("Warning : ")) << FCYN("Line No. "+to_string(yylineno)+":Implicit Type Conversion") << endl;
-                gen(functionInstruction, s, nextNum); 
-                temporarySet.freeRegister(*((yyvsp[0].expressionValue).registerName));
-            }
-            else {
-                registerName = *((yyvsp[0].expressionValue).registerName);
-            }
-            string s = (*((yyvsp[-2].expressionValue).registerName)) + " = " + registerName ;
-            gen(functionInstruction, s, nextNum);
-            (yyval.expressionValue).registerName = new string(registerName);
-            if ((yyvsp[-2].expressionValue).offsetRegName != NULL) temporarySet.freeRegister(*((yyvsp[-2].expressionValue).offsetRegName));
-        }
-    }
-#line 2850 "miniC.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 74:
-#line 1236 "miniC.y" /* yacc.c:1646  */
-    {
-        if ((yyvsp[-2].expressionValue).type == ERRORTYPE || (yyvsp[0].expressionValue).type == ERRORTYPE) {
-            (yyval.expressionValue).type = ERRORTYPE;
-            errorFound = true;
-        }
-        else if ((yyvsp[0].expressionValue).type == NULLVOID) {
-            cout << BOLD(FRED("ERROR : ")) << "Line no. " << yylineno << ":  ";
-            cout << "Cannot assign void to non-void type " << *((yyvsp[-2].expressionValue).registerName) << endl;
-            (yyval.expressionValue).type = ERRORTYPE;
-            errorFound = true;
-        }
-        else {
-            (yyval.expressionValue).type = (yyvsp[-2].expressionValue).type;
-            string registerName;
-            if ((yyvsp[-2].expressionValue).type == INTEGER && (yyvsp[0].expressionValue).type == FLOATING) {
-                registerName = temporarySet.getRegister();
-                string s = registerName + " = convertToInt(" + (*((yyvsp[0].expressionValue).registerName)) + ")";  
-                cout << BOLD(FBLU("Warning : ")) << FCYN("Line No. "+to_string(yylineno)+":Implicit Type Conversion") << endl;
-                gen(functionInstruction, s, nextNum);
-                temporarySet.freeRegister(*((yyvsp[0].expressionValue).registerName));
-            }
-            else if((yyvsp[-2].expressionValue).type == FLOATING && ((yyvsp[0].expressionValue).type == INTEGER || (yyvsp[0].expressionValue).type == BOOLEAN)) {
-                registerName = temporarySet.getFloatRegister();
-                string s = registerName + " = convertToFloat(" + (*((yyvsp[0].expressionValue).registerName)) + ")";   
-                cout << BOLD(FBLU("Warning : ")) << FCYN("Line No. "+to_string(yylineno)+":Implicit Type Conversion") << endl;
-                gen(functionInstruction, s, nextNum); 
-                temporarySet.freeRegister(*((yyvsp[0].expressionValue).registerName));
-            }
-            else {
-                registerName = *((yyvsp[0].expressionValue).registerName);
-            }
-            string s, temporaryRegister;
-            if((yyvsp[-2].expressionValue).type == INTEGER){
-                temporaryRegister = temporarySet.getRegister();
-                s = temporaryRegister + " = " + (*((yyvsp[-2].expressionValue).registerName));
-                gen(functionInstruction, s, nextNum);
-            }
-            else{
-                temporaryRegister = temporarySet.getFloatRegister();
-                s = temporaryRegister + " = " + (*((yyvsp[-2].expressionValue).registerName));   
-                gen(functionInstruction, s, nextNum);
-            }
-            s = registerName + " = " + registerName + " + " + temporaryRegister;
-            gen(functionInstruction, s, nextNum);
-            temporarySet.freeRegister(temporaryRegister);
-            s = (*((yyvsp[-2].expressionValue).registerName)) + " = " + registerName ;
-            gen(functionInstruction, s, nextNum);
-            (yyval.expressionValue).registerName = new string(registerName);
-            if ((yyvsp[-2].expressionValue).offsetRegName != NULL) temporarySet.freeRegister(*((yyvsp[-2].expressionValue).offsetRegName));
-        }
-    }
-#line 2906 "miniC.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 75:
-#line 1288 "miniC.y" /* yacc.c:1646  */
-    {
-        if ((yyvsp[-2].expressionValue).type == ERRORTYPE || (yyvsp[0].expressionValue).type == ERRORTYPE) {
-            (yyval.expressionValue).type = ERRORTYPE;
-            errorFound = true;
-        }
-        else if ((yyvsp[0].expressionValue).type == NULLVOID) {
-            cout << BOLD(FRED("ERROR : ")) << "Line no. " << yylineno << ":  ";
-            cout << "Cannot assign void to non-void type " << *((yyvsp[-2].expressionValue).registerName) << endl;
-            (yyval.expressionValue).type = ERRORTYPE;
-            errorFound = true;
-        }
-        else {
-            (yyval.expressionValue).type = (yyvsp[-2].expressionValue).type;
-            string registerName;
-            if ((yyvsp[-2].expressionValue).type == INTEGER && (yyvsp[0].expressionValue).type == FLOATING) {
-                registerName = temporarySet.getRegister();
-                string s = registerName + " = convertToInt(" + (*((yyvsp[0].expressionValue).registerName)) + ")";   
-                cout << BOLD(FBLU("Warning : ")) << FCYN("Line No. "+to_string(yylineno)+":Implicit Type Conversion") << endl;
-                gen(functionInstruction, s, nextNum);
-                temporarySet.freeRegister(*((yyvsp[0].expressionValue).registerName));
-            }
-            else if((yyvsp[-2].expressionValue).type == FLOATING && ((yyvsp[0].expressionValue).type == INTEGER || (yyvsp[0].expressionValue).type == BOOLEAN)) {
-                registerName = temporarySet.getFloatRegister();
-                string s = registerName + " = convertToFloat(" + (*((yyvsp[0].expressionValue).registerName)) + ")"; 
-                cout << BOLD(FBLU("Warning : ")) << FCYN("Line No. "+to_string(yylineno)+":Implicit Type Conversion") << endl;
-                gen(functionInstruction, s, nextNum); 
-                temporarySet.freeRegister(*((yyvsp[0].expressionValue).registerName));
-            }
-            else {
-                registerName = *((yyvsp[0].expressionValue).registerName);
-            }
-            string s, temporaryRegister;
-            if((yyvsp[-2].expressionValue).type == INTEGER){
-                temporaryRegister = temporarySet.getRegister();
-                s = temporaryRegister + " = " + (*((yyvsp[-2].expressionValue).registerName));
-                gen(functionInstruction, s, nextNum);
-            }
-            else{
-                temporaryRegister = temporarySet.getFloatRegister();
-                s = temporaryRegister + " = " + (*((yyvsp[-2].expressionValue).registerName));   
-                gen(functionInstruction, s, nextNum);
-            }
-            s = registerName + " = " + registerName + " - " + temporaryRegister;
-            gen(functionInstruction, s, nextNum);
-            temporarySet.freeRegister(temporaryRegister);
-            s = (*((yyvsp[-2].expressionValue).registerName)) + " = " + registerName ;
-            gen(functionInstruction, s, nextNum);
-            (yyval.expressionValue).registerName = new string(registerName);
-            if ((yyvsp[-2].expressionValue).offsetRegName != NULL) temporarySet.freeRegister(*((yyvsp[-2].expressionValue).offsetRegName));
-        }
-    }
-#line 2962 "miniC.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 76:
-#line 1340 "miniC.y" /* yacc.c:1646  */
-    {
-        if ((yyvsp[-2].expressionValue).type == ERRORTYPE || (yyvsp[0].expressionValue).type == ERRORTYPE) {
-            (yyval.expressionValue).type = ERRORTYPE;
-            errorFound = true;
-        }
-        else if ((yyvsp[0].expressionValue).type == NULLVOID) {
-            cout << BOLD(FRED("ERROR : ")) << "Line no. " << yylineno << ":  ";
-            cout << "Cannot assign void to non-void type " << *((yyvsp[-2].expressionValue).registerName) << endl;
-            (yyval.expressionValue).type = ERRORTYPE;
-            errorFound = true;
-        }
-        else {
-            (yyval.expressionValue).type = (yyvsp[-2].expressionValue).type;
-            string registerName;
-            if ((yyvsp[-2].expressionValue).type == INTEGER && (yyvsp[0].expressionValue).type == FLOATING) {
-                registerName = temporarySet.getRegister();
-                string s = registerName + " = convertToInt(" + (*((yyvsp[0].expressionValue).registerName)) + ")"; 
-                cout << BOLD(FBLU("Warning : ")) << FCYN("Line No. "+to_string(yylineno)+":Implicit Type Conversion") << endl;
-                gen(functionInstruction, s, nextNum);
-                temporarySet.freeRegister(*((yyvsp[0].expressionValue).registerName));
-            }
-            else if((yyvsp[-2].expressionValue).type == FLOATING && ((yyvsp[0].expressionValue).type == INTEGER || (yyvsp[0].expressionValue).type == BOOLEAN)) {
-                registerName = temporarySet.getFloatRegister();
-                string s = registerName + " = convertToFloat(" + (*((yyvsp[0].expressionValue).registerName)) + ")";  
-                cout << BOLD(FBLU("Warning : ")) << FCYN("Line No. "+to_string(yylineno)+":Implicit Type Conversion") << endl;
-                gen(functionInstruction, s, nextNum); 
-                temporarySet.freeRegister(*((yyvsp[0].expressionValue).registerName));
-            }
-            else {
-                registerName = *((yyvsp[0].expressionValue).registerName);
-            }
-            string s, temporaryRegister;
-            if((yyvsp[-2].expressionValue).type == INTEGER){
-                temporaryRegister = temporarySet.getRegister();
-                s = temporaryRegister + " = " + (*((yyvsp[-2].expressionValue).registerName));
-                gen(functionInstruction, s, nextNum);
-            }
-            else{
-                temporaryRegister = temporarySet.getFloatRegister();
-                s = temporaryRegister + " = " + (*((yyvsp[-2].expressionValue).registerName));   
-                gen(functionInstruction, s, nextNum);
-            }
-            s = registerName + " = " + registerName + " * " + temporaryRegister;
-            gen(functionInstruction, s, nextNum);
-            temporarySet.freeRegister(temporaryRegister);
-            s = (*((yyvsp[-2].expressionValue).registerName)) + " = " + registerName ;
-            gen(functionInstruction, s, nextNum);
-            (yyval.expressionValue).registerName = new string(registerName);
-            if ((yyvsp[-2].expressionValue).offsetRegName != NULL) temporarySet.freeRegister(*((yyvsp[-2].expressionValue).offsetRegName));
-        }
-    }
-#line 3018 "miniC.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 77:
-#line 1392 "miniC.y" /* yacc.c:1646  */
-    {
-        if ((yyvsp[-2].expressionValue).type == ERRORTYPE || (yyvsp[0].expressionValue).type == ERRORTYPE) {
-            (yyval.expressionValue).type = ERRORTYPE;
-            errorFound = true;
-        }
-        else if ((yyvsp[0].expressionValue).type == NULLVOID) {
-            cout << BOLD(FRED("ERROR : ")) << "Line no. " << yylineno << ":  ";
-            cout << "Cannot assign void to non-void type " << *((yyvsp[-2].expressionValue).registerName) << endl;
-            (yyval.expressionValue).type = ERRORTYPE;
-            errorFound = true;
-        }
-        else {
-            (yyval.expressionValue).type = (yyvsp[-2].expressionValue).type;
-            string registerName;
-            if ((yyvsp[-2].expressionValue).type == INTEGER && (yyvsp[0].expressionValue).type == FLOATING) {
-                registerName = temporarySet.getRegister();
-                string s = registerName + " = convertToInt(" + (*((yyvsp[0].expressionValue).registerName)) + ")";   
-                cout << BOLD(FBLU("Warning : ")) << FCYN("Line No. "+to_string(yylineno)+":Implicit Type Conversion") << endl;
-                gen(functionInstruction, s, nextNum);
-                temporarySet.freeRegister(*((yyvsp[0].expressionValue).registerName));
-            }
-            else if((yyvsp[-2].expressionValue).type == FLOATING && ((yyvsp[0].expressionValue).type == INTEGER || (yyvsp[0].expressionValue).type == BOOLEAN)) {
-                registerName = temporarySet.getFloatRegister();
-                string s = registerName + " = convertToFloat(" + (*((yyvsp[0].expressionValue).registerName)) + ")";   
-                cout << BOLD(FBLU("Warning : ")) << FCYN("Line No. "+to_string(yylineno)+":Implicit Type Conversion") << endl;
-                gen(functionInstruction, s, nextNum); 
-                temporarySet.freeRegister(*((yyvsp[0].expressionValue).registerName));
-            }
-            else {
-                registerName = *((yyvsp[0].expressionValue).registerName);
-            }
-            string s, temporaryRegister;
-            if((yyvsp[-2].expressionValue).type == INTEGER){
-                temporaryRegister = temporarySet.getRegister();
-                s = temporaryRegister + " = " + (*((yyvsp[-2].expressionValue).registerName));
-                gen(functionInstruction, s, nextNum);
-            }
-            else{
-                temporaryRegister = temporarySet.getFloatRegister();
-                s = temporaryRegister + " = " + (*((yyvsp[-2].expressionValue).registerName));   
-                gen(functionInstruction, s, nextNum);
-            }
-            s = registerName + " = " + registerName + " / " + temporaryRegister;
-            gen(functionInstruction, s, nextNum);
-            temporarySet.freeRegister(temporaryRegister);
-            s = (*((yyvsp[-2].expressionValue).registerName)) + " = " + registerName ;
-            gen(functionInstruction, s, nextNum);
-            (yyval.expressionValue).registerName = new string(registerName);
-            if ((yyvsp[-2].expressionValue).offsetRegName != NULL) temporarySet.freeRegister(*((yyvsp[-2].expressionValue).offsetRegName));
-        }
-    }
-#line 3074 "miniC.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 78:
-#line 1444 "miniC.y" /* yacc.c:1646  */
+#line 1203 "miniC.y" /* yacc.c:1646  */
     {
         if ((yyvsp[-2].expressionValue).type == ERRORTYPE || (yyvsp[0].expressionValue).type == ERRORTYPE) {
             (yyval.expressionValue).type = ERRORTYPE;
@@ -3126,11 +2860,277 @@ yyreduce:
             if ((yyvsp[-2].expressionValue).offsetRegName != NULL) temporarySet.freeRegister(*((yyvsp[-2].expressionValue).offsetRegName));
         }
     }
+#line 2864 "miniC.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 74:
+#line 1255 "miniC.y" /* yacc.c:1646  */
+    {
+        if ((yyvsp[-2].expressionValue).type == ERRORTYPE || (yyvsp[0].expressionValue).type == ERRORTYPE) {
+            (yyval.expressionValue).type = ERRORTYPE;
+            errorFound = true;
+        }
+        else if ((yyvsp[0].expressionValue).type == NULLVOID) {
+            cout << BOLD(FRED("ERROR : ")) << "Line no. " << yylineno << ":  ";
+            cout << "Cannot assign void to non-void type " << *((yyvsp[-2].expressionValue).registerName) << endl;
+            (yyval.expressionValue).type = ERRORTYPE;
+            errorFound = true;
+        }
+        else {
+            (yyval.expressionValue).type = (yyvsp[-2].expressionValue).type;
+            string registerName;
+            if ((yyvsp[-2].expressionValue).type == INTEGER && (yyvsp[0].expressionValue).type == FLOATING) {
+                registerName = temporarySet.getRegister();
+                string s = registerName + " = convertToInt(" + (*((yyvsp[0].expressionValue).registerName)) + ")";  
+                cout << BOLD(FBLU("Warning : ")) << FCYN("Line No. "+to_string(yylineno)+":Implicit Type Conversion") << endl;
+                gen(functionInstruction, s, nextNum);
+                temporarySet.freeRegister(*((yyvsp[0].expressionValue).registerName));
+            }
+            else if((yyvsp[-2].expressionValue).type == FLOATING && ((yyvsp[0].expressionValue).type == INTEGER || (yyvsp[0].expressionValue).type == BOOLEAN)) {
+                registerName = temporarySet.getFloatRegister();
+                string s = registerName + " = convertToFloat(" + (*((yyvsp[0].expressionValue).registerName)) + ")";   
+                cout << BOLD(FBLU("Warning : ")) << FCYN("Line No. "+to_string(yylineno)+":Implicit Type Conversion") << endl;
+                gen(functionInstruction, s, nextNum); 
+                temporarySet.freeRegister(*((yyvsp[0].expressionValue).registerName));
+            }
+            else {
+                registerName = *((yyvsp[0].expressionValue).registerName);
+            }
+            string s, temporaryRegister;
+            if((yyvsp[-2].expressionValue).type == INTEGER){
+                temporaryRegister = temporarySet.getRegister();
+                s = temporaryRegister + " = " + (*((yyvsp[-2].expressionValue).registerName));
+                gen(functionInstruction, s, nextNum);
+            }
+            else{
+                temporaryRegister = temporarySet.getFloatRegister();
+                s = temporaryRegister + " = " + (*((yyvsp[-2].expressionValue).registerName));   
+                gen(functionInstruction, s, nextNum);
+            }
+            s = registerName + " = " + registerName + " + " + temporaryRegister;
+            gen(functionInstruction, s, nextNum);
+            temporarySet.freeRegister(temporaryRegister);
+            s = (*((yyvsp[-2].expressionValue).registerName)) + " = " + registerName ;
+            gen(functionInstruction, s, nextNum);
+            (yyval.expressionValue).registerName = new string(registerName);
+            if ((yyvsp[-2].expressionValue).offsetRegName != NULL) temporarySet.freeRegister(*((yyvsp[-2].expressionValue).offsetRegName));
+        }
+    }
+#line 2920 "miniC.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 75:
+#line 1307 "miniC.y" /* yacc.c:1646  */
+    {
+        if ((yyvsp[-2].expressionValue).type == ERRORTYPE || (yyvsp[0].expressionValue).type == ERRORTYPE) {
+            (yyval.expressionValue).type = ERRORTYPE;
+            errorFound = true;
+        }
+        else if ((yyvsp[0].expressionValue).type == NULLVOID) {
+            cout << BOLD(FRED("ERROR : ")) << "Line no. " << yylineno << ":  ";
+            cout << "Cannot assign void to non-void type " << *((yyvsp[-2].expressionValue).registerName) << endl;
+            (yyval.expressionValue).type = ERRORTYPE;
+            errorFound = true;
+        }
+        else {
+            (yyval.expressionValue).type = (yyvsp[-2].expressionValue).type;
+            string registerName;
+            if ((yyvsp[-2].expressionValue).type == INTEGER && (yyvsp[0].expressionValue).type == FLOATING) {
+                registerName = temporarySet.getRegister();
+                string s = registerName + " = convertToInt(" + (*((yyvsp[0].expressionValue).registerName)) + ")";   
+                cout << BOLD(FBLU("Warning : ")) << FCYN("Line No. "+to_string(yylineno)+":Implicit Type Conversion") << endl;
+                gen(functionInstruction, s, nextNum);
+                temporarySet.freeRegister(*((yyvsp[0].expressionValue).registerName));
+            }
+            else if((yyvsp[-2].expressionValue).type == FLOATING && ((yyvsp[0].expressionValue).type == INTEGER || (yyvsp[0].expressionValue).type == BOOLEAN)) {
+                registerName = temporarySet.getFloatRegister();
+                string s = registerName + " = convertToFloat(" + (*((yyvsp[0].expressionValue).registerName)) + ")"; 
+                cout << BOLD(FBLU("Warning : ")) << FCYN("Line No. "+to_string(yylineno)+":Implicit Type Conversion") << endl;
+                gen(functionInstruction, s, nextNum); 
+                temporarySet.freeRegister(*((yyvsp[0].expressionValue).registerName));
+            }
+            else {
+                registerName = *((yyvsp[0].expressionValue).registerName);
+            }
+            string s, temporaryRegister;
+            if((yyvsp[-2].expressionValue).type == INTEGER){
+                temporaryRegister = temporarySet.getRegister();
+                s = temporaryRegister + " = " + (*((yyvsp[-2].expressionValue).registerName));
+                gen(functionInstruction, s, nextNum);
+            }
+            else{
+                temporaryRegister = temporarySet.getFloatRegister();
+                s = temporaryRegister + " = " + (*((yyvsp[-2].expressionValue).registerName));   
+                gen(functionInstruction, s, nextNum);
+            }
+            s = registerName + " = " + registerName + " - " + temporaryRegister;
+            gen(functionInstruction, s, nextNum);
+            temporarySet.freeRegister(temporaryRegister);
+            s = (*((yyvsp[-2].expressionValue).registerName)) + " = " + registerName ;
+            gen(functionInstruction, s, nextNum);
+            (yyval.expressionValue).registerName = new string(registerName);
+            if ((yyvsp[-2].expressionValue).offsetRegName != NULL) temporarySet.freeRegister(*((yyvsp[-2].expressionValue).offsetRegName));
+        }
+    }
+#line 2976 "miniC.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 76:
+#line 1359 "miniC.y" /* yacc.c:1646  */
+    {
+        if ((yyvsp[-2].expressionValue).type == ERRORTYPE || (yyvsp[0].expressionValue).type == ERRORTYPE) {
+            (yyval.expressionValue).type = ERRORTYPE;
+            errorFound = true;
+        }
+        else if ((yyvsp[0].expressionValue).type == NULLVOID) {
+            cout << BOLD(FRED("ERROR : ")) << "Line no. " << yylineno << ":  ";
+            cout << "Cannot assign void to non-void type " << *((yyvsp[-2].expressionValue).registerName) << endl;
+            (yyval.expressionValue).type = ERRORTYPE;
+            errorFound = true;
+        }
+        else {
+            (yyval.expressionValue).type = (yyvsp[-2].expressionValue).type;
+            string registerName;
+            if ((yyvsp[-2].expressionValue).type == INTEGER && (yyvsp[0].expressionValue).type == FLOATING) {
+                registerName = temporarySet.getRegister();
+                string s = registerName + " = convertToInt(" + (*((yyvsp[0].expressionValue).registerName)) + ")"; 
+                cout << BOLD(FBLU("Warning : ")) << FCYN("Line No. "+to_string(yylineno)+":Implicit Type Conversion") << endl;
+                gen(functionInstruction, s, nextNum);
+                temporarySet.freeRegister(*((yyvsp[0].expressionValue).registerName));
+            }
+            else if((yyvsp[-2].expressionValue).type == FLOATING && ((yyvsp[0].expressionValue).type == INTEGER || (yyvsp[0].expressionValue).type == BOOLEAN)) {
+                registerName = temporarySet.getFloatRegister();
+                string s = registerName + " = convertToFloat(" + (*((yyvsp[0].expressionValue).registerName)) + ")";  
+                cout << BOLD(FBLU("Warning : ")) << FCYN("Line No. "+to_string(yylineno)+":Implicit Type Conversion") << endl;
+                gen(functionInstruction, s, nextNum); 
+                temporarySet.freeRegister(*((yyvsp[0].expressionValue).registerName));
+            }
+            else {
+                registerName = *((yyvsp[0].expressionValue).registerName);
+            }
+            string s, temporaryRegister;
+            if((yyvsp[-2].expressionValue).type == INTEGER){
+                temporaryRegister = temporarySet.getRegister();
+                s = temporaryRegister + " = " + (*((yyvsp[-2].expressionValue).registerName));
+                gen(functionInstruction, s, nextNum);
+            }
+            else{
+                temporaryRegister = temporarySet.getFloatRegister();
+                s = temporaryRegister + " = " + (*((yyvsp[-2].expressionValue).registerName));   
+                gen(functionInstruction, s, nextNum);
+            }
+            s = registerName + " = " + registerName + " * " + temporaryRegister;
+            gen(functionInstruction, s, nextNum);
+            temporarySet.freeRegister(temporaryRegister);
+            s = (*((yyvsp[-2].expressionValue).registerName)) + " = " + registerName ;
+            gen(functionInstruction, s, nextNum);
+            (yyval.expressionValue).registerName = new string(registerName);
+            if ((yyvsp[-2].expressionValue).offsetRegName != NULL) temporarySet.freeRegister(*((yyvsp[-2].expressionValue).offsetRegName));
+        }
+    }
+#line 3032 "miniC.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 77:
+#line 1411 "miniC.y" /* yacc.c:1646  */
+    {
+        if ((yyvsp[-2].expressionValue).type == ERRORTYPE || (yyvsp[0].expressionValue).type == ERRORTYPE) {
+            (yyval.expressionValue).type = ERRORTYPE;
+            errorFound = true;
+        }
+        else if ((yyvsp[0].expressionValue).type == NULLVOID) {
+            cout << BOLD(FRED("ERROR : ")) << "Line no. " << yylineno << ":  ";
+            cout << "Cannot assign void to non-void type " << *((yyvsp[-2].expressionValue).registerName) << endl;
+            (yyval.expressionValue).type = ERRORTYPE;
+            errorFound = true;
+        }
+        else {
+            (yyval.expressionValue).type = (yyvsp[-2].expressionValue).type;
+            string registerName;
+            if ((yyvsp[-2].expressionValue).type == INTEGER && (yyvsp[0].expressionValue).type == FLOATING) {
+                registerName = temporarySet.getRegister();
+                string s = registerName + " = convertToInt(" + (*((yyvsp[0].expressionValue).registerName)) + ")";   
+                cout << BOLD(FBLU("Warning : ")) << FCYN("Line No. "+to_string(yylineno)+":Implicit Type Conversion") << endl;
+                gen(functionInstruction, s, nextNum);
+                temporarySet.freeRegister(*((yyvsp[0].expressionValue).registerName));
+            }
+            else if((yyvsp[-2].expressionValue).type == FLOATING && ((yyvsp[0].expressionValue).type == INTEGER || (yyvsp[0].expressionValue).type == BOOLEAN)) {
+                registerName = temporarySet.getFloatRegister();
+                string s = registerName + " = convertToFloat(" + (*((yyvsp[0].expressionValue).registerName)) + ")";   
+                cout << BOLD(FBLU("Warning : ")) << FCYN("Line No. "+to_string(yylineno)+":Implicit Type Conversion") << endl;
+                gen(functionInstruction, s, nextNum); 
+                temporarySet.freeRegister(*((yyvsp[0].expressionValue).registerName));
+            }
+            else {
+                registerName = *((yyvsp[0].expressionValue).registerName);
+            }
+            string s, temporaryRegister;
+            if((yyvsp[-2].expressionValue).type == INTEGER){
+                temporaryRegister = temporarySet.getRegister();
+                s = temporaryRegister + " = " + (*((yyvsp[-2].expressionValue).registerName));
+                gen(functionInstruction, s, nextNum);
+            }
+            else{
+                temporaryRegister = temporarySet.getFloatRegister();
+                s = temporaryRegister + " = " + (*((yyvsp[-2].expressionValue).registerName));   
+                gen(functionInstruction, s, nextNum);
+            }
+            s = registerName + " = " + registerName + " / " + temporaryRegister;
+            gen(functionInstruction, s, nextNum);
+            temporarySet.freeRegister(temporaryRegister);
+            s = (*((yyvsp[-2].expressionValue).registerName)) + " = " + registerName ;
+            gen(functionInstruction, s, nextNum);
+            (yyval.expressionValue).registerName = new string(registerName);
+            if ((yyvsp[-2].expressionValue).offsetRegName != NULL) temporarySet.freeRegister(*((yyvsp[-2].expressionValue).offsetRegName));
+        }
+    }
+#line 3088 "miniC.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 78:
+#line 1463 "miniC.y" /* yacc.c:1646  */
+    {
+        if ((yyvsp[-2].expressionValue).type == ERRORTYPE || (yyvsp[0].expressionValue).type == ERRORTYPE) {
+            (yyval.expressionValue).type = ERRORTYPE;
+            errorFound = true;
+        }
+        else if ((yyvsp[0].expressionValue).type == NULLVOID) {
+            cout << BOLD(FRED("ERROR : ")) << "Line no. " << yylineno << ":  ";
+            cout << "Cannot assign void to non-void type " << *((yyvsp[-2].expressionValue).registerName) << endl;
+            (yyval.expressionValue).type = ERRORTYPE;
+            errorFound = true;
+        }
+        else {
+            (yyval.expressionValue).type = (yyvsp[-2].expressionValue).type;
+            string registerName;
+            if ((yyvsp[-2].expressionValue).type == INTEGER && (yyvsp[0].expressionValue).type == FLOATING) {
+                registerName = temporarySet.getRegister();
+                string s = registerName + " = convertToInt(" + (*((yyvsp[0].expressionValue).registerName)) + ")";   
+                cout << BOLD(FBLU("Warning : ")) << FCYN("Line No. "+to_string(yylineno)+":Implicit Type Conversion") << endl;
+                gen(functionInstruction, s, nextNum);
+                temporarySet.freeRegister(*((yyvsp[0].expressionValue).registerName));
+            }
+            else if((yyvsp[-2].expressionValue).type == FLOATING && ((yyvsp[0].expressionValue).type == INTEGER || (yyvsp[0].expressionValue).type == BOOLEAN)) {
+                registerName = temporarySet.getFloatRegister();
+                string s = registerName + " = convertToFloat(" + (*((yyvsp[0].expressionValue).registerName)) + ")";   
+                cout << BOLD(FBLU("Warning : ")) << FCYN("Line No. "+to_string(yylineno)+":Implicit Type Conversion") << endl;
+                gen(functionInstruction, s, nextNum); 
+                temporarySet.freeRegister(*((yyvsp[0].expressionValue).registerName));
+            }
+            else {
+                registerName = *((yyvsp[0].expressionValue).registerName);
+            }
+            string s = (*((yyvsp[-2].expressionValue).registerName)) + " = " + registerName ;
+            gen(functionInstruction, s, nextNum);
+            (yyval.expressionValue).registerName = new string(registerName);
+            if ((yyvsp[-2].expressionValue).offsetRegName != NULL) temporarySet.freeRegister(*((yyvsp[-2].expressionValue).offsetRegName));
+        }
+    }
 #line 3130 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
   case 79:
-#line 1498 "miniC.y" /* yacc.c:1646  */
+#line 1503 "miniC.y" /* yacc.c:1646  */
     {
         deleteVariableList(activeFunctionPointer,scope);
         scope--;
@@ -3159,7 +3159,7 @@ yyreduce:
     break;
 
   case 80:
-#line 1525 "miniC.y" /* yacc.c:1646  */
+#line 1530 "miniC.y" /* yacc.c:1646  */
     {
         (yyval.whileExpressionValue).begin=nextNum;
         (yyval.whileExpressionValue).falseList = new vector<int>;
@@ -3171,7 +3171,7 @@ yyreduce:
     break;
 
   case 81:
-#line 1535 "miniC.y" /* yacc.c:1646  */
+#line 1540 "miniC.y" /* yacc.c:1646  */
     {
         (yyval.switchTempValue).casePair = new vector<pair<string,int>>;
 
@@ -3180,7 +3180,7 @@ yyreduce:
     break;
 
   case 82:
-#line 1542 "miniC.y" /* yacc.c:1646  */
+#line 1547 "miniC.y" /* yacc.c:1646  */
     {
         (yyvsp[0].switchTempValue).casePair->push_back(make_pair("-"+string((yyvsp[-1].idName)), nextNum));
         gen(functionInstruction, "L" + to_string(nextNum) + ":", nextNum);
@@ -3189,7 +3189,7 @@ yyreduce:
     break;
 
   case 83:
-#line 1547 "miniC.y" /* yacc.c:1646  */
+#line 1552 "miniC.y" /* yacc.c:1646  */
     {
         (yyval.switchCaseValue).nextList = new vector<int>;
         (yyval.switchCaseValue).breakList = new vector<int>;
@@ -3208,7 +3208,7 @@ yyreduce:
     break;
 
   case 84:
-#line 1562 "miniC.y" /* yacc.c:1646  */
+#line 1567 "miniC.y" /* yacc.c:1646  */
     {
         (yyvsp[0].switchTempValue).casePair->push_back(make_pair(string((yyvsp[-1].idName)), nextNum));
         gen(functionInstruction, "L" + to_string(nextNum) + ":", nextNum);
@@ -3217,7 +3217,7 @@ yyreduce:
     break;
 
   case 85:
-#line 1567 "miniC.y" /* yacc.c:1646  */
+#line 1572 "miniC.y" /* yacc.c:1646  */
     {
         (yyval.switchCaseValue).nextList = new vector<int>;
         (yyval.switchCaseValue).breakList = new vector<int>;
@@ -3236,7 +3236,7 @@ yyreduce:
     break;
 
   case 86:
-#line 1582 "miniC.y" /* yacc.c:1646  */
+#line 1587 "miniC.y" /* yacc.c:1646  */
     {
         (yyval.switchCaseValue).nextList = new vector<int>;
         (yyval.switchCaseValue).breakList = new vector<int>;
@@ -3247,7 +3247,7 @@ yyreduce:
     break;
 
   case 87:
-#line 1588 "miniC.y" /* yacc.c:1646  */
+#line 1593 "miniC.y" /* yacc.c:1646  */
     {
         (yyvsp[0].switchTempValue).casePair->push_back(make_pair("default", nextNum));
         gen(functionInstruction, "L" + to_string(nextNum) + ":", nextNum);
@@ -3256,7 +3256,7 @@ yyreduce:
     break;
 
   case 88:
-#line 1592 "miniC.y" /* yacc.c:1646  */
+#line 1597 "miniC.y" /* yacc.c:1646  */
     {
         (yyval.switchCaseValue).nextList = new vector<int>;
         (yyval.switchCaseValue).breakList = new vector<int>;
@@ -3271,7 +3271,7 @@ yyreduce:
     break;
 
   case 89:
-#line 1605 "miniC.y" /* yacc.c:1646  */
+#line 1610 "miniC.y" /* yacc.c:1646  */
     { 
         (yyval.quad) = nextNum;
         gen(functionInstruction, "L" + to_string(nextNum) + ":", nextNum); 
@@ -3280,7 +3280,7 @@ yyreduce:
     break;
 
   case 90:
-#line 1612 "miniC.y" /* yacc.c:1646  */
+#line 1617 "miniC.y" /* yacc.c:1646  */
     {
         (yyval.expressionValue).type = (yyvsp[0].expressionValue).type;
         if ((yyval.expressionValue).type != ERRORTYPE) {
@@ -3292,7 +3292,7 @@ yyreduce:
     break;
 
   case 91:
-#line 1622 "miniC.y" /* yacc.c:1646  */
+#line 1627 "miniC.y" /* yacc.c:1646  */
     { 
         (yyval.whileExpressionValue).begin = nextNum; 
         (yyval.whileExpressionValue).falseList = new vector<int>;
@@ -3303,7 +3303,7 @@ yyreduce:
     break;
 
   case 92:
-#line 1631 "miniC.y" /* yacc.c:1646  */
+#line 1636 "miniC.y" /* yacc.c:1646  */
     {
         deleteVariableList(activeFunctionPointer, scope);
         scope--;
@@ -3317,7 +3317,7 @@ yyreduce:
     break;
 
   case 93:
-#line 1642 "miniC.y" /* yacc.c:1646  */
+#line 1647 "miniC.y" /* yacc.c:1646  */
     {
         if((yyvsp[-1].expressionValue).type!=NULLVOID){
             gen(functionInstruction, "if "+ (*((yyvsp[-1].expressionValue).registerName)) + " == 0 goto L", nextNum);
@@ -3327,7 +3327,7 @@ yyreduce:
     break;
 
   case 94:
-#line 1647 "miniC.y" /* yacc.c:1646  */
+#line 1652 "miniC.y" /* yacc.c:1646  */
     {
         backPatch((yyvsp[-1].whileExpressionValue).falseList,(yyvsp[-8].quad),functionInstruction);
         backPatch((yyvsp[-4].whileExpressionValue).falseList,nextNum,functionInstruction);
@@ -3352,7 +3352,7 @@ yyreduce:
     break;
 
   case 95:
-#line 1668 "miniC.y" /* yacc.c:1646  */
+#line 1673 "miniC.y" /* yacc.c:1646  */
     {
         errorFound = 1;
         (yyval.whileExpressionValue).falseList = new vector<int>;
@@ -3363,7 +3363,7 @@ yyreduce:
     break;
 
   case 96:
-#line 1677 "miniC.y" /* yacc.c:1646  */
+#line 1682 "miniC.y" /* yacc.c:1646  */
     { 
         (yyval.whileExpressionValue).falseList = new vector<int>;
         (yyval.whileExpressionValue).falseList->push_back(nextNum);
@@ -3375,7 +3375,7 @@ yyreduce:
     break;
 
   case 97:
-#line 1687 "miniC.y" /* yacc.c:1646  */
+#line 1692 "miniC.y" /* yacc.c:1646  */
     {
         (yyval.whileExpressionValue).begin = nextNum;
         (yyval.whileExpressionValue).falseList = new vector<int>;
@@ -3385,7 +3385,7 @@ yyreduce:
     break;
 
   case 98:
-#line 1695 "miniC.y" /* yacc.c:1646  */
+#line 1700 "miniC.y" /* yacc.c:1646  */
     {
         (yyval.quad) = nextNum;
     }
@@ -3393,7 +3393,7 @@ yyreduce:
     break;
 
   case 99:
-#line 1701 "miniC.y" /* yacc.c:1646  */
+#line 1706 "miniC.y" /* yacc.c:1646  */
     {
         (yyval.expressionValue).type= (yyvsp[0].expressionValue).type;
         if ((yyvsp[0].expressionValue).type != ERRORTYPE && (yyvsp[0].expressionValue).type != NULLVOID) {
@@ -3404,7 +3404,7 @@ yyreduce:
     break;
 
   case 100:
-#line 1707 "miniC.y" /* yacc.c:1646  */
+#line 1712 "miniC.y" /* yacc.c:1646  */
     {
         (yyval.expressionValue).type = NULLVOID;
     }
@@ -3412,7 +3412,7 @@ yyreduce:
     break;
 
   case 101:
-#line 1713 "miniC.y" /* yacc.c:1646  */
+#line 1718 "miniC.y" /* yacc.c:1646  */
     {
         (yyval.statementValue).nextList = new vector<int>;
         ((yyval.statementValue).nextList)->push_back(nextNum);
@@ -3422,7 +3422,7 @@ yyreduce:
     break;
 
   case 102:
-#line 1722 "miniC.y" /* yacc.c:1646  */
+#line 1727 "miniC.y" /* yacc.c:1646  */
     {
         (yyval.quad)=nextNum;
         gen(functionInstruction, "L" + to_string(nextNum) + ":", nextNum);
@@ -3431,7 +3431,7 @@ yyreduce:
     break;
 
   case 103:
-#line 1729 "miniC.y" /* yacc.c:1646  */
+#line 1734 "miniC.y" /* yacc.c:1646  */
     {
         deleteVariableList(activeFunctionPointer,scope);
         scope--;
@@ -3449,7 +3449,7 @@ yyreduce:
     break;
 
   case 104:
-#line 1745 "miniC.y" /* yacc.c:1646  */
+#line 1750 "miniC.y" /* yacc.c:1646  */
     {
         scope++;
         if((yyvsp[-1].expressionValue).type == NULLVOID || (yyvsp[-1].expressionValue).type == ERRORTYPE){
@@ -3468,7 +3468,7 @@ yyreduce:
     break;
 
   case 105:
-#line 1760 "miniC.y" /* yacc.c:1646  */
+#line 1765 "miniC.y" /* yacc.c:1646  */
     {   
         (yyval.whileExpressionValue).falseList = new vector<int>;
         cout << BOLD(FRED("ERROR : ")) << FYEL("Line no. " + to_string(yylineno) + ": Syntax error in while loop, discarding tokens till RPARE") << endl;
@@ -3478,7 +3478,7 @@ yyreduce:
     break;
 
   case 106:
-#line 1768 "miniC.y" /* yacc.c:1646  */
+#line 1773 "miniC.y" /* yacc.c:1646  */
     {
     (yyval.conditionTemp).temp = new vector<int>;
 }
@@ -3486,7 +3486,7 @@ yyreduce:
     break;
 
   case 107:
-#line 1774 "miniC.y" /* yacc.c:1646  */
+#line 1779 "miniC.y" /* yacc.c:1646  */
     {
         if ((yyvsp[-1].expressionValue).type == INTEGER) {
             dimensionList.push_back(*((yyvsp[-1].expressionValue).registerName));
@@ -3500,7 +3500,7 @@ yyreduce:
     break;
 
   case 108:
-#line 1784 "miniC.y" /* yacc.c:1646  */
+#line 1789 "miniC.y" /* yacc.c:1646  */
     {
         if ((yyvsp[-1].expressionValue).type == INTEGER) {
             dimensionList.push_back(*((yyvsp[-1].expressionValue).registerName));
@@ -3514,7 +3514,29 @@ yyreduce:
     break;
 
   case 109:
-#line 1796 "miniC.y" /* yacc.c:1646  */
+#line 1802 "miniC.y" /* yacc.c:1646  */
+    {
+        (yyval.shortCircuitValue).type = (yyvsp[0].shortCircuitValue).type;
+        if ((yyval.shortCircuitValue).type != ERRORTYPE && (yyval.shortCircuitValue).type != NULLVOID) {
+            (yyval.shortCircuitValue).registerName = (yyvsp[0].shortCircuitValue).registerName; 
+            if((yyvsp[0].shortCircuitValue).jumpList!=NULL){
+                vector<int>* queryList = new vector<int>;
+                queryList->push_back(nextNum);
+                gen(functionInstruction,"goto L",nextNum);
+                backPatch((yyvsp[0].shortCircuitValue).jumpList, nextNum, functionInstruction);
+                gen(functionInstruction, "L" + to_string(nextNum) + ":", nextNum);
+                gen(functionInstruction,(*((yyval.shortCircuitValue).registerName)) + " = 0",nextNum) ;
+                backPatch(queryList,nextNum,functionInstruction);
+                gen(functionInstruction, "L" + to_string(nextNum) + ":", nextNum);
+                queryList->clear();   
+            }
+        }
+    }
+#line 3536 "miniC.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 110:
+#line 1820 "miniC.y" /* yacc.c:1646  */
     {
         if((yyvsp[-1].shortCircuitValue).type!=ERRORTYPE){
             (yyvsp[0].conditionTemp).temp->push_back(nextNum);
@@ -3522,11 +3544,11 @@ yyreduce:
 
         }
     }
-#line 3526 "miniC.tab.c" /* yacc.c:1646  */
+#line 3548 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
-  case 110:
-#line 1804 "miniC.y" /* yacc.c:1646  */
+  case 111:
+#line 1828 "miniC.y" /* yacc.c:1646  */
     {
         if((yyvsp[-4].shortCircuitValue).type==ERRORTYPE || (yyvsp[0].shortCircuitValue).type==ERRORTYPE){
             (yyval.shortCircuitValue).type = ERRORTYPE;
@@ -3562,33 +3584,11 @@ yyreduce:
             temporarySet.freeRegister(*((yyvsp[0].shortCircuitValue).registerName)); 
         }
     }
-#line 3566 "miniC.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 111:
-#line 1840 "miniC.y" /* yacc.c:1646  */
-    {
-        (yyval.shortCircuitValue).type = (yyvsp[0].shortCircuitValue).type;
-        if ((yyval.shortCircuitValue).type != ERRORTYPE && (yyval.shortCircuitValue).type != NULLVOID) {
-            (yyval.shortCircuitValue).registerName = (yyvsp[0].shortCircuitValue).registerName; 
-            if((yyvsp[0].shortCircuitValue).jumpList!=NULL){
-                vector<int>* queryList = new vector<int>;
-                queryList->push_back(nextNum);
-                gen(functionInstruction,"goto L",nextNum);
-                backPatch((yyvsp[0].shortCircuitValue).jumpList, nextNum, functionInstruction);
-                gen(functionInstruction, "L" + to_string(nextNum) + ":", nextNum);
-                gen(functionInstruction,(*((yyval.shortCircuitValue).registerName)) + " = 0",nextNum) ;
-                backPatch(queryList,nextNum,functionInstruction);
-                gen(functionInstruction, "L" + to_string(nextNum) + ":", nextNum);
-                queryList->clear();   
-            }
-        }
-    }
 #line 3588 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
   case 112:
-#line 1861 "miniC.y" /* yacc.c:1646  */
+#line 1867 "miniC.y" /* yacc.c:1646  */
     {
       if ((yyvsp[-1].shortCircuitValue).type!=ERRORTYPE ){
 
@@ -3600,7 +3600,7 @@ yyreduce:
     break;
 
   case 113:
-#line 1869 "miniC.y" /* yacc.c:1646  */
+#line 1875 "miniC.y" /* yacc.c:1646  */
     {
         if ((yyvsp[-4].shortCircuitValue).type==ERRORTYPE || (yyvsp[0].expressionValue).type==ERRORTYPE) {
             (yyval.shortCircuitValue).type = ERRORTYPE;
@@ -3630,7 +3630,7 @@ yyreduce:
     break;
 
   case 114:
-#line 1895 "miniC.y" /* yacc.c:1646  */
+#line 1901 "miniC.y" /* yacc.c:1646  */
     {
         (yyval.shortCircuitValue).type = (yyvsp[0].expressionValue).type;
         if ((yyvsp[0].expressionValue).type != ERRORTYPE && (yyvsp[0].expressionValue).type != NULLVOID) {
@@ -3643,7 +3643,7 @@ yyreduce:
     break;
 
   case 115:
-#line 1906 "miniC.y" /* yacc.c:1646  */
+#line 1912 "miniC.y" /* yacc.c:1646  */
     {
         if ((yyvsp[-2].expressionValue).type == ERRORTYPE || (yyvsp[0].expressionValue).type == ERRORTYPE) {
             (yyval.expressionValue).type = ERRORTYPE;  
@@ -3690,7 +3690,7 @@ yyreduce:
     break;
 
   case 116:
-#line 1949 "miniC.y" /* yacc.c:1646  */
+#line 1955 "miniC.y" /* yacc.c:1646  */
     {
         if ((yyvsp[-2].expressionValue).type == ERRORTYPE || (yyvsp[0].expressionValue).type == ERRORTYPE) {
         (yyval.expressionValue).type = ERRORTYPE;  
@@ -3737,7 +3737,24 @@ yyreduce:
     break;
 
   case 117:
-#line 1992 "miniC.y" /* yacc.c:1646  */
+#line 1998 "miniC.y" /* yacc.c:1646  */
+    { 
+        (yyval.expressionValue).type = (yyvsp[0].expressionValue).type; 
+        if ((yyvsp[0].expressionValue).type == ERRORTYPE) {
+            errorFound = true;
+        }
+        else {
+            if((yyvsp[0].expressionValue).type != NULLVOID){
+                (yyval.expressionValue).registerName = new string(*((yyvsp[0].expressionValue).registerName)); 
+                delete (yyvsp[0].expressionValue).registerName;
+            }  
+        } 
+    }
+#line 3754 "miniC.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 118:
+#line 2011 "miniC.y" /* yacc.c:1646  */
     {
         if ((yyvsp[-2].expressionValue).type == ERRORTYPE || (yyvsp[0].expressionValue).type == ERRORTYPE) {
             (yyval.expressionValue).type = ERRORTYPE;  
@@ -3758,28 +3775,67 @@ yyreduce:
             }
         }   
     }
-#line 3762 "miniC.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 118:
-#line 2013 "miniC.y" /* yacc.c:1646  */
-    { 
-        (yyval.expressionValue).type = (yyvsp[0].expressionValue).type; 
-        if ((yyvsp[0].expressionValue).type == ERRORTYPE) {
-            errorFound = true;
-        }
-        else {
-            if((yyvsp[0].expressionValue).type != NULLVOID){
-                (yyval.expressionValue).registerName = new string(*((yyvsp[0].expressionValue).registerName)); 
-                delete (yyvsp[0].expressionValue).registerName;
-            }  
-        } 
-    }
 #line 3779 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
   case 119:
-#line 2028 "miniC.y" /* yacc.c:1646  */
+#line 2035 "miniC.y" /* yacc.c:1646  */
+    {
+        if ((yyvsp[0].expressionValue).type == INTEGER) {
+            (yyval.expressionValue).type = INTEGER;
+            string newReg = temporarySet.getRegister();
+            string s = newReg + " = " + (*((yyvsp[0].expressionValue).registerName)); // T2 = i
+            gen(functionInstruction, s, nextNum);
+            string newReg2 = temporarySet.getRegister();
+            (yyval.expressionValue).registerName = new string(newReg2);
+            s = newReg2 + " = " + newReg + " + 1"; // T3 = T2+1
+            gen(functionInstruction, s, nextNum);
+            s = (*((yyvsp[0].expressionValue).registerName)) + " = " + newReg2; // i = T3
+            gen(functionInstruction, s, nextNum);
+            temporarySet.freeRegister(newReg); 
+            if((yyvsp[0].expressionValue).offsetRegName != NULL){
+                temporarySet.freeRegister((*((yyvsp[0].expressionValue).offsetRegName)));
+            }     
+        }
+        else {
+            (yyval.expressionValue).type = ERRORTYPE;
+            cout << BOLD(FRED("ERROR : ")) << "Line no. " << yylineno << ": ";
+            cout << "Cannot increment non-integer type variable "<<*((yyvsp[0].expressionValue).registerName) << endl; 
+        }
+    }
+#line 3807 "miniC.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 120:
+#line 2059 "miniC.y" /* yacc.c:1646  */
+    {
+        if ((yyvsp[0].expressionValue).type == INTEGER) {
+            (yyval.expressionValue).type = INTEGER;   
+            string newReg = temporarySet.getRegister();
+            string s = newReg + " = " + (*((yyvsp[0].expressionValue).registerName)); // T2 = i
+            gen(functionInstruction, s, nextNum);
+            string newReg2 = temporarySet.getRegister();
+            (yyval.expressionValue).registerName = new string(newReg2);
+            s = newReg2 + " = " + newReg + " - 1"; // T3 = T2+1
+            gen(functionInstruction, s, nextNum);
+            s = (*((yyvsp[0].expressionValue).registerName)) + " = " + newReg2; // i = T3
+            gen(functionInstruction, s, nextNum);
+            temporarySet.freeRegister(newReg);
+            if((yyvsp[0].expressionValue).offsetRegName != NULL){
+                temporarySet.freeRegister((*((yyvsp[0].expressionValue).offsetRegName)));
+            }         
+        }
+        else {
+            (yyval.expressionValue).type = ERRORTYPE;
+            cout << BOLD(FRED("ERROR : ")) << "Line no. " << yylineno << ": ";
+            cout << "Cannot increment non-integer type variable " << *((yyvsp[0].expressionValue).registerName) << endl; 
+        }
+    }
+#line 3835 "miniC.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 121:
+#line 2083 "miniC.y" /* yacc.c:1646  */
     { 
         (yyval.expressionValue).type = (yyvsp[0].expressionValue).type;
         if ((yyval.expressionValue).type != ERRORTYPE) {
@@ -3793,11 +3849,22 @@ yyreduce:
             }
         }
     }
-#line 3797 "miniC.tab.c" /* yacc.c:1646  */
+#line 3853 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
-  case 120:
-#line 2042 "miniC.y" /* yacc.c:1646  */
+  case 122:
+#line 2097 "miniC.y" /* yacc.c:1646  */
+    { 
+        (yyval.expressionValue).type = (yyvsp[-1].expressionValue).type; 
+        if ((yyvsp[-1].expressionValue).type != ERRORTYPE) {
+            (yyval.expressionValue).registerName = (yyvsp[-1].expressionValue).registerName;
+        }
+    }
+#line 3864 "miniC.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 123:
+#line 2104 "miniC.y" /* yacc.c:1646  */
     {
         (yyval.expressionValue).type = (yyvsp[0].expressionValue).type;
         if((yyvsp[0].expressionValue).type != ERRORTYPE){
@@ -3829,11 +3896,44 @@ yyreduce:
             }
         }       
     }
-#line 3833 "miniC.tab.c" /* yacc.c:1646  */
+#line 3900 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
-  case 121:
-#line 2074 "miniC.y" /* yacc.c:1646  */
+  case 124:
+#line 2136 "miniC.y" /* yacc.c:1646  */
+    { 
+        (yyval.expressionValue).type = INTEGER; 
+        (yyval.expressionValue).registerName = new string(temporarySet.getRegister());
+        string s = (*((yyval.expressionValue).registerName)) + " = " + string((yyvsp[0].idName)) ;
+        gen(functionInstruction, s, nextNum);  
+    }
+#line 3911 "miniC.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 125:
+#line 2143 "miniC.y" /* yacc.c:1646  */
+    {
+        (yyval.expressionValue).type = FLOATING;
+        (yyval.expressionValue).registerName = new string(temporarySet.getFloatRegister());
+        string s = (*((yyval.expressionValue).registerName)) + " = " + string((yyvsp[0].idName)) ;
+        gen(functionInstruction, s, nextNum);  
+    }
+#line 3922 "miniC.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 126:
+#line 2150 "miniC.y" /* yacc.c:1646  */
+    { 
+        (yyval.expressionValue).type = FLOATING;
+        (yyval.expressionValue).registerName = new string(temporarySet.getFloatRegister());
+        string s = (*((yyval.expressionValue).registerName)) + " = " + string((yyvsp[0].idName)) ;
+        gen(functionInstruction, s, nextNum);  
+    }
+#line 3933 "miniC.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 127:
+#line 2157 "miniC.y" /* yacc.c:1646  */
     {
         (yyval.expressionValue).type = INTEGER; 
         (yyval.expressionValue).registerName = new string(temporarySet.getRegister());
@@ -3841,44 +3941,11 @@ yyreduce:
         gen(functionInstruction, s, nextNum);  
         
     }
-#line 3845 "miniC.tab.c" /* yacc.c:1646  */
+#line 3945 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
-  case 122:
-#line 2082 "miniC.y" /* yacc.c:1646  */
-    { 
-        (yyval.expressionValue).type = INTEGER; 
-        (yyval.expressionValue).registerName = new string(temporarySet.getRegister());
-        string s = (*((yyval.expressionValue).registerName)) + " = " + string((yyvsp[0].idName)) ;
-        gen(functionInstruction, s, nextNum);  
-    }
-#line 3856 "miniC.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 123:
-#line 2089 "miniC.y" /* yacc.c:1646  */
-    {
-        (yyval.expressionValue).type = FLOATING;
-        (yyval.expressionValue).registerName = new string(temporarySet.getFloatRegister());
-        string s = (*((yyval.expressionValue).registerName)) + " = " + string((yyvsp[0].idName)) ;
-        gen(functionInstruction, s, nextNum);  
-    }
-#line 3867 "miniC.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 124:
-#line 2096 "miniC.y" /* yacc.c:1646  */
-    { 
-        (yyval.expressionValue).type = FLOATING;
-        (yyval.expressionValue).registerName = new string(temporarySet.getFloatRegister());
-        string s = (*((yyval.expressionValue).registerName)) + " = " + string((yyvsp[0].idName)) ;
-        gen(functionInstruction, s, nextNum);  
-    }
-#line 3878 "miniC.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 125:
-#line 2103 "miniC.y" /* yacc.c:1646  */
+  case 128:
+#line 2165 "miniC.y" /* yacc.c:1646  */
     { 
         (yyval.expressionValue).type = (yyvsp[0].expressionValue).type; 
         if ((yyvsp[0].expressionValue).type == ERRORTYPE) {
@@ -3891,22 +3958,11 @@ yyreduce:
             }
         }; 
     }
-#line 3895 "miniC.tab.c" /* yacc.c:1646  */
+#line 3962 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
-  case 126:
-#line 2116 "miniC.y" /* yacc.c:1646  */
-    { 
-        (yyval.expressionValue).type = (yyvsp[-1].expressionValue).type; 
-        if ((yyvsp[-1].expressionValue).type != ERRORTYPE) {
-            (yyval.expressionValue).registerName = (yyvsp[-1].expressionValue).registerName;
-        }
-    }
-#line 3906 "miniC.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 127:
-#line 2123 "miniC.y" /* yacc.c:1646  */
+  case 129:
+#line 2178 "miniC.y" /* yacc.c:1646  */
     {
         if ((yyvsp[-1].expressionValue).type == INTEGER) {
             (yyval.expressionValue).type = INTEGER;   
@@ -3930,11 +3986,11 @@ yyreduce:
             cout << "Cannot increment non-integer type variable "<< *((yyvsp[-1].expressionValue).registerName) << endl; 
         }
     }
-#line 3934 "miniC.tab.c" /* yacc.c:1646  */
+#line 3990 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
-  case 128:
-#line 2147 "miniC.y" /* yacc.c:1646  */
+  case 130:
+#line 2202 "miniC.y" /* yacc.c:1646  */
     {
         if ((yyvsp[-1].expressionValue).type == INTEGER) {
             (yyval.expressionValue).type = INTEGER;   
@@ -3958,67 +4014,11 @@ yyreduce:
             cout << "Cannot increment non-integer type variable " << *((yyvsp[-1].expressionValue).registerName) << endl; 
         }
     }
-#line 3962 "miniC.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 129:
-#line 2171 "miniC.y" /* yacc.c:1646  */
-    {
-        if ((yyvsp[0].expressionValue).type == INTEGER) {
-            (yyval.expressionValue).type = INTEGER;
-            string newReg = temporarySet.getRegister();
-            string s = newReg + " = " + (*((yyvsp[0].expressionValue).registerName)); // T2 = i
-            gen(functionInstruction, s, nextNum);
-            string newReg2 = temporarySet.getRegister();
-            (yyval.expressionValue).registerName = new string(newReg2);
-            s = newReg2 + " = " + newReg + " + 1"; // T3 = T2+1
-            gen(functionInstruction, s, nextNum);
-            s = (*((yyvsp[0].expressionValue).registerName)) + " = " + newReg2; // i = T3
-            gen(functionInstruction, s, nextNum);
-            temporarySet.freeRegister(newReg); 
-            if((yyvsp[0].expressionValue).offsetRegName != NULL){
-                temporarySet.freeRegister((*((yyvsp[0].expressionValue).offsetRegName)));
-            }     
-        }
-        else {
-            (yyval.expressionValue).type = ERRORTYPE;
-            cout << BOLD(FRED("ERROR : ")) << "Line no. " << yylineno << ": ";
-            cout << "Cannot increment non-integer type variable "<<*((yyvsp[0].expressionValue).registerName) << endl; 
-        }
-    }
-#line 3990 "miniC.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 130:
-#line 2195 "miniC.y" /* yacc.c:1646  */
-    {
-        if ((yyvsp[0].expressionValue).type == INTEGER) {
-            (yyval.expressionValue).type = INTEGER;   
-            string newReg = temporarySet.getRegister();
-            string s = newReg + " = " + (*((yyvsp[0].expressionValue).registerName)); // T2 = i
-            gen(functionInstruction, s, nextNum);
-            string newReg2 = temporarySet.getRegister();
-            (yyval.expressionValue).registerName = new string(newReg2);
-            s = newReg2 + " = " + newReg + " - 1"; // T3 = T2+1
-            gen(functionInstruction, s, nextNum);
-            s = (*((yyvsp[0].expressionValue).registerName)) + " = " + newReg2; // i = T3
-            gen(functionInstruction, s, nextNum);
-            temporarySet.freeRegister(newReg);
-            if((yyvsp[0].expressionValue).offsetRegName != NULL){
-                temporarySet.freeRegister((*((yyvsp[0].expressionValue).offsetRegName)));
-            }         
-        }
-        else {
-            (yyval.expressionValue).type = ERRORTYPE;
-            cout << BOLD(FRED("ERROR : ")) << "Line no. " << yylineno << ": ";
-            cout << "Cannot increment non-integer type variable " << *((yyvsp[0].expressionValue).registerName) << endl; 
-        }
-    }
 #line 4018 "miniC.tab.c" /* yacc.c:1646  */
     break;
 
   case 131:
-#line 2221 "miniC.y" /* yacc.c:1646  */
+#line 2228 "miniC.y" /* yacc.c:1646  */
     {   
         // retrieve the highest level id with same name in param list or var list or global list
         int found = 0;
@@ -4065,7 +4065,7 @@ yyreduce:
     break;
 
   case 132:
-#line 2264 "miniC.y" /* yacc.c:1646  */
+#line 2271 "miniC.y" /* yacc.c:1646  */
     {
         // retrieve the highest level id with same name in param list or var list
         int found = 0;
@@ -4360,7 +4360,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 2328 "miniC.y" /* yacc.c:1906  */
+#line 2335 "miniC.y" /* yacc.c:1906  */
 
 
 void yyerror(const char *s)
@@ -4373,11 +4373,12 @@ void yyerror(const char *s)
 
 int main(int argc, char **argv)
 {
+    offsetValue = 0;
+    errorFound=false;
     nextNum = 0;
     scope = 0;
     found = 0;
-    offsetValue = 0;
-    errorFound=false;
+
     switchVariable.clear();
     dimensionList.clear();
     
