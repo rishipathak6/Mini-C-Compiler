@@ -30,6 +30,13 @@ enum eletype {INTEGER, FLOATING, NULLVOID, BOOLEAN, ERRORTYPE};
 enum varType {SIMPLE, ARRAY};
 enum Tag {PARAMAETER, VARIABLE};
 
+struct typeRecord {
+    string name;
+    eletype elementType;
+    int scope;
+    int variableOffset;
+};
+
 struct functionEntry {
     string name;
     eletype returnType;
@@ -37,13 +44,6 @@ struct functionEntry {
     int functionOffset;
     vector <typeRecord*> variableList;
     vector <typeRecord*> parameterList;
-};
-
-struct typeRecord {
-    string name;
-    eletype elementType;
-    int scope;
-    int variableOffset;
 };
 
 string elementTypeMapper(eletype a);

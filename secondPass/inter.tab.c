@@ -504,14 +504,14 @@ static const yytype_uint8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint16 yyrline[] =
 {
-       0,    51,    51,    52,    55,    56,    57,    61,    65,    66,
-      73,    80,    84,    88,   107,   118,   129,   133,   138,   144,
-     153,   162,   168,   177,   186,   192,   208,   217,   233,   239,
-     243,   247,   252,   256,   260,   264,   268,   272,   277,   282,
-     286,   290,   297,   301,   305,   309,   313,   319,   328,   334,
-     350,   359,   373,   379,   383,   387,   391,   395,   399,   403,
-     412,   421,   433,   445,   454,   463,   472,   483,   487,   491,
-     495,   499,   509,   519,   531
+       0,    51,    51,    52,    55,    56,    57,    61,    65,    72,
+      73,    80,    84,    88,    99,   110,   131,   135,   141,   146,
+     155,   164,   170,   179,   191,   210,   216,   233,   243,   249,
+     253,   257,   262,   266,   270,   274,   278,   282,   287,   292,
+     296,   300,   304,   311,   315,   319,   323,   329,   339,   356,
+     362,   377,   383,   393,   397,   401,   405,   409,   413,   417,
+     426,   435,   447,   459,   468,   477,   486,   497,   501,   505,
+     509,   513,   523,   533,   545
 };
 #endif
 
@@ -583,22 +583,22 @@ static const yytype_int16 yypact[] =
 static const yytype_uint8 yydefact[] =
 {
        0,     0,     0,     0,     0,     0,     0,    16,     0,     0,
-       0,     0,     0,     0,     0,     0,     4,     5,     8,     0,
-      15,     0,     0,     6,     9,    10,    11,    12,     0,    17,
-      18,     0,     0,     0,     0,     7,    19,    20,    21,    22,
-       1,     0,     3,    14,     0,     0,     0,     0,     0,     0,
-       0,    23,    47,     0,    26,    30,     0,    29,     0,    50,
-      54,    53,     2,     0,     0,     0,     0,     0,     0,     0,
-       0,    13,     0,     0,     0,     0,     0,     0,     0,     0,
+       0,     0,     0,     0,     0,     0,     5,     4,     9,     0,
+      14,     0,     0,     6,    10,     8,    11,    12,     0,    18,
+      17,     0,     0,     0,     0,     7,    20,    19,    22,    21,
+       1,     0,     2,    13,     0,     0,     0,     0,     0,     0,
+       0,    23,    47,     0,    27,    29,     0,    30,     0,    52,
+      53,    54,     3,     0,     0,     0,     0,     0,     0,     0,
+       0,    15,     0,     0,     0,     0,     0,     0,     0,     0,
        0,     0,     0,     0,     0,     0,     0,     0,     0,     0,
        0,     0,     0,     0,     0,     0,     0,     0,     0,     0,
        0,     0,     0,     0,     0,     0,     0,     0,     0,     0,
        0,     0,     0,     0,     0,     0,    34,    32,    35,    33,
-      36,    37,    38,    39,    40,    42,    41,    43,    44,    45,
-      46,    59,    60,    62,    61,    63,    64,    65,    66,     0,
-       0,    55,    56,    57,    58,    67,    69,    68,    70,    71,
-      73,    72,    74,    25,    49,    24,    48,    31,    27,    28,
-      52,    51
+      36,    37,    38,    40,    39,    41,    42,    44,    43,    46,
+      45,    60,    59,    61,    62,    64,    63,    66,    65,     0,
+       0,    55,    56,    57,    58,    67,    70,    68,    69,    72,
+      74,    71,    73,    24,    48,    25,    49,    31,    26,    28,
+      51,    50
 };
 
   /* YYPGOTO[NTERM-NUM].  */
@@ -699,12 +699,12 @@ static const yytype_uint8 yyr1[] =
   /* YYR2[YYN] -- Number of symbols on the right hand side of rule YYN.  */
 static const yytype_uint8 yyr2[] =
 {
-       0,     2,     3,     2,     1,     1,     2,     2,     1,     2,
-       2,     2,     2,     4,     3,     2,     1,     2,     2,     2,
-       2,     2,     2,     3,     6,     6,     3,     6,     6,     3,
+       0,     2,     2,     3,     1,     1,     2,     2,     2,     1,
+       2,     2,     2,     3,     2,     4,     1,     2,     2,     2,
+       2,     2,     2,     3,     6,     6,     6,     3,     6,     3,
        3,     6,     5,     5,     5,     5,     5,     5,     5,     5,
        5,     5,     5,     5,     5,     5,     5,     3,     6,     6,
-       3,     6,     6,     3,     3,     5,     5,     5,     5,     5,
+       6,     6,     3,     3,     3,     5,     5,     5,     5,     5,
        5,     5,     5,     5,     5,     5,     5,     6,     6,     6,
        6,     6,     6,     6,     6
 };
@@ -1398,13 +1398,13 @@ yyreduce:
 #line 1399 "inter.tab.c" /* yacc.c:1646  */
     break;
 
-  case 9:
-#line 67 "inter.y" /* yacc.c:1646  */
+  case 8:
+#line 66 "inter.y" /* yacc.c:1646  */
     {
-        // The initial frame of the caller function remains intact, grows downwards for each param
-        parameterOffset += INTSIZE;
-        fprintf(mips, "sub $sp, $sp, %d\n", INTSIZE); // addu $sp, $sp, -INTSIZE
-        fprintf(mips, "sw $t%c, 0($sp)\n", (yyvsp[0].idName)[1]);     // sw $t0, 0($sp)
+        parameterOffset += FLOATSIZE;
+        fprintf(mips, "sub $sp, $sp, %d\n", FLOATSIZE);    // addu $sp, $sp, -INTSIZE
+        fprintf(mips, "mfc1 $s0, $f%s\n", (yyvsp[0].idName)+1);             // store a float reg into int reg s0
+        fprintf(mips, "sw $s0, 0($sp)\n");                 // sw $t0, 0($sp)
     }
 #line 1410 "inter.tab.c" /* yacc.c:1646  */
     break;
@@ -1412,10 +1412,10 @@ yyreduce:
   case 10:
 #line 74 "inter.y" /* yacc.c:1646  */
     {
-        parameterOffset += FLOATSIZE;
-        fprintf(mips, "sub $sp, $sp, %d\n", FLOATSIZE);    // addu $sp, $sp, -INTSIZE
-        fprintf(mips, "mfc1 $s0, $f%s\n", (yyvsp[0].idName)+1);             // store a float reg into int reg s0
-        fprintf(mips, "sw $s0, 0($sp)\n");                 // sw $t0, 0($sp)
+        // The initial frame of the caller function remains intact, grows downwards for each param
+        parameterOffset += INTSIZE;
+        fprintf(mips, "sub $sp, $sp, %d\n", INTSIZE); // addu $sp, $sp, -INTSIZE
+        fprintf(mips, "sw $t%c, 0($sp)\n", (yyvsp[0].idName)[1]);     // sw $t0, 0($sp)
     }
 #line 1421 "inter.tab.c" /* yacc.c:1646  */
     break;
@@ -1439,29 +1439,6 @@ yyreduce:
   case 13:
 #line 89 "inter.y" /* yacc.c:1646  */
     {
-        int frameSize = getFunctionOffset(functionList, activeFunction); 
-        saveRegisters(frameSize+parameterOffset);       // Save all temp registers
-        fprintf(mips, "jal %s\n", (yyvsp[-2].idName));                     // jal calling
-        getRegisters(frameSize+parameterOffset);   // retrieve all registers
-        if(returnValue==""){
-
-        } else if(returnValue[0] == 'F'){
-            fprintf(mips, "move $s0, $v0\n");   // move result to refparam
-            fprintf(mips, "mtc1 $s0, $f%s\n", returnValue.c_str()+1);   // move result to refparam
-        } else {
-            fprintf(mips, "move $t%c, $v0\n", returnValue[1]);   // move result to refparam 
-        }
-        int funcParamOffset = getParameterOffset(functionList, string((yyvsp[-2].idName)));
-        fprintf(mips, "add $sp, $sp, %d\n", funcParamOffset);  // collapse space used by parameters
-        parameterOffset-=funcParamOffset;
-        returnValue = "";
-    }
-#line 1460 "inter.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 14:
-#line 108 "inter.y" /* yacc.c:1646  */
-    {
         activeFunction = string((yyvsp[0].idName));
         fprintf(mips, "%s:\n", (yyvsp[0].idName));
         // Push return address and frame pointer to top of frame
@@ -1471,11 +1448,11 @@ yyreduce:
         fprintf(mips, "sw $fp, %d($sp)\n", frameSize-2*INTSIZE);
         fprintf(mips, "move $fp, $sp\n");
     }
-#line 1475 "inter.tab.c" /* yacc.c:1646  */
+#line 1452 "inter.tab.c" /* yacc.c:1646  */
     break;
 
-  case 15:
-#line 119 "inter.y" /* yacc.c:1646  */
+  case 14:
+#line 100 "inter.y" /* yacc.c:1646  */
     {
         int frameSize = getFunctionOffset(functionList, activeFunction);
         fprintf(mips, "end_%s:\n", activeFunction.c_str());
@@ -1486,51 +1463,63 @@ yyreduce:
         fprintf(mips, "j $ra\n");                                  // j       $31
         //nop
     }
-#line 1490 "inter.tab.c" /* yacc.c:1646  */
+#line 1467 "inter.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 15:
+#line 111 "inter.y" /* yacc.c:1646  */
+    {
+        int frameSize = getFunctionOffset(functionList, activeFunction); 
+        saveRegisters(frameSize+parameterOffset);       // Save all temp registers
+        fprintf(mips, "jal %s\n", (yyvsp[-2].idName));                     // jal calling
+        getRegisters(frameSize+parameterOffset);   // retrieve all registers
+        if(returnValue=="")
+        {
+
+        } else if(returnValue[0] == 'F')
+        {
+            fprintf(mips, "move $s0, $v0\n");   // move result to refparam
+            fprintf(mips, "mtc1 $s0, $f%s\n", returnValue.c_str()+1);   // move result to refparam
+        } else {
+            fprintf(mips, "move $t%c, $v0\n", returnValue[1]);   // move result to refparam 
+        }
+        int funcParamOffset = getParameterOffset(functionList, string((yyvsp[-2].idName)));
+        fprintf(mips, "add $sp, $sp, %d\n", funcParamOffset);  // collapse space used by parameters
+        parameterOffset-=funcParamOffset;
+        returnValue = "";
+    }
+#line 1492 "inter.tab.c" /* yacc.c:1646  */
     break;
 
   case 16:
-#line 130 "inter.y" /* yacc.c:1646  */
+#line 132 "inter.y" /* yacc.c:1646  */
     {
         fprintf(mips, "j end_%s\n", activeFunction.c_str());
     }
-#line 1498 "inter.tab.c" /* yacc.c:1646  */
+#line 1500 "inter.tab.c" /* yacc.c:1646  */
     break;
 
   case 17:
-#line 134 "inter.y" /* yacc.c:1646  */
-    {
-        fprintf(mips, "move $v0, $t%c\n", (yyvsp[0].idName)[1]);
-        fprintf(mips, "j end_%s\n", activeFunction.c_str());
-    }
-#line 1507 "inter.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 18:
-#line 139 "inter.y" /* yacc.c:1646  */
+#line 136 "inter.y" /* yacc.c:1646  */
     {
         fprintf(mips, "mfc1 $s0, $f%s\n", (yyvsp[0].idName)+1);
         fprintf(mips, "move $v0, $s0\n");
         fprintf(mips, "j end_%s\n", activeFunction.c_str());
     }
-#line 1517 "inter.tab.c" /* yacc.c:1646  */
+#line 1510 "inter.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 18:
+#line 142 "inter.y" /* yacc.c:1646  */
+    {
+        fprintf(mips, "move $v0, $t%c\n", (yyvsp[0].idName)[1]);
+        fprintf(mips, "j end_%s\n", activeFunction.c_str());
+    }
+#line 1519 "inter.tab.c" /* yacc.c:1646  */
     break;
 
   case 19:
-#line 145 "inter.y" /* yacc.c:1646  */
-    {
-        fprintf(mips, "move $a0, $t%s\n", (yyvsp[0].idName)+1);
-        fprintf(mips, "li $v0 1\n");
-        fprintf(mips, "syscall\n");
-        fprintf(mips, "li $v0, 4\n");//         li $v0, 4 # system call code for printing string = 4
-        fprintf(mips, "la $a0, endline\n");// la $a0, out_string # load address of string to be printed into $a0
-        fprintf(mips, "syscall\n");// syscall
-    }
-#line 1530 "inter.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 20:
-#line 154 "inter.y" /* yacc.c:1646  */
+#line 147 "inter.y" /* yacc.c:1646  */
     {
         fprintf(mips, "mov.s $f12, $f%s\n", (yyvsp[0].idName)+1);
         fprintf(mips, "li $v0 2\n");
@@ -1539,341 +1528,352 @@ yyreduce:
         fprintf(mips, "la $a0, endline\n");// la $a0, out_string # load address of string to be printed into $a0
         fprintf(mips, "syscall\n");// syscall
     }
-#line 1543 "inter.tab.c" /* yacc.c:1646  */
+#line 1532 "inter.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 20:
+#line 156 "inter.y" /* yacc.c:1646  */
+    {
+        fprintf(mips, "move $a0, $t%s\n", (yyvsp[0].idName)+1);
+        fprintf(mips, "li $v0 1\n");
+        fprintf(mips, "syscall\n");
+        fprintf(mips, "li $v0, 4\n");//         li $v0, 4 # system call code for printing string = 4
+        fprintf(mips, "la $a0, endline\n");// la $a0, out_string # load address of string to be printed into $a0
+        fprintf(mips, "syscall\n");// syscall
+    }
+#line 1545 "inter.tab.c" /* yacc.c:1646  */
     break;
 
   case 21:
-#line 163 "inter.y" /* yacc.c:1646  */
-    {
-        fprintf(mips, "li $v0 5\n");
-        fprintf(mips, "syscall\n");
-        fprintf(mips, "move $t%s, $v0\n", (yyvsp[0].idName)+1);
-    }
-#line 1553 "inter.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 22:
-#line 169 "inter.y" /* yacc.c:1646  */
+#line 165 "inter.y" /* yacc.c:1646  */
     {
         fprintf(mips, "li $v0 6\n");
         fprintf(mips, "syscall\n");
         fprintf(mips, "mov.s $f%s, $f0\n", (yyvsp[0].idName)+1);
     }
-#line 1563 "inter.tab.c" /* yacc.c:1646  */
+#line 1555 "inter.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 22:
+#line 171 "inter.y" /* yacc.c:1646  */
+    {
+        fprintf(mips, "li $v0 5\n");
+        fprintf(mips, "syscall\n");
+        fprintf(mips, "move $t%s, $v0\n", (yyvsp[0].idName)+1);
+    }
+#line 1565 "inter.tab.c" /* yacc.c:1646  */
     break;
 
   case 23:
-#line 178 "inter.y" /* yacc.c:1646  */
+#line 180 "inter.y" /* yacc.c:1646  */
     {
         int offset = getOffset(functionList, globalVariables, activeFunction, string((yyvsp[-2].idName)), 0, isGlobal)+parameterOffset;
-        if(!isGlobal){
+        if(isGlobal)
+        {
+            fprintf(mips, "sw $t%s, %s\n", (yyvsp[0].idName)+1, (yyvsp[-2].idName));
+        }
+        else
+        {
             fprintf(mips, "sw $t%c, %d($sp)\n", (yyvsp[0].idName)[1], offset);
-        } else {
-            fprintf(mips, "sw $t%s, %s\n", (yyvsp[0].idName)+1, (yyvsp[-2].idName)); 
         }
     }
-#line 1576 "inter.tab.c" /* yacc.c:1646  */
+#line 1581 "inter.tab.c" /* yacc.c:1646  */
     break;
 
   case 24:
-#line 187 "inter.y" /* yacc.c:1646  */
-    {
-        // useless
-        int offset = getOffset(functionList, globalVariables, activeFunction, string((yyvsp[-5].idName)), 0, isGlobal)+parameterOffset;
-        fprintf(mips, "sw $t%c, %d($sp)\n", (yyvsp[-3].idName)[1], offset);
-    }
-#line 1586 "inter.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 25:
-#line 193 "inter.y" /* yacc.c:1646  */
+#line 192 "inter.y" /* yacc.c:1646  */
     {
         int offset = getOffset(functionList, globalVariables, activeFunction, string((yyvsp[-5].idName)), 0, isGlobal)+parameterOffset;
-        if(!isGlobal){
-            fprintf(mips, "mul $t%s, $t%s, %d\n", (yyvsp[-3].idName)+1, (yyvsp[-3].idName)+1, INTSIZE);
-            fprintf(mips,"li $s1, %d\n", offset);
-            fprintf(mips,"addu $s0, $sp, $s1\n");
-            fprintf(mips,"sub $s0, $s0, $t%s\n", (yyvsp[-3].idName)+1);
-            fprintf(mips,"sw $t%s, 0($s0)\n", (yyvsp[0].idName)+1);
-        } else {
+        if(isGlobal)
+        {
             fprintf(mips, "mul $t%s, $t%s, %d\n", (yyvsp[-3].idName)+1, (yyvsp[-3].idName)+1, INTSIZE);
             fprintf(mips,"la $s1, %s\n", (yyvsp[-5].idName));
             fprintf(mips,"addu $s0, $s1, $t%s\n", (yyvsp[-3].idName)+1);
             fprintf(mips,"sw $t%s, 0($s0)\n", (yyvsp[0].idName)+1);
         }
+        else
+        {
+            fprintf(mips, "mul $t%s, $t%s, %d\n", (yyvsp[-3].idName)+1, (yyvsp[-3].idName)+1, INTSIZE);
+            fprintf(mips,"li $s1, %d\n", offset);
+            fprintf(mips,"addu $s0, $sp, $s1\n");
+            fprintf(mips,"sub $s0, $s0, $t%s\n", (yyvsp[-3].idName)+1);
+            fprintf(mips,"sw $t%s, 0($s0)\n", (yyvsp[0].idName)+1);
+        }
     }
-#line 1606 "inter.tab.c" /* yacc.c:1646  */
+#line 1604 "inter.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 25:
+#line 211 "inter.y" /* yacc.c:1646  */
+    {
+        // useless
+        int offset = getOffset(functionList, globalVariables, activeFunction, string((yyvsp[-5].idName)), 0, isGlobal)+parameterOffset;
+        fprintf(mips, "sw $t%c, %d($sp)\n", (yyvsp[-3].idName)[1], offset);
+    }
+#line 1614 "inter.tab.c" /* yacc.c:1646  */
     break;
 
   case 26:
-#line 209 "inter.y" /* yacc.c:1646  */
-    {
-        int offset = getOffset(functionList, globalVariables, activeFunction, string((yyvsp[0].idName)), 0, isGlobal)+parameterOffset;
-        if(!isGlobal){
-            fprintf(mips, "lw $t%c, %d($sp)\n", (yyvsp[-2].idName)[1], offset);
-        } else {
-            fprintf(mips, "lw $t%c, %s\n", (yyvsp[-2].idName)[1], (yyvsp[0].idName));
-        }
-    }
-#line 1619 "inter.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 27:
-#line 218 "inter.y" /* yacc.c:1646  */
+#line 217 "inter.y" /* yacc.c:1646  */
     {
         int offset = getOffset(functionList, globalVariables, activeFunction, string((yyvsp[-3].idName)), 0, isGlobal)+parameterOffset;
-        if(!isGlobal){
+        if(isGlobal)
+        {
+            fprintf(mips, "mul $t%s, $t%s, %d\n", (yyvsp[-1].idName)+1, (yyvsp[-1].idName)+1, INTSIZE);
+            fprintf(mips,"la $s0, %s\n", (yyvsp[-3].idName));
+            fprintf(mips,"addu $s0, $s0, $t%s\n", (yyvsp[-3].idName)+1);
+            fprintf(mips,"lw $t%s, 0($s0)\n", (yyvsp[-5].idName)+1);
+        } else {
             fprintf(mips, "mul $t%s, $t%s, %d\n", (yyvsp[-1].idName)+1, (yyvsp[-1].idName)+1, INTSIZE);
             fprintf(mips,"li $s1, %d\n", offset);
             fprintf(mips,"addu $s0, $sp, $s1\n");
             fprintf(mips,"sub $s0, $s0, $t%s\n", (yyvsp[-1].idName)+1);
             fprintf(mips,"lw $t%s, 0($s0)\n", (yyvsp[-5].idName)+1);
-        } else {
-            fprintf(mips, "mul $t%s, $t%s, %d\n", (yyvsp[-1].idName)+1, (yyvsp[-1].idName)+1, INTSIZE);
-            fprintf(mips,"la $s0, %s\n", (yyvsp[-3].idName));
-            fprintf(mips,"addu $s0, $s0, $t%s\n", (yyvsp[-3].idName)+1);
-            fprintf(mips,"lw $t%s, 0($s0)\n", (yyvsp[-5].idName)+1);
         }
     }
-#line 1639 "inter.tab.c" /* yacc.c:1646  */
+#line 1635 "inter.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 27:
+#line 234 "inter.y" /* yacc.c:1646  */
+    {
+        int offset = getOffset(functionList, globalVariables, activeFunction, string((yyvsp[0].idName)), 0, isGlobal)+parameterOffset;
+        if(isGlobal)
+        {
+            fprintf(mips, "lw $t%c, %s\n", (yyvsp[-2].idName)[1], (yyvsp[0].idName));
+        } else {
+            fprintf(mips, "lw $t%c, %d($sp)\n", (yyvsp[-2].idName)[1], offset);
+        }
+    }
+#line 1649 "inter.tab.c" /* yacc.c:1646  */
     break;
 
   case 28:
-#line 234 "inter.y" /* yacc.c:1646  */
+#line 244 "inter.y" /* yacc.c:1646  */
     {
         //useless
         int offset = getOffset(functionList, globalVariables, activeFunction, string((yyvsp[-3].idName)), 0, isGlobal)+parameterOffset;
         fprintf(mips, "sw $t%c, %d($sp)\n", (yyvsp[-5].idName)[1], offset);
     }
-#line 1649 "inter.tab.c" /* yacc.c:1646  */
+#line 1659 "inter.tab.c" /* yacc.c:1646  */
     break;
 
   case 29:
-#line 240 "inter.y" /* yacc.c:1646  */
-    {
-        fprintf(mips, "li $t%c, %s\n", (yyvsp[-2].idName)[1], (yyvsp[0].idName));
-    }
-#line 1657 "inter.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 30:
-#line 244 "inter.y" /* yacc.c:1646  */
+#line 250 "inter.y" /* yacc.c:1646  */
     {
         fprintf(mips, "move $t%c, $t%c\n", (yyvsp[-2].idName)[1], (yyvsp[0].idName)[3]);
     }
-#line 1665 "inter.tab.c" /* yacc.c:1646  */
+#line 1667 "inter.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 30:
+#line 254 "inter.y" /* yacc.c:1646  */
+    {
+        fprintf(mips, "li $t%c, %s\n", (yyvsp[-2].idName)[1], (yyvsp[0].idName));
+    }
+#line 1675 "inter.tab.c" /* yacc.c:1646  */
     break;
 
   case 31:
-#line 248 "inter.y" /* yacc.c:1646  */
+#line 258 "inter.y" /* yacc.c:1646  */
     {
         fprintf(mips, "cvt.w.s $f%s, $f%s\n", (yyvsp[-1].idName)+1, (yyvsp[-1].idName)+1);
         fprintf(mips, "mfc1 $t%c, $f%s\n", (yyvsp[-5].idName)[1], (yyvsp[-1].idName)+1);
     }
-#line 1674 "inter.tab.c" /* yacc.c:1646  */
+#line 1684 "inter.tab.c" /* yacc.c:1646  */
     break;
 
   case 32:
-#line 253 "inter.y" /* yacc.c:1646  */
+#line 263 "inter.y" /* yacc.c:1646  */
     {
         fprintf(mips, "addu $t%c, $t%c, %s\n", (yyvsp[-4].idName)[1], (yyvsp[-2].idName)[1], (yyvsp[0].idName));
     }
-#line 1682 "inter.tab.c" /* yacc.c:1646  */
+#line 1692 "inter.tab.c" /* yacc.c:1646  */
     break;
 
   case 33:
-#line 257 "inter.y" /* yacc.c:1646  */
+#line 267 "inter.y" /* yacc.c:1646  */
     {
         fprintf(mips, "subu $t%c, $t%c, %s\n", (yyvsp[-4].idName)[1], (yyvsp[-2].idName)[1], (yyvsp[0].idName));
     }
-#line 1690 "inter.tab.c" /* yacc.c:1646  */
+#line 1700 "inter.tab.c" /* yacc.c:1646  */
     break;
 
   case 34:
-#line 261 "inter.y" /* yacc.c:1646  */
+#line 271 "inter.y" /* yacc.c:1646  */
     {
         fprintf(mips, "add $t%c, $t%c, $t%c\n", (yyvsp[-4].idName)[1], (yyvsp[-2].idName)[1], (yyvsp[0].idName)[1]);
     }
-#line 1698 "inter.tab.c" /* yacc.c:1646  */
+#line 1708 "inter.tab.c" /* yacc.c:1646  */
     break;
 
   case 35:
-#line 265 "inter.y" /* yacc.c:1646  */
+#line 275 "inter.y" /* yacc.c:1646  */
     {
         fprintf(mips, "sub $t%c, $t%c, $t%c\n", (yyvsp[-4].idName)[1], (yyvsp[-2].idName)[1], (yyvsp[0].idName)[1]);
     }
-#line 1706 "inter.tab.c" /* yacc.c:1646  */
+#line 1716 "inter.tab.c" /* yacc.c:1646  */
     break;
 
   case 36:
-#line 269 "inter.y" /* yacc.c:1646  */
+#line 279 "inter.y" /* yacc.c:1646  */
     {
         fprintf(mips, "mul $t%c, $t%c, $t%c\n", (yyvsp[-4].idName)[1], (yyvsp[-2].idName)[1], (yyvsp[0].idName)[1]);
     }
-#line 1714 "inter.tab.c" /* yacc.c:1646  */
+#line 1724 "inter.tab.c" /* yacc.c:1646  */
     break;
 
   case 37:
-#line 273 "inter.y" /* yacc.c:1646  */
+#line 283 "inter.y" /* yacc.c:1646  */
     {
         fprintf(mips, "div $t%c, $t%c, $t%c\n", (yyvsp[-4].idName)[1], (yyvsp[-2].idName)[1], (yyvsp[0].idName)[1]);
         fprintf(mips, "mflo $t%c\n", (yyvsp[-4].idName)[1]);
     }
-#line 1723 "inter.tab.c" /* yacc.c:1646  */
+#line 1733 "inter.tab.c" /* yacc.c:1646  */
     break;
 
   case 38:
-#line 278 "inter.y" /* yacc.c:1646  */
+#line 288 "inter.y" /* yacc.c:1646  */
     {
         fprintf(mips, "div $t%c, $t%c, $t%c\n", (yyvsp[-4].idName)[1], (yyvsp[-2].idName)[1], (yyvsp[0].idName)[1]);
         fprintf(mips, "mfhi $t%c\n", (yyvsp[-4].idName)[1]);
     }
-#line 1732 "inter.tab.c" /* yacc.c:1646  */
+#line 1742 "inter.tab.c" /* yacc.c:1646  */
     break;
 
   case 39:
-#line 283 "inter.y" /* yacc.c:1646  */
-    {
-        fprintf(mips, "seq $t%c, $t%c, $t%c\n", (yyvsp[-4].idName)[1], (yyvsp[-2].idName)[1], (yyvsp[0].idName)[1]);
-    }
-#line 1740 "inter.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 40:
-#line 287 "inter.y" /* yacc.c:1646  */
+#line 293 "inter.y" /* yacc.c:1646  */
     {
         fprintf(mips, "sne $t%c, $t%c, $t%c\n", (yyvsp[-4].idName)[1], (yyvsp[-2].idName)[1], (yyvsp[0].idName)[1]);
     }
-#line 1748 "inter.tab.c" /* yacc.c:1646  */
+#line 1750 "inter.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 40:
+#line 297 "inter.y" /* yacc.c:1646  */
+    {
+        fprintf(mips, "seq $t%c, $t%c, $t%c\n", (yyvsp[-4].idName)[1], (yyvsp[-2].idName)[1], (yyvsp[0].idName)[1]);
+    }
+#line 1758 "inter.tab.c" /* yacc.c:1646  */
     break;
 
   case 41:
-#line 291 "inter.y" /* yacc.c:1646  */
+#line 301 "inter.y" /* yacc.c:1646  */
+    {
+        fprintf(mips, "or $t%c, $t%c, $t%c\n", (yyvsp[-4].idName)[1], (yyvsp[-2].idName)[1], (yyvsp[0].idName)[1]);
+    }
+#line 1766 "inter.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 42:
+#line 305 "inter.y" /* yacc.c:1646  */
     {
         // hack, will not arise when short-circuit is done
         fprintf(mips, "sne $t%c, $t%c, 0\n", (yyvsp[-2].idName)[1], (yyvsp[-2].idName)[1]);
         fprintf(mips, "sne $t%c, $t%c, 0\n", (yyvsp[0].idName)[1], (yyvsp[0].idName)[1]);
         fprintf(mips, "and $t%c, $t%c, $t%c\n", (yyvsp[-4].idName)[1], (yyvsp[-2].idName)[1], (yyvsp[0].idName)[1]);
     }
-#line 1759 "inter.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 42:
-#line 298 "inter.y" /* yacc.c:1646  */
-    {
-        fprintf(mips, "or $t%c, $t%c, $t%c\n", (yyvsp[-4].idName)[1], (yyvsp[-2].idName)[1], (yyvsp[0].idName)[1]);
-    }
-#line 1767 "inter.tab.c" /* yacc.c:1646  */
+#line 1777 "inter.tab.c" /* yacc.c:1646  */
     break;
 
   case 43:
-#line 302 "inter.y" /* yacc.c:1646  */
-    {
-        fprintf(mips, "slt $t%c, $t%c, $t%c\n", (yyvsp[-4].idName)[1], (yyvsp[-2].idName)[1], (yyvsp[0].idName)[1]);
-    }
-#line 1775 "inter.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 44:
-#line 306 "inter.y" /* yacc.c:1646  */
+#line 312 "inter.y" /* yacc.c:1646  */
     {
         fprintf(mips, "sgt $t%c, $t%c, $t%c\n", (yyvsp[-4].idName)[1], (yyvsp[-2].idName)[1], (yyvsp[0].idName)[1]);
     }
-#line 1783 "inter.tab.c" /* yacc.c:1646  */
+#line 1785 "inter.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 44:
+#line 316 "inter.y" /* yacc.c:1646  */
+    {
+        fprintf(mips, "slt $t%c, $t%c, $t%c\n", (yyvsp[-4].idName)[1], (yyvsp[-2].idName)[1], (yyvsp[0].idName)[1]);
+    }
+#line 1793 "inter.tab.c" /* yacc.c:1646  */
     break;
 
   case 45:
-#line 310 "inter.y" /* yacc.c:1646  */
-    {
-        fprintf(mips, "sle $t%c, $t%c, $t%c\n", (yyvsp[-4].idName)[1], (yyvsp[-2].idName)[1], (yyvsp[0].idName)[1]);
-    }
-#line 1791 "inter.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 46:
-#line 314 "inter.y" /* yacc.c:1646  */
+#line 320 "inter.y" /* yacc.c:1646  */
     {
         fprintf(mips, "sge $t%c, $t%c, $t%c\n", (yyvsp[-4].idName)[1], (yyvsp[-2].idName)[1], (yyvsp[0].idName)[1]);
     }
-#line 1799 "inter.tab.c" /* yacc.c:1646  */
+#line 1801 "inter.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 46:
+#line 324 "inter.y" /* yacc.c:1646  */
+    {
+        fprintf(mips, "sle $t%c, $t%c, $t%c\n", (yyvsp[-4].idName)[1], (yyvsp[-2].idName)[1], (yyvsp[0].idName)[1]);
+    }
+#line 1809 "inter.tab.c" /* yacc.c:1646  */
     break;
 
   case 47:
-#line 320 "inter.y" /* yacc.c:1646  */
+#line 330 "inter.y" /* yacc.c:1646  */
     {
         int offset = getOffset(functionList, globalVariables, activeFunction, string((yyvsp[-2].idName)), 0, isGlobal)+parameterOffset;
-        if(!isGlobal){
-            fprintf(mips, "s.s $f%s, %d($sp)\n", (yyvsp[0].idName)+1, offset);
-        } else {
+        if(isGlobal)
+        {
             fprintf(mips, "s.s $f%s, %s\n", (yyvsp[0].idName)+1, (yyvsp[-2].idName));
+        } else {
+            fprintf(mips, "s.s $f%s, %d($sp)\n", (yyvsp[0].idName)+1, offset);
         }
     }
-#line 1812 "inter.tab.c" /* yacc.c:1646  */
+#line 1823 "inter.tab.c" /* yacc.c:1646  */
     break;
 
   case 48:
-#line 329 "inter.y" /* yacc.c:1646  */
-    {
-        //useless
-        int offset = getOffset(functionList, globalVariables, activeFunction, string((yyvsp[-5].idName)), 0, isGlobal)+parameterOffset;
-        fprintf(mips, "s.s $f%s, %d($sp)\n", (yyvsp[-3].idName)+1, offset);
-    }
-#line 1822 "inter.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 49:
-#line 335 "inter.y" /* yacc.c:1646  */
+#line 340 "inter.y" /* yacc.c:1646  */
     {
         int offset = getOffset(functionList, globalVariables, activeFunction, string((yyvsp[-5].idName)), 0, isGlobal)+parameterOffset;
-        if(!isGlobal){
+        if(isGlobal)
+        {
+            fprintf(mips, "mul $t%s, $t%s, %d\n", (yyvsp[-3].idName)+1, (yyvsp[-3].idName)+1, INTSIZE);
+            fprintf(mips,"la $s1, %s\n", (yyvsp[-5].idName));
+            fprintf(mips,"addu $s0, $s1, $t%s\n", (yyvsp[-3].idName)+1);
+            fprintf(mips,"s.s $f%s, 0($s0)\n", (yyvsp[0].idName)+1);
+        } else {
             fprintf(mips, "mul $t%s, $t%s, %d\n", (yyvsp[-3].idName)+1, (yyvsp[-3].idName)+1, INTSIZE);
             fprintf(mips,"li $s1, %d\n", offset);
             fprintf(mips,"addu $s0, $sp, $s1\n");
             fprintf(mips,"sub $s0, $s0, $t%s\n", (yyvsp[-3].idName)+1);
             fprintf(mips,"s.s $f%s, 0($s0)\n", (yyvsp[0].idName)+1);
-        } else {
-            fprintf(mips, "mul $t%s, $t%s, %d\n", (yyvsp[-3].idName)+1, (yyvsp[-3].idName)+1, INTSIZE);
-            fprintf(mips,"la $s1, %s\n", (yyvsp[-5].idName));
-            fprintf(mips,"addu $s0, $s1, $t%s\n", (yyvsp[-3].idName)+1);
-            fprintf(mips,"s.s $f%s, 0($s0)\n", (yyvsp[0].idName)+1);
         }
     }
-#line 1842 "inter.tab.c" /* yacc.c:1646  */
+#line 1844 "inter.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 49:
+#line 357 "inter.y" /* yacc.c:1646  */
+    {
+        //useless
+        int offset = getOffset(functionList, globalVariables, activeFunction, string((yyvsp[-5].idName)), 0, isGlobal)+parameterOffset;
+        fprintf(mips, "s.s $f%s, %d($sp)\n", (yyvsp[-3].idName)+1, offset);
+    }
+#line 1854 "inter.tab.c" /* yacc.c:1646  */
     break;
 
   case 50:
-#line 351 "inter.y" /* yacc.c:1646  */
-    {
-        int offset = getOffset(functionList, globalVariables, activeFunction, string((yyvsp[0].idName)), 0, isGlobal)+parameterOffset;
-        if(!isGlobal){
-            fprintf(mips, "l.s $f%s, %d($sp)\n", (yyvsp[-2].idName)+1, offset);
-        } else {
-            fprintf(mips, "l.s $f%s, %s\n", (yyvsp[-2].idName)+1, (yyvsp[0].idName));
-        }
-    }
-#line 1855 "inter.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 51:
-#line 360 "inter.y" /* yacc.c:1646  */
+#line 363 "inter.y" /* yacc.c:1646  */
     {
         int offset = getOffset(functionList, globalVariables, activeFunction, string((yyvsp[-3].idName)), 0, isGlobal)+parameterOffset;
-        if(!isGlobal){
-            fprintf(mips, "mul $t%s, $t%s, %d\n", (yyvsp[-1].idName)+1, (yyvsp[-1].idName)+1, INTSIZE);
-            fprintf(mips, "subu $s0, $sp, $t%s\n", (yyvsp[-1].idName)+1);
-            fprintf(mips, "l.s $f%s, %d($s0)\n", (yyvsp[-5].idName)+1, offset);
-        } else {
+        if(isGlobal)
+        {
             fprintf(mips, "mul $t%s, $t%s, %d\n", (yyvsp[-1].idName)+1, (yyvsp[-1].idName)+1, INTSIZE);
             fprintf(mips,"la $s1, %s\n", (yyvsp[-3].idName));
             fprintf(mips,"addu $s0, $s1, $t%s\n", (yyvsp[-1].idName)+1);
             fprintf(mips,"l.s $f%s, 0($s0)\n", (yyvsp[-5].idName)+1);
+        } else {
+            fprintf(mips, "mul $t%s, $t%s, %d\n", (yyvsp[-1].idName)+1, (yyvsp[-1].idName)+1, INTSIZE);
+            fprintf(mips, "subu $s0, $sp, $t%s\n", (yyvsp[-1].idName)+1);
+            fprintf(mips, "l.s $f%s, %d($s0)\n", (yyvsp[-5].idName)+1, offset);
         }
     }
 #line 1873 "inter.tab.c" /* yacc.c:1646  */
     break;
 
-  case 52:
-#line 374 "inter.y" /* yacc.c:1646  */
+  case 51:
+#line 378 "inter.y" /* yacc.c:1646  */
     {
         // convert from integer to float
         fprintf(mips, "mtc1 $t%c, $f%s\n", (yyvsp[-1].idName)[1], (yyvsp[-5].idName)+1);
@@ -1882,153 +1882,154 @@ yyreduce:
 #line 1883 "inter.tab.c" /* yacc.c:1646  */
     break;
 
-  case 53:
-#line 380 "inter.y" /* yacc.c:1646  */
+  case 52:
+#line 384 "inter.y" /* yacc.c:1646  */
     {
-        fprintf(mips, "li.s $f%s, %s\n", (yyvsp[-2].idName)+1, (yyvsp[0].idName));
+        int offset = getOffset(functionList, globalVariables, activeFunction, string((yyvsp[0].idName)), 0, isGlobal)+parameterOffset;
+        if(isGlobal)
+        {
+            fprintf(mips, "l.s $f%s, %s\n", (yyvsp[-2].idName)+1, (yyvsp[0].idName));
+        } else {
+            fprintf(mips, "l.s $f%s, %d($sp)\n", (yyvsp[-2].idName)+1, offset);
+        }
     }
-#line 1891 "inter.tab.c" /* yacc.c:1646  */
+#line 1897 "inter.tab.c" /* yacc.c:1646  */
     break;
 
-  case 54:
-#line 384 "inter.y" /* yacc.c:1646  */
+  case 53:
+#line 394 "inter.y" /* yacc.c:1646  */
     {
         fprintf(mips, "mov.s $f%s, $f%s\n", (yyvsp[-2].idName)+1, (yyvsp[0].idName)+1);
     }
-#line 1899 "inter.tab.c" /* yacc.c:1646  */
+#line 1905 "inter.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 54:
+#line 398 "inter.y" /* yacc.c:1646  */
+    {
+        fprintf(mips, "li.s $f%s, %s\n", (yyvsp[-2].idName)+1, (yyvsp[0].idName));
+    }
+#line 1913 "inter.tab.c" /* yacc.c:1646  */
     break;
 
   case 55:
-#line 388 "inter.y" /* yacc.c:1646  */
+#line 402 "inter.y" /* yacc.c:1646  */
     {
         fprintf(mips, "add.s $f%s, $f%s, $f%s\n", (yyvsp[-4].idName)+1, (yyvsp[-2].idName)+1, (yyvsp[0].idName)+1);
     }
-#line 1907 "inter.tab.c" /* yacc.c:1646  */
+#line 1921 "inter.tab.c" /* yacc.c:1646  */
     break;
 
   case 56:
-#line 392 "inter.y" /* yacc.c:1646  */
+#line 406 "inter.y" /* yacc.c:1646  */
     {
         fprintf(mips, "sub.s $f%s, $f%s, $f%s\n", (yyvsp[-4].idName)+1, (yyvsp[-2].idName)+1, (yyvsp[0].idName)+1);
     }
-#line 1915 "inter.tab.c" /* yacc.c:1646  */
+#line 1929 "inter.tab.c" /* yacc.c:1646  */
     break;
 
   case 57:
-#line 396 "inter.y" /* yacc.c:1646  */
+#line 410 "inter.y" /* yacc.c:1646  */
     {
         fprintf(mips, "mul.s $f%s, $f%s, $f%s\n", (yyvsp[-4].idName)+1, (yyvsp[-2].idName)+1, (yyvsp[0].idName)+1);
     }
-#line 1923 "inter.tab.c" /* yacc.c:1646  */
+#line 1937 "inter.tab.c" /* yacc.c:1646  */
     break;
 
   case 58:
-#line 400 "inter.y" /* yacc.c:1646  */
+#line 414 "inter.y" /* yacc.c:1646  */
     {
         fprintf(mips, "div.s $f%s, $f%s, $f%s\n", (yyvsp[-4].idName)+1, (yyvsp[-2].idName)+1, (yyvsp[0].idName)+1);
     }
-#line 1931 "inter.tab.c" /* yacc.c:1646  */
+#line 1945 "inter.tab.c" /* yacc.c:1646  */
     break;
 
   case 59:
-#line 404 "inter.y" /* yacc.c:1646  */
+#line 418 "inter.y" /* yacc.c:1646  */
     {
-        fprintf(mips, "li $t%c, 0\n", (yyvsp[-4].idName)[1]);
+        fprintf(mips, "li $t%c, 1\n", (yyvsp[-4].idName)[1]);
         fprintf(mips, "c.eq.s $f%s, $f%s\n", (yyvsp[-2].idName)+1, (yyvsp[0].idName)+1);
         fprintf(mips, "bc1f FLOAT%d\n", floatLabel);
-        fprintf(mips, "li $t%c, 1\n", (yyvsp[-4].idName)[1]);
+        fprintf(mips, "li $t%c, 0\n", (yyvsp[-4].idName)[1]);
         fprintf(mips, "FLOAT%d:\n", floatLabel);
         floatLabel++;
     }
-#line 1944 "inter.tab.c" /* yacc.c:1646  */
+#line 1958 "inter.tab.c" /* yacc.c:1646  */
     break;
 
   case 60:
-#line 413 "inter.y" /* yacc.c:1646  */
+#line 427 "inter.y" /* yacc.c:1646  */
     {
-        fprintf(mips, "li $t%c, 1\n", (yyvsp[-4].idName)[1]);
+        fprintf(mips, "li $t%c, 0\n", (yyvsp[-4].idName)[1]);
         fprintf(mips, "c.eq.s $f%s, $f%s\n", (yyvsp[-2].idName)+1, (yyvsp[0].idName)+1);
         fprintf(mips, "bc1f FLOAT%d\n", floatLabel);
-        fprintf(mips, "li $t%c, 0\n", (yyvsp[-4].idName)[1]);
+        fprintf(mips, "li $t%c, 1\n", (yyvsp[-4].idName)[1]);
         fprintf(mips, "FLOAT%d:\n", floatLabel);
         floatLabel++;
     }
-#line 1957 "inter.tab.c" /* yacc.c:1646  */
+#line 1971 "inter.tab.c" /* yacc.c:1646  */
     break;
 
   case 61:
-#line 422 "inter.y" /* yacc.c:1646  */
+#line 436 "inter.y" /* yacc.c:1646  */
     {
         fprintf(mips, "li.d $f31, 0\n");
-        fprintf(mips, "li $t%c, 0\n", (yyvsp[-4].idName)[1]);
+        fprintf(mips, "li $t%c, 1\n", (yyvsp[-4].idName)[1]);
         fprintf(mips, "c.eq.s $f%s, $f31\n", (yyvsp[-2].idName)+1);
         fprintf(mips, "bc1f FLOAT%d\n", floatLabel);
         fprintf(mips, "c.eq.s $f%s, $f31\n", (yyvsp[0].idName)+1);
         fprintf(mips, "bc1f FLOAT%d\n", floatLabel);
-        fprintf(mips, "li $t%c, 1\n", (yyvsp[-4].idName)[1]);
+        fprintf(mips, "li $t%c, 0\n", (yyvsp[-4].idName)[1]);
         fprintf(mips, "FLOAT%d:\n", floatLabel);
         floatLabel++;
     }
-#line 1973 "inter.tab.c" /* yacc.c:1646  */
+#line 1987 "inter.tab.c" /* yacc.c:1646  */
     break;
 
   case 62:
-#line 434 "inter.y" /* yacc.c:1646  */
+#line 448 "inter.y" /* yacc.c:1646  */
     {
         fprintf(mips, "li.d $f31, 0\n");
-        fprintf(mips, "li $t%c, 1\n", (yyvsp[-4].idName)[1]);
+        fprintf(mips, "li $t%c, 0\n", (yyvsp[-4].idName)[1]);
         fprintf(mips, "c.eq.s $f%s, $f31\n", (yyvsp[-2].idName)+1);
         fprintf(mips, "bc1f FLOAT%d\n", floatLabel);
         fprintf(mips, "c.eq.s $f%s, $f31\n", (yyvsp[0].idName)+1);
         fprintf(mips, "bc1f FLOAT%d\n", floatLabel);
-        fprintf(mips, "li $t%c, 0\n", (yyvsp[-4].idName)[1]);
+        fprintf(mips, "li $t%c, 1\n", (yyvsp[-4].idName)[1]);
         fprintf(mips, "FLOAT%d:\n", floatLabel);
         floatLabel++;
     }
-#line 1989 "inter.tab.c" /* yacc.c:1646  */
+#line 2003 "inter.tab.c" /* yacc.c:1646  */
     break;
 
   case 63:
-#line 446 "inter.y" /* yacc.c:1646  */
+#line 460 "inter.y" /* yacc.c:1646  */
     {
-        fprintf(mips, "li $t%c, 0\n", (yyvsp[-4].idName)[1]);
-        fprintf(mips, "c.lt.s $f%s, $f%s\n", (yyvsp[-2].idName)+1, (yyvsp[0].idName)+1);
-        fprintf(mips, "bc1f FLOAT%d\n", floatLabel);
         fprintf(mips, "li $t%c, 1\n", (yyvsp[-4].idName)[1]);
+        fprintf(mips, "c.le.s $f%s, $f%s\n", (yyvsp[-2].idName)+1, (yyvsp[0].idName)+1);
+        fprintf(mips, "bc1f FLOAT%d\n", floatLabel);
+        fprintf(mips, "li $t%c, 0\n", (yyvsp[-4].idName)[1]);
         fprintf(mips, "FLOAT%d:\n", floatLabel);
         floatLabel++;
     }
-#line 2002 "inter.tab.c" /* yacc.c:1646  */
+#line 2016 "inter.tab.c" /* yacc.c:1646  */
     break;
 
   case 64:
-#line 455 "inter.y" /* yacc.c:1646  */
+#line 469 "inter.y" /* yacc.c:1646  */
     {
-        fprintf(mips, "li $t%c, 1\n", (yyvsp[-4].idName)[1]);
-        fprintf(mips, "c.le.s $f%s, $f%s\n", (yyvsp[-2].idName)+1, (yyvsp[0].idName)+1);
-        fprintf(mips, "bc1f FLOAT%d\n", floatLabel);
         fprintf(mips, "li $t%c, 0\n", (yyvsp[-4].idName)[1]);
+        fprintf(mips, "c.lt.s $f%s, $f%s\n", (yyvsp[-2].idName)+1, (yyvsp[0].idName)+1);
+        fprintf(mips, "bc1f FLOAT%d\n", floatLabel);
+        fprintf(mips, "li $t%c, 1\n", (yyvsp[-4].idName)[1]);
         fprintf(mips, "FLOAT%d:\n", floatLabel);
         floatLabel++;
     }
-#line 2015 "inter.tab.c" /* yacc.c:1646  */
+#line 2029 "inter.tab.c" /* yacc.c:1646  */
     break;
 
   case 65:
-#line 464 "inter.y" /* yacc.c:1646  */
-    {
-        fprintf(mips, "li $t%c, 0\n", (yyvsp[-4].idName)[1]);
-        fprintf(mips, "c.le.s $f%s, $f%s\n", (yyvsp[-2].idName)+1, (yyvsp[0].idName)+1);
-        fprintf(mips, "bc1f FLOAT%d\n", floatLabel);
-        fprintf(mips, "li $t%c, 1\n", (yyvsp[-4].idName)[1]);
-        fprintf(mips, "FLOAT%d:\n", floatLabel);
-        floatLabel++;
-    }
-#line 2028 "inter.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 66:
-#line 473 "inter.y" /* yacc.c:1646  */
+#line 478 "inter.y" /* yacc.c:1646  */
     {
         fprintf(mips, "li $t%c, 1\n", (yyvsp[-4].idName)[1]);
         fprintf(mips, "c.lt.s $f%s, $f%s\n", (yyvsp[-2].idName)+1, (yyvsp[0].idName)+1);
@@ -2037,57 +2038,56 @@ yyreduce:
         fprintf(mips, "FLOAT%d:\n", floatLabel);
         floatLabel++;
     }
-#line 2041 "inter.tab.c" /* yacc.c:1646  */
+#line 2042 "inter.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 66:
+#line 487 "inter.y" /* yacc.c:1646  */
+    {
+        fprintf(mips, "li $t%c, 0\n", (yyvsp[-4].idName)[1]);
+        fprintf(mips, "c.le.s $f%s, $f%s\n", (yyvsp[-2].idName)+1, (yyvsp[0].idName)+1);
+        fprintf(mips, "bc1f FLOAT%d\n", floatLabel);
+        fprintf(mips, "li $t%c, 1\n", (yyvsp[-4].idName)[1]);
+        fprintf(mips, "FLOAT%d:\n", floatLabel);
+        floatLabel++;
+    }
+#line 2055 "inter.tab.c" /* yacc.c:1646  */
     break;
 
   case 67:
-#line 484 "inter.y" /* yacc.c:1646  */
+#line 498 "inter.y" /* yacc.c:1646  */
     {
         fprintf(mips, "beq $t%c, $t%c, %s\n", (yyvsp[-4].idName)[1], (yyvsp[-2].idName)[1], (yyvsp[0].idName));
     }
-#line 2049 "inter.tab.c" /* yacc.c:1646  */
+#line 2063 "inter.tab.c" /* yacc.c:1646  */
     break;
 
   case 68:
-#line 488 "inter.y" /* yacc.c:1646  */
+#line 502 "inter.y" /* yacc.c:1646  */
     {
         fprintf(mips, "bne $t%c, $t%c, %s\n", (yyvsp[-4].idName)[1], (yyvsp[-2].idName)[1], (yyvsp[0].idName));
     }
-#line 2057 "inter.tab.c" /* yacc.c:1646  */
+#line 2071 "inter.tab.c" /* yacc.c:1646  */
     break;
 
   case 69:
-#line 492 "inter.y" /* yacc.c:1646  */
-    {
-        fprintf(mips, "beq $t%c, %s, %s\n", (yyvsp[-4].idName)[1], (yyvsp[-2].idName), (yyvsp[0].idName));
-    }
-#line 2065 "inter.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 70:
-#line 496 "inter.y" /* yacc.c:1646  */
+#line 506 "inter.y" /* yacc.c:1646  */
     {
         fprintf(mips, "bne $t%c, %s, %s\n", (yyvsp[-4].idName)[1], (yyvsp[-2].idName), (yyvsp[0].idName));
     }
-#line 2073 "inter.tab.c" /* yacc.c:1646  */
+#line 2079 "inter.tab.c" /* yacc.c:1646  */
     break;
 
-  case 71:
-#line 500 "inter.y" /* yacc.c:1646  */
+  case 70:
+#line 510 "inter.y" /* yacc.c:1646  */
     {
-        fprintf(mips, "li $s0, 1\n");
-        fprintf(mips, "c.eq.s $f%s, $f%s\n", (yyvsp[-4].idName)+1, (yyvsp[-2].idName)+1);
-        fprintf(mips, "bc1t FLOAT%d\n", floatLabel);
-        fprintf(mips, "li $s0, 0\n");
-        fprintf(mips, "FLOAT%d:\n", floatLabel);
-        fprintf(mips, "beq $s0, 1, %s\n", (yyvsp[0].idName));
-        floatLabel++;
+        fprintf(mips, "beq $t%c, %s, %s\n", (yyvsp[-4].idName)[1], (yyvsp[-2].idName), (yyvsp[0].idName));
     }
 #line 2087 "inter.tab.c" /* yacc.c:1646  */
     break;
 
-  case 72:
-#line 510 "inter.y" /* yacc.c:1646  */
+  case 71:
+#line 514 "inter.y" /* yacc.c:1646  */
     {
         fprintf(mips, "li $s0, 1\n");
         fprintf(mips, "c.eq.s $f%s, $f%s\n", (yyvsp[-4].idName)+1, (yyvsp[-2].idName)+1);
@@ -2100,24 +2100,22 @@ yyreduce:
 #line 2101 "inter.tab.c" /* yacc.c:1646  */
     break;
 
-  case 73:
-#line 520 "inter.y" /* yacc.c:1646  */
+  case 72:
+#line 524 "inter.y" /* yacc.c:1646  */
     {
-        fprintf(mips, "mtc1 $0, $f31\n");
-        fprintf(mips, "cvt.s.w $f31, $f31\n");
         fprintf(mips, "li $s0, 1\n");
-        fprintf(mips, "c.eq.s $f%s, $f31\n", (yyvsp[-4].idName)+1);
+        fprintf(mips, "c.eq.s $f%s, $f%s\n", (yyvsp[-4].idName)+1, (yyvsp[-2].idName)+1);
         fprintf(mips, "bc1t FLOAT%d\n", floatLabel);
         fprintf(mips, "li $s0, 0\n");
         fprintf(mips, "FLOAT%d:\n", floatLabel);
         fprintf(mips, "beq $s0, 1, %s\n", (yyvsp[0].idName));
         floatLabel++;
     }
-#line 2117 "inter.tab.c" /* yacc.c:1646  */
+#line 2115 "inter.tab.c" /* yacc.c:1646  */
     break;
 
-  case 74:
-#line 532 "inter.y" /* yacc.c:1646  */
+  case 73:
+#line 534 "inter.y" /* yacc.c:1646  */
     {
         fprintf(mips, "mtc1 $0, $f31\n");
         fprintf(mips, "cvt.s.w $f31, $f31\n");
@@ -2129,11 +2127,27 @@ yyreduce:
         fprintf(mips, "beq $s0, 1, %s\n", (yyvsp[0].idName));
         floatLabel++;
     }
-#line 2133 "inter.tab.c" /* yacc.c:1646  */
+#line 2131 "inter.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 74:
+#line 546 "inter.y" /* yacc.c:1646  */
+    {
+        fprintf(mips, "mtc1 $0, $f31\n");
+        fprintf(mips, "cvt.s.w $f31, $f31\n");
+        fprintf(mips, "li $s0, 1\n");
+        fprintf(mips, "c.eq.s $f%s, $f31\n", (yyvsp[-4].idName)+1);
+        fprintf(mips, "bc1t FLOAT%d\n", floatLabel);
+        fprintf(mips, "li $s0, 0\n");
+        fprintf(mips, "FLOAT%d:\n", floatLabel);
+        fprintf(mips, "beq $s0, 1, %s\n", (yyvsp[0].idName));
+        floatLabel++;
+    }
+#line 2147 "inter.tab.c" /* yacc.c:1646  */
     break;
 
 
-#line 2137 "inter.tab.c" /* yacc.c:1646  */
+#line 2151 "inter.tab.c" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -2361,29 +2375,35 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 545 "inter.y" /* yacc.c:1906  */
+#line 559 "inter.y" /* yacc.c:1906  */
 
 
-void saveRegisters(int frameSize){
-    for(int i=0; i<10; i++){
-        fprintf(mips, "sw $t%d, %d($sp)\n", i, frameSize-2*INTSIZE-(i+1)*INTSIZE);
-    }
-    for(int i=0; i<11; i++){
-        fprintf(mips, "s.s $f%d, %d($sp)\n", i, frameSize-2*INTSIZE-(i+11)*INTSIZE);
-    }
-}
-
-void getRegisters(int frameSize){
-    for(int i=0; i<10; i++){
+void getRegisters(int frameSize)
+{
+    for(int i=0; i<10; i++)
+    {
         fprintf(mips, "lw $t%d, %d($sp)\n", i, frameSize-2*INTSIZE-(i+1)*INTSIZE);
     }
-    for(int i=0; i<11; i++){
+    for(int i=0; i<11; i++)
+    {
         fprintf(mips, "l.s $f%d, %d($sp)\n", i, frameSize-2*INTSIZE-(i+11)*INTSIZE);
     }
 }
 
+void saveRegisters(int frameSize)
+{
+    for(int i=0; i<10; i++)
+    {
+        fprintf(mips, "sw $t%d, %d($sp)\n", i, frameSize-2*INTSIZE-(i+1)*INTSIZE);
+    }
+    for(int i=0; i<11; i++)
+    {
+        fprintf(mips, "s.s $f%d, %d($sp)\n", i, frameSize-2*INTSIZE-(i+11)*INTSIZE);
+    }
+}
+
 void yyerror(char *s)
-{      
+{
     printf("\nSyntax error %s at line %d\n", s, yylineno);
     // cout << BOLD(FRED("Error : ")) << FYEL("Syntax error " + string(s) + "in intermediate code at line " + to_string(yylineno)) << endl;
     fflush(stdout);
@@ -2392,12 +2412,13 @@ void yyerror(char *s)
 int main(int argc, char **argv)
 {
     readSymbolTable(functionList, globalVariables);
-    returnValue = ""; 
     isGlobal = false;
+    returnValue = "";
     mips = fopen("mips.s", "w");
     fflush(mips);
     fprintf(mips,".data\n");
-    for(auto it : globalVariables){
+    for(auto it : globalVariables)
+    {
         fprintf(mips, "%s: .space %d\n", it.name.c_str(), 4*(it.variableOffset));
     }
     fprintf(mips,"endline: .asciiz \"\\n\"\n");
