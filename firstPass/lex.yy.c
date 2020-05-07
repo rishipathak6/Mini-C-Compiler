@@ -365,19 +365,19 @@ struct yy_trans_info
 	};
 static const flex_int16_t yy_accept[120] =
     {   0,
-        0,    0,   59,   58,   57,   56,   44,   52,   46,   38,
-       39,   51,   48,   40,   49,   50,   54,   35,   19,   42,
-       41,   43,   55,   36,   37,   45,   55,   55,   55,   55,
+        0,    0,   59,   58,   57,   56,   45,   52,   46,   40,
+       41,   51,   48,   43,   49,   50,   54,   42,   19,   25,
+       44,   26,   55,   38,   39,   24,   55,   55,   55,   55,
        55,   55,   55,   55,   55,   55,   55,   55,   17,   47,
-       18,   23,   31,   26,   30,   33,   28,   34,   29,   32,
-        0,   54,   24,   20,   22,   21,   25,   55,   55,   55,
-       55,   55,   55,   55,   55,    4,   55,   55,   55,   55,
-       55,   55,   55,   27,   53,   55,   55,   55,   55,   55,
-       55,   11,    1,   55,   55,   55,   55,   55,   55,   55,
-       55,    6,   55,   55,    5,   55,   14,   55,   15,   55,
+       18,   21,   32,   34,   31,   36,   29,   37,   30,   33,
+        0,   54,   22,   27,   20,   28,   23,   55,   55,   55,
+       55,   55,   55,   55,   55,    2,   55,   55,   55,   55,
+       55,   55,   55,   35,   53,   55,   55,   55,   55,   55,
+       55,    9,   14,   55,   55,   55,   55,   55,   55,   55,
+       55,    1,   55,   55,    3,   55,   11,   55,   12,   55,
 
-       55,    3,   55,    7,   55,   55,    2,   16,   55,   55,
-       10,   55,   55,   12,   13,   55,    8,    9,    0
+       55,   16,   55,    5,   55,   55,   15,   13,   55,   55,
+        8,   55,   55,    4,   10,   55,    6,    7,    0
     } ;
 
 static const YY_CHAR yy_ec[256] =
@@ -736,9 +736,10 @@ YY_DECL
 		}
 
 	{
-#line 5 "miniC.l"
+#line 6 "miniC.l"
 
-#line 742 "lex.yy.c"
+
+#line 743 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -797,296 +798,296 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 6 "miniC.l"
-{ return INT; }
+#line 8 "miniC.l"
+{ return CASE; }
 	YY_BREAK
 case 2:
-YY_RULE_SETUP
-#line 7 "miniC.l"
-{ return FLOAT; }
-	YY_BREAK
-case 3:
-YY_RULE_SETUP
-#line 8 "miniC.l"
-{ return VOID; }
-	YY_BREAK
-case 4:
 YY_RULE_SETUP
 #line 9 "miniC.l"
 { return IF; }
 	YY_BREAK
-case 5:
+case 3:
 YY_RULE_SETUP
 #line 10 "miniC.l"
 { return ELSE; }
 	YY_BREAK
-case 6:
+case 4:
 YY_RULE_SETUP
 #line 11 "miniC.l"
-{ return CASE; }
+{ return RETURN; }
 	YY_BREAK
-case 7:
+case 5:
 YY_RULE_SETUP
 #line 12 "miniC.l"
 { return BREAK; }
 	YY_BREAK
-case 8:
+case 6:
 YY_RULE_SETUP
 #line 13 "miniC.l"
 { return DEFAULT; }
 	YY_BREAK
-case 9:
+case 7:
 YY_RULE_SETUP
 #line 14 "miniC.l"
 { return CONTINUE; }
 	YY_BREAK
-case 10:
+case 8:
 YY_RULE_SETUP
 #line 15 "miniC.l"
 { return WHILE; }
 	YY_BREAK
-case 11:
+case 9:
 YY_RULE_SETUP
 #line 16 "miniC.l"
 { return FOR; }
 	YY_BREAK
-case 12:
+case 10:
 YY_RULE_SETUP
 #line 17 "miniC.l"
-{ return RETURN; }
+{ return SWITCH; }
+	YY_BREAK
+case 11:
+YY_RULE_SETUP
+#line 18 "miniC.l"
+{ return MAIN; }
+	YY_BREAK
+case 12:
+YY_RULE_SETUP
+#line 19 "miniC.l"
+{ return READ; }
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 18 "miniC.l"
-{ return SWITCH; }
+#line 20 "miniC.l"
+{ return PRINT; }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 19 "miniC.l"
-{ return MAIN; }
+#line 22 "miniC.l"
+{ return INT; }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 20 "miniC.l"
-{ return READ; }
+#line 23 "miniC.l"
+{ return FLOAT; }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 21 "miniC.l"
-{ return PRINT; }
+#line 24 "miniC.l"
+{ return VOID; }
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 23 "miniC.l"
+#line 26 "miniC.l"
 { return LCURLYB; }
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 24 "miniC.l"
+#line 27 "miniC.l"
 { return RCURLYB; }
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 25 "miniC.l"
+#line 28 "miniC.l"
 { return SEMI; }
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 26 "miniC.l"
-{ return LESSEQUAL; }
+#line 29 "miniC.l"
+{ return EQUAL; }
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 27 "miniC.l"
-{ return GREATEQUAL; }
+#line 30 "miniC.l"
+{ return NOTEQUAL; }
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 28 "miniC.l"
-{ return EQUAL; }
+#line 31 "miniC.l"
+{ return LSHIFT; }
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 29 "miniC.l"
-{ return NOTEQUAL; }
+#line 32 "miniC.l"
+{ return RSHIFT; }
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 30 "miniC.l"
-{ return LSHIFT; }
+#line 33 "miniC.l"
+{ return XOR; }
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 31 "miniC.l"
-{ return RSHIFT; }
+#line 34 "miniC.l"
+{ return LESSTHAN; }
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 32 "miniC.l"
-{ return AND; }
+#line 35 "miniC.l"
+{ return GREATTHAN; }
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 33 "miniC.l"
-{ return OR; }
+#line 36 "miniC.l"
+{ return LESSEQUAL; }
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 34 "miniC.l"
-{ return PLUSASSIGNMENT; }
+#line 37 "miniC.l"
+{ return GREATEQUAL; }
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 35 "miniC.l"
-{ return MINASSIGNMENT; }
+#line 38 "miniC.l"
+{ return PLUSASSIGNMENT; }
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 36 "miniC.l"
-{ return MULASSIGNMENT; }
+#line 39 "miniC.l"
+{ return MINASSIGNMENT; }
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 37 "miniC.l"
-{ return MODASSIGNMENT; }
+#line 40 "miniC.l"
+{ return MULASSIGNMENT; }
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 38 "miniC.l"
-{ return DIVASSIGNMENT; }
+#line 41 "miniC.l"
+{ return MODASSIGNMENT; }
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 39 "miniC.l"
-{ return INCREMENT; }
+#line 42 "miniC.l"
+{ return DIVASSIGNMENT; }
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 40 "miniC.l"
-{ return DECREMENT; }
+#line 43 "miniC.l"
+{ return AND; }
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 41 "miniC.l"
-{ return COLON; }
+#line 44 "miniC.l"
+{ return OR; }
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 42 "miniC.l"
-{ return LSQUAREB; }
+#line 45 "miniC.l"
+{ return INCREMENT; }
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 43 "miniC.l"
-{ return RSQUAREB; }
+#line 46 "miniC.l"
+{ return DECREMENT; }
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 44 "miniC.l"
-{ return LPARE; }
+#line 47 "miniC.l"
+{ return LSQUAREB; }
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
-#line 45 "miniC.l"
-{ return RPARE; }
+#line 48 "miniC.l"
+{ return RSQUAREB; }
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 46 "miniC.l"
-{ return COMMA; }
+#line 49 "miniC.l"
+{ return LPARE; }
 	YY_BREAK
 case 41:
 YY_RULE_SETUP
-#line 47 "miniC.l"
-{ return ASSIGN; }
+#line 50 "miniC.l"
+{ return RPARE; }
 	YY_BREAK
 case 42:
 YY_RULE_SETUP
-#line 48 "miniC.l"
-{ return LESSTHAN; }
+#line 51 "miniC.l"
+{ return COLON; }
 	YY_BREAK
 case 43:
 YY_RULE_SETUP
-#line 49 "miniC.l"
-{ return GREATTHAN; }
+#line 52 "miniC.l"
+{ return COMMA; }
 	YY_BREAK
 case 44:
 YY_RULE_SETUP
-#line 50 "miniC.l"
-{ return NOT; }
+#line 53 "miniC.l"
+{ return ASSIGN; }
 	YY_BREAK
 case 45:
 YY_RULE_SETUP
-#line 51 "miniC.l"
-{ return XOR; }
+#line 54 "miniC.l"
+{ return NOT; }
 	YY_BREAK
 case 46:
 YY_RULE_SETUP
-#line 52 "miniC.l"
+#line 55 "miniC.l"
 { return BITAND; }
 	YY_BREAK
 case 47:
 YY_RULE_SETUP
-#line 53 "miniC.l"
+#line 56 "miniC.l"
 { return BITOR; }
 	YY_BREAK
 case 48:
 YY_RULE_SETUP
-#line 54 "miniC.l"
+#line 57 "miniC.l"
 { return PLUS; }
 	YY_BREAK
 case 49:
 YY_RULE_SETUP
-#line 55 "miniC.l"
+#line 58 "miniC.l"
 { return MINUS; }
 	YY_BREAK
 case 50:
 YY_RULE_SETUP
-#line 56 "miniC.l"
+#line 59 "miniC.l"
 { return DIV; }
 	YY_BREAK
 case 51:
 YY_RULE_SETUP
-#line 57 "miniC.l"
+#line 60 "miniC.l"
 { return MUL; }
 	YY_BREAK
 case 52:
 YY_RULE_SETUP
-#line 58 "miniC.l"
+#line 61 "miniC.l"
 { return MOD; }
 	YY_BREAK
 case 53:
 YY_RULE_SETUP
-#line 60 "miniC.l"
+#line 63 "miniC.l"
 { yylval.idName = (char *)malloc(100); memset(yylval.idName, 0, 100); memcpy(yylval.idName, yytext, yyleng); return DATAFLOAT; }
 	YY_BREAK
 case 54:
 YY_RULE_SETUP
-#line 61 "miniC.l"
+#line 64 "miniC.l"
 { yylval.idName = (char *)malloc(100); memset(yylval.idName, 0, 100); memcpy(yylval.idName, yytext, yyleng); return DATAINT; }
 	YY_BREAK
 case 55:
 YY_RULE_SETUP
-#line 62 "miniC.l"
+#line 65 "miniC.l"
 { yylval.idName = (char *)malloc(100); memset(yylval.idName, 0, 100); memcpy(yylval.idName, yytext, yyleng); return ID; }
 	YY_BREAK
 case 56:
 /* rule 56 can match eol */
 YY_RULE_SETUP
-#line 64 "miniC.l"
+#line 67 "miniC.l"
 { yylineno++;}
 	YY_BREAK
 case 57:
 YY_RULE_SETUP
-#line 65 "miniC.l"
+#line 68 "miniC.l"
 {/* ignore whitespace */ }
 	YY_BREAK
 case 58:
 YY_RULE_SETUP
-#line 66 "miniC.l"
+#line 69 "miniC.l"
 ECHO;
 	YY_BREAK
-#line 1090 "lex.yy.c"
+#line 1091 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -2091,5 +2092,5 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 66 "miniC.l"
+#line 69 "miniC.l"
 

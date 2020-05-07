@@ -2,53 +2,56 @@
 # include "miniC.tab.h"
 %}
 %option noyywrap
+
 %%
-"int"                           { return INT; }
-"float"                         { return FLOAT; }
-"void"                          { return VOID; }
+
+"case"                          { return CASE; }
 "if"                            { return IF; }
 "else"                          { return ELSE; }
-"case"                          { return CASE; }
+"return"                        { return RETURN; }
 "break"                         { return BREAK; }
 "default"                       { return DEFAULT; }
 "continue"                      { return CONTINUE; }
 "while"                         { return WHILE; }
 "for"                           { return FOR; }
-"return"                        { return RETURN; }
 "switch"                        { return SWITCH; }
 "main"                          { return MAIN; }
 "read"                          { return READ; }
 "print"                         { return PRINT; }
 
+"int"                           { return INT; }
+"float"                         { return FLOAT; }
+"void"                          { return VOID; }
+
 "{"                             { return LCURLYB; }
 "}"                             { return RCURLYB; }
 ";"                             { return SEMI; }
-"<="                            { return LESSEQUAL; }
-">="                            { return GREATEQUAL; }
 "=="                            { return EQUAL; }
 "!="                            { return NOTEQUAL; }
 "<<"                            { return LSHIFT; }
 ">>"                            { return RSHIFT; }
-"&&"                            { return AND; }
-"||"                            { return OR; }
+"^"                             { return XOR; }
+"<"                             { return LESSTHAN; }
+">"                             { return GREATTHAN; }
+"<="                            { return LESSEQUAL; }
+">="                            { return GREATEQUAL; }
 "+="                            { return PLUSASSIGNMENT; }
 "-="                            { return MINASSIGNMENT; }
 "*="                            { return MULASSIGNMENT; }
 "%="                            { return MODASSIGNMENT; }
 "/="                            { return DIVASSIGNMENT; }
+"&&"                            { return AND; }
+"||"                            { return OR; }
 "++"                            { return INCREMENT; }
 "--"                            { return DECREMENT; }
-":"                             { return COLON; }
 "["                             { return LSQUAREB; }
 "]"                             { return RSQUAREB; }
 "("                             { return LPARE; }
 ")"                             { return RPARE; }
+":"                             { return COLON; }
 ","                             { return COMMA; }
 "="                             { return ASSIGN; }
-"<"                             { return LESSTHAN; }
-">"                             { return GREATTHAN; }
 "!"                             { return NOT; }
-"^"                             { return XOR; }
 "&"                             { return BITAND; }
 "|"                             { return BITOR; }
 "+"                             { return PLUS; }
