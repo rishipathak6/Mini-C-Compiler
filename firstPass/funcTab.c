@@ -8,14 +8,6 @@ void patchDataType(eletype elementType, vector<typeRecord*> &typeRecordList, int
     return;
 }
 
-void insertSymTab(vector<typeRecord*> &typeRecordList, functionEntry* activeFunctionPointer) {
-    if (activeFunctionPointer == NULL) {
-        return;
-    }
-    activeFunctionPointer->variableList.insert(activeFunctionPointer->variableList.end(), typeRecordList.begin(), typeRecordList.end());
-    return;
-}
-
 void insertGlobalVariables(vector<typeRecord*> &typeRecordList, vector<typeRecord*> &globalVariables){
     globalVariables.insert(globalVariables.end(), typeRecordList.begin(), typeRecordList.end());
 }
@@ -28,24 +20,14 @@ void insertParamTab(vector<typeRecord*> &typeRecordList, functionEntry* activeFu
     activeFunctionPointer->numOfParam+=typeRecordList.size();
 }
 
-void deleteVariableList(functionEntry* activeFunctionPointer, int scope){
-    if(activeFunctionPointer == NULL) {
+void insertSymTab(vector<typeRecord*> &typeRecordList, functionEntry* activeFunctionPointer) {
+    if (activeFunctionPointer == NULL) {
         return;
     }
-    vector <typeRecord*> variableList;
-
-    for(auto it:activeFunctionPointer->variableList){
-        if(it->scope==scope){
-            it->isValid = false;
-        }
-        // if(it->scope!=scope){
-        //     variableList.push_back(it);
-        // } else {
-        //     free(it);
-        // }
-    }
-    // activeFunctionPointer->variableList.swap(variableList);
+    activeFunctionPointer->variableList.insert(activeFunctionPointer->variableList.end(), typeRecordList.begin(), typeRecordList.end());
+    return;
 }
+
 
 void searchVariable(string name, functionEntry* activeFunctionPointer, int &found, typeRecord *&vn, int scope) {
     if(activeFunctionPointer == NULL) {
@@ -70,6 +52,25 @@ void searchVariable(string name, functionEntry* activeFunctionPointer, int &foun
     return;
 }
 
+void deleteVariableList(functionEntry* activeFunctionPointer, int scope){
+    if(activeFunctionPointer == NULL) {
+        return;
+    }
+    vector <typeRecord*> variableList;
+
+    for(auto it:activeFunctionPointer->variableList){
+        if(it->scope==scope){
+            it->isValid = false;
+        }
+        // if(it->scope!=scope){
+        //     variableList.push_back(it);
+        // } else {
+        //     free(it);
+        // }
+    }
+    // activeFunctionPointer->variableList.swap(variableList);
+}
+
 void searchGlobalVariable(string name, vector<typeRecord*> &globalVariables, int &found, typeRecord *&vn, int scope){
     bool flag=false;
     for (auto it : globalVariables) {
@@ -85,6 +86,8 @@ void searchGlobalVariable(string name, vector<typeRecord*> &globalVariables, int
     found = 0;
     vn = NULL;
 }
+
+
 
 void searchCallVariable(string name, functionEntry* activeFunctionPointer, int &found, typeRecord *&vn, vector<typeRecord*> &globalVariables) {
     if(activeFunctionPointer == NULL) {
@@ -124,20 +127,6 @@ void searchCallVariable(string name, functionEntry* activeFunctionPointer, int &
     return;
 }
 
-void searchParameter(string name, vector<typeRecord*> &parameterList, int &found, typeRecord *&pn) {
-    vector<typeRecord*> :: reverse_iterator i;
-    for (i = parameterList.rbegin(); i != parameterList.rend(); ++i){
-        if(name == (*i)->name){
-            found = 1;
-            pn = (*i);
-            return;
-        }
-    }
-    found = 0;
-    pn = NULL;
-    return;
-}
-
 void searchFunc(functionEntry* activeFunctionPointer, vector<functionEntry*> &functionEntryRecord, int &found){
     for (auto it : functionEntryRecord) {
         if(it->name == activeFunctionPointer->name) {
@@ -172,42 +161,30 @@ void compareFunc(functionEntry* &callFunctionPointer, vector<functionEntry*> &fu
     return;    
 }
 
-void printList(vector<functionEntry*> &functionEntryRecord){
-    
-    for(auto it:functionEntryRecord){
-        cout<<"Function Entry: "<<(it->name)<<endl;
-        cout<<"Printing Parameter List"<<endl;
-        for(auto it2:it->parameterList){
-            cout<<(it2->name)<<" "<<(it2->elementType)<<endl;
+void searchParameter(string name, vector<typeRecord*> &parameterList, int &found, typeRecord *&pn) {
+    vector<typeRecord*> :: reverse_iterator i;
+    for (i = parameterList.rbegin(); i != parameterList.rend(); ++i){
+        if(name == (*i)->name){
+            found = 1;
+            pn = (*i);
+            return;
         }
-        cout<<"Printing Variable List"<<endl;
-        for(auto it2:it->parameterList){
-            cout<<(it2->name)<<" "<<(it2->elementType)<<endl;
-        } 
     }
+    found = 0;
+    pn = NULL;
+    return;
 }
 
-void printFunction(functionEntry* &activeFunctionPointer){
-    
-        cout<<"Function Entry: --"<<(activeFunctionPointer->name)<<"--"<<endl;
-        cout<<"Printing Parameter List"<<endl;
-        for(auto it2:activeFunctionPointer->parameterList){
-            cout<<(it2->name)<<" "<<(it2->elementType)<<endl;
-        }
-        cout<<"Printing Variable List"<<endl;
-        for(auto it2:activeFunctionPointer->variableList){
-            cout<<(it2->name)<<" "<<(it2->elementType)<<endl;
-        } 
+int varTypeMapper(varType a){
+    switch(a){
+        case SIMPLE : return 0;
+        case ARRAY  : return 1;
+    }
+    return 2;
 }
 
 void addFunction(functionEntry* activeFunctionPointer, vector<functionEntry*> &functionEntryRecord){
     functionEntryRecord.push_back(activeFunctionPointer);
-}
-
-bool arithmeticCompatible(eletype type1, eletype type2) {
-    if ((type1 == INTEGER || type1 == FLOATING)
-        && (type2 == INTEGER || type2 == FLOATING)) return true;
-    return false;
 }
 
 eletype compareTypes(eletype type1, eletype type2) {
@@ -224,44 +201,6 @@ eletype compareTypes(eletype type1, eletype type2) {
         return FLOATING;
     }
     else return NULLVOID;
-}
-
-string elementTypeMapper(eletype a){
-    switch(a){
-        case INTEGER   : return "int";
-        case FLOATING  : return "float";
-        case NULLVOID  : return "void";
-        case BOOLEAN   : return "bool";
-        case ERRORTYPE : return "error";
-    }
-    return "vvv";
-}
-
-int eletypeIntMapper(eletype a){
-    switch(a){
-        case INTEGER   : return 0;
-        case FLOATING  : return 1;
-        case NULLVOID  : return 2;
-        case BOOLEAN   : return 3;
-        case ERRORTYPE : return 4;
-    }
-    return 5;
-}
-
-int varTypeMapper(varType a){
-    switch(a){
-        case SIMPLE : return 0;
-        case ARRAY  : return 1;
-    }
-    return 2;
-}
-
-int TagMapper(Tag a){
-    switch(a){
-        case PARAMAETER : return 0;
-        case VARIABLE   : return 1;
-    }
-    return 2;
 }
 
 void populateOffsets(vector<functionEntry*> &functionEntryRecord, vector<typeRecord*> &globalVariables){
@@ -282,6 +221,42 @@ void populateOffsets(vector<functionEntry*> &functionEntryRecord, vector<typeRec
         funcRecord->functionOffset = offset;
     }
     printSymbolTable(functionEntryRecord, globalVariables);
+}
+
+string elementTypeMapper(eletype a){
+    switch(a){
+        case INTEGER   : return "int";
+        case FLOATING  : return "float";
+        case NULLVOID  : return "void";
+        case BOOLEAN   : return "bool";
+        case ERRORTYPE : return "error";
+    }
+    return "vvv";
+}
+
+bool arithmeticCompatible(eletype type1, eletype type2) {
+    if ((type1 == INTEGER || type1 == FLOATING)
+        && (type2 == INTEGER || type2 == FLOATING)) return true;
+    return false;
+}
+
+int eletypeIntMapper(eletype a){
+    switch(a){
+        case INTEGER   : return 0;
+        case FLOATING  : return 1;
+        case NULLVOID  : return 2;
+        case BOOLEAN   : return 3;
+        case ERRORTYPE : return 4;
+    }
+    return 5;
+}
+
+int TagMapper(Tag a){
+    switch(a){
+        case PARAMAETER : return 0;
+        case VARIABLE   : return 1;
+    }
+    return 2;
 }
 
 void printSymbolTable(vector<functionEntry*> &functionEntryRecord, vector<typeRecord*> &globalVariables){
@@ -322,4 +297,32 @@ void printSymbolTable(vector<functionEntry*> &functionEntryRecord, vector<typeRe
     }
     symbolTable.flush();
     symbolTable.close();
+}
+
+void printList(vector<functionEntry*> &functionEntryRecord){
+    
+    for(auto it:functionEntryRecord){
+        cout<<"Function Entry: "<<(it->name)<<endl;
+        cout<<"Printing Parameter List"<<endl;
+        for(auto it2:it->parameterList){
+            cout<<(it2->name)<<" "<<(it2->elementType)<<endl;
+        }
+        cout<<"Printing Variable List"<<endl;
+        for(auto it2:it->parameterList){
+            cout<<(it2->name)<<" "<<(it2->elementType)<<endl;
+        } 
+    }
+}
+
+void printFunction(functionEntry* &activeFunctionPointer){
+    
+        cout<<"Function Entry: --"<<(activeFunctionPointer->name)<<"--"<<endl;
+        cout<<"Printing Parameter List"<<endl;
+        for(auto it2:activeFunctionPointer->parameterList){
+            cout<<(it2->name)<<" "<<(it2->elementType)<<endl;
+        }
+        cout<<"Printing Variable List"<<endl;
+        for(auto it2:activeFunctionPointer->variableList){
+            cout<<(it2->name)<<" "<<(it2->elementType)<<endl;
+        } 
 }

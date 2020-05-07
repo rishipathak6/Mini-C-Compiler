@@ -14,21 +14,6 @@ string registerSet::getRegister() {
     return reg;
 }
 
-string registerSet::getFloatRegister() {
-    string reg = "";
-    if (floatRegister.size()==0) {
-        cout << BOLD(FRED("FATAL ERROR : Exceeded maximum temporary Float registers")) << endl;
-        exit(1);
-        return reg;
-    }
-    reg += "F";
-    int x = floatRegister[floatRegister.size()-1];
-    reg += to_string(x);
-    floatRegister.pop_back();
-    return reg;
-}
-
-
 void registerSet::freeRegister(string s){
     if(s[0]=='F'){
         s[0] = '0';
@@ -64,19 +49,6 @@ void gen(vector<string> &functionInstruction, string instruction, int &nextQuad)
     return;
 }
 
-void backPatch(vector<int> *&lineNumbers, int labelNumber, vector<string> &functionInstruction){
-    if(lineNumbers == NULL){
-        cout << "Given line numbers for "<<labelNumber<<" is NULL"<<endl;
-        return;
-    }
-    string statement;
-    for(int it : (*lineNumbers)){
-        // statement = functionInstruction[it];        // statement +=("L"+ to_string(labelNumber));
-        functionInstruction[it] += (to_string(labelNumber));
-    }
-    lineNumbers->clear();
-}
-
 void merge(vector<int> *&receiver, vector<int> *&donor) {
     if(donor==NULL || receiver == NULL){
         // cout<<"Conitnued because vector empty"<<endl;
@@ -89,6 +61,20 @@ void merge(vector<int> *&receiver, vector<int> *&donor) {
     return;
 }
 
+string registerSet::getFloatRegister() {
+    string reg = "";
+    if (floatRegister.size()==0) {
+        cout << BOLD(FRED("FATAL ERROR : Exceeded maximum temporary Float registers")) << endl;
+        exit(1);
+        return reg;
+    }
+    reg += "F";
+    int x = floatRegister[floatRegister.size()-1];
+    reg += to_string(x);
+    floatRegister.pop_back();
+    return reg;
+}
+
 void mergeSwitch(vector<pair<string,int>> *&receiver,vector<pair<string,int>> *&donor) {
     if(donor==NULL || receiver == NULL){
         // cout<<"Conitnued because vector empty"<<endl;
@@ -99,4 +85,17 @@ void mergeSwitch(vector<pair<string,int>> *&receiver,vector<pair<string,int>> *&
     }
     donor->clear();
     return;
+}
+
+void backPatch(vector<int> *&lineNumbers, int labelNumber, vector<string> &functionInstruction){
+    if(lineNumbers == NULL){
+        cout << "Given line numbers for "<<labelNumber<<" is NULL"<<endl;
+        return;
+    }
+    string statement;
+    for(int it : (*lineNumbers)){
+        // statement = functionInstruction[it];        // statement +=("L"+ to_string(labelNumber));
+        functionInstruction[it] += (to_string(labelNumber));
+    }
+    lineNumbers->clear();
 }
