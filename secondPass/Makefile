@@ -1,6 +1,6 @@
-inter:	inter.l inter.y symTabParser.c
-	bison -d inter.y
-	flex inter.l
-	g++ -o $@ inter.tab.c lex.yy.c symTabParser.c
-clean:	inter inter.tab.c inter.tab.h lex.yy.c
-	rm inter inter.tab.c inter.tab.h lex.yy.c
+second_pass:	second_pass.l second_pass.y help2.c
+	bison -d second_pass.y
+	flex second_pass.l
+	g++ -o $@ second_pass.tab.c lex.yy.c help2.c
+clean:	second_pass second_pass.tab.c second_pass.tab.h lex.yy.c
+	rm second_pass second_pass.tab.c second_pass.tab.h lex.yy.c

@@ -62,7 +62,7 @@
 
 
 /* Copy the first part of user declarations.  */
-#line 1 "inter.y" /* yacc.c:339  */
+#line 1 "second_pass.y" /* yacc.c:339  */
 
 #pragma GCC diagnostic ignored "-Wwrite-strings"
 #include <iostream>
@@ -70,7 +70,7 @@
 #include <stack>
 #include <stdio.h>
 #include <fstream>
-#include "symTabParser.h"
+#include "help2.h"
 using namespace std;
 
 #define INTSIZE 4
@@ -95,7 +95,7 @@ void saveRegisters(int frameSize);
 void getRegisters(int frameSize);  
 bool isGlobal;  
 
-#line 99 "inter.tab.c" /* yacc.c:339  */
+#line 99 "second_pass.tab.c" /* yacc.c:339  */
 
 # ifndef YY_NULLPTR
 #  if defined __cplusplus && 201103L <= __cplusplus
@@ -114,9 +114,9 @@ bool isGlobal;
 #endif
 
 /* In a future release of Bison, this section will be replaced
-   by #include "inter.tab.h".  */
-#ifndef YY_YY_INTER_TAB_H_INCLUDED
-# define YY_YY_INTER_TAB_H_INCLUDED
+   by #include "second_pass.tab.h".  */
+#ifndef YY_YY_SECOND_PASS_TAB_H_INCLUDED
+# define YY_YY_SECOND_PASS_TAB_H_INCLUDED
 /* Debug traces.  */
 #ifndef YYDEBUG
 # define YYDEBUG 0
@@ -180,13 +180,13 @@ extern int yydebug;
 
 union YYSTYPE
 {
-#line 34 "inter.y" /* yacc.c:355  */
+#line 34 "second_pass.y" /* yacc.c:355  */
 
     int intValue;
     float floatValue;
     char *idName;
 
-#line 190 "inter.tab.c" /* yacc.c:355  */
+#line 190 "second_pass.tab.c" /* yacc.c:355  */
 };
 
 typedef union YYSTYPE YYSTYPE;
@@ -199,11 +199,11 @@ extern YYSTYPE yylval;
 
 int yyparse (void);
 
-#endif /* !YY_YY_INTER_TAB_H_INCLUDED  */
+#endif /* !YY_YY_SECOND_PASS_TAB_H_INCLUDED  */
 
 /* Copy the second part of user declarations.  */
 
-#line 207 "inter.tab.c" /* yacc.c:358  */
+#line 207 "second_pass.tab.c" /* yacc.c:358  */
 
 #ifdef short
 # undef short
@@ -1383,61 +1383,61 @@ yyreduce:
   switch (yyn)
     {
         case 6:
-#line 58 "inter.y" /* yacc.c:1646  */
+#line 58 "second_pass.y" /* yacc.c:1646  */
     {
         fprintf(mips, "j %s\n", (yyvsp[0].idName));
     }
-#line 1391 "inter.tab.c" /* yacc.c:1646  */
+#line 1391 "second_pass.tab.c" /* yacc.c:1646  */
     break;
 
   case 7:
-#line 62 "inter.y" /* yacc.c:1646  */
+#line 62 "second_pass.y" /* yacc.c:1646  */
     {
         fprintf(mips, "%s:\n", (yyvsp[-1].idName));
     }
-#line 1399 "inter.tab.c" /* yacc.c:1646  */
+#line 1399 "second_pass.tab.c" /* yacc.c:1646  */
     break;
 
   case 8:
-#line 66 "inter.y" /* yacc.c:1646  */
+#line 66 "second_pass.y" /* yacc.c:1646  */
     {
         parameterOffset += FLOATSIZE;
         fprintf(mips, "sub $sp, $sp, %d\n", FLOATSIZE);    // addu $sp, $sp, -INTSIZE
         fprintf(mips, "mfc1 $s0, $f%s\n", (yyvsp[0].idName)+1);             // store a float reg into int reg s0
         fprintf(mips, "sw $s0, 0($sp)\n");                 // sw $t0, 0($sp)
     }
-#line 1410 "inter.tab.c" /* yacc.c:1646  */
+#line 1410 "second_pass.tab.c" /* yacc.c:1646  */
     break;
 
   case 10:
-#line 74 "inter.y" /* yacc.c:1646  */
+#line 74 "second_pass.y" /* yacc.c:1646  */
     {
         // The initial frame of the caller function remains intact, grows downwards for each param
         parameterOffset += INTSIZE;
         fprintf(mips, "sub $sp, $sp, %d\n", INTSIZE); // addu $sp, $sp, -INTSIZE
         fprintf(mips, "sw $t%c, 0($sp)\n", (yyvsp[0].idName)[1]);     // sw $t0, 0($sp)
     }
-#line 1421 "inter.tab.c" /* yacc.c:1646  */
+#line 1421 "second_pass.tab.c" /* yacc.c:1646  */
     break;
 
   case 11:
-#line 81 "inter.y" /* yacc.c:1646  */
+#line 81 "second_pass.y" /* yacc.c:1646  */
     {
         returnValue = string((yyvsp[0].idName));
     }
-#line 1429 "inter.tab.c" /* yacc.c:1646  */
+#line 1429 "second_pass.tab.c" /* yacc.c:1646  */
     break;
 
   case 12:
-#line 85 "inter.y" /* yacc.c:1646  */
+#line 85 "second_pass.y" /* yacc.c:1646  */
     {
         returnValue = string((yyvsp[0].idName));
     }
-#line 1437 "inter.tab.c" /* yacc.c:1646  */
+#line 1437 "second_pass.tab.c" /* yacc.c:1646  */
     break;
 
   case 13:
-#line 89 "inter.y" /* yacc.c:1646  */
+#line 89 "second_pass.y" /* yacc.c:1646  */
     {
         activeFunction = string((yyvsp[0].idName));
         fprintf(mips, "%s:\n", (yyvsp[0].idName));
@@ -1448,11 +1448,11 @@ yyreduce:
         fprintf(mips, "sw $fp, %d($sp)\n", frameSize-2*INTSIZE);
         fprintf(mips, "move $fp, $sp\n");
     }
-#line 1452 "inter.tab.c" /* yacc.c:1646  */
+#line 1452 "second_pass.tab.c" /* yacc.c:1646  */
     break;
 
   case 14:
-#line 100 "inter.y" /* yacc.c:1646  */
+#line 100 "second_pass.y" /* yacc.c:1646  */
     {
         int frameSize = getFunctionOffset(functionList, activeFunction);
         fprintf(mips, "end_%s:\n", activeFunction.c_str());
@@ -1463,11 +1463,11 @@ yyreduce:
         fprintf(mips, "j $ra\n");                                  // j       $31
         //nop
     }
-#line 1467 "inter.tab.c" /* yacc.c:1646  */
+#line 1467 "second_pass.tab.c" /* yacc.c:1646  */
     break;
 
   case 15:
-#line 111 "inter.y" /* yacc.c:1646  */
+#line 111 "second_pass.y" /* yacc.c:1646  */
     {
         int frameSize = getFunctionOffset(functionList, activeFunction); 
         saveRegisters(frameSize+parameterOffset);       // Save all temp registers
@@ -1488,38 +1488,38 @@ yyreduce:
         parameterOffset-=funcParamOffset;
         returnValue = "";
     }
-#line 1492 "inter.tab.c" /* yacc.c:1646  */
+#line 1492 "second_pass.tab.c" /* yacc.c:1646  */
     break;
 
   case 16:
-#line 132 "inter.y" /* yacc.c:1646  */
+#line 132 "second_pass.y" /* yacc.c:1646  */
     {
         fprintf(mips, "j end_%s\n", activeFunction.c_str());
     }
-#line 1500 "inter.tab.c" /* yacc.c:1646  */
+#line 1500 "second_pass.tab.c" /* yacc.c:1646  */
     break;
 
   case 17:
-#line 136 "inter.y" /* yacc.c:1646  */
+#line 136 "second_pass.y" /* yacc.c:1646  */
     {
         fprintf(mips, "mfc1 $s0, $f%s\n", (yyvsp[0].idName)+1);
         fprintf(mips, "move $v0, $s0\n");
         fprintf(mips, "j end_%s\n", activeFunction.c_str());
     }
-#line 1510 "inter.tab.c" /* yacc.c:1646  */
+#line 1510 "second_pass.tab.c" /* yacc.c:1646  */
     break;
 
   case 18:
-#line 142 "inter.y" /* yacc.c:1646  */
+#line 142 "second_pass.y" /* yacc.c:1646  */
     {
         fprintf(mips, "move $v0, $t%c\n", (yyvsp[0].idName)[1]);
         fprintf(mips, "j end_%s\n", activeFunction.c_str());
     }
-#line 1519 "inter.tab.c" /* yacc.c:1646  */
+#line 1519 "second_pass.tab.c" /* yacc.c:1646  */
     break;
 
   case 19:
-#line 147 "inter.y" /* yacc.c:1646  */
+#line 147 "second_pass.y" /* yacc.c:1646  */
     {
         fprintf(mips, "mov.s $f12, $f%s\n", (yyvsp[0].idName)+1);
         fprintf(mips, "li $v0 2\n");
@@ -1528,11 +1528,11 @@ yyreduce:
         fprintf(mips, "la $a0, endline\n");// la $a0, out_string # load address of string to be printed into $a0
         fprintf(mips, "syscall\n");// syscall
     }
-#line 1532 "inter.tab.c" /* yacc.c:1646  */
+#line 1532 "second_pass.tab.c" /* yacc.c:1646  */
     break;
 
   case 20:
-#line 156 "inter.y" /* yacc.c:1646  */
+#line 156 "second_pass.y" /* yacc.c:1646  */
     {
         fprintf(mips, "move $a0, $t%s\n", (yyvsp[0].idName)+1);
         fprintf(mips, "li $v0 1\n");
@@ -1541,31 +1541,31 @@ yyreduce:
         fprintf(mips, "la $a0, endline\n");// la $a0, out_string # load address of string to be printed into $a0
         fprintf(mips, "syscall\n");// syscall
     }
-#line 1545 "inter.tab.c" /* yacc.c:1646  */
+#line 1545 "second_pass.tab.c" /* yacc.c:1646  */
     break;
 
   case 21:
-#line 165 "inter.y" /* yacc.c:1646  */
+#line 165 "second_pass.y" /* yacc.c:1646  */
     {
         fprintf(mips, "li $v0 6\n");
         fprintf(mips, "syscall\n");
         fprintf(mips, "mov.s $f%s, $f0\n", (yyvsp[0].idName)+1);
     }
-#line 1555 "inter.tab.c" /* yacc.c:1646  */
+#line 1555 "second_pass.tab.c" /* yacc.c:1646  */
     break;
 
   case 22:
-#line 171 "inter.y" /* yacc.c:1646  */
+#line 171 "second_pass.y" /* yacc.c:1646  */
     {
         fprintf(mips, "li $v0 5\n");
         fprintf(mips, "syscall\n");
         fprintf(mips, "move $t%s, $v0\n", (yyvsp[0].idName)+1);
     }
-#line 1565 "inter.tab.c" /* yacc.c:1646  */
+#line 1565 "second_pass.tab.c" /* yacc.c:1646  */
     break;
 
   case 23:
-#line 180 "inter.y" /* yacc.c:1646  */
+#line 180 "second_pass.y" /* yacc.c:1646  */
     {
         int offset = getOffset(functionList, globalVariables, activeFunction, string((yyvsp[-2].idName)), 0, isGlobal)+parameterOffset;
         if(isGlobal)
@@ -1577,11 +1577,11 @@ yyreduce:
             fprintf(mips, "sw $t%c, %d($sp)\n", (yyvsp[0].idName)[1], offset);
         }
     }
-#line 1581 "inter.tab.c" /* yacc.c:1646  */
+#line 1581 "second_pass.tab.c" /* yacc.c:1646  */
     break;
 
   case 24:
-#line 192 "inter.y" /* yacc.c:1646  */
+#line 192 "second_pass.y" /* yacc.c:1646  */
     {
         int offset = getOffset(functionList, globalVariables, activeFunction, string((yyvsp[-5].idName)), 0, isGlobal)+parameterOffset;
         if(isGlobal)
@@ -1600,21 +1600,21 @@ yyreduce:
             fprintf(mips,"sw $t%s, 0($s0)\n", (yyvsp[0].idName)+1);
         }
     }
-#line 1604 "inter.tab.c" /* yacc.c:1646  */
+#line 1604 "second_pass.tab.c" /* yacc.c:1646  */
     break;
 
   case 25:
-#line 211 "inter.y" /* yacc.c:1646  */
+#line 211 "second_pass.y" /* yacc.c:1646  */
     {
         // useless
         int offset = getOffset(functionList, globalVariables, activeFunction, string((yyvsp[-5].idName)), 0, isGlobal)+parameterOffset;
         fprintf(mips, "sw $t%c, %d($sp)\n", (yyvsp[-3].idName)[1], offset);
     }
-#line 1614 "inter.tab.c" /* yacc.c:1646  */
+#line 1614 "second_pass.tab.c" /* yacc.c:1646  */
     break;
 
   case 26:
-#line 217 "inter.y" /* yacc.c:1646  */
+#line 217 "second_pass.y" /* yacc.c:1646  */
     {
         int offset = getOffset(functionList, globalVariables, activeFunction, string((yyvsp[-3].idName)), 0, isGlobal)+parameterOffset;
         if(isGlobal)
@@ -1631,11 +1631,11 @@ yyreduce:
             fprintf(mips,"lw $t%s, 0($s0)\n", (yyvsp[-5].idName)+1);
         }
     }
-#line 1635 "inter.tab.c" /* yacc.c:1646  */
+#line 1635 "second_pass.tab.c" /* yacc.c:1646  */
     break;
 
   case 27:
-#line 234 "inter.y" /* yacc.c:1646  */
+#line 234 "second_pass.y" /* yacc.c:1646  */
     {
         int offset = getOffset(functionList, globalVariables, activeFunction, string((yyvsp[0].idName)), 0, isGlobal)+parameterOffset;
         if(isGlobal)
@@ -1645,171 +1645,171 @@ yyreduce:
             fprintf(mips, "lw $t%c, %d($sp)\n", (yyvsp[-2].idName)[1], offset);
         }
     }
-#line 1649 "inter.tab.c" /* yacc.c:1646  */
+#line 1649 "second_pass.tab.c" /* yacc.c:1646  */
     break;
 
   case 28:
-#line 244 "inter.y" /* yacc.c:1646  */
+#line 244 "second_pass.y" /* yacc.c:1646  */
     {
         //useless
         int offset = getOffset(functionList, globalVariables, activeFunction, string((yyvsp[-3].idName)), 0, isGlobal)+parameterOffset;
         fprintf(mips, "sw $t%c, %d($sp)\n", (yyvsp[-5].idName)[1], offset);
     }
-#line 1659 "inter.tab.c" /* yacc.c:1646  */
+#line 1659 "second_pass.tab.c" /* yacc.c:1646  */
     break;
 
   case 29:
-#line 250 "inter.y" /* yacc.c:1646  */
+#line 250 "second_pass.y" /* yacc.c:1646  */
     {
         fprintf(mips, "move $t%c, $t%c\n", (yyvsp[-2].idName)[1], (yyvsp[0].idName)[3]);
     }
-#line 1667 "inter.tab.c" /* yacc.c:1646  */
+#line 1667 "second_pass.tab.c" /* yacc.c:1646  */
     break;
 
   case 30:
-#line 254 "inter.y" /* yacc.c:1646  */
+#line 254 "second_pass.y" /* yacc.c:1646  */
     {
         fprintf(mips, "li $t%c, %s\n", (yyvsp[-2].idName)[1], (yyvsp[0].idName));
     }
-#line 1675 "inter.tab.c" /* yacc.c:1646  */
+#line 1675 "second_pass.tab.c" /* yacc.c:1646  */
     break;
 
   case 31:
-#line 258 "inter.y" /* yacc.c:1646  */
+#line 258 "second_pass.y" /* yacc.c:1646  */
     {
         fprintf(mips, "cvt.w.s $f%s, $f%s\n", (yyvsp[-1].idName)+1, (yyvsp[-1].idName)+1);
         fprintf(mips, "mfc1 $t%c, $f%s\n", (yyvsp[-5].idName)[1], (yyvsp[-1].idName)+1);
     }
-#line 1684 "inter.tab.c" /* yacc.c:1646  */
+#line 1684 "second_pass.tab.c" /* yacc.c:1646  */
     break;
 
   case 32:
-#line 263 "inter.y" /* yacc.c:1646  */
+#line 263 "second_pass.y" /* yacc.c:1646  */
     {
         fprintf(mips, "addu $t%c, $t%c, %s\n", (yyvsp[-4].idName)[1], (yyvsp[-2].idName)[1], (yyvsp[0].idName));
     }
-#line 1692 "inter.tab.c" /* yacc.c:1646  */
+#line 1692 "second_pass.tab.c" /* yacc.c:1646  */
     break;
 
   case 33:
-#line 267 "inter.y" /* yacc.c:1646  */
+#line 267 "second_pass.y" /* yacc.c:1646  */
     {
         fprintf(mips, "subu $t%c, $t%c, %s\n", (yyvsp[-4].idName)[1], (yyvsp[-2].idName)[1], (yyvsp[0].idName));
     }
-#line 1700 "inter.tab.c" /* yacc.c:1646  */
+#line 1700 "second_pass.tab.c" /* yacc.c:1646  */
     break;
 
   case 34:
-#line 271 "inter.y" /* yacc.c:1646  */
+#line 271 "second_pass.y" /* yacc.c:1646  */
     {
         fprintf(mips, "add $t%c, $t%c, $t%c\n", (yyvsp[-4].idName)[1], (yyvsp[-2].idName)[1], (yyvsp[0].idName)[1]);
     }
-#line 1708 "inter.tab.c" /* yacc.c:1646  */
+#line 1708 "second_pass.tab.c" /* yacc.c:1646  */
     break;
 
   case 35:
-#line 275 "inter.y" /* yacc.c:1646  */
+#line 275 "second_pass.y" /* yacc.c:1646  */
     {
         fprintf(mips, "sub $t%c, $t%c, $t%c\n", (yyvsp[-4].idName)[1], (yyvsp[-2].idName)[1], (yyvsp[0].idName)[1]);
     }
-#line 1716 "inter.tab.c" /* yacc.c:1646  */
+#line 1716 "second_pass.tab.c" /* yacc.c:1646  */
     break;
 
   case 36:
-#line 279 "inter.y" /* yacc.c:1646  */
+#line 279 "second_pass.y" /* yacc.c:1646  */
     {
         fprintf(mips, "mul $t%c, $t%c, $t%c\n", (yyvsp[-4].idName)[1], (yyvsp[-2].idName)[1], (yyvsp[0].idName)[1]);
     }
-#line 1724 "inter.tab.c" /* yacc.c:1646  */
+#line 1724 "second_pass.tab.c" /* yacc.c:1646  */
     break;
 
   case 37:
-#line 283 "inter.y" /* yacc.c:1646  */
+#line 283 "second_pass.y" /* yacc.c:1646  */
     {
         fprintf(mips, "div $t%c, $t%c, $t%c\n", (yyvsp[-4].idName)[1], (yyvsp[-2].idName)[1], (yyvsp[0].idName)[1]);
         fprintf(mips, "mflo $t%c\n", (yyvsp[-4].idName)[1]);
     }
-#line 1733 "inter.tab.c" /* yacc.c:1646  */
+#line 1733 "second_pass.tab.c" /* yacc.c:1646  */
     break;
 
   case 38:
-#line 288 "inter.y" /* yacc.c:1646  */
+#line 288 "second_pass.y" /* yacc.c:1646  */
     {
         fprintf(mips, "div $t%c, $t%c, $t%c\n", (yyvsp[-4].idName)[1], (yyvsp[-2].idName)[1], (yyvsp[0].idName)[1]);
         fprintf(mips, "mfhi $t%c\n", (yyvsp[-4].idName)[1]);
     }
-#line 1742 "inter.tab.c" /* yacc.c:1646  */
+#line 1742 "second_pass.tab.c" /* yacc.c:1646  */
     break;
 
   case 39:
-#line 293 "inter.y" /* yacc.c:1646  */
+#line 293 "second_pass.y" /* yacc.c:1646  */
     {
         fprintf(mips, "sne $t%c, $t%c, $t%c\n", (yyvsp[-4].idName)[1], (yyvsp[-2].idName)[1], (yyvsp[0].idName)[1]);
     }
-#line 1750 "inter.tab.c" /* yacc.c:1646  */
+#line 1750 "second_pass.tab.c" /* yacc.c:1646  */
     break;
 
   case 40:
-#line 297 "inter.y" /* yacc.c:1646  */
+#line 297 "second_pass.y" /* yacc.c:1646  */
     {
         fprintf(mips, "seq $t%c, $t%c, $t%c\n", (yyvsp[-4].idName)[1], (yyvsp[-2].idName)[1], (yyvsp[0].idName)[1]);
     }
-#line 1758 "inter.tab.c" /* yacc.c:1646  */
+#line 1758 "second_pass.tab.c" /* yacc.c:1646  */
     break;
 
   case 41:
-#line 301 "inter.y" /* yacc.c:1646  */
+#line 301 "second_pass.y" /* yacc.c:1646  */
     {
         fprintf(mips, "or $t%c, $t%c, $t%c\n", (yyvsp[-4].idName)[1], (yyvsp[-2].idName)[1], (yyvsp[0].idName)[1]);
     }
-#line 1766 "inter.tab.c" /* yacc.c:1646  */
+#line 1766 "second_pass.tab.c" /* yacc.c:1646  */
     break;
 
   case 42:
-#line 305 "inter.y" /* yacc.c:1646  */
+#line 305 "second_pass.y" /* yacc.c:1646  */
     {
         // hack, will not arise when short-circuit is done
         fprintf(mips, "sne $t%c, $t%c, 0\n", (yyvsp[-2].idName)[1], (yyvsp[-2].idName)[1]);
         fprintf(mips, "sne $t%c, $t%c, 0\n", (yyvsp[0].idName)[1], (yyvsp[0].idName)[1]);
         fprintf(mips, "and $t%c, $t%c, $t%c\n", (yyvsp[-4].idName)[1], (yyvsp[-2].idName)[1], (yyvsp[0].idName)[1]);
     }
-#line 1777 "inter.tab.c" /* yacc.c:1646  */
+#line 1777 "second_pass.tab.c" /* yacc.c:1646  */
     break;
 
   case 43:
-#line 312 "inter.y" /* yacc.c:1646  */
+#line 312 "second_pass.y" /* yacc.c:1646  */
     {
         fprintf(mips, "sgt $t%c, $t%c, $t%c\n", (yyvsp[-4].idName)[1], (yyvsp[-2].idName)[1], (yyvsp[0].idName)[1]);
     }
-#line 1785 "inter.tab.c" /* yacc.c:1646  */
+#line 1785 "second_pass.tab.c" /* yacc.c:1646  */
     break;
 
   case 44:
-#line 316 "inter.y" /* yacc.c:1646  */
+#line 316 "second_pass.y" /* yacc.c:1646  */
     {
         fprintf(mips, "slt $t%c, $t%c, $t%c\n", (yyvsp[-4].idName)[1], (yyvsp[-2].idName)[1], (yyvsp[0].idName)[1]);
     }
-#line 1793 "inter.tab.c" /* yacc.c:1646  */
+#line 1793 "second_pass.tab.c" /* yacc.c:1646  */
     break;
 
   case 45:
-#line 320 "inter.y" /* yacc.c:1646  */
+#line 320 "second_pass.y" /* yacc.c:1646  */
     {
         fprintf(mips, "sge $t%c, $t%c, $t%c\n", (yyvsp[-4].idName)[1], (yyvsp[-2].idName)[1], (yyvsp[0].idName)[1]);
     }
-#line 1801 "inter.tab.c" /* yacc.c:1646  */
+#line 1801 "second_pass.tab.c" /* yacc.c:1646  */
     break;
 
   case 46:
-#line 324 "inter.y" /* yacc.c:1646  */
+#line 324 "second_pass.y" /* yacc.c:1646  */
     {
         fprintf(mips, "sle $t%c, $t%c, $t%c\n", (yyvsp[-4].idName)[1], (yyvsp[-2].idName)[1], (yyvsp[0].idName)[1]);
     }
-#line 1809 "inter.tab.c" /* yacc.c:1646  */
+#line 1809 "second_pass.tab.c" /* yacc.c:1646  */
     break;
 
   case 47:
-#line 330 "inter.y" /* yacc.c:1646  */
+#line 330 "second_pass.y" /* yacc.c:1646  */
     {
         int offset = getOffset(functionList, globalVariables, activeFunction, string((yyvsp[-2].idName)), 0, isGlobal)+parameterOffset;
         if(isGlobal)
@@ -1819,11 +1819,11 @@ yyreduce:
             fprintf(mips, "s.s $f%s, %d($sp)\n", (yyvsp[0].idName)+1, offset);
         }
     }
-#line 1823 "inter.tab.c" /* yacc.c:1646  */
+#line 1823 "second_pass.tab.c" /* yacc.c:1646  */
     break;
 
   case 48:
-#line 340 "inter.y" /* yacc.c:1646  */
+#line 340 "second_pass.y" /* yacc.c:1646  */
     {
         int offset = getOffset(functionList, globalVariables, activeFunction, string((yyvsp[-5].idName)), 0, isGlobal)+parameterOffset;
         if(isGlobal)
@@ -1840,21 +1840,21 @@ yyreduce:
             fprintf(mips,"s.s $f%s, 0($s0)\n", (yyvsp[0].idName)+1);
         }
     }
-#line 1844 "inter.tab.c" /* yacc.c:1646  */
+#line 1844 "second_pass.tab.c" /* yacc.c:1646  */
     break;
 
   case 49:
-#line 357 "inter.y" /* yacc.c:1646  */
+#line 357 "second_pass.y" /* yacc.c:1646  */
     {
         //useless
         int offset = getOffset(functionList, globalVariables, activeFunction, string((yyvsp[-5].idName)), 0, isGlobal)+parameterOffset;
         fprintf(mips, "s.s $f%s, %d($sp)\n", (yyvsp[-3].idName)+1, offset);
     }
-#line 1854 "inter.tab.c" /* yacc.c:1646  */
+#line 1854 "second_pass.tab.c" /* yacc.c:1646  */
     break;
 
   case 50:
-#line 363 "inter.y" /* yacc.c:1646  */
+#line 363 "second_pass.y" /* yacc.c:1646  */
     {
         int offset = getOffset(functionList, globalVariables, activeFunction, string((yyvsp[-3].idName)), 0, isGlobal)+parameterOffset;
         if(isGlobal)
@@ -1869,21 +1869,21 @@ yyreduce:
             fprintf(mips, "l.s $f%s, %d($s0)\n", (yyvsp[-5].idName)+1, offset);
         }
     }
-#line 1873 "inter.tab.c" /* yacc.c:1646  */
+#line 1873 "second_pass.tab.c" /* yacc.c:1646  */
     break;
 
   case 51:
-#line 378 "inter.y" /* yacc.c:1646  */
+#line 378 "second_pass.y" /* yacc.c:1646  */
     {
         // convert from integer to float
         fprintf(mips, "mtc1 $t%c, $f%s\n", (yyvsp[-1].idName)[1], (yyvsp[-5].idName)+1);
         fprintf(mips, "cvt.s.w $f%s, $f%s\n", (yyvsp[-5].idName)+1, (yyvsp[-5].idName)+1);
     }
-#line 1883 "inter.tab.c" /* yacc.c:1646  */
+#line 1883 "second_pass.tab.c" /* yacc.c:1646  */
     break;
 
   case 52:
-#line 384 "inter.y" /* yacc.c:1646  */
+#line 384 "second_pass.y" /* yacc.c:1646  */
     {
         int offset = getOffset(functionList, globalVariables, activeFunction, string((yyvsp[0].idName)), 0, isGlobal)+parameterOffset;
         if(isGlobal)
@@ -1893,59 +1893,59 @@ yyreduce:
             fprintf(mips, "l.s $f%s, %d($sp)\n", (yyvsp[-2].idName)+1, offset);
         }
     }
-#line 1897 "inter.tab.c" /* yacc.c:1646  */
+#line 1897 "second_pass.tab.c" /* yacc.c:1646  */
     break;
 
   case 53:
-#line 394 "inter.y" /* yacc.c:1646  */
+#line 394 "second_pass.y" /* yacc.c:1646  */
     {
         fprintf(mips, "mov.s $f%s, $f%s\n", (yyvsp[-2].idName)+1, (yyvsp[0].idName)+1);
     }
-#line 1905 "inter.tab.c" /* yacc.c:1646  */
+#line 1905 "second_pass.tab.c" /* yacc.c:1646  */
     break;
 
   case 54:
-#line 398 "inter.y" /* yacc.c:1646  */
+#line 398 "second_pass.y" /* yacc.c:1646  */
     {
         fprintf(mips, "li.s $f%s, %s\n", (yyvsp[-2].idName)+1, (yyvsp[0].idName));
     }
-#line 1913 "inter.tab.c" /* yacc.c:1646  */
+#line 1913 "second_pass.tab.c" /* yacc.c:1646  */
     break;
 
   case 55:
-#line 402 "inter.y" /* yacc.c:1646  */
+#line 402 "second_pass.y" /* yacc.c:1646  */
     {
         fprintf(mips, "add.s $f%s, $f%s, $f%s\n", (yyvsp[-4].idName)+1, (yyvsp[-2].idName)+1, (yyvsp[0].idName)+1);
     }
-#line 1921 "inter.tab.c" /* yacc.c:1646  */
+#line 1921 "second_pass.tab.c" /* yacc.c:1646  */
     break;
 
   case 56:
-#line 406 "inter.y" /* yacc.c:1646  */
+#line 406 "second_pass.y" /* yacc.c:1646  */
     {
         fprintf(mips, "sub.s $f%s, $f%s, $f%s\n", (yyvsp[-4].idName)+1, (yyvsp[-2].idName)+1, (yyvsp[0].idName)+1);
     }
-#line 1929 "inter.tab.c" /* yacc.c:1646  */
+#line 1929 "second_pass.tab.c" /* yacc.c:1646  */
     break;
 
   case 57:
-#line 410 "inter.y" /* yacc.c:1646  */
+#line 410 "second_pass.y" /* yacc.c:1646  */
     {
         fprintf(mips, "mul.s $f%s, $f%s, $f%s\n", (yyvsp[-4].idName)+1, (yyvsp[-2].idName)+1, (yyvsp[0].idName)+1);
     }
-#line 1937 "inter.tab.c" /* yacc.c:1646  */
+#line 1937 "second_pass.tab.c" /* yacc.c:1646  */
     break;
 
   case 58:
-#line 414 "inter.y" /* yacc.c:1646  */
+#line 414 "second_pass.y" /* yacc.c:1646  */
     {
         fprintf(mips, "div.s $f%s, $f%s, $f%s\n", (yyvsp[-4].idName)+1, (yyvsp[-2].idName)+1, (yyvsp[0].idName)+1);
     }
-#line 1945 "inter.tab.c" /* yacc.c:1646  */
+#line 1945 "second_pass.tab.c" /* yacc.c:1646  */
     break;
 
   case 59:
-#line 418 "inter.y" /* yacc.c:1646  */
+#line 418 "second_pass.y" /* yacc.c:1646  */
     {
         fprintf(mips, "li $t%c, 1\n", (yyvsp[-4].idName)[1]);
         fprintf(mips, "c.eq.s $f%s, $f%s\n", (yyvsp[-2].idName)+1, (yyvsp[0].idName)+1);
@@ -1954,11 +1954,11 @@ yyreduce:
         fprintf(mips, "FLOAT%d:\n", floatLabel);
         floatLabel++;
     }
-#line 1958 "inter.tab.c" /* yacc.c:1646  */
+#line 1958 "second_pass.tab.c" /* yacc.c:1646  */
     break;
 
   case 60:
-#line 427 "inter.y" /* yacc.c:1646  */
+#line 427 "second_pass.y" /* yacc.c:1646  */
     {
         fprintf(mips, "li $t%c, 0\n", (yyvsp[-4].idName)[1]);
         fprintf(mips, "c.eq.s $f%s, $f%s\n", (yyvsp[-2].idName)+1, (yyvsp[0].idName)+1);
@@ -1967,11 +1967,11 @@ yyreduce:
         fprintf(mips, "FLOAT%d:\n", floatLabel);
         floatLabel++;
     }
-#line 1971 "inter.tab.c" /* yacc.c:1646  */
+#line 1971 "second_pass.tab.c" /* yacc.c:1646  */
     break;
 
   case 61:
-#line 436 "inter.y" /* yacc.c:1646  */
+#line 436 "second_pass.y" /* yacc.c:1646  */
     {
         fprintf(mips, "li.d $f31, 0\n");
         fprintf(mips, "li $t%c, 1\n", (yyvsp[-4].idName)[1]);
@@ -1983,11 +1983,11 @@ yyreduce:
         fprintf(mips, "FLOAT%d:\n", floatLabel);
         floatLabel++;
     }
-#line 1987 "inter.tab.c" /* yacc.c:1646  */
+#line 1987 "second_pass.tab.c" /* yacc.c:1646  */
     break;
 
   case 62:
-#line 448 "inter.y" /* yacc.c:1646  */
+#line 448 "second_pass.y" /* yacc.c:1646  */
     {
         fprintf(mips, "li.d $f31, 0\n");
         fprintf(mips, "li $t%c, 0\n", (yyvsp[-4].idName)[1]);
@@ -1999,11 +1999,11 @@ yyreduce:
         fprintf(mips, "FLOAT%d:\n", floatLabel);
         floatLabel++;
     }
-#line 2003 "inter.tab.c" /* yacc.c:1646  */
+#line 2003 "second_pass.tab.c" /* yacc.c:1646  */
     break;
 
   case 63:
-#line 460 "inter.y" /* yacc.c:1646  */
+#line 460 "second_pass.y" /* yacc.c:1646  */
     {
         fprintf(mips, "li $t%c, 1\n", (yyvsp[-4].idName)[1]);
         fprintf(mips, "c.le.s $f%s, $f%s\n", (yyvsp[-2].idName)+1, (yyvsp[0].idName)+1);
@@ -2012,11 +2012,11 @@ yyreduce:
         fprintf(mips, "FLOAT%d:\n", floatLabel);
         floatLabel++;
     }
-#line 2016 "inter.tab.c" /* yacc.c:1646  */
+#line 2016 "second_pass.tab.c" /* yacc.c:1646  */
     break;
 
   case 64:
-#line 469 "inter.y" /* yacc.c:1646  */
+#line 469 "second_pass.y" /* yacc.c:1646  */
     {
         fprintf(mips, "li $t%c, 0\n", (yyvsp[-4].idName)[1]);
         fprintf(mips, "c.lt.s $f%s, $f%s\n", (yyvsp[-2].idName)+1, (yyvsp[0].idName)+1);
@@ -2025,11 +2025,11 @@ yyreduce:
         fprintf(mips, "FLOAT%d:\n", floatLabel);
         floatLabel++;
     }
-#line 2029 "inter.tab.c" /* yacc.c:1646  */
+#line 2029 "second_pass.tab.c" /* yacc.c:1646  */
     break;
 
   case 65:
-#line 478 "inter.y" /* yacc.c:1646  */
+#line 478 "second_pass.y" /* yacc.c:1646  */
     {
         fprintf(mips, "li $t%c, 1\n", (yyvsp[-4].idName)[1]);
         fprintf(mips, "c.lt.s $f%s, $f%s\n", (yyvsp[-2].idName)+1, (yyvsp[0].idName)+1);
@@ -2038,11 +2038,11 @@ yyreduce:
         fprintf(mips, "FLOAT%d:\n", floatLabel);
         floatLabel++;
     }
-#line 2042 "inter.tab.c" /* yacc.c:1646  */
+#line 2042 "second_pass.tab.c" /* yacc.c:1646  */
     break;
 
   case 66:
-#line 487 "inter.y" /* yacc.c:1646  */
+#line 487 "second_pass.y" /* yacc.c:1646  */
     {
         fprintf(mips, "li $t%c, 0\n", (yyvsp[-4].idName)[1]);
         fprintf(mips, "c.le.s $f%s, $f%s\n", (yyvsp[-2].idName)+1, (yyvsp[0].idName)+1);
@@ -2051,43 +2051,43 @@ yyreduce:
         fprintf(mips, "FLOAT%d:\n", floatLabel);
         floatLabel++;
     }
-#line 2055 "inter.tab.c" /* yacc.c:1646  */
+#line 2055 "second_pass.tab.c" /* yacc.c:1646  */
     break;
 
   case 67:
-#line 498 "inter.y" /* yacc.c:1646  */
+#line 498 "second_pass.y" /* yacc.c:1646  */
     {
         fprintf(mips, "beq $t%c, $t%c, %s\n", (yyvsp[-4].idName)[1], (yyvsp[-2].idName)[1], (yyvsp[0].idName));
     }
-#line 2063 "inter.tab.c" /* yacc.c:1646  */
+#line 2063 "second_pass.tab.c" /* yacc.c:1646  */
     break;
 
   case 68:
-#line 502 "inter.y" /* yacc.c:1646  */
+#line 502 "second_pass.y" /* yacc.c:1646  */
     {
         fprintf(mips, "bne $t%c, $t%c, %s\n", (yyvsp[-4].idName)[1], (yyvsp[-2].idName)[1], (yyvsp[0].idName));
     }
-#line 2071 "inter.tab.c" /* yacc.c:1646  */
+#line 2071 "second_pass.tab.c" /* yacc.c:1646  */
     break;
 
   case 69:
-#line 506 "inter.y" /* yacc.c:1646  */
+#line 506 "second_pass.y" /* yacc.c:1646  */
     {
         fprintf(mips, "bne $t%c, %s, %s\n", (yyvsp[-4].idName)[1], (yyvsp[-2].idName), (yyvsp[0].idName));
     }
-#line 2079 "inter.tab.c" /* yacc.c:1646  */
+#line 2079 "second_pass.tab.c" /* yacc.c:1646  */
     break;
 
   case 70:
-#line 510 "inter.y" /* yacc.c:1646  */
+#line 510 "second_pass.y" /* yacc.c:1646  */
     {
         fprintf(mips, "beq $t%c, %s, %s\n", (yyvsp[-4].idName)[1], (yyvsp[-2].idName), (yyvsp[0].idName));
     }
-#line 2087 "inter.tab.c" /* yacc.c:1646  */
+#line 2087 "second_pass.tab.c" /* yacc.c:1646  */
     break;
 
   case 71:
-#line 514 "inter.y" /* yacc.c:1646  */
+#line 514 "second_pass.y" /* yacc.c:1646  */
     {
         fprintf(mips, "li $s0, 1\n");
         fprintf(mips, "c.eq.s $f%s, $f%s\n", (yyvsp[-4].idName)+1, (yyvsp[-2].idName)+1);
@@ -2097,11 +2097,11 @@ yyreduce:
         fprintf(mips, "beq $s0, 1, %s\n", (yyvsp[0].idName));
         floatLabel++;
     }
-#line 2101 "inter.tab.c" /* yacc.c:1646  */
+#line 2101 "second_pass.tab.c" /* yacc.c:1646  */
     break;
 
   case 72:
-#line 524 "inter.y" /* yacc.c:1646  */
+#line 524 "second_pass.y" /* yacc.c:1646  */
     {
         fprintf(mips, "li $s0, 1\n");
         fprintf(mips, "c.eq.s $f%s, $f%s\n", (yyvsp[-4].idName)+1, (yyvsp[-2].idName)+1);
@@ -2111,11 +2111,11 @@ yyreduce:
         fprintf(mips, "beq $s0, 1, %s\n", (yyvsp[0].idName));
         floatLabel++;
     }
-#line 2115 "inter.tab.c" /* yacc.c:1646  */
+#line 2115 "second_pass.tab.c" /* yacc.c:1646  */
     break;
 
   case 73:
-#line 534 "inter.y" /* yacc.c:1646  */
+#line 534 "second_pass.y" /* yacc.c:1646  */
     {
         fprintf(mips, "mtc1 $0, $f31\n");
         fprintf(mips, "cvt.s.w $f31, $f31\n");
@@ -2127,11 +2127,11 @@ yyreduce:
         fprintf(mips, "beq $s0, 1, %s\n", (yyvsp[0].idName));
         floatLabel++;
     }
-#line 2131 "inter.tab.c" /* yacc.c:1646  */
+#line 2131 "second_pass.tab.c" /* yacc.c:1646  */
     break;
 
   case 74:
-#line 546 "inter.y" /* yacc.c:1646  */
+#line 546 "second_pass.y" /* yacc.c:1646  */
     {
         fprintf(mips, "mtc1 $0, $f31\n");
         fprintf(mips, "cvt.s.w $f31, $f31\n");
@@ -2143,11 +2143,11 @@ yyreduce:
         fprintf(mips, "beq $s0, 1, %s\n", (yyvsp[0].idName));
         floatLabel++;
     }
-#line 2147 "inter.tab.c" /* yacc.c:1646  */
+#line 2147 "second_pass.tab.c" /* yacc.c:1646  */
     break;
 
 
-#line 2151 "inter.tab.c" /* yacc.c:1646  */
+#line 2151 "second_pass.tab.c" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -2375,7 +2375,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 559 "inter.y" /* yacc.c:1906  */
+#line 559 "second_pass.y" /* yacc.c:1906  */
 
 
 void getRegisters(int frameSize)

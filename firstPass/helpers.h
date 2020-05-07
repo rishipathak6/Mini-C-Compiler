@@ -113,6 +113,8 @@ eletype compareTypes(eletype type1, eletype type2);
 void printSymbolTable(vector<functionEntry*> &functionEntryRecord, vector<typeRecord*> &globalVariables);
 string elementTypeMapper(eletype a);
 void populateOffsets(vector<functionEntry*> &functionEntryRecord, vector<typeRecord*> &globalVariables);
+void deleteVariableList(functionEntry* activeFunctionPointer, int scope);
+void insertSymTab(vector<typeRecord*> &typeRecordList, functionEntry* activeFunctionPointer);
 
 int eletypeIntMapper(eletype a);
 int varTypeMapper(varType a);

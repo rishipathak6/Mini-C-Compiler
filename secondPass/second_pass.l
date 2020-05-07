@@ -1,5 +1,5 @@
 %{    
-# include "inter.tab.h"
+# include "second_pass.tab.h"
 %}
 %option noyywrap
 %%

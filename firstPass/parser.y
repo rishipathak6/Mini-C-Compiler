@@ -9,8 +9,8 @@
 #include <stack>
 #include <stdio.h>
 
-#include "funcTab.h"
-#include "codegenHelpers.h"
+#include "helpers.h"
+#include "code_gen.h"
 
 using namespace std;
 
@@ -52,8 +52,8 @@ vector<pair<string,int>> stringVariable;
 %}
 
 %code requires{
-    #include "funcTab.h"
-    #include "codegenHelpers.h"
+    #include "helpers.h"
+    #include "code_gen.h"
 }
 
 %union {
@@ -2356,7 +2356,7 @@ int main(int argc, char **argv)
     yyparse();
     populateOffsets(functionEntryRecord, globalVariables);
     ofstream outinter;
-    outinter.open("./output/intermediate.txt");
+    outinter.open("./output/intermediate_code.txt");
     if(!errorFound){
         for(auto it:functionInstruction){
             outinter<<it<<endl;

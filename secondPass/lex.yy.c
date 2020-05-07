@@ -515,9 +515,9 @@ int yy_flex_debug = 0;
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
-#line 1 "inter.l"
-#line 2 "inter.l"
-# include "inter.tab.h"
+#line 1 "second_pass.l"
+#line 2 "second_pass.l"
+# include "second_pass.tab.h"
 #line 522 "lex.yy.c"
 #line 523 "lex.yy.c"
 
@@ -736,7 +736,7 @@ YY_DECL
 		}
 
 	{
-#line 5 "inter.l"
+#line 5 "second_pass.l"
 
 
 #line 743 "lex.yy.c"
@@ -798,218 +798,218 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 7 "inter.l"
+#line 7 "second_pass.l"
 { return FUNCTION; }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 8 "inter.l"
+#line 8 "second_pass.l"
 { return BEG; }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 9 "inter.l"
+#line 9 "second_pass.l"
 { return IF; }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 10 "inter.l"
+#line 10 "second_pass.l"
 { return GOTO; }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 11 "inter.l"
+#line 11 "second_pass.l"
 { return PARAMETER; }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 12 "inter.l"
+#line 12 "second_pass.l"
 { return REFPARAMETER; }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 13 "inter.l"
+#line 13 "second_pass.l"
 { return CALL; }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 14 "inter.l"
+#line 14 "second_pass.l"
 { return END; }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 15 "inter.l"
+#line 15 "second_pass.l"
 { return RETURN; }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 16 "inter.l"
+#line 16 "second_pass.l"
 { return CONVERTTOFLOAT; }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 17 "inter.l"
+#line 17 "second_pass.l"
 { return CONVERTTOINT; }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 18 "inter.l"
+#line 18 "second_pass.l"
 { return PRINT;}
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 19 "inter.l"
+#line 19 "second_pass.l"
 { return READ; }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 20 "inter.l"
+#line 20 "second_pass.l"
 { return LESSEQUAL; }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 21 "inter.l"
+#line 21 "second_pass.l"
 { return GREATEQUAL; }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 22 "inter.l"
+#line 22 "second_pass.l"
 { return EQUAL; }
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 23 "inter.l"
+#line 23 "second_pass.l"
 { return NOTEQUAL; }
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 24 "inter.l"
+#line 24 "second_pass.l"
 { return AND; }
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 25 "inter.l"
+#line 25 "second_pass.l"
 { return OR; }
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 26 "inter.l"
+#line 26 "second_pass.l"
 { return COLON; }
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 27 "inter.l"
+#line 27 "second_pass.l"
 { return LSQUAREB; }
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 28 "inter.l"
+#line 28 "second_pass.l"
 { return RSQUAREB; }
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 29 "inter.l"
+#line 29 "second_pass.l"
 { return LPARE; }
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 30 "inter.l"
+#line 30 "second_pass.l"
 { return RPARE; }
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 31 "inter.l"
+#line 31 "second_pass.l"
 { return COMMA; }
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 32 "inter.l"
+#line 32 "second_pass.l"
 { return ASSIGN; }
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 33 "inter.l"
+#line 33 "second_pass.l"
 { return LESSTHAN; }
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 34 "inter.l"
+#line 34 "second_pass.l"
 { return GREATTHAN; }
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 35 "inter.l"
+#line 35 "second_pass.l"
 { return NEG; }
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 36 "inter.l"
+#line 36 "second_pass.l"
 { return PLUS; }
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 37 "inter.l"
+#line 37 "second_pass.l"
 { return DIV; }
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 38 "inter.l"
+#line 38 "second_pass.l"
 { return MUL; }
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 39 "inter.l"
+#line 39 "second_pass.l"
 { return MOD; }
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 41 "inter.l"
+#line 41 "second_pass.l"
 { yylval.idName = (char *)malloc(100); memset(yylval.idName, 0, 100); memcpy(yylval.idName, yytext, yyleng); return DATAFLOAT; }
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 42 "inter.l"
+#line 42 "second_pass.l"
 { yylval.idName = (char *)malloc(100); memset(yylval.idName, 0, 100); memcpy(yylval.idName, yytext, yyleng); return DATAINT; }
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 43 "inter.l"
+#line 43 "second_pass.l"
 { return MINUS; }
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 44 "inter.l"
+#line 44 "second_pass.l"
 { yylval.idName = (char *)malloc(100); memset(yylval.idName, 0, 100); memcpy(yylval.idName, yytext, yyleng); return REGINT; }
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 45 "inter.l"
+#line 45 "second_pass.l"
 { yylval.idName = (char *)malloc(100); memset(yylval.idName, 0, 100); memcpy(yylval.idName, yytext, yyleng); return REGFLOAT; }
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
-#line 46 "inter.l"
+#line 46 "second_pass.l"
 { yylval.idName = (char *)malloc(100); memset(yylval.idName, 0, 100); memcpy(yylval.idName, yytext, yyleng); return LABEL; }
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 47 "inter.l"
+#line 47 "second_pass.l"
 { yylval.idName = (char *)malloc(100); memset(yylval.idName, 0, 100); memcpy(yylval.idName, yytext, yyleng); return USERVARIABLE; }
 	YY_BREAK
 case 41:
 /* rule 41 can match eol */
 YY_RULE_SETUP
-#line 49 "inter.l"
+#line 49 "second_pass.l"
 { yylineno++;return NEWLINE;}
 	YY_BREAK
 case 42:
 YY_RULE_SETUP
-#line 50 "inter.l"
+#line 50 "second_pass.l"
 { /* ignore whitespace */ }
 	YY_BREAK
 case 43:
 YY_RULE_SETUP
-#line 51 "inter.l"
+#line 51 "second_pass.l"
 ECHO;
 	YY_BREAK
 #line 1016 "lex.yy.c"
@@ -2017,5 +2017,5 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 51 "inter.l"
+#line 51 "second_pass.l"
 

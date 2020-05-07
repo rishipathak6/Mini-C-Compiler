@@ -62,7 +62,7 @@
 
 
 /* Copy the first part of user declarations.  */
-#line 1 "miniC.y" /* yacc.c:339  */
+#line 1 "parser.y" /* yacc.c:339  */
 
 #pragma GCC diagnostic ignored "-Wwrite-strings"
 
@@ -74,8 +74,8 @@
 #include <stack>
 #include <stdio.h>
 
-#include "funcTab.h"
-#include "codegenHelpers.h"
+#include "helpers.h"
+#include "code_gen.h"
 
 using namespace std;
 
@@ -115,7 +115,7 @@ string conditionVariable;
 
 vector<pair<string,int>> stringVariable;
 
-#line 119 "miniC.tab.c" /* yacc.c:339  */
+#line 119 "parser.tab.c" /* yacc.c:339  */
 
 # ifndef YY_NULLPTR
 #  if defined __cplusplus && 201103L <= __cplusplus
@@ -134,9 +134,9 @@ vector<pair<string,int>> stringVariable;
 #endif
 
 /* In a future release of Bison, this section will be replaced
-   by #include "miniC.tab.h".  */
-#ifndef YY_YY_MINIC_TAB_H_INCLUDED
-# define YY_YY_MINIC_TAB_H_INCLUDED
+   by #include "parser.tab.h".  */
+#ifndef YY_YY_PARSER_TAB_H_INCLUDED
+# define YY_YY_PARSER_TAB_H_INCLUDED
 /* Debug traces.  */
 #ifndef YYDEBUG
 # define YYDEBUG 0
@@ -145,12 +145,12 @@ vector<pair<string,int>> stringVariable;
 extern int yydebug;
 #endif
 /* "%code requires" blocks.  */
-#line 54 "miniC.y" /* yacc.c:355  */
+#line 54 "parser.y" /* yacc.c:355  */
 
-    #include "funcTab.h"
-    #include "codegenHelpers.h"
+    #include "helpers.h"
+    #include "code_gen.h"
 
-#line 154 "miniC.tab.c" /* yacc.c:355  */
+#line 154 "parser.tab.c" /* yacc.c:355  */
 
 /* Token type.  */
 #ifndef YYTOKENTYPE
@@ -223,7 +223,7 @@ extern int yydebug;
 
 union YYSTYPE
 {
-#line 59 "miniC.y" /* yacc.c:355  */
+#line 59 "parser.y" /* yacc.c:355  */
 
     int intValue;
     float floatValue;
@@ -238,7 +238,7 @@ union YYSTYPE
     struct statement statementValue;
     struct shortCircuit shortCircuitValue;
 
-#line 242 "miniC.tab.c" /* yacc.c:355  */
+#line 242 "parser.tab.c" /* yacc.c:355  */
 };
 
 typedef union YYSTYPE YYSTYPE;
@@ -251,11 +251,11 @@ extern YYSTYPE yylval;
 
 int yyparse (void);
 
-#endif /* !YY_YY_MINIC_TAB_H_INCLUDED  */
+#endif /* !YY_YY_PARSER_TAB_H_INCLUDED  */
 
 /* Copy the second part of user declarations.  */
 
-#line 259 "miniC.tab.c" /* yacc.c:358  */
+#line 259 "parser.tab.c" /* yacc.c:358  */
 
 #ifdef short
 # undef short
@@ -1532,7 +1532,7 @@ yyreduce:
   switch (yyn)
     {
         case 2:
-#line 97 "miniC.y" /* yacc.c:1646  */
+#line 97 "parser.y" /* yacc.c:1646  */
     {
         deleteVariableList(activeFunctionPointer, scope);
         activeFunctionPointer = NULL;
@@ -1540,11 +1540,11 @@ yyreduce:
         string s = "function end";
         gen(functionInstruction, s, nextNum);
     }
-#line 1544 "miniC.tab.c" /* yacc.c:1646  */
+#line 1544 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 3:
-#line 107 "miniC.y" /* yacc.c:1646  */
+#line 107 "parser.y" /* yacc.c:1646  */
     {
         int found = 0;
         searchFunc(activeFunctionPointer, functionEntryRecord, found);
@@ -1565,33 +1565,33 @@ yyreduce:
             gen(functionInstruction, s, nextNum);
         }
     }
-#line 1569 "miniC.tab.c" /* yacc.c:1646  */
+#line 1569 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 4:
-#line 130 "miniC.y" /* yacc.c:1646  */
+#line 130 "parser.y" /* yacc.c:1646  */
     {
         scope=1;
         activeFunctionPointer = new functionEntry;
         activeFunctionPointer->name = string((yyvsp[0].idName));
         activeFunctionPointer->returnType = resultType;
     }
-#line 1580 "miniC.tab.c" /* yacc.c:1646  */
+#line 1580 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 5:
-#line 137 "miniC.y" /* yacc.c:1646  */
+#line 137 "parser.y" /* yacc.c:1646  */
     {
         scope=1;
         activeFunctionPointer = new functionEntry;
         activeFunctionPointer->name = string((yyvsp[0].idName));
         activeFunctionPointer->returnType = NULLVOID;
     }
-#line 1591 "miniC.tab.c" /* yacc.c:1646  */
+#line 1591 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 8:
-#line 154 "miniC.y" /* yacc.c:1646  */
+#line 154 "parser.y" /* yacc.c:1646  */
     {
         int found = 0;
         typeRecord* pn = NULL;
@@ -1603,11 +1603,11 @@ yyreduce:
             typeRecordList.push_back(variableRecord);
         }
     }
-#line 1607 "miniC.tab.c" /* yacc.c:1646  */
+#line 1607 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 9:
-#line 166 "miniC.y" /* yacc.c:1646  */
+#line 166 "parser.y" /* yacc.c:1646  */
     {
         int found = 0;
         typeRecord* pn = NULL;
@@ -1619,11 +1619,11 @@ yyreduce:
             typeRecordList.push_back(variableRecord);
         }
     }
-#line 1623 "miniC.tab.c" /* yacc.c:1646  */
+#line 1623 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 10:
-#line 180 "miniC.y" /* yacc.c:1646  */
+#line 180 "parser.y" /* yacc.c:1646  */
     {
         variableRecord = new typeRecord;
         variableRecord->name = string((yyvsp[0].idName));
@@ -1632,11 +1632,11 @@ yyreduce:
         variableRecord->scope = scope;
         variableRecord->elementType = resultType;
     }
-#line 1636 "miniC.tab.c" /* yacc.c:1646  */
+#line 1636 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 11:
-#line 191 "miniC.y" /* yacc.c:1646  */
+#line 191 "parser.y" /* yacc.c:1646  */
     {
         (yyval.statementValue).nextList = new vector<int>;
         merge((yyval.statementValue).nextList, (yyvsp[0].statementValue).nextList);
@@ -1645,21 +1645,21 @@ yyreduce:
         (yyval.statementValue).continueList = new vector<int>;
         merge((yyval.statementValue).continueList, (yyvsp[0].statementValue).continueList);
     }
-#line 1649 "miniC.tab.c" /* yacc.c:1646  */
+#line 1649 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 12:
-#line 200 "miniC.y" /* yacc.c:1646  */
+#line 200 "parser.y" /* yacc.c:1646  */
     {
         (yyval.statementValue).nextList = new vector<int>;
         (yyval.statementValue).breakList = new vector<int>;
         (yyval.statementValue).continueList = new vector<int>;
     }
-#line 1659 "miniC.tab.c" /* yacc.c:1646  */
+#line 1659 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 13:
-#line 209 "miniC.y" /* yacc.c:1646  */
+#line 209 "parser.y" /* yacc.c:1646  */
     {
         (yyval.statementValue).nextList = new vector<int>;
         merge((yyval.statementValue).nextList, (yyvsp[0].statementValue).nextList);
@@ -1668,11 +1668,11 @@ yyreduce:
         (yyval.statementValue).continueList = new vector<int>;
         merge((yyval.statementValue).continueList, (yyvsp[0].statementValue).continueList);
     }
-#line 1672 "miniC.tab.c" /* yacc.c:1646  */
+#line 1672 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 14:
-#line 218 "miniC.y" /* yacc.c:1646  */
+#line 218 "parser.y" /* yacc.c:1646  */
     {
         (yyval.statementValue).nextList = new vector<int>;
         merge((yyval.statementValue).nextList, (yyvsp[-1].statementValue).nextList);
@@ -1684,11 +1684,11 @@ yyreduce:
         merge((yyval.statementValue).continueList, (yyvsp[-1].statementValue).continueList);
         merge((yyval.statementValue).continueList, (yyvsp[0].statementValue).continueList);
     }
-#line 1688 "miniC.tab.c" /* yacc.c:1646  */
+#line 1688 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 18:
-#line 239 "miniC.y" /* yacc.c:1646  */
+#line 239 "parser.y" /* yacc.c:1646  */
     {
         deleteVariableList(activeFunctionPointer, scope);
         activeFunctionPointer=NULL;
@@ -1696,11 +1696,11 @@ yyreduce:
         string s = "function end";
         gen(functionInstruction, s, nextNum);
     }
-#line 1700 "miniC.tab.c" /* yacc.c:1646  */
+#line 1700 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 23:
-#line 255 "miniC.y" /* yacc.c:1646  */
+#line 255 "parser.y" /* yacc.c:1646  */
     {   
         scope=1;
         activeFunctionPointer = new functionEntry;
@@ -1724,11 +1724,11 @@ yyreduce:
             gen(functionInstruction, s, nextNum);
         }
     }
-#line 1728 "miniC.tab.c" /* yacc.c:1646  */
+#line 1728 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 24:
-#line 281 "miniC.y" /* yacc.c:1646  */
+#line 281 "parser.y" /* yacc.c:1646  */
     {
         patchDataType(resultType, typeRecordList, scope);
         if(scope > 1){
@@ -1739,23 +1739,23 @@ yyreduce:
         }
         typeRecordList.clear();
     }
-#line 1743 "miniC.tab.c" /* yacc.c:1646  */
+#line 1743 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 25:
-#line 293 "miniC.y" /* yacc.c:1646  */
+#line 293 "parser.y" /* yacc.c:1646  */
     { resultType = INTEGER; }
-#line 1749 "miniC.tab.c" /* yacc.c:1646  */
+#line 1749 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 26:
-#line 294 "miniC.y" /* yacc.c:1646  */
+#line 294 "parser.y" /* yacc.c:1646  */
     { resultType = FLOATING; }
-#line 1755 "miniC.tab.c" /* yacc.c:1646  */
+#line 1755 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 29:
-#line 302 "miniC.y" /* yacc.c:1646  */
+#line 302 "parser.y" /* yacc.c:1646  */
     {
         int found = 0;
         typeRecord* vn = NULL;
@@ -1835,11 +1835,11 @@ yyreduce:
             errorFound = true;
         }
     }
-#line 1839 "miniC.tab.c" /* yacc.c:1646  */
+#line 1839 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 30:
-#line 382 "miniC.y" /* yacc.c:1646  */
+#line 382 "parser.y" /* yacc.c:1646  */
     {
         int found = 0;
         typeRecord* vn = NULL;
@@ -1942,11 +1942,11 @@ yyreduce:
             errorFound = true;
         }
     }
-#line 1946 "miniC.tab.c" /* yacc.c:1646  */
+#line 1946 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 31:
-#line 485 "miniC.y" /* yacc.c:1646  */
+#line 485 "parser.y" /* yacc.c:1646  */
     {  
         if (activeFunctionPointer != NULL) {
             int found = 0;
@@ -2054,27 +2054,27 @@ yyreduce:
         }
         decDimensionList.clear();
     }
-#line 2058 "miniC.tab.c" /* yacc.c:1646  */
+#line 2058 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 32:
-#line 596 "miniC.y" /* yacc.c:1646  */
+#line 596 "parser.y" /* yacc.c:1646  */
     {
         decDimensionList.push_back(atoi((yyvsp[-1].idName)));
     }
-#line 2066 "miniC.tab.c" /* yacc.c:1646  */
+#line 2066 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 33:
-#line 600 "miniC.y" /* yacc.c:1646  */
+#line 600 "parser.y" /* yacc.c:1646  */
     {
         decDimensionList.push_back(atoi((yyvsp[-1].idName)));
     }
-#line 2074 "miniC.tab.c" /* yacc.c:1646  */
+#line 2074 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 34:
-#line 606 "miniC.y" /* yacc.c:1646  */
+#line 606 "parser.y" /* yacc.c:1646  */
     {
         (yyval.expressionValue).type = (yyvsp[0].expressionValue).type;
         if ((yyvsp[0].expressionValue).type != ERRORTYPE && (yyvsp[0].expressionValue).type != NULLVOID) {
@@ -2083,22 +2083,22 @@ yyreduce:
             gen(functionInstruction, s, nextNum);
         }
     }
-#line 2087 "miniC.tab.c" /* yacc.c:1646  */
+#line 2087 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 35:
-#line 615 "miniC.y" /* yacc.c:1646  */
+#line 615 "parser.y" /* yacc.c:1646  */
     {
         (yyval.expressionValue).type = (yyvsp[0].expressionValue).type;
         if ((yyvsp[0].expressionValue).type != ERRORTYPE && (yyvsp[0].expressionValue).type != NULLVOID) {
             (yyval.expressionValue).registerName = (yyvsp[0].expressionValue).registerName;    
         }
     }
-#line 2098 "miniC.tab.c" /* yacc.c:1646  */
+#line 2098 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 36:
-#line 624 "miniC.y" /* yacc.c:1646  */
+#line 624 "parser.y" /* yacc.c:1646  */
     {
         if ((yyvsp[-2].expressionValue).type == ERRORTYPE || (yyvsp[0].expressionValue).type == ERRORTYPE) {
             (yyval.expressionValue).type = ERRORTYPE;
@@ -2116,11 +2116,11 @@ yyreduce:
             temporarySet.freeRegister(*((yyvsp[0].expressionValue).registerName));  
         }   
     }
-#line 2120 "miniC.tab.c" /* yacc.c:1646  */
+#line 2120 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 37:
-#line 642 "miniC.y" /* yacc.c:1646  */
+#line 642 "parser.y" /* yacc.c:1646  */
     {
         if((yyvsp[-2].expressionValue).type == ERRORTYPE || (yyvsp[0].expressionValue).type == ERRORTYPE){
             (yyval.expressionValue).type = ERRORTYPE;
@@ -2138,11 +2138,11 @@ yyreduce:
             temporarySet.freeRegister(*((yyvsp[0].expressionValue).registerName));  
         }   
     }
-#line 2142 "miniC.tab.c" /* yacc.c:1646  */
+#line 2142 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 38:
-#line 660 "miniC.y" /* yacc.c:1646  */
+#line 660 "parser.y" /* yacc.c:1646  */
     {
         if((yyvsp[-2].expressionValue).type == ERRORTYPE || (yyvsp[0].expressionValue).type == ERRORTYPE){
             (yyval.expressionValue).type = ERRORTYPE;
@@ -2160,11 +2160,11 @@ yyreduce:
             temporarySet.freeRegister(*((yyvsp[0].expressionValue).registerName));  
         }   
     }
-#line 2164 "miniC.tab.c" /* yacc.c:1646  */
+#line 2164 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 39:
-#line 678 "miniC.y" /* yacc.c:1646  */
+#line 678 "parser.y" /* yacc.c:1646  */
     {
         if((yyvsp[-2].expressionValue).type == ERRORTYPE || (yyvsp[0].expressionValue).type == ERRORTYPE){
             (yyval.expressionValue).type = ERRORTYPE;
@@ -2182,11 +2182,11 @@ yyreduce:
             temporarySet.freeRegister(*((yyvsp[0].expressionValue).registerName));  
         }   
     }
-#line 2186 "miniC.tab.c" /* yacc.c:1646  */
+#line 2186 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 40:
-#line 696 "miniC.y" /* yacc.c:1646  */
+#line 696 "parser.y" /* yacc.c:1646  */
     {
         (yyval.expressionValue).type = (yyvsp[0].expressionValue).type; 
         if((yyval.expressionValue).type == ERRORTYPE){
@@ -2199,11 +2199,11 @@ yyreduce:
             }
         }    
     }
-#line 2203 "miniC.tab.c" /* yacc.c:1646  */
+#line 2203 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 41:
-#line 709 "miniC.y" /* yacc.c:1646  */
+#line 709 "parser.y" /* yacc.c:1646  */
     {
         if((yyvsp[-2].expressionValue).type == ERRORTYPE || (yyvsp[0].expressionValue).type == ERRORTYPE){
             (yyval.expressionValue).type = ERRORTYPE;
@@ -2222,11 +2222,11 @@ yyreduce:
             temporarySet.freeRegister(*((yyvsp[0].expressionValue).registerName));  
         }   
     }
-#line 2226 "miniC.tab.c" /* yacc.c:1646  */
+#line 2226 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 42:
-#line 728 "miniC.y" /* yacc.c:1646  */
+#line 728 "parser.y" /* yacc.c:1646  */
     {
         if((yyvsp[-2].expressionValue).type == ERRORTYPE || (yyvsp[0].expressionValue).type == ERRORTYPE){
             (yyval.expressionValue).type = ERRORTYPE;
@@ -2244,11 +2244,11 @@ yyreduce:
             temporarySet.freeRegister(*((yyvsp[0].expressionValue).registerName));  
         }   
     }
-#line 2248 "miniC.tab.c" /* yacc.c:1646  */
+#line 2248 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 43:
-#line 748 "miniC.y" /* yacc.c:1646  */
+#line 748 "parser.y" /* yacc.c:1646  */
     {
         if ((yyvsp[-2].expressionValue).type == ERRORTYPE || (yyvsp[0].expressionValue).type == ERRORTYPE) {
             (yyval.expressionValue).type = ERRORTYPE; 
@@ -2292,11 +2292,11 @@ yyreduce:
             }
         }
     }
-#line 2296 "miniC.tab.c" /* yacc.c:1646  */
+#line 2296 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 44:
-#line 792 "miniC.y" /* yacc.c:1646  */
+#line 792 "parser.y" /* yacc.c:1646  */
     {
         if ((yyvsp[-2].expressionValue).type == ERRORTYPE || (yyvsp[0].expressionValue).type == ERRORTYPE) {
             (yyval.expressionValue).type = ERRORTYPE;
@@ -2340,11 +2340,11 @@ yyreduce:
             }
         }
     }
-#line 2344 "miniC.tab.c" /* yacc.c:1646  */
+#line 2344 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 45:
-#line 836 "miniC.y" /* yacc.c:1646  */
+#line 836 "parser.y" /* yacc.c:1646  */
     { 
         (yyval.expressionValue).type = (yyvsp[0].expressionValue).type; 
         if ((yyvsp[0].expressionValue).type == ERRORTYPE) {
@@ -2357,11 +2357,11 @@ yyreduce:
             }         
         } 
     }
-#line 2361 "miniC.tab.c" /* yacc.c:1646  */
+#line 2361 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 46:
-#line 852 "miniC.y" /* yacc.c:1646  */
+#line 852 "parser.y" /* yacc.c:1646  */
     {
         callFunctionPointer = new functionEntry;
         callFunctionPointer->name = string((yyvsp[-3].idName));
@@ -2413,37 +2413,37 @@ yyreduce:
         typeRecordList.swap(parameterListStack.top());
         parameterListStack.pop();
     }
-#line 2417 "miniC.tab.c" /* yacc.c:1646  */
+#line 2417 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 48:
-#line 906 "miniC.y" /* yacc.c:1646  */
+#line 906 "parser.y" /* yacc.c:1646  */
     {parameterListStack.push(typeRecordList); typeRecordList.clear();}
-#line 2423 "miniC.tab.c" /* yacc.c:1646  */
+#line 2423 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 49:
-#line 911 "miniC.y" /* yacc.c:1646  */
+#line 911 "parser.y" /* yacc.c:1646  */
     {
         (yyval.statementValue).nextList = new vector<int>;
         (yyval.statementValue).breakList = new vector<int>;
         (yyval.statementValue).continueList = new vector <int>;
     }
-#line 2433 "miniC.tab.c" /* yacc.c:1646  */
+#line 2433 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 50:
-#line 917 "miniC.y" /* yacc.c:1646  */
+#line 917 "parser.y" /* yacc.c:1646  */
     {
         (yyval.statementValue).nextList = new vector<int>;
         (yyval.statementValue).breakList = new vector<int>;
         (yyval.statementValue).continueList = new vector <int>;
     }
-#line 2443 "miniC.tab.c" /* yacc.c:1646  */
+#line 2443 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 51:
-#line 923 "miniC.y" /* yacc.c:1646  */
+#line 923 "parser.y" /* yacc.c:1646  */
     {
         (yyval.statementValue).nextList = new vector<int>;
         (yyval.statementValue).breakList = new vector<int>;
@@ -2452,21 +2452,21 @@ yyreduce:
         merge((yyval.statementValue).breakList, (yyvsp[0].statementValue).breakList);
 
     }
-#line 2456 "miniC.tab.c" /* yacc.c:1646  */
+#line 2456 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 52:
-#line 932 "miniC.y" /* yacc.c:1646  */
+#line 932 "parser.y" /* yacc.c:1646  */
     {
         (yyval.statementValue).nextList = new vector<int>;
         (yyval.statementValue).breakList = new vector<int>;
         (yyval.statementValue).continueList = new vector <int>;
     }
-#line 2466 "miniC.tab.c" /* yacc.c:1646  */
+#line 2466 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 53:
-#line 938 "miniC.y" /* yacc.c:1646  */
+#line 938 "parser.y" /* yacc.c:1646  */
     {
         (yyval.statementValue).nextList = new vector<int>;
         (yyval.statementValue).breakList = new vector<int>;
@@ -2474,17 +2474,17 @@ yyreduce:
         if ((yyvsp[-1].expressionValue).type != NULLVOID && (yyvsp[-1].expressionValue).type != ERRORTYPE)
             temporarySet.freeRegister(*((yyvsp[-1].expressionValue).registerName));
     }
-#line 2478 "miniC.tab.c" /* yacc.c:1646  */
+#line 2478 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 54:
-#line 945 "miniC.y" /* yacc.c:1646  */
+#line 945 "parser.y" /* yacc.c:1646  */
     {scope++;}
-#line 2484 "miniC.tab.c" /* yacc.c:1646  */
+#line 2484 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 55:
-#line 946 "miniC.y" /* yacc.c:1646  */
+#line 946 "parser.y" /* yacc.c:1646  */
     {
         (yyval.statementValue).nextList = new vector<int>;
         (yyval.statementValue).breakList = new vector<int>;
@@ -2494,11 +2494,11 @@ yyreduce:
         merge((yyval.statementValue).continueList, (yyvsp[-1].statementValue).continueList);
         merge((yyval.statementValue).breakList, (yyvsp[-1].statementValue).breakList);
     }
-#line 2498 "miniC.tab.c" /* yacc.c:1646  */
+#line 2498 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 56:
-#line 956 "miniC.y" /* yacc.c:1646  */
+#line 956 "parser.y" /* yacc.c:1646  */
     {
         (yyval.statementValue).nextList = new vector<int>;
         (yyval.statementValue).breakList = new vector<int>;
@@ -2506,21 +2506,21 @@ yyreduce:
         (yyval.statementValue).breakList->push_back(nextNum);
         gen(functionInstruction, "goto L", nextNum);
     }
-#line 2510 "miniC.tab.c" /* yacc.c:1646  */
+#line 2510 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 57:
-#line 964 "miniC.y" /* yacc.c:1646  */
+#line 964 "parser.y" /* yacc.c:1646  */
     {
         (yyval.statementValue).nextList = new vector<int>;
         (yyval.statementValue).breakList = new vector<int>;
         (yyval.statementValue).continueList = new vector <int>;
     }
-#line 2520 "miniC.tab.c" /* yacc.c:1646  */
+#line 2520 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 58:
-#line 970 "miniC.y" /* yacc.c:1646  */
+#line 970 "parser.y" /* yacc.c:1646  */
     {
         (yyval.statementValue).nextList = new vector<int>;
         (yyval.statementValue).breakList = new vector<int>;
@@ -2573,11 +2573,11 @@ yyreduce:
             }
         }
     }
-#line 2577 "miniC.tab.c" /* yacc.c:1646  */
+#line 2577 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 59:
-#line 1023 "miniC.y" /* yacc.c:1646  */
+#line 1023 "parser.y" /* yacc.c:1646  */
     {
         (yyval.statementValue).nextList = new vector<int>;
         (yyval.statementValue).breakList = new vector<int>;
@@ -2585,11 +2585,11 @@ yyreduce:
         (yyval.statementValue).continueList->push_back(nextNum);
         gen(functionInstruction, "goto L", nextNum);
     }
-#line 2589 "miniC.tab.c" /* yacc.c:1646  */
+#line 2589 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 60:
-#line 1031 "miniC.y" /* yacc.c:1646  */
+#line 1031 "parser.y" /* yacc.c:1646  */
     {
         (yyval.statementValue).nextList = new vector<int>;
         (yyval.statementValue).breakList = new vector<int>;
@@ -2613,11 +2613,11 @@ yyreduce:
             if ((yyvsp[-1].expressionValue).offsetRegName != NULL) temporarySet.freeRegister(*((yyvsp[-1].expressionValue).offsetRegName));
         }
     }
-#line 2617 "miniC.tab.c" /* yacc.c:1646  */
+#line 2617 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 61:
-#line 1055 "miniC.y" /* yacc.c:1646  */
+#line 1055 "parser.y" /* yacc.c:1646  */
     {
         errorFound = 1;
         (yyval.statementValue).nextList = new vector<int>;
@@ -2625,11 +2625,11 @@ yyreduce:
         (yyval.statementValue).continueList = new vector <int>;
         cout << BOLD(FRED("ERROR : ")) << FYEL("Line no. " + to_string(yylineno) + ": Syntax error") << endl;
     }
-#line 2629 "miniC.tab.c" /* yacc.c:1646  */
+#line 2629 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 62:
-#line 1063 "miniC.y" /* yacc.c:1646  */
+#line 1063 "parser.y" /* yacc.c:1646  */
     {
         errorFound = 1;
         (yyval.statementValue).nextList = new vector<int>;
@@ -2637,11 +2637,11 @@ yyreduce:
         (yyval.statementValue).continueList = new vector <int>;
         cout << BOLD(FRED("ERROR : ")) << FYEL("Line no. " + to_string(yylineno) + ": Syntax error") << endl;
     }
-#line 2641 "miniC.tab.c" /* yacc.c:1646  */
+#line 2641 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 63:
-#line 1071 "miniC.y" /* yacc.c:1646  */
+#line 1071 "parser.y" /* yacc.c:1646  */
     {
         (yyval.statementValue).nextList = new vector<int>;
         (yyval.statementValue).breakList = new vector<int>;
@@ -2666,11 +2666,11 @@ yyreduce:
             if ((yyvsp[-1].expressionValue).offsetRegName != NULL) temporarySet.freeRegister(*((yyvsp[-1].expressionValue).offsetRegName));
         }
     }
-#line 2670 "miniC.tab.c" /* yacc.c:1646  */
+#line 2670 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 64:
-#line 1098 "miniC.y" /* yacc.c:1646  */
+#line 1098 "parser.y" /* yacc.c:1646  */
     {
         variableRecord = new typeRecord;
         variableRecord->elementType = (yyvsp[0].expressionValue).type;
@@ -2685,17 +2685,17 @@ yyreduce:
         }
         typeRecordList.push_back(variableRecord);
     }
-#line 2689 "miniC.tab.c" /* yacc.c:1646  */
+#line 2689 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 65:
-#line 1112 "miniC.y" /* yacc.c:1646  */
+#line 1112 "parser.y" /* yacc.c:1646  */
     {parameterListStack.push(typeRecordList); typeRecordList.clear();}
-#line 2695 "miniC.tab.c" /* yacc.c:1646  */
+#line 2695 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 66:
-#line 1113 "miniC.y" /* yacc.c:1646  */
+#line 1113 "parser.y" /* yacc.c:1646  */
     {
         variableRecord = new typeRecord;
         variableRecord->elementType = (yyvsp[0].expressionValue).type;
@@ -2710,11 +2710,11 @@ yyreduce:
         }
         typeRecordList.push_back(variableRecord);
     }
-#line 2714 "miniC.tab.c" /* yacc.c:1646  */
+#line 2714 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 67:
-#line 1130 "miniC.y" /* yacc.c:1646  */
+#line 1130 "parser.y" /* yacc.c:1646  */
     {
         deleteVariableList(activeFunctionPointer,scope);
         scope--;
@@ -2727,17 +2727,17 @@ yyreduce:
         backPatch((yyval.statementValue).nextList,nextNum,functionInstruction);
         gen(functionInstruction, "L" + to_string(nextNum) + ":", nextNum);
     }
-#line 2731 "miniC.tab.c" /* yacc.c:1646  */
+#line 2731 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 68:
-#line 1142 "miniC.y" /* yacc.c:1646  */
+#line 1142 "parser.y" /* yacc.c:1646  */
     {deleteVariableList(activeFunctionPointer,scope);}
-#line 2737 "miniC.tab.c" /* yacc.c:1646  */
+#line 2737 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 69:
-#line 1143 "miniC.y" /* yacc.c:1646  */
+#line 1143 "parser.y" /* yacc.c:1646  */
     {
         deleteVariableList(activeFunctionPointer,scope);
         scope--;
@@ -2753,22 +2753,22 @@ yyreduce:
         merge((yyval.statementValue).breakList, (yyvsp[-1].statementValue).breakList);
         merge((yyval.statementValue).continueList, (yyvsp[-1].statementValue).continueList);
     }
-#line 2757 "miniC.tab.c" /* yacc.c:1646  */
+#line 2757 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 70:
-#line 1162 "miniC.y" /* yacc.c:1646  */
+#line 1162 "parser.y" /* yacc.c:1646  */
     {
         errorFound = 1;
         (yyval.whileExpressionValue).falseList = new vector <int>;
         cout << BOLD(FRED("ERROR : ")) << FYEL("Line no. " + to_string(yylineno) + ": Syntax error in if, discarding tokens till RPARE") << endl;
         scope++;
     }
-#line 2768 "miniC.tab.c" /* yacc.c:1646  */
+#line 2768 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 71:
-#line 1169 "miniC.y" /* yacc.c:1646  */
+#line 1169 "parser.y" /* yacc.c:1646  */
     {
         if((yyvsp[-1].expressionValue).type != ERRORTYPE && (yyvsp[-1].expressionValue).type!=NULLVOID){
             (yyval.whileExpressionValue).falseList = new vector <int>;
@@ -2782,11 +2782,11 @@ yyreduce:
             temporarySet.freeRegister(*((yyvsp[-1].expressionValue).registerName));
         } 
     }
-#line 2786 "miniC.tab.c" /* yacc.c:1646  */
+#line 2786 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 72:
-#line 1185 "miniC.y" /* yacc.c:1646  */
+#line 1185 "parser.y" /* yacc.c:1646  */
     {
         (yyval.expressionValue).type = (yyvsp[0].shortCircuitValue).type;
         if((yyval.expressionValue).type != ERRORTYPE && (yyval.expressionValue).type != NULLVOID) {
@@ -2804,11 +2804,11 @@ yyreduce:
             }
         }
     }
-#line 2808 "miniC.tab.c" /* yacc.c:1646  */
+#line 2808 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 73:
-#line 1203 "miniC.y" /* yacc.c:1646  */
+#line 1203 "parser.y" /* yacc.c:1646  */
     {
         if ((yyvsp[-2].expressionValue).type == ERRORTYPE || (yyvsp[0].expressionValue).type == ERRORTYPE) {
             (yyval.expressionValue).type = ERRORTYPE;
@@ -2860,11 +2860,11 @@ yyreduce:
             if ((yyvsp[-2].expressionValue).offsetRegName != NULL) temporarySet.freeRegister(*((yyvsp[-2].expressionValue).offsetRegName));
         }
     }
-#line 2864 "miniC.tab.c" /* yacc.c:1646  */
+#line 2864 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 74:
-#line 1255 "miniC.y" /* yacc.c:1646  */
+#line 1255 "parser.y" /* yacc.c:1646  */
     {
         if ((yyvsp[-2].expressionValue).type == ERRORTYPE || (yyvsp[0].expressionValue).type == ERRORTYPE) {
             (yyval.expressionValue).type = ERRORTYPE;
@@ -2916,11 +2916,11 @@ yyreduce:
             if ((yyvsp[-2].expressionValue).offsetRegName != NULL) temporarySet.freeRegister(*((yyvsp[-2].expressionValue).offsetRegName));
         }
     }
-#line 2920 "miniC.tab.c" /* yacc.c:1646  */
+#line 2920 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 75:
-#line 1307 "miniC.y" /* yacc.c:1646  */
+#line 1307 "parser.y" /* yacc.c:1646  */
     {
         if ((yyvsp[-2].expressionValue).type == ERRORTYPE || (yyvsp[0].expressionValue).type == ERRORTYPE) {
             (yyval.expressionValue).type = ERRORTYPE;
@@ -2972,11 +2972,11 @@ yyreduce:
             if ((yyvsp[-2].expressionValue).offsetRegName != NULL) temporarySet.freeRegister(*((yyvsp[-2].expressionValue).offsetRegName));
         }
     }
-#line 2976 "miniC.tab.c" /* yacc.c:1646  */
+#line 2976 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 76:
-#line 1359 "miniC.y" /* yacc.c:1646  */
+#line 1359 "parser.y" /* yacc.c:1646  */
     {
         if ((yyvsp[-2].expressionValue).type == ERRORTYPE || (yyvsp[0].expressionValue).type == ERRORTYPE) {
             (yyval.expressionValue).type = ERRORTYPE;
@@ -3028,11 +3028,11 @@ yyreduce:
             if ((yyvsp[-2].expressionValue).offsetRegName != NULL) temporarySet.freeRegister(*((yyvsp[-2].expressionValue).offsetRegName));
         }
     }
-#line 3032 "miniC.tab.c" /* yacc.c:1646  */
+#line 3032 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 77:
-#line 1411 "miniC.y" /* yacc.c:1646  */
+#line 1411 "parser.y" /* yacc.c:1646  */
     {
         if ((yyvsp[-2].expressionValue).type == ERRORTYPE || (yyvsp[0].expressionValue).type == ERRORTYPE) {
             (yyval.expressionValue).type = ERRORTYPE;
@@ -3084,11 +3084,11 @@ yyreduce:
             if ((yyvsp[-2].expressionValue).offsetRegName != NULL) temporarySet.freeRegister(*((yyvsp[-2].expressionValue).offsetRegName));
         }
     }
-#line 3088 "miniC.tab.c" /* yacc.c:1646  */
+#line 3088 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 78:
-#line 1463 "miniC.y" /* yacc.c:1646  */
+#line 1463 "parser.y" /* yacc.c:1646  */
     {
         if ((yyvsp[-2].expressionValue).type == ERRORTYPE || (yyvsp[0].expressionValue).type == ERRORTYPE) {
             (yyval.expressionValue).type = ERRORTYPE;
@@ -3126,11 +3126,11 @@ yyreduce:
             if ((yyvsp[-2].expressionValue).offsetRegName != NULL) temporarySet.freeRegister(*((yyvsp[-2].expressionValue).offsetRegName));
         }
     }
-#line 3130 "miniC.tab.c" /* yacc.c:1646  */
+#line 3130 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 79:
-#line 1503 "miniC.y" /* yacc.c:1646  */
+#line 1503 "parser.y" /* yacc.c:1646  */
     {
         deleteVariableList(activeFunctionPointer,scope);
         scope--;
@@ -3155,11 +3155,11 @@ yyreduce:
         backPatch((yyvsp[-1].switchCaseValue).breakList, nextNum, functionInstruction);
         gen(functionInstruction, "L" + to_string(nextNum) + ":", nextNum);
     }
-#line 3159 "miniC.tab.c" /* yacc.c:1646  */
+#line 3159 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 80:
-#line 1530 "miniC.y" /* yacc.c:1646  */
+#line 1530 "parser.y" /* yacc.c:1646  */
     {
         (yyval.whileExpressionValue).begin=nextNum;
         (yyval.whileExpressionValue).falseList = new vector<int>;
@@ -3167,29 +3167,29 @@ yyreduce:
         gen(functionInstruction, "goto L", nextNum);
         scope++;
     }
-#line 3171 "miniC.tab.c" /* yacc.c:1646  */
+#line 3171 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 81:
-#line 1540 "miniC.y" /* yacc.c:1646  */
+#line 1540 "parser.y" /* yacc.c:1646  */
     {
         (yyval.switchTempValue).casePair = new vector<pair<string,int>>;
 
     }
-#line 3180 "miniC.tab.c" /* yacc.c:1646  */
+#line 3180 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 82:
-#line 1547 "miniC.y" /* yacc.c:1646  */
+#line 1547 "parser.y" /* yacc.c:1646  */
     {
         (yyvsp[0].switchTempValue).casePair->push_back(make_pair("-"+string((yyvsp[-1].idName)), nextNum));
         gen(functionInstruction, "L" + to_string(nextNum) + ":", nextNum);
         }
-#line 3189 "miniC.tab.c" /* yacc.c:1646  */
+#line 3189 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 83:
-#line 1552 "miniC.y" /* yacc.c:1646  */
+#line 1552 "parser.y" /* yacc.c:1646  */
     {
         (yyval.switchCaseValue).nextList = new vector<int>;
         (yyval.switchCaseValue).breakList = new vector<int>;
@@ -3204,20 +3204,20 @@ yyreduce:
         mergeSwitch((yyval.switchCaseValue).casePair, (yyvsp[0].switchCaseValue).casePair);
         mergeSwitch((yyval.switchCaseValue).casePair, (yyvsp[-4].switchTempValue).casePair);
     }
-#line 3208 "miniC.tab.c" /* yacc.c:1646  */
+#line 3208 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 84:
-#line 1567 "miniC.y" /* yacc.c:1646  */
+#line 1567 "parser.y" /* yacc.c:1646  */
     {
         (yyvsp[0].switchTempValue).casePair->push_back(make_pair(string((yyvsp[-1].idName)), nextNum));
         gen(functionInstruction, "L" + to_string(nextNum) + ":", nextNum);
         }
-#line 3217 "miniC.tab.c" /* yacc.c:1646  */
+#line 3217 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 85:
-#line 1572 "miniC.y" /* yacc.c:1646  */
+#line 1572 "parser.y" /* yacc.c:1646  */
     {
         (yyval.switchCaseValue).nextList = new vector<int>;
         (yyval.switchCaseValue).breakList = new vector<int>;
@@ -3232,31 +3232,31 @@ yyreduce:
         mergeSwitch((yyval.switchCaseValue).casePair, (yyvsp[0].switchCaseValue).casePair);
         mergeSwitch((yyval.switchCaseValue).casePair, (yyvsp[-4].switchTempValue).casePair);
     }
-#line 3236 "miniC.tab.c" /* yacc.c:1646  */
+#line 3236 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 86:
-#line 1587 "miniC.y" /* yacc.c:1646  */
+#line 1587 "parser.y" /* yacc.c:1646  */
     {
         (yyval.switchCaseValue).nextList = new vector<int>;
         (yyval.switchCaseValue).breakList = new vector<int>;
         (yyval.switchCaseValue).continueList = new vector <int>;
         (yyval.switchCaseValue).casePair = new vector<pair<string,int>>;
     }
-#line 3247 "miniC.tab.c" /* yacc.c:1646  */
+#line 3247 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 87:
-#line 1593 "miniC.y" /* yacc.c:1646  */
+#line 1593 "parser.y" /* yacc.c:1646  */
     {
         (yyvsp[0].switchTempValue).casePair->push_back(make_pair("default", nextNum));
         gen(functionInstruction, "L" + to_string(nextNum) + ":", nextNum);
     }
-#line 3256 "miniC.tab.c" /* yacc.c:1646  */
+#line 3256 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 88:
-#line 1597 "miniC.y" /* yacc.c:1646  */
+#line 1597 "parser.y" /* yacc.c:1646  */
     {
         (yyval.switchCaseValue).nextList = new vector<int>;
         (yyval.switchCaseValue).breakList = new vector<int>;
@@ -3267,20 +3267,20 @@ yyreduce:
         merge((yyval.switchCaseValue).nextList, (yyvsp[0].statementValue).nextList);
         mergeSwitch((yyval.switchCaseValue).casePair, (yyvsp[-2].switchTempValue).casePair);
     }
-#line 3271 "miniC.tab.c" /* yacc.c:1646  */
+#line 3271 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 89:
-#line 1610 "miniC.y" /* yacc.c:1646  */
+#line 1610 "parser.y" /* yacc.c:1646  */
     { 
         (yyval.quad) = nextNum;
         gen(functionInstruction, "L" + to_string(nextNum) + ":", nextNum); 
     }
-#line 3280 "miniC.tab.c" /* yacc.c:1646  */
+#line 3280 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 90:
-#line 1617 "miniC.y" /* yacc.c:1646  */
+#line 1617 "parser.y" /* yacc.c:1646  */
     {
         (yyval.expressionValue).type = (yyvsp[0].expressionValue).type;
         if ((yyval.expressionValue).type != ERRORTYPE) {
@@ -3288,22 +3288,22 @@ yyreduce:
             (yyval.expressionValue).offsetRegName = (yyvsp[0].expressionValue).offsetRegName;
         } 
     }
-#line 3292 "miniC.tab.c" /* yacc.c:1646  */
+#line 3292 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 91:
-#line 1627 "miniC.y" /* yacc.c:1646  */
+#line 1627 "parser.y" /* yacc.c:1646  */
     { 
         (yyval.whileExpressionValue).begin = nextNum; 
         (yyval.whileExpressionValue).falseList = new vector<int>;
         (yyval.whileExpressionValue).falseList->push_back(nextNum);
         gen(functionInstruction, "goto L", nextNum);
     }
-#line 3303 "miniC.tab.c" /* yacc.c:1646  */
+#line 3303 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 92:
-#line 1636 "miniC.y" /* yacc.c:1646  */
+#line 1636 "parser.y" /* yacc.c:1646  */
     {
         deleteVariableList(activeFunctionPointer, scope);
         scope--;
@@ -3313,21 +3313,21 @@ yyreduce:
         backPatch((yyvsp[-4].whileExpressionValue).falseList, nextNum, functionInstruction);
         gen(functionInstruction, "L" + to_string(nextNum) + ":", nextNum); 
     }
-#line 3317 "miniC.tab.c" /* yacc.c:1646  */
+#line 3317 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 93:
-#line 1647 "miniC.y" /* yacc.c:1646  */
+#line 1647 "parser.y" /* yacc.c:1646  */
     {
         if((yyvsp[-1].expressionValue).type!=NULLVOID){
             gen(functionInstruction, "if "+ (*((yyvsp[-1].expressionValue).registerName)) + " == 0 goto L", nextNum);
         }
     }
-#line 3327 "miniC.tab.c" /* yacc.c:1646  */
+#line 3327 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 94:
-#line 1652 "miniC.y" /* yacc.c:1646  */
+#line 1652 "parser.y" /* yacc.c:1646  */
     {
         backPatch((yyvsp[-1].whileExpressionValue).falseList,(yyvsp[-8].quad),functionInstruction);
         backPatch((yyvsp[-4].whileExpressionValue).falseList,nextNum,functionInstruction);
@@ -3348,22 +3348,22 @@ yyreduce:
             temporarySet.freeRegister(*((yyvsp[-2].expressionValue).registerName));
         }
     }
-#line 3352 "miniC.tab.c" /* yacc.c:1646  */
+#line 3352 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 95:
-#line 1673 "miniC.y" /* yacc.c:1646  */
+#line 1673 "parser.y" /* yacc.c:1646  */
     {
         errorFound = 1;
         (yyval.whileExpressionValue).falseList = new vector<int>;
         cout << BOLD(FRED("ERROR : ")) << FYEL("Line no. " + to_string(yylineno) + ": Syntax error in for loop, discarded token till RPARE") << endl;
         scope++;
     }
-#line 3363 "miniC.tab.c" /* yacc.c:1646  */
+#line 3363 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 96:
-#line 1682 "miniC.y" /* yacc.c:1646  */
+#line 1682 "parser.y" /* yacc.c:1646  */
     { 
         (yyval.whileExpressionValue).falseList = new vector<int>;
         (yyval.whileExpressionValue).falseList->push_back(nextNum);
@@ -3371,67 +3371,67 @@ yyreduce:
         (yyval.whileExpressionValue).begin = nextNum; 
         gen(functionInstruction, "L"+to_string(nextNum)+":", nextNum);
     }
-#line 3375 "miniC.tab.c" /* yacc.c:1646  */
+#line 3375 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 97:
-#line 1692 "miniC.y" /* yacc.c:1646  */
+#line 1692 "parser.y" /* yacc.c:1646  */
     {
         (yyval.whileExpressionValue).begin = nextNum;
         (yyval.whileExpressionValue).falseList = new vector<int>;
         (yyval.whileExpressionValue).falseList->push_back(nextNum);
     }
-#line 3385 "miniC.tab.c" /* yacc.c:1646  */
+#line 3385 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 98:
-#line 1700 "miniC.y" /* yacc.c:1646  */
+#line 1700 "parser.y" /* yacc.c:1646  */
     {
         (yyval.quad) = nextNum;
     }
-#line 3393 "miniC.tab.c" /* yacc.c:1646  */
+#line 3393 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 99:
-#line 1706 "miniC.y" /* yacc.c:1646  */
+#line 1706 "parser.y" /* yacc.c:1646  */
     {
         (yyval.expressionValue).type= (yyvsp[0].expressionValue).type;
         if ((yyvsp[0].expressionValue).type != ERRORTYPE && (yyvsp[0].expressionValue).type != NULLVOID) {
             (yyval.expressionValue).registerName = (yyvsp[0].expressionValue).registerName;
         }
     }
-#line 3404 "miniC.tab.c" /* yacc.c:1646  */
+#line 3404 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 100:
-#line 1712 "miniC.y" /* yacc.c:1646  */
+#line 1712 "parser.y" /* yacc.c:1646  */
     {
         (yyval.expressionValue).type = NULLVOID;
     }
-#line 3412 "miniC.tab.c" /* yacc.c:1646  */
+#line 3412 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 101:
-#line 1718 "miniC.y" /* yacc.c:1646  */
+#line 1718 "parser.y" /* yacc.c:1646  */
     {
         (yyval.statementValue).nextList = new vector<int>;
         ((yyval.statementValue).nextList)->push_back(nextNum);
         gen(functionInstruction, "goto L", nextNum);
     }
-#line 3422 "miniC.tab.c" /* yacc.c:1646  */
+#line 3422 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 102:
-#line 1727 "miniC.y" /* yacc.c:1646  */
+#line 1727 "parser.y" /* yacc.c:1646  */
     {
         (yyval.quad)=nextNum;
         gen(functionInstruction, "L" + to_string(nextNum) + ":", nextNum);
     }
-#line 3431 "miniC.tab.c" /* yacc.c:1646  */
+#line 3431 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 103:
-#line 1734 "miniC.y" /* yacc.c:1646  */
+#line 1734 "parser.y" /* yacc.c:1646  */
     {
         deleteVariableList(activeFunctionPointer,scope);
         scope--;
@@ -3445,11 +3445,11 @@ yyreduce:
         backPatch((yyval.statementValue).nextList,nextNum,functionInstruction);
         gen(functionInstruction, "L" + to_string(nextNum) + ":", nextNum);
     }
-#line 3449 "miniC.tab.c" /* yacc.c:1646  */
+#line 3449 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 104:
-#line 1750 "miniC.y" /* yacc.c:1646  */
+#line 1750 "parser.y" /* yacc.c:1646  */
     {
         scope++;
         if((yyvsp[-1].expressionValue).type == NULLVOID || (yyvsp[-1].expressionValue).type == ERRORTYPE){
@@ -3464,29 +3464,29 @@ yyreduce:
             (yyval.whileExpressionValue).begin = (yyvsp[-3].quad); 
         }
     }
-#line 3468 "miniC.tab.c" /* yacc.c:1646  */
+#line 3468 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 105:
-#line 1765 "miniC.y" /* yacc.c:1646  */
+#line 1765 "parser.y" /* yacc.c:1646  */
     {   
         (yyval.whileExpressionValue).falseList = new vector<int>;
         cout << BOLD(FRED("ERROR : ")) << FYEL("Line no. " + to_string(yylineno) + ": Syntax error in while loop, discarding tokens till RPARE") << endl;
         scope++;
     }
-#line 3478 "miniC.tab.c" /* yacc.c:1646  */
+#line 3478 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 106:
-#line 1773 "miniC.y" /* yacc.c:1646  */
+#line 1773 "parser.y" /* yacc.c:1646  */
     {
     (yyval.conditionTemp).temp = new vector<int>;
 }
-#line 3486 "miniC.tab.c" /* yacc.c:1646  */
+#line 3486 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 107:
-#line 1779 "miniC.y" /* yacc.c:1646  */
+#line 1779 "parser.y" /* yacc.c:1646  */
     {
         if ((yyvsp[-1].expressionValue).type == INTEGER) {
             dimensionList.push_back(*((yyvsp[-1].expressionValue).registerName));
@@ -3496,11 +3496,11 @@ yyreduce:
             cout << "One of the dimension of an array cannot be evaluated to integer" << endl;
         }
     }
-#line 3500 "miniC.tab.c" /* yacc.c:1646  */
+#line 3500 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 108:
-#line 1789 "miniC.y" /* yacc.c:1646  */
+#line 1789 "parser.y" /* yacc.c:1646  */
     {
         if ((yyvsp[-1].expressionValue).type == INTEGER) {
             dimensionList.push_back(*((yyvsp[-1].expressionValue).registerName));
@@ -3510,11 +3510,11 @@ yyreduce:
             cout << "One of the dimension of an array cannot be evaluated to integer" << endl;
         }  
     }
-#line 3514 "miniC.tab.c" /* yacc.c:1646  */
+#line 3514 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 109:
-#line 1802 "miniC.y" /* yacc.c:1646  */
+#line 1802 "parser.y" /* yacc.c:1646  */
     {
         (yyval.shortCircuitValue).type = (yyvsp[0].shortCircuitValue).type;
         if ((yyval.shortCircuitValue).type != ERRORTYPE && (yyval.shortCircuitValue).type != NULLVOID) {
@@ -3532,11 +3532,11 @@ yyreduce:
             }
         }
     }
-#line 3536 "miniC.tab.c" /* yacc.c:1646  */
+#line 3536 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 110:
-#line 1820 "miniC.y" /* yacc.c:1646  */
+#line 1820 "parser.y" /* yacc.c:1646  */
     {
         if((yyvsp[-1].shortCircuitValue).type!=ERRORTYPE){
             (yyvsp[0].conditionTemp).temp->push_back(nextNum);
@@ -3544,11 +3544,11 @@ yyreduce:
 
         }
     }
-#line 3548 "miniC.tab.c" /* yacc.c:1646  */
+#line 3548 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 111:
-#line 1828 "miniC.y" /* yacc.c:1646  */
+#line 1828 "parser.y" /* yacc.c:1646  */
     {
         if((yyvsp[-4].shortCircuitValue).type==ERRORTYPE || (yyvsp[0].shortCircuitValue).type==ERRORTYPE){
             (yyval.shortCircuitValue).type = ERRORTYPE;
@@ -3584,11 +3584,11 @@ yyreduce:
             temporarySet.freeRegister(*((yyvsp[0].shortCircuitValue).registerName)); 
         }
     }
-#line 3588 "miniC.tab.c" /* yacc.c:1646  */
+#line 3588 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 112:
-#line 1867 "miniC.y" /* yacc.c:1646  */
+#line 1867 "parser.y" /* yacc.c:1646  */
     {
       if ((yyvsp[-1].shortCircuitValue).type!=ERRORTYPE ){
 
@@ -3596,11 +3596,11 @@ yyreduce:
          gen(functionInstruction, "if " + *((yyvsp[-1].shortCircuitValue).registerName) + " == 0 " +" goto L", nextNum);
       } 
     }
-#line 3600 "miniC.tab.c" /* yacc.c:1646  */
+#line 3600 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 113:
-#line 1875 "miniC.y" /* yacc.c:1646  */
+#line 1875 "parser.y" /* yacc.c:1646  */
     {
         if ((yyvsp[-4].shortCircuitValue).type==ERRORTYPE || (yyvsp[0].expressionValue).type==ERRORTYPE) {
             (yyval.shortCircuitValue).type = ERRORTYPE;
@@ -3626,11 +3626,11 @@ yyreduce:
             temporarySet.freeRegister(*((yyvsp[0].expressionValue).registerName));   
         }
     }
-#line 3630 "miniC.tab.c" /* yacc.c:1646  */
+#line 3630 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 114:
-#line 1901 "miniC.y" /* yacc.c:1646  */
+#line 1901 "parser.y" /* yacc.c:1646  */
     {
         (yyval.shortCircuitValue).type = (yyvsp[0].expressionValue).type;
         if ((yyvsp[0].expressionValue).type != ERRORTYPE && (yyvsp[0].expressionValue).type != NULLVOID) {
@@ -3639,11 +3639,11 @@ yyreduce:
             (yyval.shortCircuitValue).jumpList=NULL;   
         }
     }
-#line 3643 "miniC.tab.c" /* yacc.c:1646  */
+#line 3643 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 115:
-#line 1912 "miniC.y" /* yacc.c:1646  */
+#line 1912 "parser.y" /* yacc.c:1646  */
     {
         if ((yyvsp[-2].expressionValue).type == ERRORTYPE || (yyvsp[0].expressionValue).type == ERRORTYPE) {
             (yyval.expressionValue).type = ERRORTYPE;  
@@ -3686,11 +3686,11 @@ yyreduce:
             }
         }
     }
-#line 3690 "miniC.tab.c" /* yacc.c:1646  */
+#line 3690 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 116:
-#line 1955 "miniC.y" /* yacc.c:1646  */
+#line 1955 "parser.y" /* yacc.c:1646  */
     {
         if ((yyvsp[-2].expressionValue).type == ERRORTYPE || (yyvsp[0].expressionValue).type == ERRORTYPE) {
         (yyval.expressionValue).type = ERRORTYPE;  
@@ -3733,11 +3733,11 @@ yyreduce:
             }
         }   
     }
-#line 3737 "miniC.tab.c" /* yacc.c:1646  */
+#line 3737 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 117:
-#line 1998 "miniC.y" /* yacc.c:1646  */
+#line 1998 "parser.y" /* yacc.c:1646  */
     { 
         (yyval.expressionValue).type = (yyvsp[0].expressionValue).type; 
         if ((yyvsp[0].expressionValue).type == ERRORTYPE) {
@@ -3750,11 +3750,11 @@ yyreduce:
             }  
         } 
     }
-#line 3754 "miniC.tab.c" /* yacc.c:1646  */
+#line 3754 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 118:
-#line 2011 "miniC.y" /* yacc.c:1646  */
+#line 2011 "parser.y" /* yacc.c:1646  */
     {
         if ((yyvsp[-2].expressionValue).type == ERRORTYPE || (yyvsp[0].expressionValue).type == ERRORTYPE) {
             (yyval.expressionValue).type = ERRORTYPE;  
@@ -3775,11 +3775,11 @@ yyreduce:
             }
         }   
     }
-#line 3779 "miniC.tab.c" /* yacc.c:1646  */
+#line 3779 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 119:
-#line 2035 "miniC.y" /* yacc.c:1646  */
+#line 2035 "parser.y" /* yacc.c:1646  */
     {
         if ((yyvsp[0].expressionValue).type == INTEGER) {
             (yyval.expressionValue).type = INTEGER;
@@ -3803,11 +3803,11 @@ yyreduce:
             cout << "Cannot increment non-integer type variable "<<*((yyvsp[0].expressionValue).registerName) << endl; 
         }
     }
-#line 3807 "miniC.tab.c" /* yacc.c:1646  */
+#line 3807 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 120:
-#line 2059 "miniC.y" /* yacc.c:1646  */
+#line 2059 "parser.y" /* yacc.c:1646  */
     {
         if ((yyvsp[0].expressionValue).type == INTEGER) {
             (yyval.expressionValue).type = INTEGER;   
@@ -3831,11 +3831,11 @@ yyreduce:
             cout << "Cannot increment non-integer type variable " << *((yyvsp[0].expressionValue).registerName) << endl; 
         }
     }
-#line 3835 "miniC.tab.c" /* yacc.c:1646  */
+#line 3835 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 121:
-#line 2083 "miniC.y" /* yacc.c:1646  */
+#line 2083 "parser.y" /* yacc.c:1646  */
     { 
         (yyval.expressionValue).type = (yyvsp[0].expressionValue).type;
         if ((yyval.expressionValue).type != ERRORTYPE) {
@@ -3849,22 +3849,22 @@ yyreduce:
             }
         }
     }
-#line 3853 "miniC.tab.c" /* yacc.c:1646  */
+#line 3853 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 122:
-#line 2097 "miniC.y" /* yacc.c:1646  */
+#line 2097 "parser.y" /* yacc.c:1646  */
     { 
         (yyval.expressionValue).type = (yyvsp[-1].expressionValue).type; 
         if ((yyvsp[-1].expressionValue).type != ERRORTYPE) {
             (yyval.expressionValue).registerName = (yyvsp[-1].expressionValue).registerName;
         }
     }
-#line 3864 "miniC.tab.c" /* yacc.c:1646  */
+#line 3864 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 123:
-#line 2104 "miniC.y" /* yacc.c:1646  */
+#line 2104 "parser.y" /* yacc.c:1646  */
     {
         (yyval.expressionValue).type = (yyvsp[0].expressionValue).type;
         if((yyvsp[0].expressionValue).type != ERRORTYPE){
@@ -3896,44 +3896,44 @@ yyreduce:
             }
         }       
     }
-#line 3900 "miniC.tab.c" /* yacc.c:1646  */
+#line 3900 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 124:
-#line 2136 "miniC.y" /* yacc.c:1646  */
+#line 2136 "parser.y" /* yacc.c:1646  */
     { 
         (yyval.expressionValue).type = INTEGER; 
         (yyval.expressionValue).registerName = new string(temporarySet.getRegister());
         string s = (*((yyval.expressionValue).registerName)) + " = " + string((yyvsp[0].idName)) ;
         gen(functionInstruction, s, nextNum);  
     }
-#line 3911 "miniC.tab.c" /* yacc.c:1646  */
+#line 3911 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 125:
-#line 2143 "miniC.y" /* yacc.c:1646  */
+#line 2143 "parser.y" /* yacc.c:1646  */
     {
         (yyval.expressionValue).type = FLOATING;
         (yyval.expressionValue).registerName = new string(temporarySet.getFloatRegister());
         string s = (*((yyval.expressionValue).registerName)) + " = " + string((yyvsp[0].idName)) ;
         gen(functionInstruction, s, nextNum);  
     }
-#line 3922 "miniC.tab.c" /* yacc.c:1646  */
+#line 3922 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 126:
-#line 2150 "miniC.y" /* yacc.c:1646  */
+#line 2150 "parser.y" /* yacc.c:1646  */
     { 
         (yyval.expressionValue).type = FLOATING;
         (yyval.expressionValue).registerName = new string(temporarySet.getFloatRegister());
         string s = (*((yyval.expressionValue).registerName)) + " = " + string((yyvsp[0].idName)) ;
         gen(functionInstruction, s, nextNum);  
     }
-#line 3933 "miniC.tab.c" /* yacc.c:1646  */
+#line 3933 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 127:
-#line 2157 "miniC.y" /* yacc.c:1646  */
+#line 2157 "parser.y" /* yacc.c:1646  */
     {
         (yyval.expressionValue).type = INTEGER; 
         (yyval.expressionValue).registerName = new string(temporarySet.getRegister());
@@ -3941,11 +3941,11 @@ yyreduce:
         gen(functionInstruction, s, nextNum);  
         
     }
-#line 3945 "miniC.tab.c" /* yacc.c:1646  */
+#line 3945 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 128:
-#line 2165 "miniC.y" /* yacc.c:1646  */
+#line 2165 "parser.y" /* yacc.c:1646  */
     { 
         (yyval.expressionValue).type = (yyvsp[0].expressionValue).type; 
         if ((yyvsp[0].expressionValue).type == ERRORTYPE) {
@@ -3958,11 +3958,11 @@ yyreduce:
             }
         }; 
     }
-#line 3962 "miniC.tab.c" /* yacc.c:1646  */
+#line 3962 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 129:
-#line 2178 "miniC.y" /* yacc.c:1646  */
+#line 2178 "parser.y" /* yacc.c:1646  */
     {
         if ((yyvsp[-1].expressionValue).type == INTEGER) {
             (yyval.expressionValue).type = INTEGER;   
@@ -3986,11 +3986,11 @@ yyreduce:
             cout << "Cannot increment non-integer type variable "<< *((yyvsp[-1].expressionValue).registerName) << endl; 
         }
     }
-#line 3990 "miniC.tab.c" /* yacc.c:1646  */
+#line 3990 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 130:
-#line 2202 "miniC.y" /* yacc.c:1646  */
+#line 2202 "parser.y" /* yacc.c:1646  */
     {
         if ((yyvsp[-1].expressionValue).type == INTEGER) {
             (yyval.expressionValue).type = INTEGER;   
@@ -4014,11 +4014,11 @@ yyreduce:
             cout << "Cannot increment non-integer type variable " << *((yyvsp[-1].expressionValue).registerName) << endl; 
         }
     }
-#line 4018 "miniC.tab.c" /* yacc.c:1646  */
+#line 4018 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 131:
-#line 2228 "miniC.y" /* yacc.c:1646  */
+#line 2228 "parser.y" /* yacc.c:1646  */
     {   
         // retrieve the highest level id with same name in param list or var list or global list
         int found = 0;
@@ -4061,11 +4061,11 @@ yyreduce:
             }
         }
     }
-#line 4065 "miniC.tab.c" /* yacc.c:1646  */
+#line 4065 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 132:
-#line 2271 "miniC.y" /* yacc.c:1646  */
+#line 2271 "parser.y" /* yacc.c:1646  */
     {
         // retrieve the highest level id with same name in param list or var list
         int found = 0;
@@ -4128,11 +4128,11 @@ yyreduce:
             dimensionList.clear();
         }
     }
-#line 4132 "miniC.tab.c" /* yacc.c:1646  */
+#line 4132 "parser.tab.c" /* yacc.c:1646  */
     break;
 
 
-#line 4136 "miniC.tab.c" /* yacc.c:1646  */
+#line 4136 "parser.tab.c" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -4360,7 +4360,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 2335 "miniC.y" /* yacc.c:1906  */
+#line 2335 "parser.y" /* yacc.c:1906  */
 
 
 void yyerror(const char *s)
@@ -4385,7 +4385,7 @@ int main(int argc, char **argv)
     yyparse();
     populateOffsets(functionEntryRecord, globalVariables);
     ofstream outinter;
-    outinter.open("./output/intermediate.txt");
+    outinter.open("./output/intermediate_code.txt");
     if(!errorFound){
         for(auto it:functionInstruction){
             outinter<<it<<endl;

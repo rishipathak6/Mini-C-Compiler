@@ -1,4 +1,4 @@
-#include "funcTab.h"
+#include "helpers.h"
 
 void patchDataType(eletype elementType, vector<typeRecord*> &typeRecordList, int scope){
     for (typeRecord* &it:typeRecordList) {

@@ -30,8 +30,8 @@
    This special exception was added by the Free Software Foundation in
    version 2.2 of Bison.  */
 
-#ifndef YY_YY_INTER_TAB_H_INCLUDED
-# define YY_YY_INTER_TAB_H_INCLUDED
+#ifndef YY_YY_PARSER_TAB_H_INCLUDED
+# define YY_YY_PARSER_TAB_H_INCLUDED
 /* Debug traces.  */
 #ifndef YYDEBUG
 # define YYDEBUG 0
@@ -39,54 +39,77 @@
 #if YYDEBUG
 extern int yydebug;
 #endif
+/* "%code requires" blocks.  */
+#line 54 "parser.y" /* yacc.c:1909  */
+
+    #include "helpers.h"
+    #include "code_gen.h"
+
+#line 49 "parser.tab.h" /* yacc.c:1909  */
 
 /* Token type.  */
 #ifndef YYTOKENTYPE
 # define YYTOKENTYPE
   enum yytokentype
   {
-    FUNCTION = 258,
-    BEG = 259,
-    END = 260,
-    IF = 261,
-    GOTO = 262,
-    PARAMETER = 263,
-    REFPARAMETER = 264,
-    CALL = 265,
-    LSQUAREB = 266,
-    RSQUAREB = 267,
-    RETURN = 268,
-    NEWLINE = 269,
-    CONVERTTOINT = 270,
-    CONVERTTOFLOAT = 271,
-    LPARE = 272,
-    RPARE = 273,
-    USERVARIABLE = 274,
-    REGINT = 275,
-    REGFLOAT = 276,
-    LABEL = 277,
-    DATAINT = 278,
-    DATAFLOAT = 279,
-    PRINT = 280,
-    READ = 281,
-    COMMA = 282,
-    COLON = 283,
-    SEMI = 284,
-    PLUS = 285,
-    MINUS = 286,
-    MUL = 287,
-    DIV = 288,
-    MOD = 289,
-    EQUAL = 290,
-    NOTEQUAL = 291,
-    OR = 292,
-    AND = 293,
-    LESSTHAN = 294,
-    GREATTHAN = 295,
-    LESSEQUAL = 296,
-    GREATEQUAL = 297,
-    ASSIGN = 298,
-    NEG = 299
+    INT = 258,
+    FLOAT = 259,
+    VOID = 260,
+    DATAFLOAT = 261,
+    DATAINT = 262,
+    ID = 263,
+    NEWLINE = 264,
+    READ = 265,
+    PRINT = 266,
+    COLON = 267,
+    QUESTION = 268,
+    DOT = 269,
+    LCURLYB = 270,
+    RCURLYB = 271,
+    LSQUAREB = 272,
+    RSQUAREB = 273,
+    LPARE = 274,
+    RPARE = 275,
+    SEMI = 276,
+    COMMA = 277,
+    ASSIGN = 278,
+    IF = 279,
+    ELSE = 280,
+    CASE = 281,
+    BREAK = 282,
+    DEFAULT = 283,
+    CONTINUE = 284,
+    WHILE = 285,
+    FOR = 286,
+    RETURN = 287,
+    SWITCH = 288,
+    MAIN = 289,
+    LSHIFT = 290,
+    RSHIFT = 291,
+    PLUSASSIGNMENT = 292,
+    MINASSIGNMENT = 293,
+    MULASSIGNMENT = 294,
+    MODASSIGNMENT = 295,
+    DIVASSIGNMENT = 296,
+    INCREMENT = 297,
+    DECREMENT = 298,
+    XOR = 299,
+    BITAND = 300,
+    BITOR = 301,
+    PLUS = 302,
+    MINUS = 303,
+    DIV = 304,
+    MUL = 305,
+    MOD = 306,
+    NOT = 307,
+    AND = 308,
+    OR = 309,
+    LESSTHAN = 310,
+    GREATTHAN = 311,
+    LESSEQUAL = 312,
+    GREATEQUAL = 313,
+    EQUAL = 314,
+    NOTEQUAL = 315
   };
 #endif
 
@@ -95,13 +118,22 @@ extern int yydebug;
 
 union YYSTYPE
 {
-#line 34 "inter.y" /* yacc.c:1909  */
+#line 59 "parser.y" /* yacc.c:1909  */
 
     int intValue;
     float floatValue;
     char *idName;
+    int quad;
 
-#line 105 "inter.tab.h" /* yacc.c:1909  */
+    struct expression expressionValue;
+    struct switchCaser switchCaseValue;
+    struct switchTemp switchTempValue;
+    struct condition2temp conditionTemp;
+    struct whileExpression whileExpressionValue;
+    struct statement statementValue;
+    struct shortCircuit shortCircuitValue;
+
+#line 137 "parser.tab.h" /* yacc.c:1909  */
 };
 
 typedef union YYSTYPE YYSTYPE;
@@ -114,4 +146,4 @@ extern YYSTYPE yylval;
 
 int yyparse (void);
 
-#endif /* !YY_YY_INTER_TAB_H_INCLUDED  */
+#endif /* !YY_YY_PARSER_TAB_H_INCLUDED  */

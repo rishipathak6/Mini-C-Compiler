@@ -1,5 +1,5 @@
 %{    
-# include "miniC.tab.h"
+# include "parser.tab.h"
 %}
 %option noyywrap
 

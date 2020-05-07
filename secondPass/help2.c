@@ -1,4 +1,4 @@
-#include "symTabParser.h"
+#include "help2.h"
 
 string elementTypeMapper(eletype a)
 {

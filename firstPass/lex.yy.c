@@ -515,9 +515,9 @@ int yy_flex_debug = 0;
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
-#line 1 "miniC.l"
-#line 2 "miniC.l"
-# include "miniC.tab.h"
+#line 1 "lexer.l"
+#line 2 "lexer.l"
+# include "parser.tab.h"
 #line 522 "lex.yy.c"
 #line 523 "lex.yy.c"
 
@@ -736,7 +736,7 @@ YY_DECL
 		}
 
 	{
-#line 6 "miniC.l"
+#line 6 "lexer.l"
 
 
 #line 743 "lex.yy.c"
@@ -798,293 +798,293 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 8 "miniC.l"
+#line 8 "lexer.l"
 { return CASE; }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 9 "miniC.l"
+#line 9 "lexer.l"
 { return IF; }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 10 "miniC.l"
+#line 10 "lexer.l"
 { return ELSE; }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 11 "miniC.l"
+#line 11 "lexer.l"
 { return RETURN; }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 12 "miniC.l"
+#line 12 "lexer.l"
 { return BREAK; }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 13 "miniC.l"
+#line 13 "lexer.l"
 { return DEFAULT; }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 14 "miniC.l"
+#line 14 "lexer.l"
 { return CONTINUE; }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 15 "miniC.l"
+#line 15 "lexer.l"
 { return WHILE; }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 16 "miniC.l"
+#line 16 "lexer.l"
 { return FOR; }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 17 "miniC.l"
+#line 17 "lexer.l"
 { return SWITCH; }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 18 "miniC.l"
+#line 18 "lexer.l"
 { return MAIN; }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 19 "miniC.l"
+#line 19 "lexer.l"
 { return READ; }
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 20 "miniC.l"
+#line 20 "lexer.l"
 { return PRINT; }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 22 "miniC.l"
+#line 22 "lexer.l"
 { return INT; }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 23 "miniC.l"
+#line 23 "lexer.l"
 { return FLOAT; }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 24 "miniC.l"
+#line 24 "lexer.l"
 { return VOID; }
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 26 "miniC.l"
+#line 26 "lexer.l"
 { return LCURLYB; }
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 27 "miniC.l"
+#line 27 "lexer.l"
 { return RCURLYB; }
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 28 "miniC.l"
+#line 28 "lexer.l"
 { return SEMI; }
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 29 "miniC.l"
+#line 29 "lexer.l"
 { return EQUAL; }
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 30 "miniC.l"
+#line 30 "lexer.l"
 { return NOTEQUAL; }
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 31 "miniC.l"
+#line 31 "lexer.l"
 { return LSHIFT; }
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 32 "miniC.l"
+#line 32 "lexer.l"
 { return RSHIFT; }
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 33 "miniC.l"
+#line 33 "lexer.l"
 { return XOR; }
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 34 "miniC.l"
+#line 34 "lexer.l"
 { return LESSTHAN; }
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 35 "miniC.l"
+#line 35 "lexer.l"
 { return GREATTHAN; }
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 36 "miniC.l"
+#line 36 "lexer.l"
 { return LESSEQUAL; }
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 37 "miniC.l"
+#line 37 "lexer.l"
 { return GREATEQUAL; }
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 38 "miniC.l"
+#line 38 "lexer.l"
 { return PLUSASSIGNMENT; }
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 39 "miniC.l"
+#line 39 "lexer.l"
 { return MINASSIGNMENT; }
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 40 "miniC.l"
+#line 40 "lexer.l"
 { return MULASSIGNMENT; }
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 41 "miniC.l"
+#line 41 "lexer.l"
 { return MODASSIGNMENT; }
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 42 "miniC.l"
+#line 42 "lexer.l"
 { return DIVASSIGNMENT; }
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 43 "miniC.l"
+#line 43 "lexer.l"
 { return AND; }
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 44 "miniC.l"
+#line 44 "lexer.l"
 { return OR; }
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 45 "miniC.l"
+#line 45 "lexer.l"
 { return INCREMENT; }
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 46 "miniC.l"
+#line 46 "lexer.l"
 { return DECREMENT; }
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 47 "miniC.l"
+#line 47 "lexer.l"
 { return LSQUAREB; }
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
-#line 48 "miniC.l"
+#line 48 "lexer.l"
 { return RSQUAREB; }
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 49 "miniC.l"
+#line 49 "lexer.l"
 { return LPARE; }
 	YY_BREAK
 case 41:
 YY_RULE_SETUP
-#line 50 "miniC.l"
+#line 50 "lexer.l"
 { return RPARE; }
 	YY_BREAK
 case 42:
 YY_RULE_SETUP
-#line 51 "miniC.l"
+#line 51 "lexer.l"
 { return COLON; }
 	YY_BREAK
 case 43:
 YY_RULE_SETUP
-#line 52 "miniC.l"
+#line 52 "lexer.l"
 { return COMMA; }
 	YY_BREAK
 case 44:
 YY_RULE_SETUP
-#line 53 "miniC.l"
+#line 53 "lexer.l"
 { return ASSIGN; }
 	YY_BREAK
 case 45:
 YY_RULE_SETUP
-#line 54 "miniC.l"
+#line 54 "lexer.l"
 { return NOT; }
 	YY_BREAK
 case 46:
 YY_RULE_SETUP
-#line 55 "miniC.l"
+#line 55 "lexer.l"
 { return BITAND; }
 	YY_BREAK
 case 47:
 YY_RULE_SETUP
-#line 56 "miniC.l"
+#line 56 "lexer.l"
 { return BITOR; }
 	YY_BREAK
 case 48:
 YY_RULE_SETUP
-#line 57 "miniC.l"
+#line 57 "lexer.l"
 { return PLUS; }
 	YY_BREAK
 case 49:
 YY_RULE_SETUP
-#line 58 "miniC.l"
+#line 58 "lexer.l"
 { return MINUS; }
 	YY_BREAK
 case 50:
 YY_RULE_SETUP
-#line 59 "miniC.l"
+#line 59 "lexer.l"
 { return DIV; }
 	YY_BREAK
 case 51:
 YY_RULE_SETUP
-#line 60 "miniC.l"
+#line 60 "lexer.l"
 { return MUL; }
 	YY_BREAK
 case 52:
 YY_RULE_SETUP
-#line 61 "miniC.l"
+#line 61 "lexer.l"
 { return MOD; }
 	YY_BREAK
 case 53:
 YY_RULE_SETUP
-#line 63 "miniC.l"
+#line 63 "lexer.l"
 { yylval.idName = (char *)malloc(100); memset(yylval.idName, 0, 100); memcpy(yylval.idName, yytext, yyleng); return DATAFLOAT; }
 	YY_BREAK
 case 54:
 YY_RULE_SETUP
-#line 64 "miniC.l"
+#line 64 "lexer.l"
 { yylval.idName = (char *)malloc(100); memset(yylval.idName, 0, 100); memcpy(yylval.idName, yytext, yyleng); return DATAINT; }
 	YY_BREAK
 case 55:
 YY_RULE_SETUP
-#line 65 "miniC.l"
+#line 65 "lexer.l"
 { yylval.idName = (char *)malloc(100); memset(yylval.idName, 0, 100); memcpy(yylval.idName, yytext, yyleng); return ID; }
 	YY_BREAK
 case 56:
 /* rule 56 can match eol */
 YY_RULE_SETUP
-#line 67 "miniC.l"
+#line 67 "lexer.l"
 { yylineno++;}
 	YY_BREAK
 case 57:
 YY_RULE_SETUP
-#line 68 "miniC.l"
+#line 68 "lexer.l"
 {/* ignore whitespace */ }
 	YY_BREAK
 case 58:
 YY_RULE_SETUP
-#line 69 "miniC.l"
+#line 69 "lexer.l"
 ECHO;
 	YY_BREAK
 #line 1091 "lex.yy.c"
@@ -2092,5 +2092,5 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 69 "miniC.l"
+#line 69 "lexer.l"
 

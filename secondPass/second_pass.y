@@ -5,7 +5,7 @@
 #include <stack>
 #include <stdio.h>
 #include <fstream>
-#include "symTabParser.h"
+#include "help2.h"
 using namespace std;
 
 #define INTSIZE 4
